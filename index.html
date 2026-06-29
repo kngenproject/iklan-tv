@@ -3,19 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Digital Signage 4K Display</title>
+    <title>4K Running Text Signage</title>
     <style>
-        /* Konfigurasi Ukuran & Warna untuk Layar TV 4K (320 DPI) */
         :root {
-            --bg-color: #0f172a;
-            --text-color: #f8fafc;
-            --accent-color: #2563eb;
-            --highlight-color: #f59e0b;
+            --bg-dark: #090d16;
+            --bg-bar-1: #1e1b4b; /* Biru Gelap */
+            --bg-bar-2: #800000; /* Merah Marun */
+            --text-main: #ffffff;
+            --text-accent-1: #38bdf8; /* Biru Muda */
+            --text-accent-2: #facc15; /* Kuning Cerah */
             
-            /* Tipografi Skala Besar untuk Jarak Pandang TV */
-            --font-title: 5.5rem;   /* ~88px */
-            --font-body: 3.5rem;    /* ~56px */
-            --font-footer: 2.5rem;  /* ~40px */
+            /* Ukuran font super besar untuk jarak pandang TV 4K */
+            --font-jam: 7rem;
+            --font-running-1: 6.5rem;
+            --font-running-2: 5.5rem;
         }
 
         * {
@@ -27,205 +28,187 @@
         }
 
         body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-family: 'Arial Black', Impact, sans-serif; /* Font tebal agar terbaca sangat jelas */
             width: 3840px;
             height: 2160px;
             overflow: hidden;
             display: flex;
             flex-direction: column;
-            /* Memastikan skala tetap pas jika di-render di browser TV */
-            transform-origin: top left; 
         }
 
-        /* Tata Letak Utama (Layout) */
+        /* 1. Baris Atas: Header Utama & Jam Digital */
         header {
-            height: 250px;
-            background: linear-gradient(135deg, var(--accent-color), #1d4ed8);
+            height: 400px;
+            background: linear-gradient(135deg, #0f172a, #1e293b);
             display: flex;
-            align-items: center;
             justify-content: space-between;
-            padding: 0 80px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            z-index: 10;
+            align-items: center;
+            padding: 0 100px;
+            border-bottom: 10px solid var(--text-accent-1);
         }
 
-        .logo-placeholder {
-            font-size: var(--font-title);
-            font-weight: 900;
-            letter-spacing: -2px;
+        .title-display {
+            font-size: 8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--text-main);
         }
 
-        .header-badge {
-            background-color: var(--highlight-color);
-            color: #000;
-            padding: 15px 40px;
-            border-radius: 50px;
-            font-size: 2.8rem;
-            font-weight: bold;
+        .clock-display {
+            font-size: var(--font-jam);
+            background-color: #000;
+            padding: 20px 60px;
+            border-radius: 30px;
+            border: 4px solid var(--text-accent-2);
+            color: var(--text-accent-2);
+            font-family: monospace;
         }
 
-        /* Area Konten / Slider */
+        /* Container Utama Tengah (Mengisi sisa layar TV) */
         main {
             flex: 1;
-            position: relative;
-            background: radial-gradient(circle at center, #1e293b 0%, #0f172a 100%);
-        }
-
-        .slide {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
             display: flex;
-            opacity: 0;
-            transition: opacity 1.5s ease-in-out;
-            padding: 100px 120px;
+            flex-direction: column;
+            justify-content: center;
+            gap: 80px; /* Jarak antar baris teks berjalan */
+            padding: 50px 0;
+        }
+
+        /* 2. Baris Running Text Ke-1 (Besar & Cepat) */
+        .marquee-row-1 {
+            height: 320px;
+            background-color: var(--bg-bar-1);
+            display: flex;
             align-items: center;
+            overflow: hidden;
+            border-top: 5px solid rgba(255,255,255,0.1);
+            border-bottom: 5px solid rgba(255,255,255,0.1);
         }
 
-        .slide.active {
-            opacity: 1;
+        /* 3. Baris Running Text Ke-2 (Sedang & Arah Berlawanan) */
+        .marquee-row-2 {
+            height: 280px;
+            background-color: var(--bg-bar-2);
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+            border-top: 5px solid rgba(255,255,255,0.1);
+            border-bottom: 5px solid rgba(255,255,255,0.1);
         }
 
-        /* Layout Konten Dua Kolom (Teks & Gambar) */
-        .slide-text {
-            flex: 1.2;
-            padding-right: 60px;
+        /* Base Track Animasi Mulus (Hardware Accelerated) */
+        .marquee-track {
+            display: flex;
+            white-space: nowrap;
+            will-change: transform;
         }
 
-        .slide-text h1 {
-            font-size: var(--font-title);
-            line-height: 1.2;
-            margin-bottom: 40px;
-            color: #fff;
+        /* Teks Baris 1: Bergerak Kiri (Standard) */
+        .track-left {
+            font-size: var(--font-running-1);
+            animation: jalanKiri 35s linear infinite;
         }
 
-        .slide-text p {
-            font-size: var(--font-body);
-            line-height: 1.6;
-            color: #cbd5e1;
+        /* Teks Baris 2: Bergerak Kanan (Variasi) */
+        .track-right {
+            font-size: var(--font-running-2);
+            animation: jalanKanan 40s linear infinite;
         }
 
-        .slide-visual {
-            flex: 0.8;
-            height: 100%;
+        /* Elemen dekorasi pemisah teks */
+        .bullet {
+            color: var(--text-accent-2);
+            margin: 0 80px;
+        }
+
+        .highlight-text {
+            color: var(--text-accent-1);
+        }
+
+        /* Keyframes Animasi */
+        @keyframes jalanKiri {
+            0% { transform: translate3d(0, 0, 0); }
+            100% { transform: translate3d(-50%, 0, 0); } /* -50% karena konten di-duplikat di HTML */
+        }
+
+        @keyframes jalanKanan {
+            0% { transform: translate3d(-50%, 0, 0); }
+            100% { transform: translate3d(0, 0, 0); }
+        }
+
+        /* 4. Lapisan Bawah: Informasi Statis */
+        footer {
+            height: 200px;
+            background-color: #000;
             display: flex;
             justify-content: center;
             align-items: center;
-            background: rgba(255,255,255,0.03);
-            border-radius: 40px;
-            border: 2px solid rgba(255,255,255,0.05);
-            overflow: hidden;
-        }
-
-        /* Placeholder untuk Gambar atau Video Promosi */
-        .slide-visual img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        /* Bagian Bawah / Running Text */
-        footer {
-            height: 160px;
-            background-color: #020617;
-            display: flex;
-            align-items: center;
-            border-top: 4px solid var(--accent-color);
-            overflow: hidden;
-        }
-
-        .marquee-container {
-            display: flex;
-            width: 100%;
-        }
-
-        .marquee-text {
-            white-space: nowrap;
-            font-size: var(--font-footer);
-            font-weight: 500;
+            font-size: 4rem;
             color: #94a3b8;
-            animation: jalan 25s linear infinite;
-            padding-left: 100%;
-        }
-
-        .marquee-text strong {
-            color: var(--highlight-color);
-        }
-
-        @keyframes jalan {
-            0% { transform: translate3d(0, 0, 0); }
-            100% { transform: translate3d(-100%, 0, 0); }
         }
     </style>
 </head>
 <body>
 
-    <!-- Header Atas -->
+    <!-- Bagian Atas: Nama Instansi & Jam -->
     <header>
-        <div class="logo-placeholder">INFO DISPLAY</div>
-        <div class="header-badge" id="live-clock">00:00:00</div>
+        <div class="title-display">Papan Informasi Digital</div>
+        <div class="clock-display" id="jam-tv">00:00</div>
     </header>
-    
-    <!-- Konten Promosi Utama -->
+
+    <!-- Bagian Tengah: Kumpulan Running Text -->
     <main>
-        <!-- Slide 1 -->
-        <div class="slide active">
-            <div class="slide-text">
-                <h1>Penerimaan Siswa Baru <br><span style="color: var(--highlight-color)">Tahun Ajaran 2026/2027</span></h1>
-                <p>Mari bergabung bersama kami untuk mencetak generasi cerdas, kreatif, dan berakhlak mulia. Pendaftaran gelombang pertama telah dibuka dengan kuota terbatas!</p>
-            </div>
-            <div class="slide-visual">
-                <!-- Ganti src dengan path gambar promosi Anda -->
-                <div style="font-size: 3rem; color: #475569;">[ Banner / Foto Kegiatan ]</div>
+        
+        <!-- BARIS UTAMA (Bergerak ke Kiri) -->
+        <div class="marquee-row-1">
+            <!-- Konten di dalam track sengaja ditulis 2x agar teks menyambung tanpa putus saat looping -->
+            <div class="marquee-track track-left">
+                <span>&bull; PENERIMAAN SISWA BARU TELAH DIBUKA! <span class="highlight-text">DISKON 50%</span> UNTUK DAFTAR ULANG GELOMBANG 1 </span>
+                <span class="bullet">&bull;</span>
+                <span>FASILITAS KELAS BER-AC, LAB KOMPUTER MODERN, DAN BEASISWA PRESTASI </span>
+                <span class="bullet">&bull;</span>
+                
+                <!-- Duplikat Konten untuk Efek Seamless -->
+                <span>&bull; PENERIMAAN SISWA BARU TELAH DIBUKA! <span class="highlight-text">DISKON 50%</span> UNTUK DAFTAR ULANG GELOMBANG 1 </span>
+                <span class="bullet">&bull;</span>
+                <span>FASILITAS KELAS BER-AC, LAB KOMPUTER MODERN, DAN BEASISWA PRESTASI </span>
+                <span class="bullet">&bull;</span>
             </div>
         </div>
 
-        <!-- Slide 2 -->
-        <div class="slide">
-            <div class="slide-text">
-                <h1>Fasilitas Belajar <br>Modern & Nyaman</h1>
-                <p>Kami menyediakan laboratorium komputer terintegrasi, ruang kelas ber-AC, perpustakaan digital, serta lingkungan sekolah yang aman dan mendukung tumbuh kembang anak.</p>
-            </div>
-            <div class="slide-visual">
-                <div style="font-size: 3rem; color: #475569;">[ Foto Fasilitas ]</div>
+        <!-- BARIS SEKUNDER (Bergerak ke Kanan) -->
+        <div class="marquee-row-2">
+            <div class="marquee-track track-right">
+                <span>&bull; Info Kontak Hubungi WA: <span style="color:var(--text-accent-2)">0812-3456-7890</span> </span>
+                <span class="bullet">&bull;</span>
+                <span>Alamat Kampus Utama: Jl. Raya Lintas Provinsi KM. 12 Jepara </span>
+                <span class="bullet">&bull;</span>
+
+                <!-- Duplikat Konten -->
+                <span>&bull; Info Kontak Hubungi WA: <span style="color:var(--text-accent-2)">0812-3456-7890</span> </span>
+                <span class="bullet">&bull;</span>
+                <span>Alamat Kampus Utama: Jl. Raya Lintas Provinsi KM. 12 Jepara </span>
+                <span class="bullet">&bull;</span>
             </div>
         </div>
+
     </main>
-    
-    <!-- Teks Berjalan di Bagian Bawah -->
+
+    <!-- Bagian Bawah: Catatan Kaki Fiksasi -->
     <footer>
-        <div class="marquee-container">
-            <div class="marquee-text">
-                Hubungi Sekretariat Pendaftaran: <strong>0812-3456-7890</strong> &nbsp;&nbsp;&bull;&nbsp;&nbsp; 
-                Alamat: <strong>Jl. Raya Jepara Kudus KM 12</strong> &nbsp;&nbsp;&bull;&nbsp;&nbsp; 
-                Dapatkan diskon khusus bagi pendaftar sebelum tanggal 31 Juli! &nbsp;&nbsp;&bull;&nbsp;&nbsp;
-            </div>
-        </div>
+        Media Informasi Resmi &copy; 2026 - Silakan Menghubungi Petugas untuk Informasi Lebih Lanjut
     </footer>
 
     <script>
-        // JavaScript untuk Auto-Slide Konten
-        const slides = document.querySelectorAll('.slide');
-        let currentSlide = 0;
-        const slideInterval = 8000; // Durasi per slide (8 detik)
-
-        function nextSlide() {
-            slides[currentSlide].classList.remove('active');
-            currentSlide = (currentSlide + 1) % slides.length;
-            slides[currentSlide].classList.add('active');
-        }
-
-        setInterval(nextSlide, slideInterval);
-
-        // Jam Digital Real-time di Pojok Kanan Atas
+        // Real-time Clock Script
         function updateClock() {
-            const now = new Date();
-            const timeString = now.toLocaleTimeString('id-ID', { hour12: false });
-            document.getElementById('live-clock').textContent = timeString;
+            const sekarang = new Date();
+            const jam = String(sekarang.getHours()).padStart(2, '0');
+            const menit = String(sekarang.getMinutes()).padStart(2, '0');
+            const detik = String(sekarang.getSeconds()).padStart(2, '0');
+            document.getElementById('jam-tv').textContent = `${jam}:${menit}:${detik}`;
         }
         setInterval(updateClock, 1000);
         updateClock();
