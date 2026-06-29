@@ -3,300 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>4K Digital Signage - Iklan Toko</title>
-    <style>
-        :root {
-            --bg-dark: #090d16;
-            --bg-bar-1: #1e3a5f;
-            --bg-bar-2: #0f2044;
-            --text-main: #ffffff;
-            --text-accent-1: #38bdf8;
-            --text-accent-2: #facc15;
-            --text-accent-3: #4ade80;
-            --font-jam: 7rem;
-            --font-running-1: 6.5rem;
-            --font-running-2: 5.5rem;
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            -webkit-user-select: none;
-            user-select: none;
-        }
-
-        body {
-            background-color: var(--bg-dark);
-            color: var(--text-main);
-            font-family: 'Arial Black', Impact, sans-serif;
-            width: 3840px;
-            height: 2160px;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-        }
-
-        /* ── HEADER ── */
-        header {
-            height: 380px;
-            background: linear-gradient(135deg, #0a1628, #1e3a5f);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 100px;
-            border-bottom: 10px solid var(--text-accent-1);
-            position: relative;
-        }
-
-        header::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 0;
-            width: 100%;
-            height: 6px;
-            background: linear-gradient(90deg, transparent, var(--text-accent-2), transparent);
-        }
-
-        .store-branding {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .store-name {
-            font-size: 8.5rem;
-            text-transform: uppercase;
-            letter-spacing: 4px;
-            color: var(--text-main);
-            line-height: 1;
-        }
-
-        .store-tagline {
-            font-size: 3rem;
-            color: var(--text-accent-1);
-            font-weight: normal;
-            letter-spacing: 6px;
-            text-transform: uppercase;
-        }
-
-        .header-right {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-end;
-            gap: 20px;
-        }
-
-        .clock-display {
-            font-size: var(--font-jam);
-            background-color: #000;
-            padding: 20px 60px;
-            border-radius: 30px;
-            border: 4px solid var(--text-accent-2);
-            color: var(--text-accent-2);
-            font-family: monospace;
-        }
-
-        .date-display {
-            font-size: 2.8rem;
-            color: #94a3b8;
-            letter-spacing: 2px;
-        }
-
-        /* ── MAIN ── */
-        main {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            gap: 60px;
-            padding: 40px 0;
-        }
-
-        /* ── PROMO BANNER ── */
-        .promo-banner {
-            height: 260px;
-            background: linear-gradient(90deg, #0f2044, #1e3a5f, #0f2044);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 100px;
-            border-top: 5px solid var(--text-accent-2);
-            border-bottom: 5px solid var(--text-accent-2);
-        }
-
-        .promo-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .promo-badge {
-            font-size: 5rem;
-            font-weight: 900;
-            color: var(--text-accent-2);
-            line-height: 1;
-        }
-
-        .promo-badge.sm {
-            font-size: 3.5rem;
-        }
-
-        .promo-label {
-            font-size: 2.4rem;
-            color: #cbd5e1;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-        }
-
-        .promo-divider {
-            width: 6px;
-            height: 180px;
-            background: linear-gradient(to bottom, transparent, var(--text-accent-1), transparent);
-            border-radius: 3px;
-        }
-
-        /* ── MARQUEE ── */
-        .marquee-row-1 {
-            height: 300px;
-            background-color: var(--bg-bar-1);
-            display: flex;
-            align-items: center;
-            overflow: hidden;
-            border-top: 5px solid rgba(56,189,248,0.3);
-            border-bottom: 5px solid rgba(56,189,248,0.3);
-            box-shadow: 0 0 60px rgba(56,189,248,0.1) inset;
-        }
-
-        .marquee-row-2 {
-            height: 260px;
-            background-color: var(--bg-bar-2);
-            display: flex;
-            align-items: center;
-            overflow: hidden;
-            border-top: 5px solid rgba(250,204,21,0.2);
-            border-bottom: 5px solid rgba(250,204,21,0.2);
-        }
-
-        .marquee-track {
-            display: flex;
-            white-space: nowrap;
-            will-change: transform;
-        }
-
-        .track-left {
-            font-size: var(--font-running-1);
-            animation: jalanKiri 30s linear infinite;
-        }
-
-        .track-right {
-            font-size: var(--font-running-2);
-            animation: jalanKanan 38s linear infinite;
-        }
-
-        .bullet {
-            color: var(--text-accent-2);
-            margin: 0 80px;
-        }
-
-        .hl-blue   { color: var(--text-accent-1); }
-        .hl-yellow { color: var(--text-accent-2); }
-        .hl-green  { color: var(--text-accent-3); }
-
-        @keyframes jalanKiri {
-            0%   { transform: translate3d(0, 0, 0); }
-            100% { transform: translate3d(-50%, 0, 0); }
-        }
-
-        @keyframes jalanKanan {
-            0%   { transform: translate3d(-50%, 0, 0); }
-            100% { transform: translate3d(0, 0, 0); }
-        }
-
-        /* ── FOOTER ── */
-        footer {
-            height: 180px;
-            background: linear-gradient(90deg, #000, #0a1628, #000);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 100px;
-            border-top: 4px solid rgba(56,189,248,0.4);
-        }
-
-        .footer-contact  { font-size: 3.2rem; color: #94a3b8; }
-        .footer-contact span { color: var(--text-accent-1); }
-        .footer-website  { font-size: 3rem; color: var(--text-accent-2); letter-spacing: 3px; }
-        .footer-social   { font-size: 3rem; color: #94a3b8; }
-        .footer-social span { color: var(--text-accent-3); }
-
-        /* ── LIVE BADGE ── */
-        .live-badge {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            background: rgba(239,68,68,0.15);
-            border: 3px solid #ef4444;
-            border-radius: 20px;
-            padding: 10px 40px;
-        }
-
-        .live-dot {
-            width: 28px;
-            height: 28px;
-            background: #ef4444;
-            border-radius: 50%;
-            animation: blink 1s ease-in-out infinite;
-        }
-
-        .live-text { font-size: 2.8rem; color: #ef4444; letter-spacing: 4px; }
-
-        @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50%       { opacity: 0.2; }
-        }
-
-        /* ── UPDATE TOAST ── */
-        #toast-update {
-            display: none;
-            position: fixed;
-            bottom: 220px;
-            right: 80px;
-            background: #facc15;
-            color: #000;
-            font-size: 2.5rem;
-            padding: 30px 60px;
-            border-radius: 20px;
-            font-weight: 900;
-            z-index: 9999;
-            animation: fadeIn 0.5s ease;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(30px); }
-            to   { opacity: 1; transform: translateY(0); }
-        }
-    </style>
+    <title>4K Digital Signage</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- ── HEADER ── -->
-    <header>
+<div class="signage-root" id="signage-root">
+
+    <!-- ══ HEADER ══ -->
+    <header class="s-header">
         <div class="store-branding">
             <div class="store-name">✦ Toko Sejahtera</div>
             <div class="store-tagline">Belanja Hemat, Kualitas Terjamin</div>
         </div>
         <div class="header-right">
             <div class="clock-display" id="jam-tv">00:00:00</div>
-            <div class="date-display" id="tanggal-tv">—</div>
+            <div class="date-display"  id="tanggal-tv">—</div>
         </div>
     </header>
 
-    <main>
+    <!-- ══ MAIN ══ -->
+    <main class="s-main">
 
-        <!-- ── PROMO BANNER ── -->
+        <!-- Promo Banner -->
         <div class="promo-banner">
             <div class="promo-item">
                 <div class="promo-badge">DISKON</div>
@@ -322,106 +51,78 @@
             </div>
         </div>
 
-        <!-- ── RUNNING TEXT 1 ── -->
+        <!-- Running Text 1 — ke kiri -->
         <div class="marquee-row-1">
             <div class="marquee-track track-left">
-                <span>&bull; <span class="hl-yellow">FLASH SALE HARI INI!</span> Sepatu Sport Premium Hanya <span class="hl-green">Rp 299.000</span> </span>
+                <span>&bull; <span class="hl-yellow">FLASH SALE HARI INI!</span>
+                    Sepatu Sport Premium Hanya <span class="hl-green">Rp 299.000</span> </span>
                 <span class="bullet">&bull;</span>
-                <span>Tas Ransel Laptop Waterproof <span class="hl-blue">BEST SELLER</span> — Stok Terbatas! </span>
+                <span>Tas Ransel Laptop Waterproof
+                    <span class="hl-blue">BEST SELLER</span> — Stok Terbatas! </span>
                 <span class="bullet">&bull;</span>
-                <span>Kemeja Batik Modern mulai <span class="hl-green">Rp 185.000</span> — Tersedia 20 Motif </span>
+                <span>Kemeja Batik Modern mulai
+                    <span class="hl-green">Rp 185.000</span> — Tersedia 20 Motif </span>
                 <span class="bullet">&bull;</span>
-                <span>Parfum Import Original <span class="hl-yellow">DISKON 40%</span> — Beli Sekarang! </span>
+                <span>Parfum Import Original
+                    <span class="hl-yellow">DISKON 40%</span> — Beli Sekarang! </span>
                 <span class="bullet">&bull;</span>
-                <!-- Duplikat seamless -->
-                <span>&bull; <span class="hl-yellow">FLASH SALE HARI INI!</span> Sepatu Sport Premium Hanya <span class="hl-green">Rp 299.000</span> </span>
+                <!-- duplikat untuk seamless loop -->
+                <span>&bull; <span class="hl-yellow">FLASH SALE HARI INI!</span>
+                    Sepatu Sport Premium Hanya <span class="hl-green">Rp 299.000</span> </span>
                 <span class="bullet">&bull;</span>
-                <span>Tas Ransel Laptop Waterproof <span class="hl-blue">BEST SELLER</span> — Stok Terbatas! </span>
+                <span>Tas Ransel Laptop Waterproof
+                    <span class="hl-blue">BEST SELLER</span> — Stok Terbatas! </span>
                 <span class="bullet">&bull;</span>
-                <span>Kemeja Batik Modern mulai <span class="hl-green">Rp 185.000</span> — Tersedia 20 Motif </span>
+                <span>Kemeja Batik Modern mulai
+                    <span class="hl-green">Rp 185.000</span> — Tersedia 20 Motif </span>
                 <span class="bullet">&bull;</span>
-                <span>Parfum Import Original <span class="hl-yellow">DISKON 40%</span> — Beli Sekarang! </span>
+                <span>Parfum Import Original
+                    <span class="hl-yellow">DISKON 40%</span> — Beli Sekarang! </span>
                 <span class="bullet">&bull;</span>
             </div>
         </div>
 
-        <!-- ── RUNNING TEXT 2 ── -->
+        <!-- Running Text 2 — ke kanan -->
         <div class="marquee-row-2">
             <div class="marquee-track track-right">
-                <span>&bull; Pembayaran: <span class="hl-blue">Tunai · Transfer · QRIS · Cicilan 0%</span> </span>
+                <span>&bull; Pembayaran:
+                    <span class="hl-blue">Tunai · Transfer · QRIS · Cicilan 0%</span> </span>
                 <span class="bullet">&bull;</span>
-                <span>Jam Buka: <span class="hl-yellow">Senin–Sabtu 08.00–21.00</span> · Minggu 09.00–18.00 </span>
+                <span>Jam Buka:
+                    <span class="hl-yellow">Senin–Sabtu 08.00–21.00</span>
+                    · Minggu 09.00–18.00 </span>
                 <span class="bullet">&bull;</span>
-                <span>Garansi <span class="hl-green">30 Hari</span> — Tidak Puas? Uang Kembali! </span>
+                <span>Garansi <span class="hl-green">30 Hari</span>
+                    — Tidak Puas? Uang Kembali! </span>
                 <span class="bullet">&bull;</span>
-                <!-- Duplikat seamless -->
-                <span>&bull; Pembayaran: <span class="hl-blue">Tunai · Transfer · QRIS · Cicilan 0%</span> </span>
+                <!-- duplikat -->
+                <span>&bull; Pembayaran:
+                    <span class="hl-blue">Tunai · Transfer · QRIS · Cicilan 0%</span> </span>
                 <span class="bullet">&bull;</span>
-                <span>Jam Buka: <span class="hl-yellow">Senin–Sabtu 08.00–21.00</span> · Minggu 09.00–18.00 </span>
+                <span>Jam Buka:
+                    <span class="hl-yellow">Senin–Sabtu 08.00–21.00</span>
+                    · Minggu 09.00–18.00 </span>
                 <span class="bullet">&bull;</span>
-                <span>Garansi <span class="hl-green">30 Hari</span> — Tidak Puas? Uang Kembali! </span>
+                <span>Garansi <span class="hl-green">30 Hari</span>
+                    — Tidak Puas? Uang Kembali! </span>
                 <span class="bullet">&bull;</span>
             </div>
         </div>
 
     </main>
 
-    <!-- ── FOOTER ── -->
-    <footer>
+    <!-- ══ FOOTER ══ -->
+    <footer class="s-footer">
         <div class="footer-contact">📞 WA: <span>0812-3456-7890</span></div>
         <div class="footer-website">🌐 www.tokosejahtera.com</div>
         <div class="footer-social">📱 IG/TikTok: <span>@tokosejahtera</span></div>
     </footer>
 
-    <!-- Toast notifikasi saat ada update -->
-    <div id="toast-update">🔄 Memuat konten terbaru...</div>
+    <!-- Toast notifikasi auto-reload -->
+    <div class="toast-update" id="toast-update">🔄 Memuat konten terbaru...</div>
 
-    <script>
-        // ── CLOCK ──
-        const HARI  = ['Minggu','Senin','Selasa','Rabu','Kamis','Jumat','Sabtu'];
-        const BULAN = ['Jan','Feb','Mar','Apr','Mei','Jun','Jul','Agu','Sep','Okt','Nov','Des'];
+</div><!-- /signage-root -->
 
-        function updateClock() {
-            const now = new Date();
-            const h = String(now.getHours()).padStart(2,'0');
-            const m = String(now.getMinutes()).padStart(2,'0');
-            const s = String(now.getSeconds()).padStart(2,'0');
-            document.getElementById('jam-tv').textContent = `${h}:${m}:${s}`;
-            document.getElementById('tanggal-tv').textContent =
-                `${HARI[now.getDay()]}, ${now.getDate()} ${BULAN[now.getMonth()]} ${now.getFullYear()}`;
-        }
-        setInterval(updateClock, 1000);
-        updateClock();
-
-        // ── SERVICE WORKER ──
-        if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('./sw.js');
-        }
-
-        // ── AUTO RELOAD SAAT VERSION.JSON BERUBAH ──
-        let versiSaatIni = null;
-
-        async function cekVersi() {
-            try {
-                const res  = await fetch('./version.json?t=' + Date.now());
-                const data = await res.json();
-
-                if (versiSaatIni === null) {
-                    versiSaatIni = data.v;
-                    console.log('Versi aktif:', versiSaatIni);
-                } else if (data.v !== versiSaatIni) {
-                    // Tampilkan toast lalu reload
-                    document.getElementById('toast-update').style.display = 'block';
-                    setTimeout(() => location.reload(), 3000);
-                }
-            } catch (e) {
-                console.warn('Gagal cek versi:', e);
-            }
-        }
-
-        setInterval(cekVersi, 60_000); // cek tiap 60 detik
-        cekVersi();
-    </script>
-
+<script src="app.js"></script>
 </body>
 </html>

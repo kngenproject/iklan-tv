@@ -1,0 +1,321 @@
+/* ═══════════════════════════════════════════
+   4K DIGITAL SIGNAGE — STYLESHEET
+   Resolusi target : 3840 × 2160 px
+   Ditampilkan via : CSS transform scale (JS)
+   ═══════════════════════════════════════════ */
+
+/* ── RESET & TOKEN ── */
+:root {
+    --bg-dark      : #090d16;
+    --bg-bar-1     : #1e3a5f;
+    --bg-bar-2     : #0f2044;
+
+    --clr-white    : #ffffff;
+    --clr-slate    : #94a3b8;
+    --clr-slate-lt : #cbd5e1;
+
+    --clr-blue     : #38bdf8;
+    --clr-yellow   : #facc15;
+    --clr-green    : #4ade80;
+    --clr-red      : #ef4444;
+
+    --h-header  : 380px;
+    --h-promo   : 260px;
+    --h-row1    : 300px;
+    --h-row2    : 260px;
+    --h-footer  : 180px;
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: #000;
+}
+
+/* ── ROOT CANVAS 3840×2160 — di-scale via JS ── */
+.signage-root {
+    position: relative;
+    width: 3840px;
+    height: 2160px;
+    transform-origin: top left;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--bg-dark);
+    color: var(--clr-white);
+    font-family: 'Arial Black', Impact, sans-serif;
+}
+
+/* ════════════════════════════════
+   HEADER
+   ════════════════════════════════ */
+.s-header {
+    height: var(--h-header);
+    flex-shrink: 0;
+    background: linear-gradient(135deg, #0a1628, #1e3a5f);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 100px;
+    border-bottom: 10px solid var(--clr-blue);
+    position: relative;
+}
+
+.s-header::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 100%;
+    height: 6px;
+    background: linear-gradient(90deg, transparent, var(--clr-yellow), transparent);
+}
+
+/* Branding kiri */
+.store-branding {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.store-name {
+    font-size: 8.5rem;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    color: var(--clr-white);
+    line-height: 1;
+}
+
+.store-tagline {
+    font-size: 3rem;
+    color: var(--clr-blue);
+    font-weight: normal;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+}
+
+/* Jam & tanggal kanan */
+.header-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 20px;
+}
+
+.clock-display {
+    font-size: 7rem;
+    font-family: monospace;
+    background: #000;
+    padding: 20px 60px;
+    border-radius: 30px;
+    border: 4px solid var(--clr-yellow);
+    color: var(--clr-yellow);
+}
+
+.date-display {
+    font-size: 2.8rem;
+    color: var(--clr-slate);
+    letter-spacing: 2px;
+}
+
+/* ════════════════════════════════
+   MAIN
+   ════════════════════════════════ */
+.s-main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 60px;
+    padding: 40px 0;
+}
+
+/* ── Promo Banner ── */
+.promo-banner {
+    height: var(--h-promo);
+    flex-shrink: 0;
+    background: linear-gradient(90deg, #0f2044, #1e3a5f, #0f2044);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 100px;
+    border-top: 5px solid var(--clr-yellow);
+    border-bottom: 5px solid var(--clr-yellow);
+}
+
+.promo-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.promo-badge {
+    font-size: 5rem;
+    font-weight: 900;
+    color: var(--clr-yellow);
+    line-height: 1;
+}
+
+.promo-badge.sm { font-size: 3.5rem; }
+
+.promo-label {
+    font-size: 2.4rem;
+    color: var(--clr-slate-lt);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+
+.promo-divider {
+    width: 6px;
+    height: 180px;
+    background: linear-gradient(to bottom, transparent, var(--clr-blue), transparent);
+    border-radius: 3px;
+}
+
+/* ── Live Badge ── */
+.live-badge {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    background: rgba(239, 68, 68, 0.15);
+    border: 3px solid var(--clr-red);
+    border-radius: 20px;
+    padding: 10px 40px;
+}
+
+.live-dot {
+    width: 28px;
+    height: 28px;
+    background: var(--clr-red);
+    border-radius: 50%;
+    animation: blink 1s ease-in-out infinite;
+}
+
+.live-text {
+    font-size: 2.8rem;
+    color: var(--clr-red);
+    letter-spacing: 4px;
+}
+
+/* ── Marquee Rows ── */
+.marquee-row-1 {
+    height: var(--h-row1);
+    flex-shrink: 0;
+    background-color: var(--bg-bar-1);
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    border-top: 5px solid rgba(56, 189, 248, 0.3);
+    border-bottom: 5px solid rgba(56, 189, 248, 0.3);
+    box-shadow: 0 0 60px rgba(56, 189, 248, 0.1) inset;
+}
+
+.marquee-row-2 {
+    height: var(--h-row2);
+    flex-shrink: 0;
+    background-color: var(--bg-bar-2);
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    border-top: 5px solid rgba(250, 204, 21, 0.2);
+    border-bottom: 5px solid rgba(250, 204, 21, 0.2);
+}
+
+.marquee-track {
+    display: flex;
+    white-space: nowrap;
+    will-change: transform;
+}
+
+.track-left {
+    font-size: 6.5rem;
+    animation: jalanKiri 30s linear infinite;
+}
+
+.track-right {
+    font-size: 5.5rem;
+    animation: jalanKanan 38s linear infinite;
+}
+
+.bullet {
+    color: var(--clr-yellow);
+    margin: 0 80px;
+}
+
+/* Warna highlight teks */
+.hl-blue   { color: var(--clr-blue);   }
+.hl-yellow { color: var(--clr-yellow); }
+.hl-green  { color: var(--clr-green);  }
+
+/* ════════════════════════════════
+   FOOTER
+   ════════════════════════════════ */
+.s-footer {
+    height: var(--h-footer);
+    flex-shrink: 0;
+    background: linear-gradient(90deg, #000, #0a1628, #000);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 100px;
+    border-top: 4px solid rgba(56, 189, 248, 0.4);
+}
+
+.footer-contact               { font-size: 3.2rem; color: var(--clr-slate); }
+.footer-contact span          { color: var(--clr-blue); }
+.footer-website               { font-size: 3rem; color: var(--clr-yellow); letter-spacing: 3px; }
+.footer-social                { font-size: 3rem; color: var(--clr-slate); }
+.footer-social span           { color: var(--clr-green); }
+
+/* ════════════════════════════════
+   TOAST NOTIFIKASI UPDATE
+   ════════════════════════════════ */
+.toast-update {
+    display: none;
+    position: absolute;
+    bottom: 220px;
+    right: 80px;
+    background: var(--clr-yellow);
+    color: #000;
+    font-size: 2.5rem;
+    font-weight: 900;
+    padding: 30px 60px;
+    border-radius: 20px;
+    z-index: 9999;
+    animation: fadeInUp 0.5s ease;
+}
+
+.toast-update.show { display: block; }
+
+/* ════════════════════════════════
+   KEYFRAMES
+   ════════════════════════════════ */
+@keyframes jalanKiri {
+    0%   { transform: translate3d(0, 0, 0); }
+    100% { transform: translate3d(-50%, 0, 0); }
+}
+
+@keyframes jalanKanan {
+    0%   { transform: translate3d(-50%, 0, 0); }
+    100% { transform: translate3d(0, 0, 0); }
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0.2; }
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
