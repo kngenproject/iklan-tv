@@ -3,165 +3,455 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Signage Kurs & Saham</title>
+    <title>ABS — Aneka Buah Segar</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
 <div class="signage-root" id="signage-root">
-
-    <!-- ══ LOADING OVERLAY ══ -->
-    <div class="loading-overlay" id="loading">
-        <div class="spinner"></div>
-        <div>Mengambil Data Pasar...</div>
-    </div>
 
     <!-- ══ HEADER ══ -->
     <header class="s-header">
-        <div class="brand-left">
-            <div class="brand-title">📊 Info <span>Pasar</span> Real-Time</div>
-            <div class="brand-sub">Kurs Valuta Asing · Saham IDX</div>
+        <div class="logo-area">
+            <div class="logo-icon">🍉</div>
+            <div class="logo-text">
+                <div class="logo-abs"><span>ABS</span></div>
+                <div class="logo-tagline">✦ Aneka Buah Segar ✦</div>
+            </div>
         </div>
         <div class="header-right">
-            <div class="clock-display" id="jam-tv">00:00:00</div>
-            <div class="date-display"  id="tanggal-tv">—</div>
+            <div class="header-badge">🌿 SEGAR<br>SETIAP HARI</div>
+            <div class="clock-box">
+                <div class="clock-time" id="jam-tv">00:00:00</div>
+                <div class="clock-date" id="tanggal-tv">—</div>
+            </div>
         </div>
     </header>
 
     <!-- ══ MAIN ══ -->
     <main class="s-main">
 
-        <!-- Label Kurs -->
-        <div class="section-label kurs">
-            <div class="dot"></div>
-            💱 &nbsp;Kurs Valuta Asing terhadap Rupiah (IDR)
-        </div>
+        <!-- ── PANEL KIRI (Slideshow) ── -->
+        <div class="panel-left">
 
-        <!-- Grid Kurs -->
-        <div class="kurs-grid">
-            <div class="kurs-card" data-code="USD">
-                <div class="kurs-flag">🇺🇸</div>
-                <div class="kurs-code">USD</div>
-                <div class="kurs-name">Dolar Amerika</div>
-                <div class="kurs-rate">—</div>
-                <div class="kurs-change flat">–</div>
+            <!-- SLIDE 1: PROMO HARI INI -->
+            <div class="slide slide-promo">
+                <div class="slide-header">🏷️ &nbsp;PROMO SPESIAL HARI INI</div>
+                <div class="promo-grid">
+                    <div class="promo-card">
+                        <div class="promo-badge-diskon">HEMAT 30%</div>
+                        <div class="promo-emoji">🍉</div>
+                        <div class="promo-nama">Semangka Merah</div>
+                        <div class="promo-harga-coret">Rp 8.000/kg</div>
+                        <div class="promo-harga-baru">Rp 5.500</div>
+                        <div class="promo-satuan">per kilogram</div>
+                    </div>
+                    <div class="promo-card">
+                        <div class="promo-badge-diskon">HEMAT 25%</div>
+                        <div class="promo-emoji">🍌</div>
+                        <div class="promo-nama">Pisang Cavendish</div>
+                        <div class="promo-harga-coret">Rp 24.000/sisir</div>
+                        <div class="promo-harga-baru">Rp 18.000</div>
+                        <div class="promo-satuan">per sisir</div>
+                    </div>
+                    <div class="promo-card">
+                        <div class="promo-badge-diskon">HEMAT 20%</div>
+                        <div class="promo-emoji">🍊</div>
+                        <div class="promo-nama">Jeruk Pontianak</div>
+                        <div class="promo-harga-coret">Rp 20.000/kg</div>
+                        <div class="promo-harga-baru">Rp 16.000</div>
+                        <div class="promo-satuan">per kilogram</div>
+                    </div>
+                </div>
             </div>
-            <div class="kurs-card" data-code="EUR">
-                <div class="kurs-flag">🇪🇺</div>
-                <div class="kurs-code">EUR</div>
-                <div class="kurs-name">Euro</div>
-                <div class="kurs-rate">—</div>
-                <div class="kurs-change flat">–</div>
-            </div>
-            <div class="kurs-card" data-code="GBP">
-                <div class="kurs-flag">🇬🇧</div>
-                <div class="kurs-code">GBP</div>
-                <div class="kurs-name">Poundsterling</div>
-                <div class="kurs-rate">—</div>
-                <div class="kurs-change flat">–</div>
-            </div>
-            <div class="kurs-card" data-code="JPY">
-                <div class="kurs-flag">🇯🇵</div>
-                <div class="kurs-code">JPY</div>
-                <div class="kurs-name">Yen Jepang</div>
-                <div class="kurs-rate">—</div>
-                <div class="kurs-change flat">–</div>
-            </div>
-            <div class="kurs-card" data-code="SGD">
-                <div class="kurs-flag">🇸🇬</div>
-                <div class="kurs-code">SGD</div>
-                <div class="kurs-name">Dolar Singapura</div>
-                <div class="kurs-rate">—</div>
-                <div class="kurs-change flat">–</div>
-            </div>
-            <div class="kurs-card" data-code="SAR">
-                <div class="kurs-flag">🇸🇦</div>
-                <div class="kurs-code">SAR</div>
-                <div class="kurs-name">Riyal Saudi</div>
-                <div class="kurs-rate">—</div>
-                <div class="kurs-change flat">–</div>
-            </div>
-            <div class="kurs-card" data-code="CNY">
-                <div class="kurs-flag">🇨🇳</div>
-                <div class="kurs-code">CNY</div>
-                <div class="kurs-name">Yuan China</div>
-                <div class="kurs-rate">—</div>
-                <div class="kurs-change flat">–</div>
-            </div>
-        </div>
 
-        <!-- Label Saham -->
-        <div class="section-label saham">
-            <div class="dot"></div>
-            📈 &nbsp;Harga Saham IDX — Live Market
-        </div>
+            <!-- SLIDE 2: PRODUK UNGGULAN -->
+            <div class="slide slide-produk">
+                <div class="slide-header">⭐ &nbsp;PRODUK UNGGULAN &amp; BUAH BARU DATANG</div>
+                <div class="produk-grid">
+                    <div class="produk-card">
+                        <div class="produk-emoji">🍇</div>
+                        <div class="produk-nama">Anggur Shine Muscat</div>
+                        <div class="produk-origin">🇹🇭 Import Thailand</div>
+                        <div class="produk-harga">Rp 65.000/kg</div>
+                        <div class="produk-tag new">🆕 Baru Datang</div>
+                    </div>
+                    <div class="produk-card">
+                        <div class="produk-emoji">🥭</div>
+                        <div class="produk-nama">Mangga Harum Manis</div>
+                        <div class="produk-origin">🇮🇩 Probolinggo</div>
+                        <div class="produk-harga">Rp 28.000/kg</div>
+                        <div class="produk-tag">⭐ Terlaris</div>
+                    </div>
+                    <div class="produk-card">
+                        <div class="produk-emoji">🍓</div>
+                        <div class="produk-nama">Stroberi Segar</div>
+                        <div class="produk-origin">🇮🇩 Batu, Malang</div>
+                        <div class="produk-harga">Rp 35.000/250g</div>
+                        <div class="produk-tag new">🆕 Baru Datang</div>
+                    </div>
+                    <div class="produk-card">
+                        <div class="produk-emoji">🍑</div>
+                        <div class="produk-nama">Peach Kuning</div>
+                        <div class="produk-origin">🇨🇳 Import China</div>
+                        <div class="produk-harga">Rp 45.000/kg</div>
+                        <div class="produk-tag">✨ Pilihan</div>
+                    </div>
+                </div>
+            </div>
 
-        <!-- Grid Saham -->
-        <div class="saham-grid">
-            <div class="saham-card" data-ticker="BBCA.JK">
-                <div class="saham-ticker">BBCA</div>
-                <div class="saham-nama">Bank BCA</div>
-                <div class="saham-harga">—</div>
-                <div class="saham-change flat">–</div>
-                <div class="saham-vol">Vol: —</div>
+            <!-- SLIDE 3: MANFAAT BUAH -->
+            <div class="slide slide-manfaat">
+                <div class="slide-header">💚 &nbsp;MANFAAT &amp; FAKTA MENARIK BUAH SEGAR</div>
+                <div class="manfaat-grid">
+                    <div class="manfaat-card">
+                        <div class="manfaat-icon">🍓</div>
+                        <div class="manfaat-body">
+                            <div class="manfaat-judul">Stroberi — Antioksidan Tinggi</div>
+                            <div class="manfaat-desc">Kaya vitamin C & antioksidan, melindungi sel dari radikal bebas dan menjaga kulit tetap sehat bercahaya.</div>
+                        </div>
+                    </div>
+                    <div class="manfaat-card">
+                        <div class="manfaat-icon">🍌</div>
+                        <div class="manfaat-body">
+                            <div class="manfaat-judul">Pisang — Energi Alami</div>
+                            <div class="manfaat-desc">Sumber kalium & karbohidrat kompleks, cocok untuk penambah energi sebelum olahraga atau aktivitas berat.</div>
+                        </div>
+                    </div>
+                    <div class="manfaat-card">
+                        <div class="manfaat-icon">🍉</div>
+                        <div class="manfaat-body">
+                            <div class="manfaat-judul">Semangka — Hidrasi Sempurna</div>
+                            <div class="manfaat-desc">Mengandung 92% air, membantu menjaga tubuh tetap terhidrasi sekaligus menyegarkan di cuaca panas.</div>
+                        </div>
+                    </div>
+                    <div class="manfaat-card">
+                        <div class="manfaat-icon">🥭</div>
+                        <div class="manfaat-body">
+                            <div class="manfaat-judul">Mangga — Raja Buah Tropis</div>
+                            <div class="manfaat-desc">Kaya vitamin A & C, mendukung kesehatan mata, meningkatkan imunitas, dan memperlancar pencernaan.</div>
+                        </div>
+                    </div>
+                    <div class="manfaat-card">
+                        <div class="manfaat-icon">🍊</div>
+                        <div class="manfaat-body">
+                            <div class="manfaat-judul">Jeruk — Imunitas Booster</div>
+                            <div class="manfaat-desc">Vitamin C tinggi membantu melawan infeksi, mempercepat penyembuhan luka, dan menjaga daya tahan tubuh.</div>
+                        </div>
+                    </div>
+                    <div class="manfaat-card">
+                        <div class="manfaat-icon">🍇</div>
+                        <div class="manfaat-body">
+                            <div class="manfaat-judul">Anggur — Jantung Sehat</div>
+                            <div class="manfaat-desc">Resveratrol dalam anggur merah membantu melindungi jantung, menurunkan kolesterol jahat, dan mencegah penyumbatan pembuluh darah.</div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="saham-card" data-ticker="BBRI.JK">
-                <div class="saham-ticker">BBRI</div>
-                <div class="saham-nama">Bank BRI</div>
-                <div class="saham-harga">—</div>
-                <div class="saham-change flat">–</div>
-                <div class="saham-vol">Vol: —</div>
-            </div>
-            <div class="saham-card" data-ticker="TLKM.JK">
-                <div class="saham-ticker">TLKM</div>
-                <div class="saham-nama">Telkom</div>
-                <div class="saham-harga">—</div>
-                <div class="saham-change flat">–</div>
-                <div class="saham-vol">Vol: —</div>
-            </div>
-            <div class="saham-card" data-ticker="ASII.JK">
-                <div class="saham-ticker">ASII</div>
-                <div class="saham-nama">Astra Intl</div>
-                <div class="saham-harga">—</div>
-                <div class="saham-change flat">–</div>
-                <div class="saham-vol">Vol: —</div>
-            </div>
-            <div class="saham-card" data-ticker="GOTO.JK">
-                <div class="saham-ticker">GOTO</div>
-                <div class="saham-nama">GoTo Group</div>
-                <div class="saham-harga">—</div>
-                <div class="saham-change flat">–</div>
-                <div class="saham-vol">Vol: —</div>
-            </div>
-        </div>
 
-        <!-- Running Text -->
-        <div class="marquee-wrap">
-            <div class="marquee-track" id="marquee-track">
-                <span class="m-item" style="color:#64748b">Mengambil data...</span>
+            <!-- SLIDE 4: TIPS -->
+            <div class="slide slide-tips">
+                <div class="slide-header">💡 &nbsp;TIPS MEMILIH, MENYIMPAN &amp; MENGONSUMSI BUAH</div>
+                <div class="tips-list">
+                    <div class="tips-item">
+                        <div class="tips-num">1</div>
+                        <div class="tips-icon">👃</div>
+                        <div class="tips-text"><strong>Cium Aromanya</strong> — Buah segar memiliki aroma alami yang kuat. Semangka & mangga matang tercium harum dari dekat.</div>
+                    </div>
+                    <div class="tips-item">
+                        <div class="tips-num">2</div>
+                        <div class="tips-icon">✋</div>
+                        <div class="tips-text"><strong>Pegang & Tekan Lembut</strong> — Buah matang terasa sedikit lunak saat ditekan ringan, namun tidak terlalu lembek atau berair.</div>
+                    </div>
+                    <div class="tips-item">
+                        <div class="tips-num">3</div>
+                        <div class="tips-icon">❄️</div>
+                        <div class="tips-text"><strong>Simpan dengan Benar</strong> — Pisang & mangga simpan di suhu ruang. Stroberi, anggur & buah potong simpan di kulkas suhu 4–8°C.</div>
+                    </div>
+                    <div class="tips-item">
+                        <div class="tips-num">4</div>
+                        <div class="tips-icon">⏰</div>
+                        <div class="tips-text"><strong>Waktu Terbaik Makan Buah</strong> — Konsumsi buah di pagi hari saat perut kosong untuk penyerapan nutrisi yang optimal.</div>
+                    </div>
+                    <div class="tips-item">
+                        <div class="tips-num">5</div>
+                        <div class="tips-icon">🌈</div>
+                        <div class="tips-text"><strong>Variasikan Warna</strong> — Makan buah berbeda warna setiap hari untuk mendapatkan ragam vitamin, mineral, dan antioksidan lengkap.</div>
+                    </div>
+                </div>
             </div>
-        </div>
+
+            <!-- SLIDE 5: RESEP -->
+            <div class="slide slide-resep">
+                <div class="slide-header">🍹 &nbsp;IDE RESEP SEGAR — JUS, SMOOTHIE &amp; SALAD</div>
+                <div class="resep-grid">
+                    <div class="resep-card">
+                        <div class="resep-emoji">🥤</div>
+                        <div class="resep-nama">Jus Semangka Mint</div>
+                        <div class="resep-bahan">
+                            <strong>Bahan:</strong><br>
+                            🍉 300g Semangka potong<br>
+                            🌿 5 lembar daun mint segar<br>
+                            🍋 1 sdm perasan jeruk nipis<br>
+                            🧊 Tambahkan es batu secukupnya<br><br>
+                            <strong>Cara:</strong> Blender semua bahan hingga halus, saring dan sajikan dingin.
+                        </div>
+                    </div>
+                    <div class="resep-card">
+                        <div class="resep-emoji">🥛</div>
+                        <div class="resep-nama">Smoothie Mangga Pisang</div>
+                        <div class="resep-bahan">
+                            <strong>Bahan:</strong><br>
+                            🥭 1 buah mangga harum manis<br>
+                            🍌 1 buah pisang matang<br>
+                            🥛 200ml susu atau yogurt plain<br>
+                            🍯 1 sdt madu (opsional)<br><br>
+                            <strong>Cara:</strong> Blender semua bahan tanpa es, sajikan dalam gelas besar.
+                        </div>
+                    </div>
+                    <div class="resep-card">
+                        <div class="resep-emoji">🥗</div>
+                        <div class="resep-nama">Salad Buah Segar</div>
+                        <div class="resep-bahan">
+                            <strong>Bahan:</strong><br>
+                            🍓 Stroberi · 🍇 Anggur · 🥝 Kiwi<br>
+                            🍊 Jeruk · 🍑 Peach potong dadu<br>
+                            🥥 3 sdm krim kental / yogurt<br>
+                            🍯 Madu & perasan lemon<br><br>
+                            <strong>Cara:</strong> Campur buah, siram saus yogurt-madu, sajikan dingin.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SLIDE 6: LAYANAN -->
+            <div class="slide slide-layanan">
+                <div class="slide-header">🛎️ &nbsp;LAYANAN KAMI UNTUK ANDA</div>
+                <div class="layanan-grid">
+                    <div class="layanan-card">
+                        <div class="layanan-icon">🎁</div>
+                        <div class="layanan-nama">Parcel Buah</div>
+                        <div class="layanan-desc">Tersedia berbagai paket parcel buah premium untuk hadiah, ulang tahun, pernikahan, dan acara spesial lainnya.</div>
+                    </div>
+                    <div class="layanan-card">
+                        <div class="layanan-icon">🏢</div>
+                        <div class="layanan-nama">Pesanan Event</div>
+                        <div class="layanan-desc">Siap melayani kebutuhan buah untuk acara kantor, seminar, pesta, katering, dan event berskala besar.</div>
+                    </div>
+                    <div class="layanan-card">
+                        <div class="layanan-icon">🛒</div>
+                        <div class="layanan-nama">Ecer &amp; Grosir</div>
+                        <div class="layanan-desc">Harga spesial untuk pembelian grosir. Cocok untuk pedagang, warung, rumah makan, dan reseller buah.</div>
+                    </div>
+                    <div class="layanan-card">
+                        <div class="layanan-icon">🚚</div>
+                        <div class="layanan-nama">Layanan Antar</div>
+                        <div class="layanan-desc">Pesan via WhatsApp, buah segar diantar ke rumah atau kantor Anda. Minimal order berlaku, cek WA kami.</div>
+                    </div>
+                    <div class="layanan-card">
+                        <div class="layanan-icon">🍱</div>
+                        <div class="layanan-nama">Buah Potong Siap Saji</div>
+                        <div class="layanan-desc">Tersedia buah potong segar, dikemas higienis, siap dimakan langsung tanpa perlu cuci dan kupas lagi.</div>
+                    </div>
+                    <div class="layanan-card">
+                        <div class="layanan-icon">📦</div>
+                        <div class="layanan-nama">Hampers Custom</div>
+                        <div class="layanan-desc">Buat hampers buah sesuai selera & anggaran. Tersedia kotak eksklusif, keranjang rotan, dan packaging premium.</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SLIDE 7: TESTIMONI -->
+            <div class="slide slide-testimoni">
+                <div class="slide-header">⭐ &nbsp;KATA PELANGGAN SETIA KAMI</div>
+                <div class="testi-grid">
+                    <div class="testi-card">
+                        <div class="testi-quote">"</div>
+                        <div class="testi-bintang">⭐⭐⭐⭐⭐</div>
+                        <div class="testi-text">"Buahnya selalu segar dan manis! Saya langganan setiap minggu untuk kebutuhan keluarga. Harganya juga sangat terjangkau dibanding supermarket."</div>
+                        <div>
+                            <div class="testi-nama">Ibu Sari Rahayu</div>
+                            <div class="testi-sub">Pelanggan sejak 2021 · Ibu rumah tangga</div>
+                        </div>
+                    </div>
+                    <div class="testi-card">
+                        <div class="testi-quote">"</div>
+                        <div class="testi-bintang">⭐⭐⭐⭐⭐</div>
+                        <div class="testi-text">"Pesan parcel buah untuk kantor, hasilnya sangat memuaskan! Dikemas rapi, buahnya premium semua. Pasti pesan lagi untuk acara berikutnya."</div>
+                        <div>
+                            <div class="testi-nama">Bapak Dodi Santoso</div>
+                            <div class="testi-sub">HRD Perusahaan · Pelanggan korporat</div>
+                        </div>
+                    </div>
+                    <div class="testi-card">
+                        <div class="testi-quote">"</div>
+                        <div class="testi-bintang">⭐⭐⭐⭐⭐</div>
+                        <div class="testi-text">"Layanan antar cepat dan buah datang dalam kondisi segar! Anggur Shine Muscat-nya juara, anak-anak suka banget. Recommended!"</div>
+                        <div>
+                            <div class="testi-nama">Mbak Dewi Lestari</div>
+                            <div class="testi-sub">Pelanggan online · Ibu 2 anak</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide Indicator Dots -->
+            <div class="slide-dots">
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+            </div>
+
+        </div><!-- /panel-left -->
+
+        <!-- ── PANEL KANAN ── -->
+        <div class="panel-right">
+
+            <!-- QR & Kontak (statis) -->
+            <div class="right-top">
+                <div class="right-top-title">📱 Hubungi &amp; Ikuti Kami</div>
+                <div class="qr-box">
+                    <!-- Ganti dengan tag <img> QR code WhatsApp asli -->
+                    <div style="text-align:center;font-size:2rem;color:#aaa;line-height:1.6">
+                        📲 QR Code<br>WhatsApp<br>di sini
+                    </div>
+                </div>
+                <div class="qr-label">Scan untuk pesan &amp; tanya<br>langsung via WhatsApp</div>
+                <div class="kontak-item">📞 <span>0812-XXXX-XXXX</span></div>
+                <div class="kontak-item">📸 <span>@abs.buahsegar</span></div>
+                <div class="kontak-item">📍 <span>Jl. Buah Raya No. 1</span></div>
+            </div>
+
+            <!-- Panel berganti otomatis -->
+            <div class="right-middle">
+
+                <!-- Panel A: Fakta Buah -->
+                <div class="right-panel">
+                    <div class="right-panel-title">🌟 Fakta Menarik Buah</div>
+                    <div class="fakta-item">
+                        <div class="fakta-emoji">🍌</div>
+                        <div class="fakta-text">Pisang adalah buah yang tidak tumbuh dari benih — ia bereproduksi dari tunas akar induknya!</div>
+                    </div>
+                    <div class="fakta-item">
+                        <div class="fakta-emoji">🍓</div>
+                        <div class="fakta-text">Stroberi bukan buah sungguhan secara botani — biji kecil di permukaannya itulah buah aslinya!</div>
+                    </div>
+                    <div class="fakta-item">
+                        <div class="fakta-emoji">🍉</div>
+                        <div class="fakta-text">Semangka mengandung lebih banyak likopen daripada tomat — baik untuk kesehatan jantung dan prostat.</div>
+                    </div>
+                    <div class="fakta-item">
+                        <div class="fakta-emoji">🥭</div>
+                        <div class="fakta-text">Mangga adalah buah nasional tiga negara: India, Pakistan, dan Filipina — raja buah tropis sejati!</div>
+                    </div>
+                </div>
+
+                <!-- Panel B: Stok Baru Hari Ini -->
+                <div class="right-panel">
+                    <div class="right-panel-title">🆕 Stok Baru Hari Ini</div>
+                    <div class="stok-item">
+                        <div class="stok-emoji">🍇</div>
+                        <div class="stok-info">
+                            <div class="stok-nama">Anggur Shine Muscat</div>
+                            <div class="stok-asal">Import Thailand — Super Manis</div>
+                        </div>
+                        <div class="stok-harga">Rp 65rb/kg</div>
+                    </div>
+                    <div class="stok-item">
+                        <div class="stok-emoji">🍓</div>
+                        <div class="stok-info">
+                            <div class="stok-nama">Stroberi Malang</div>
+                            <div class="stok-asal">Batu, Jawa Timur — Segar Pagi</div>
+                        </div>
+                        <div class="stok-harga">Rp 35rb/250g</div>
+                    </div>
+                    <div class="stok-item">
+                        <div class="stok-emoji">🥝</div>
+                        <div class="stok-info">
+                            <div class="stok-nama">Kiwi Hijau</div>
+                            <div class="stok-asal">Import Selandia Baru</div>
+                        </div>
+                        <div class="stok-harga">Rp 12rb/biji</div>
+                    </div>
+                    <div class="stok-item">
+                        <div class="stok-emoji">🍑</div>
+                        <div class="stok-info">
+                            <div class="stok-nama">Peach Kuning</div>
+                            <div class="stok-asal">Import China — Juicy</div>
+                        </div>
+                        <div class="stok-harga">Rp 45rb/kg</div>
+                    </div>
+                </div>
+
+                <!-- Panel C: Jam Buka & Info Toko -->
+                <div class="right-panel">
+                    <div class="right-panel-title">🏪 Info Toko ABS</div>
+                    <div class="fakta-item">
+                        <div class="fakta-emoji">⏰</div>
+                        <div class="fakta-text"><strong style="color:var(--green-dark)">Jam Buka:</strong><br>Senin – Sabtu: 07.00 – 21.00 WIB<br>Minggu &amp; Libur: 07.00 – 18.00 WIB</div>
+                    </div>
+                    <div class="fakta-item">
+                        <div class="fakta-emoji">🚚</div>
+                        <div class="fakta-text"><strong style="color:var(--green-dark)">Layanan Antar:</strong><br>Min. order Rp 100.000<br>Gratis ongkir radius 5 km</div>
+                    </div>
+                    <div class="fakta-item">
+                        <div class="fakta-emoji">💳</div>
+                        <div class="fakta-text"><strong style="color:var(--green-dark)">Pembayaran:</strong><br>Tunai · Transfer Bank<br>QRIS · GoPay · OVO · Dana</div>
+                    </div>
+                    <div class="fakta-item">
+                        <div class="fakta-emoji">🎁</div>
+                        <div class="fakta-text"><strong style="color:var(--green-dark)">Parcel &amp; Hampers:</strong><br>Mulai Rp 150.000<br>Pesan min. 1 hari sebelumnya</div>
+                    </div>
+                </div>
+
+            </div><!-- /right-middle -->
+        </div><!-- /panel-right -->
 
     </main>
 
-    <!-- ══ FOOTER ══ -->
-    <footer class="s-footer">
-        <div class="footer-left">
-            Sumber: <span>ExchangeRate-API</span> · <span>Yahoo Finance</span>
+    <!-- ══ MARQUEE ══ -->
+    <div class="marquee-wrap">
+        <div class="marquee-track" id="marquee-track">
+            <!-- Konten (duplikat untuk seamless loop) -->
+            <span class="m-item">🍉 Selamat Datang di <span class="hl">ABS Aneka Buah Segar!</span></span>
+            <span class="m-sep">✦</span>
+            <span class="m-item">🏷️ Promo Hari Ini: <span class="hl">Semangka Rp 5.500/kg</span> — Stok Terbatas!</span>
+            <span class="m-sep">✦</span>
+            <span class="m-item">🆕 Stok Baru: <span class="hl">Anggur Shine Muscat & Stroberi Malang</span> sudah tersedia!</span>
+            <span class="m-sep">✦</span>
+            <span class="m-item">🚚 Pesan via WhatsApp — <span class="hl">Antar ke Rumah Anda!</span> Min. order Rp 100.000</span>
+            <span class="m-sep">✦</span>
+            <span class="m-item">🎁 Tersedia <span class="hl">Parcel & Hampers Buah</span> untuk hadiah dan acara spesial</span>
+            <span class="m-sep">✦</span>
+            <span class="m-item">💚 Buah Segar Pilihan — <span class="hl">Datang Langsung dari Kebun Setiap Hari</span></span>
+            <span class="m-sep">✦</span>
+            <span class="m-item">🛒 Tersedia <span class="hl">Harga Grosir</span> untuk pedagang, warung, dan katering</span>
+            <span class="m-sep">✦</span>
+            <!-- duplikat -->
+            <span class="m-item">🍉 Selamat Datang di <span class="hl">ABS Aneka Buah Segar!</span></span>
+            <span class="m-sep">✦</span>
+            <span class="m-item">🏷️ Promo Hari Ini: <span class="hl">Semangka Rp 5.500/kg</span> — Stok Terbatas!</span>
+            <span class="m-sep">✦</span>
+            <span class="m-item">🆕 Stok Baru: <span class="hl">Anggur Shine Muscat & Stroberi Malang</span> sudah tersedia!</span>
+            <span class="m-sep">✦</span>
+            <span class="m-item">🚚 Pesan via WhatsApp — <span class="hl">Antar ke Rumah Anda!</span> Min. order Rp 100.000</span>
+            <span class="m-sep">✦</span>
+            <span class="m-item">🎁 Tersedia <span class="hl">Parcel & Hampers Buah</span> untuk hadiah dan acara spesial</span>
+            <span class="m-sep">✦</span>
+            <span class="m-item">💚 Buah Segar Pilihan — <span class="hl">Datang Langsung dari Kebun Setiap Hari</span></span>
+            <span class="m-sep">✦</span>
+            <span class="m-item">🛒 Tersedia <span class="hl">Harga Grosir</span> untuk pedagang, warung, dan katering</span>
+            <span class="m-sep">✦</span>
         </div>
-        <div class="footer-center">
-            <div class="last-update" id="last-update">Menghubungkan ke server data...</div>
-        </div>
-        <div class="footer-right">
-            Data bersifat indikatif · <span>Bukan rekomendasi investasi</span>
-        </div>
-    </footer>
+    </div>
 
-    <!-- Toast auto-reload -->
+    <!-- Toast -->
     <div class="toast" id="toast">🔄 Memuat versi terbaru...</div>
 
-</div>
-
+</div><!-- /signage-root -->
 <script src="app.js"></script>
 </body>
 </html>
