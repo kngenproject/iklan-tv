@@ -3,17 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>4K Running Text Signage</title>
+    <title>4K Digital Signage - Iklan Toko</title>
     <style>
         :root {
             --bg-dark: #090d16;
-            --bg-bar-1: #1e1b4b; /* Biru Gelap */
-            --bg-bar-2: #800000; /* Merah Marun */
+            --bg-bar-1: #1e3a5f;
+            --bg-bar-2: #0f2044;
             --text-main: #ffffff;
-            --text-accent-1: #38bdf8; /* Biru Muda */
-            --text-accent-2: #facc15; /* Kuning Cerah */
-            
-            /* Ukuran font super besar untuk jarak pandang TV 4K */
+            --text-accent-1: #38bdf8;
+            --text-accent-2: #facc15;
+            --text-accent-3: #4ade80;
             --font-jam: 7rem;
             --font-running-1: 6.5rem;
             --font-running-2: 5.5rem;
@@ -30,7 +29,7 @@
         body {
             background-color: var(--bg-dark);
             color: var(--text-main);
-            font-family: 'Arial Black', Impact, sans-serif; /* Font tebal agar terbaca sangat jelas */
+            font-family: 'Arial Black', Impact, sans-serif;
             width: 3840px;
             height: 2160px;
             overflow: hidden;
@@ -38,22 +37,55 @@
             flex-direction: column;
         }
 
-        /* 1. Baris Atas: Header Utama & Jam Digital */
+        /* ── HEADER ── */
         header {
-            height: 400px;
-            background: linear-gradient(135deg, #0f172a, #1e293b);
+            height: 380px;
+            background: linear-gradient(135deg, #0a1628, #1e3a5f);
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding: 0 100px;
             border-bottom: 10px solid var(--text-accent-1);
+            position: relative;
         }
 
-        .title-display {
-            font-size: 8rem;
+        header::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 6px;
+            background: linear-gradient(90deg, transparent, var(--text-accent-2), transparent);
+        }
+
+        .store-branding {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .store-name {
+            font-size: 8.5rem;
             text-transform: uppercase;
-            letter-spacing: 2px;
+            letter-spacing: 4px;
             color: var(--text-main);
+            line-height: 1;
+        }
+
+        .store-tagline {
+            font-size: 3rem;
+            color: var(--text-accent-1);
+            font-weight: normal;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+        }
+
+        .header-right {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 20px;
         }
 
         .clock-display {
@@ -66,152 +98,330 @@
             font-family: monospace;
         }
 
-        /* Container Utama Tengah (Mengisi sisa layar TV) */
+        .date-display {
+            font-size: 2.8rem;
+            color: #94a3b8;
+            letter-spacing: 2px;
+        }
+
+        /* ── MAIN ── */
         main {
             flex: 1;
             display: flex;
             flex-direction: column;
             justify-content: center;
-            gap: 80px; /* Jarak antar baris teks berjalan */
-            padding: 50px 0;
+            gap: 60px;
+            padding: 40px 0;
         }
 
-        /* 2. Baris Running Text Ke-1 (Besar & Cepat) */
+        /* ── PROMO BANNER ── */
+        .promo-banner {
+            height: 260px;
+            background: linear-gradient(90deg, #0f2044, #1e3a5f, #0f2044);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 100px;
+            border-top: 5px solid var(--text-accent-2);
+            border-bottom: 5px solid var(--text-accent-2);
+        }
+
+        .promo-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .promo-badge {
+            font-size: 5rem;
+            font-weight: 900;
+            color: var(--text-accent-2);
+            line-height: 1;
+        }
+
+        .promo-badge.sm {
+            font-size: 3.5rem;
+        }
+
+        .promo-label {
+            font-size: 2.4rem;
+            color: #cbd5e1;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        .promo-divider {
+            width: 6px;
+            height: 180px;
+            background: linear-gradient(to bottom, transparent, var(--text-accent-1), transparent);
+            border-radius: 3px;
+        }
+
+        /* ── MARQUEE ── */
         .marquee-row-1 {
-            height: 320px;
+            height: 300px;
             background-color: var(--bg-bar-1);
             display: flex;
             align-items: center;
             overflow: hidden;
-            border-top: 5px solid rgba(255,255,255,0.1);
-            border-bottom: 5px solid rgba(255,255,255,0.1);
+            border-top: 5px solid rgba(56,189,248,0.3);
+            border-bottom: 5px solid rgba(56,189,248,0.3);
+            box-shadow: 0 0 60px rgba(56,189,248,0.1) inset;
         }
 
-        /* 3. Baris Running Text Ke-2 (Sedang & Arah Berlawanan) */
         .marquee-row-2 {
-            height: 280px;
+            height: 260px;
             background-color: var(--bg-bar-2);
             display: flex;
             align-items: center;
             overflow: hidden;
-            border-top: 5px solid rgba(255,255,255,0.1);
-            border-bottom: 5px solid rgba(255,255,255,0.1);
+            border-top: 5px solid rgba(250,204,21,0.2);
+            border-bottom: 5px solid rgba(250,204,21,0.2);
         }
 
-        /* Base Track Animasi Mulus (Hardware Accelerated) */
         .marquee-track {
             display: flex;
             white-space: nowrap;
             will-change: transform;
         }
 
-        /* Teks Baris 1: Bergerak Kiri (Standard) */
         .track-left {
             font-size: var(--font-running-1);
-            animation: jalanKiri 35s linear infinite;
+            animation: jalanKiri 30s linear infinite;
         }
 
-        /* Teks Baris 2: Bergerak Kanan (Variasi) */
         .track-right {
             font-size: var(--font-running-2);
-            animation: jalanKanan 40s linear infinite;
+            animation: jalanKanan 38s linear infinite;
         }
 
-        /* Elemen dekorasi pemisah teks */
         .bullet {
             color: var(--text-accent-2);
             margin: 0 80px;
         }
 
-        .highlight-text {
-            color: var(--text-accent-1);
-        }
+        .hl-blue   { color: var(--text-accent-1); }
+        .hl-yellow { color: var(--text-accent-2); }
+        .hl-green  { color: var(--text-accent-3); }
 
-        /* Keyframes Animasi */
         @keyframes jalanKiri {
-            0% { transform: translate3d(0, 0, 0); }
-            100% { transform: translate3d(-50%, 0, 0); } /* -50% karena konten di-duplikat di HTML */
+            0%   { transform: translate3d(0, 0, 0); }
+            100% { transform: translate3d(-50%, 0, 0); }
         }
 
         @keyframes jalanKanan {
-            0% { transform: translate3d(-50%, 0, 0); }
+            0%   { transform: translate3d(-50%, 0, 0); }
             100% { transform: translate3d(0, 0, 0); }
         }
 
-        /* 4. Lapisan Bawah: Informasi Statis */
+        /* ── FOOTER ── */
         footer {
-            height: 200px;
-            background-color: #000;
+            height: 180px;
+            background: linear-gradient(90deg, #000, #0a1628, #000);
             display: flex;
-            justify-content: center;
+            justify-content: space-between;
             align-items: center;
-            font-size: 4rem;
-            color: #94a3b8;
+            padding: 0 100px;
+            border-top: 4px solid rgba(56,189,248,0.4);
+        }
+
+        .footer-contact  { font-size: 3.2rem; color: #94a3b8; }
+        .footer-contact span { color: var(--text-accent-1); }
+        .footer-website  { font-size: 3rem; color: var(--text-accent-2); letter-spacing: 3px; }
+        .footer-social   { font-size: 3rem; color: #94a3b8; }
+        .footer-social span { color: var(--text-accent-3); }
+
+        /* ── LIVE BADGE ── */
+        .live-badge {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            background: rgba(239,68,68,0.15);
+            border: 3px solid #ef4444;
+            border-radius: 20px;
+            padding: 10px 40px;
+        }
+
+        .live-dot {
+            width: 28px;
+            height: 28px;
+            background: #ef4444;
+            border-radius: 50%;
+            animation: blink 1s ease-in-out infinite;
+        }
+
+        .live-text { font-size: 2.8rem; color: #ef4444; letter-spacing: 4px; }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50%       { opacity: 0.2; }
+        }
+
+        /* ── UPDATE TOAST ── */
+        #toast-update {
+            display: none;
+            position: fixed;
+            bottom: 220px;
+            right: 80px;
+            background: #facc15;
+            color: #000;
+            font-size: 2.5rem;
+            padding: 30px 60px;
+            border-radius: 20px;
+            font-weight: 900;
+            z-index: 9999;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to   { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
 <body>
 
-    <!-- Bagian Atas: Nama Instansi & Jam -->
+    <!-- ── HEADER ── -->
     <header>
-        <div class="title-display">Papan Informasi Digital</div>
-        <div class="clock-display" id="jam-tv">00:00</div>
+        <div class="store-branding">
+            <div class="store-name">✦ Toko Sejahtera</div>
+            <div class="store-tagline">Belanja Hemat, Kualitas Terjamin</div>
+        </div>
+        <div class="header-right">
+            <div class="clock-display" id="jam-tv">00:00:00</div>
+            <div class="date-display" id="tanggal-tv">—</div>
+        </div>
     </header>
 
-    <!-- Bagian Tengah: Kumpulan Running Text -->
     <main>
-        
-        <!-- BARIS UTAMA (Bergerak ke Kiri) -->
+
+        <!-- ── PROMO BANNER ── -->
+        <div class="promo-banner">
+            <div class="promo-item">
+                <div class="promo-badge">DISKON</div>
+                <div class="promo-badge hl-yellow">s/d 70%</div>
+                <div class="promo-label">Semua Produk Pilihan</div>
+            </div>
+            <div class="promo-divider"></div>
+            <div class="promo-item">
+                <div class="promo-badge hl-blue">GRATIS</div>
+                <div class="promo-badge sm">Ongkir Min. 150rb</div>
+                <div class="promo-label">Area Dalam Kota</div>
+            </div>
+            <div class="promo-divider"></div>
+            <div class="promo-item">
+                <div class="promo-badge hl-green">BELI 2</div>
+                <div class="promo-badge sm">GRATIS 1</div>
+                <div class="promo-label">Produk Bundle Spesial</div>
+            </div>
+            <div class="promo-divider"></div>
+            <div class="live-badge">
+                <div class="live-dot"></div>
+                <div class="live-text">PROMO AKTIF</div>
+            </div>
+        </div>
+
+        <!-- ── RUNNING TEXT 1 ── -->
         <div class="marquee-row-1">
-            <!-- Konten di dalam track sengaja ditulis 2x agar teks menyambung tanpa putus saat looping -->
             <div class="marquee-track track-left">
-                <span>&bull; PENERIMAAN SISWA BARU TELAH DIBUKA! <span class="highlight-text">DISKON 50%</span> UNTUK DAFTAR ULANG GELOMBANG 1 </span>
+                <span>&bull; <span class="hl-yellow">FLASH SALE HARI INI!</span> Sepatu Sport Premium Hanya <span class="hl-green">Rp 299.000</span> </span>
                 <span class="bullet">&bull;</span>
-                <span>FASILITAS KELAS BER-AC, LAB KOMPUTER MODERN, DAN BEASISWA PRESTASI </span>
+                <span>Tas Ransel Laptop Waterproof <span class="hl-blue">BEST SELLER</span> — Stok Terbatas! </span>
                 <span class="bullet">&bull;</span>
-                
-                <!-- Duplikat Konten untuk Efek Seamless -->
-                <span>&bull; PENERIMAAN SISWA BARU TELAH DIBUKA! <span class="highlight-text">DISKON 50%</span> UNTUK DAFTAR ULANG GELOMBANG 1 </span>
+                <span>Kemeja Batik Modern mulai <span class="hl-green">Rp 185.000</span> — Tersedia 20 Motif </span>
                 <span class="bullet">&bull;</span>
-                <span>FASILITAS KELAS BER-AC, LAB KOMPUTER MODERN, DAN BEASISWA PRESTASI </span>
+                <span>Parfum Import Original <span class="hl-yellow">DISKON 40%</span> — Beli Sekarang! </span>
+                <span class="bullet">&bull;</span>
+                <!-- Duplikat seamless -->
+                <span>&bull; <span class="hl-yellow">FLASH SALE HARI INI!</span> Sepatu Sport Premium Hanya <span class="hl-green">Rp 299.000</span> </span>
+                <span class="bullet">&bull;</span>
+                <span>Tas Ransel Laptop Waterproof <span class="hl-blue">BEST SELLER</span> — Stok Terbatas! </span>
+                <span class="bullet">&bull;</span>
+                <span>Kemeja Batik Modern mulai <span class="hl-green">Rp 185.000</span> — Tersedia 20 Motif </span>
+                <span class="bullet">&bull;</span>
+                <span>Parfum Import Original <span class="hl-yellow">DISKON 40%</span> — Beli Sekarang! </span>
                 <span class="bullet">&bull;</span>
             </div>
         </div>
 
-        <!-- BARIS SEKUNDER (Bergerak ke Kanan) -->
+        <!-- ── RUNNING TEXT 2 ── -->
         <div class="marquee-row-2">
             <div class="marquee-track track-right">
-                <span>&bull; Info Kontak Hubungi WA: <span style="color:var(--text-accent-2)">0812-3456-7890</span> </span>
+                <span>&bull; Pembayaran: <span class="hl-blue">Tunai · Transfer · QRIS · Cicilan 0%</span> </span>
                 <span class="bullet">&bull;</span>
-                <span>Alamat Kampus Utama: Jl. Raya Lintas Provinsi KM. 12 Jepara </span>
+                <span>Jam Buka: <span class="hl-yellow">Senin–Sabtu 08.00–21.00</span> · Minggu 09.00–18.00 </span>
                 <span class="bullet">&bull;</span>
-
-                <!-- Duplikat Konten -->
-                <span>&bull; Info Kontak Hubungi WA: <span style="color:var(--text-accent-2)">0812-3456-7890</span> </span>
+                <span>Garansi <span class="hl-green">30 Hari</span> — Tidak Puas? Uang Kembali! </span>
                 <span class="bullet">&bull;</span>
-                <span>Alamat Kampus Utama: Jl. Raya Lintas Provinsi KM. 12 Jepara </span>
+                <!-- Duplikat seamless -->
+                <span>&bull; Pembayaran: <span class="hl-blue">Tunai · Transfer · QRIS · Cicilan 0%</span> </span>
+                <span class="bullet">&bull;</span>
+                <span>Jam Buka: <span class="hl-yellow">Senin–Sabtu 08.00–21.00</span> · Minggu 09.00–18.00 </span>
+                <span class="bullet">&bull;</span>
+                <span>Garansi <span class="hl-green">30 Hari</span> — Tidak Puas? Uang Kembali! </span>
                 <span class="bullet">&bull;</span>
             </div>
         </div>
 
     </main>
 
-    <!-- Bagian Bawah: Catatan Kaki Fiksasi -->
+    <!-- ── FOOTER ── -->
     <footer>
-        Media Informasi Resmi &copy; 2026 - Silakan Menghubungi Petugas untuk Informasi Lebih Lanjut
+        <div class="footer-contact">📞 WA: <span>0812-3456-7890</span></div>
+        <div class="footer-website">🌐 www.tokosejahtera.com</div>
+        <div class="footer-social">📱 IG/TikTok: <span>@tokosejahtera</span></div>
     </footer>
 
+    <!-- Toast notifikasi saat ada update -->
+    <div id="toast-update">🔄 Memuat konten terbaru...</div>
+
     <script>
-        // Real-time Clock Script
+        // ── CLOCK ──
+        const HARI  = ['Minggu','Senin','Selasa','Rabu','Kamis','Jumat','Sabtu'];
+        const BULAN = ['Jan','Feb','Mar','Apr','Mei','Jun','Jul','Agu','Sep','Okt','Nov','Des'];
+
         function updateClock() {
-            const sekarang = new Date();
-            const jam = String(sekarang.getHours()).padStart(2, '0');
-            const menit = String(sekarang.getMinutes()).padStart(2, '0');
-            const detik = String(sekarang.getSeconds()).padStart(2, '0');
-            document.getElementById('jam-tv').textContent = `${jam}:${menit}:${detik}`;
+            const now = new Date();
+            const h = String(now.getHours()).padStart(2,'0');
+            const m = String(now.getMinutes()).padStart(2,'0');
+            const s = String(now.getSeconds()).padStart(2,'0');
+            document.getElementById('jam-tv').textContent = `${h}:${m}:${s}`;
+            document.getElementById('tanggal-tv').textContent =
+                `${HARI[now.getDay()]}, ${now.getDate()} ${BULAN[now.getMonth()]} ${now.getFullYear()}`;
         }
         setInterval(updateClock, 1000);
         updateClock();
+
+        // ── SERVICE WORKER ──
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('./sw.js');
+        }
+
+        // ── AUTO RELOAD SAAT VERSION.JSON BERUBAH ──
+        let versiSaatIni = null;
+
+        async function cekVersi() {
+            try {
+                const res  = await fetch('./version.json?t=' + Date.now());
+                const data = await res.json();
+
+                if (versiSaatIni === null) {
+                    versiSaatIni = data.v;
+                    console.log('Versi aktif:', versiSaatIni);
+                } else if (data.v !== versiSaatIni) {
+                    // Tampilkan toast lalu reload
+                    document.getElementById('toast-update').style.display = 'block';
+                    setTimeout(() => location.reload(), 3000);
+                }
+            } catch (e) {
+                console.warn('Gagal cek versi:', e);
+            }
+        }
+
+        setInterval(cekVersi, 60_000); // cek tiap 60 detik
+        cekVersi();
     </script>
+
 </body>
 </html>
