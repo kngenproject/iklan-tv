@@ -1,31 +1,27 @@
 /* ═══════════════════════════════════════
-   ABS ANEKA BUAH SEGAR — DIGITAL SIGNAGE
+   BERITA TERKINI — DIGITAL SIGNAGE
    Canvas : 3840 × 2160 px (Ultra HD 4K)
    ═══════════════════════════════════════ */
 
 :root {
-    /* Brand Color Palette - Premium Solid Tone */
-    --brand-green-deep : #0f3d1a;
-    --brand-green-mid  : #1b6b30;
-    --brand-green-light: #2eaf53;
-    --brand-green-soft : #f0f7f2;
-    
-    --brand-gold-deep  : #d45100;
-    --brand-gold-mid   : #f56c18;
-    --brand-gold-light : #ff9f43;
-    --brand-gold-soft  : #fff8f4;
+    /* Berita Theme */
+    --news-red: #b71c1c;
+    --news-red-light: #e53935;
+    --news-dark: #1a1a2e;
+    --news-gray: #2d2d44;
+    --news-muted: #8888aa;
     
     /* Neutrals */
     --ui-white         : #ffffff;
-    --ui-canvas        : #faf9f5;
-    --ui-text-main     : #111a13;
-    --ui-text-muted    : #526356;
-    --ui-text-light    : #8fa394;
+    --ui-canvas        : #f8f8fc;
+    --ui-text-main     : #1a1a2e;
+    --ui-text-muted    : #4a4a6a;
+    --ui-text-light    : #8888aa;
     
-    /* System & Shadows */
+    /* System */
     --shadow-sm        : 0 4px 20px rgba(0, 0, 0, 0.05);
     --shadow-md        : 0 12px 45px rgba(0, 0, 0, 0.08);
-    --shadow-lg        : 0 20px 60px rgba(15, 61, 26, 0.12);
+    --shadow-lg        : 0 20px 60px rgba(0, 0, 0, 0.12);
     --border-radius-lg : 32px;
     --border-radius-md : 20px;
 }
@@ -64,14 +60,14 @@ html, body {
 .s-header {
     height: 260px;
     flex-shrink: 0;
-    background: var(--brand-green-deep);
+    background: var(--news-dark);
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 0 120px;
     position: relative;
     z-index: 10;
-    border-bottom: 8px solid var(--brand-gold-mid);
+    border-bottom: 8px solid var(--news-red-light);
 }
 
 .logo-area {
@@ -100,12 +96,12 @@ html, body {
 }
 
 .logo-abs span { 
-    color: var(--brand-gold-light); 
+    color: var(--news-red-light); 
 }
 
 .logo-tagline {
     font-size: 2.4rem;
-    color: var(--ui-text-light);
+    color: var(--news-muted);
     letter-spacing: 6px;
     text-transform: uppercase;
     font-weight: 600;
@@ -118,11 +114,11 @@ html, body {
 }
 
 .header-badge {
-    background: linear-gradient(135deg, var(--brand-gold-deep), var(--brand-gold-mid));
+    background: linear-gradient(135deg, var(--news-red), var(--news-red-light));
     color: var(--ui-white);
     font-size: 2.2rem;
     font-weight: 800;
-    padding: 24px 48px;
+    padding: 20px 40px;
     border-radius: var(--border-radius-md);
     text-align: center;
     line-height: 1.4;
@@ -147,7 +143,7 @@ html, body {
 
 .clock-date {
     font-size: 2.2rem;
-    color: var(--ui-text-light);
+    color: var(--news-muted);
     letter-spacing: 1px;
     font-weight: 500;
 }
@@ -166,19 +162,19 @@ html, body {
     flex-shrink: 0;
     position: relative;
     overflow: hidden;
-    background: var(--ui-white);
+    background: var(--ui-canvas);
 }
 
 .panel-right {
     flex: 1;
     display: flex;
     flex-direction: column;
-    background: var(--ui-white);
+    background: #f0f0f6;
     border-left: 2px solid rgba(0,0,0,0.06);
     overflow: hidden;
 }
 
-/* ── SLIDE GENERIC CONFIG ── */
+/* ── SLIDE GENERIC ── */
 .slide {
     position: absolute;
     inset: 0;
@@ -196,255 +192,201 @@ html, body {
 }
 
 .slide-header {
-    padding: 60px 100px 20px 100px;
-    font-size: 4.5rem;
+    padding: 50px 80px 10px 80px;
+    font-size: 4.2rem;
     font-weight: 800;
-    color: var(--brand-green-deep);
+    color: var(--news-dark);
     letter-spacing: -1px;
     display: flex;
     align-items: center;
-    gap: 24px;
+    gap: 20px;
+    border-left: 8px solid var(--news-red-light);
+    padding-left: 40px;
 }
 
-/* ── SLIDE: PROMO SPESIAL ── */
-.promo-grid {
-    flex: 1;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 60px;
-    padding: 40px 100px 100px 100px;
-}
-
-.promo-card {
-    background: var(--ui-white);
-    border-radius: var(--border-radius-lg);
-    padding: 60px 40px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 24px;
-    border: 1px solid rgba(0, 0, 0, 0.05);
-    box-shadow: var(--shadow-sm);
-    position: relative;
-}
-
-.promo-badge-diskon {
-    position: absolute;
-    top: 40px; right: 40px;
-    background: #e31b1b;
-    color: var(--ui-white);
-    font-size: 2.2rem;
-    font-weight: 800;
-    padding: 12px 24px;
-    border-radius: 12px;
-}
-
-.promo-emoji { font-size: 10rem; }
-.promo-nama { font-size: 3.8rem; font-weight: 800; color: var(--ui-text-main); }
-.promo-harga-coret { font-size: 2.6rem; color: var(--ui-text-light); text-decoration: line-through; }
-.promo-harga-baru { font-size: 6.5rem; font-weight: 900; color: #e31b1b; }
-.promo-satuan { font-size: 2.2rem; color: var(--ui-text-muted); font-weight: 500; }
-
-/* ── SLIDE: PRODUK UNGGULAN ── */
-.produk-grid {
-    flex: 1;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 40px;
-    padding: 40px 100px 100px 100px;
-}
-
-.produk-card {
-    background: var(--ui-white);
-    border-radius: var(--border-radius-lg);
-    padding: 50px 36px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    border: 1px solid rgba(0, 0, 0, 0.05);
-    box-shadow: var(--shadow-sm);
-}
-
-.produk-emoji { font-size: 8rem; margin-bottom: 10px; }
-.produk-nama { font-size: 3rem; font-weight: 800; text-align: center; color: var(--ui-text-main); }
-.produk-origin { font-size: 2.2rem; color: var(--ui-text-muted); font-weight: 500; }
-.produk-harga { font-size: 3.8rem; font-weight: 800; color: var(--brand-green-mid); }
-.produk-tag {
+.slide-header .badge-news {
+    background: var(--news-red-light);
+    color: #fff;
     font-size: 1.8rem;
-    font-weight: 700;
-    padding: 10px 24px;
+    padding: 4px 24px;
     border-radius: 30px;
-    background: var(--brand-green-soft);
-    color: var(--brand-green-mid);
+    font-weight: 700;
+    letter-spacing: 1px;
 }
-.produk-tag.new { background: var(--brand-gold-soft); color: var(--brand-gold-deep); }
 
-/* ── SLIDE: MANFAAT BUAH ── */
-.manfaat-grid {
+/* ── NEWS GRID ── */
+.news-grid {
     flex: 1;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(2, 1fr);
     gap: 40px;
-    padding: 40px 100px 100px 100px;
+    padding: 30px 80px 80px 80px;
 }
 
-.manfaat-card {
-    background: var(--brand-green-soft);
-    border-radius: var(--border-radius-md);
-    padding: 44px;
+.news-card {
+    background: var(--ui-white);
+    border-radius: var(--border-radius-lg);
+    padding: 40px 32px;
     display: flex;
-    gap: 30px;
+    flex-direction: column;
+    gap: 16px;
+    border: 1px solid rgba(0, 0, 0, 0.04);
+    box-shadow: var(--shadow-sm);
+    transition: transform 0.2s;
+}
+.news-card:hover {
+    transform: translateY(-4px);
 }
 
-.manfaat-icon { font-size: 5rem; flex-shrink: 0; }
-.manfaat-body { display: flex; flex-direction: column; gap: 8px; }
-.manfaat-judul { font-size: 2.6rem; font-weight: 800; color: var(--brand-green-deep); }
-.manfaat-desc { font-size: 2.2rem; color: var(--ui-text-muted); line-height: 1.5; }
+.news-card .tag {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #fff;
+    padding: 4px 18px;
+    border-radius: 20px;
+    align-self: flex-start;
+    letter-spacing: 0.5px;
+}
 
-/* ── SLIDE: TIPS DIET/MEMILIH ── */
-.tips-list {
+.news-card .title {
+    font-size: 3.2rem;
+    font-weight: 800;
+    color: var(--news-dark);
+    line-height: 1.3;
+}
+
+.news-card .summary {
+    font-size: 2.2rem;
+    color: var(--ui-text-muted);
+    line-height: 1.6;
+    flex: 1;
+}
+
+.news-card .meta {
+    font-size: 1.8rem;
+    color: var(--news-muted);
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    padding-top: 16px;
+    margin-top: 4px;
+}
+.news-card .meta .source {
+    font-weight: 600;
+    color: var(--news-dark);
+}
+
+/* ── NEWS LIST (untuk slide daerah) ── */
+.news-list {
     flex: 1;
     display: flex;
     flex-direction: column;
-    padding: 20px 100px 100px 100px;
-    gap: 24px;
+    padding: 20px 80px 80px 80px;
+    gap: 20px;
 }
 
-.tips-item {
-    background: var(--ui-canvas);
+.news-list-item {
+    background: var(--ui-white);
     border-radius: var(--border-radius-md);
-    padding: 30px 50px;
+    padding: 28px 40px;
     display: flex;
     align-items: center;
-    gap: 40px;
+    gap: 32px;
+    border: 1px solid rgba(0, 0, 0, 0.04);
+    box-shadow: var(--shadow-sm);
 }
 
-.tips-num {
-    width: 80px; height: 80px;
-    background: var(--brand-green-deep);
+.news-list-item .num {
+    width: 64px;
+    height: 64px;
+    background: var(--news-red-light);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 3rem;
-    font-weight: 700;
-    color: var(--ui-white);
+    font-size: 2.6rem;
+    font-weight: 800;
+    color: #fff;
     flex-shrink: 0;
 }
 
-.tips-icon { font-size: 4rem; }
-.tips-text { font-size: 2.6rem; color: var(--ui-text-main); line-height: 1.4; }
-.tips-text strong { color: var(--brand-green-mid); font-weight: 700; }
-
-/* ── SLIDE: RESEP ── */
-.resep-grid {
+.news-list-item .content {
     flex: 1;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 50px;
-    padding: 40px 100px 100px 100px;
+}
+.news-list-item .content .headline {
+    font-size: 2.8rem;
+    font-weight: 700;
+    color: var(--news-dark);
+}
+.news-list-item .content .desc {
+    font-size: 2rem;
+    color: var(--ui-text-muted);
+    margin-top: 4px;
+}
+.news-list-item .time-tag {
+    font-size: 1.8rem;
+    color: var(--news-muted);
+    font-weight: 500;
+    flex-shrink: 0;
 }
 
-.resep-card {
-    background: var(--ui-white);
-    border-radius: var(--border-radius-lg);
-    padding: 50px 40px;
-    border: 1px solid rgba(0,0,0,0.05);
-    box-shadow: var(--shadow-sm);
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-}
-
-.resep-emoji { font-size: 7rem; }
-.resep-nama { font-size: 3.2rem; font-weight: 800; color: var(--brand-green-deep); }
-.resep-bahan { font-size: 2.2rem; color: var(--ui-text-muted); line-height: 1.6; }
-.resep-bahan strong { color: var(--ui-text-main); font-weight: 700; }
-
-/* ── SLIDE: LAYANAN ── */
-.layanan-grid {
-    flex: 1;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(2, 1fr);
-    gap: 40px;
-    padding: 40px 100px 100px 100px;
-}
-
-.layanan-card {
-    background: var(--ui-canvas);
-    border-radius: var(--border-radius-md);
-    padding: 40px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 16px;
-}
-
-.layanan-icon { font-size: 5rem; }
-.layanan-nama { font-size: 2.8rem; font-weight: 800; color: var(--brand-green-deep); }
-.layanan-desc { font-size: 2.2rem; color: var(--ui-text-muted); line-height: 1.5; }
-
-/* ── SLIDE: TESTIMONI ── */
-.testi-grid {
-    flex: 1;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 50px;
-    padding: 40px 100px 100px 100px;
-}
-
-.testi-card {
-    background: var(--brand-gold-soft);
-    border-radius: var(--border-radius-lg);
-    padding: 60px 44px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    gap: 30px;
-}
-
-.testi-stars { font-size: 2.6rem; color: #ffb800; }
-.testi-text { font-size: 2.4rem; color: var(--ui-text-main); line-height: 1.6; font-style: italic; }
-.testi-user { display: flex; flex-direction: column; gap: 4px; }
-.testi-nama { font-size: 2.4rem; font-weight: 700; color: var(--brand-gold-deep); }
-.testi-sub { font-size: 1.8rem; color: var(--ui-text-muted); }
-
-/* ════════════════════════
-   PANEL KANAN (SIDEBAR)
-   ════════════════════════ */
+/* ── SIDEBAR ── */
 .right-top {
-    padding: 60px 50px;
-    background: var(--brand-green-soft);
+    padding: 40px 36px;
+    background: var(--news-dark);
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
-    gap: 24px;
+    gap: 20px;
 }
 
-.right-top-title { font-size: 2.8rem; font-weight: 800; color: var(--brand-green-deep); }
+.right-top-title {
+    font-size: 2.8rem;
+    font-weight: 800;
+    color: #fff;
+}
 
 .qr-box {
-    width: 260px; height: 260px;
+    width: 220px; height: 220px;
     background: var(--ui-white);
     border-radius: var(--border-radius-md);
-    padding: 24px;
+    padding: 20px;
     box-shadow: var(--shadow-sm);
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.qr-placeholder { font-size: 1.8rem; color: var(--ui-text-light); font-weight: 600; text-align: center; }
-.qr-label { font-size: 2rem; color: var(--ui-text-muted); line-height: 1.4; font-weight: 500; }
+.qr-placeholder {
+    font-size: 1.8rem;
+    color: var(--ui-text-light);
+    font-weight: 600;
+    text-align: center;
+}
 
-.kontak-list { display: flex; flex-direction: column; gap: 12px; width: 100%; margin-top: 10px; }
-.kontak-item { font-size: 2.2rem; color: var(--ui-text-main); font-weight: 600; }
-.kontak-item span { color: var(--brand-green-mid); }
+.qr-label {
+    font-size: 2rem;
+    color: var(--news-muted);
+    line-height: 1.4;
+    font-weight: 500;
+}
+
+.kontak-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+}
+.kontak-item {
+    font-size: 2.2rem;
+    color: #eee;
+    font-weight: 600;
+}
+.kontak-item span {
+    color: var(--news-red-light);
+}
 
 .right-middle {
     flex: 1;
@@ -458,10 +400,11 @@ html, body {
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.5s ease, visibility 0.5s;
-    padding: 60px 50px;
+    padding: 40px 36px;
     display: flex;
     flex-direction: column;
-    gap: 30px;
+    gap: 20px;
+    overflow-y: auto;
 }
 
 .right-panel.active { 
@@ -471,47 +414,86 @@ html, body {
 }
 
 .right-panel-title {
-    font-size: 3rem;
+    font-size: 2.8rem;
     font-weight: 800;
-    color: var(--brand-green-deep);
-    padding-bottom: 16px;
-    border-bottom: 2px solid rgba(0,0,0,0.06);
+    color: var(--news-dark);
+    padding-bottom: 12px;
+    border-bottom: 3px solid var(--news-red-light);
 }
 
-.fakta-list, .stok-list, .info-list {
+.mini-news-item {
+    background: #fff;
+    border-radius: var(--border-radius-md);
+    padding: 18px 24px;
+    border-left: 4px solid var(--news-red-light);
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 2px;
+}
+.mini-news-item .mini-title {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--news-dark);
+}
+.mini-news-item .mini-meta {
+    font-size: 1.6rem;
+    color: var(--news-muted);
 }
 
-.fakta-item, .stok-item, .info-item {
-    background: var(--ui-canvas);
+.weather-box {
+    background: #fff;
     border-radius: var(--border-radius-md);
-    padding: 24px 30px;
+    padding: 24px 28px;
     display: flex;
     align-items: center;
-    gap: 20px;
+    justify-content: space-between;
+}
+.weather-box .temp {
+    font-size: 4.4rem;
+    font-weight: 800;
+    color: var(--news-dark);
+}
+.weather-box .desc {
+    font-size: 2rem;
+    color: var(--ui-text-muted);
+}
+.weather-box .emoji {
+    font-size: 5rem;
 }
 
-.fakta-emoji, .stok-emoji, .info-emoji { font-size: 3.5rem; }
-.fakta-text, .info-text { font-size: 2.2rem; color: var(--ui-text-main); line-height: 1.4; }
+.stock-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+.stock-row {
+    display: flex;
+    justify-content: space-between;
+    background: #fff;
+    padding: 16px 24px;
+    border-radius: var(--border-radius-md);
+    font-size: 2rem;
+    font-weight: 600;
+}
+.stock-row .name {
+    color: var(--news-dark);
+}
+.stock-row .val {
+    color: var(--news-red-light);
+}
+.stock-row .val.green {
+    color: #2e7d32;
+}
 
-.stok-info { flex: 1; display: flex; flex-direction: column; gap: 4px; }
-.stok-nama { font-size: 2.4rem; font-weight: 700; color: var(--ui-text-main); }
-.stok-asal { font-size: 1.8rem; color: var(--ui-text-muted); font-weight: 500; }
-.stok-harga { font-size: 2.6rem; font-weight: 800; color: var(--brand-gold-deep); }
-
-/* ════════════════════════
-   TICKER MARQUEE
-   ════════════════════════ */
+/* ── TICKER ── */
 .marquee-wrap {
     height: 130px;
     flex-shrink: 0;
-    background: var(--brand-green-deep);
+    background: var(--news-dark);
     display: flex;
     align-items: center;
     overflow: hidden;
-    border-top: 4px solid var(--brand-gold-mid);
+    border-top: 4px solid var(--news-red-light);
 }
 
 .marquee-track {
@@ -524,23 +506,27 @@ html, body {
 }
 
 .m-item {
-    color: var(--ui-white);
+    color: #eee;
     margin: 0 50px;
     display: flex;
     align-items: center;
     gap: 16px;
 }
 
-.m-item .hl { color: var(--brand-gold-light); font-weight: 700; }
-.m-sep { color: rgba(255,255,255,0.25); font-size: 2.6rem; }
+.m-item .hl {
+    color: var(--news-red-light);
+    font-weight: 700;
+}
+.m-sep {
+    color: rgba(255,255,255,0.25);
+    font-size: 2.6rem;
+}
 
-/* ════════════════════════
-   INDICATORS & TOAST
-   ════════════════════════ */
+/* ── INDICATORS ── */
 .slide-dots {
     position: absolute;
     bottom: 40px;
-    left: 100px;
+    left: 80px;
     display: flex;
     gap: 16px;
     z-index: 10;
@@ -549,22 +535,23 @@ html, body {
 .dot {
     width: 16px; height: 16px;
     border-radius: 50%;
-    background: rgba(15, 61, 26, 0.15);
+    background: rgba(0, 0, 0, 0.15);
     transition: all 0.3s ease;
 }
 
 .dot.active {
-    background: var(--brand-green-mid);
+    background: var(--news-red-light);
     width: 48px;
     border-radius: 8px;
 }
 
+/* ── TOAST ── */
 .toast {
     display: none;
     position: absolute;
     bottom: 160px; right: 60px;
-    background: #333333;
-    color: var(--ui-white);
+    background: #333;
+    color: #fff;
     font-size: 2.2rem;
     font-weight: 600;
     padding: 24px 48px;
@@ -574,7 +561,28 @@ html, body {
 }
 .toast.show { display: block; }
 
+/* ── ANIMASI TICKER ── */
 @keyframes runningTicker {
     0%   { transform: translate3d(0, 0, 0); }
     100% { transform: translate3d(-50%, 0, 0); }
+}
+
+/* ── RESPONSIF ── */
+@media (max-width: 3840px) {
+    .news-grid {
+        gap: 30px;
+        padding: 24px 60px 60px 60px;
+    }
+    .news-card .title {
+        font-size: 2.8rem;
+    }
+    .news-card .summary {
+        font-size: 2rem;
+    }
+    .news-list-item .content .headline {
+        font-size: 2.4rem;
+    }
+    .right-panel {
+        padding: 28px 24px;
+    }
 }
