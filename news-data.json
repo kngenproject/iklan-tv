@@ -1,0 +1,285 @@
+{
+  "version": "1.0.0",
+  "slides": [
+    {
+      "id": "slide-1",
+      "title": "🔴 Headline Utama Hari Ini",
+      "badge": "BREAKING",
+      "badgeColor": "#b71c1c",
+      "items": [
+        {
+          "tag": "Teratas",
+          "tagColor": "#b71c1c",
+          "title": "Presiden Resmikan Proyek Infrastruktur Hijau Senilai Rp 120 T",
+          "summary": "Proyek mencakup pembangunan 12 bendungan dan 800 km jalur kereta listrik yang ditargetkan selesai 2028.",
+          "source": "Kompas.com",
+          "time": "2 jam lalu"
+        },
+        {
+          "tag": "Ekonomi",
+          "tagColor": "#1565c0",
+          "title": "Inflasi Terkendali di 2,8%, BI Pertahankan Suku Bunga 5,75%",
+          "summary": "Bank Indonesia menilai stabilitas harga tetap terjaga seiring dengan kuatnya nilai tukar rupiah dan konsumsi domestik.",
+          "source": "CNN Indonesia",
+          "time": "4 jam lalu"
+        },
+        {
+          "tag": "Internasional",
+          "tagColor": "#e65100",
+          "title": "G20 Sepakati Paket Bantuan Pangan Global untuk Negara Berkembang",
+          "summary": "Paket senilai $5 miliar akan difokuskan pada ketahanan pangan di Afrika dan Asia Tenggara.",
+          "source": "Reuters",
+          "time": "6 jam lalu"
+        }
+      ]
+    },
+    {
+      "id": "slide-2",
+      "title": "🏛️ Politik & Pemerintahan",
+      "badge": "Update",
+      "badgeColor": "#1565c0",
+      "items": [
+        {
+          "tag": "DPR",
+          "tagColor": "#1565c0",
+          "title": "DPR Sahkan RUU Perlindungan Data Pribadi Final",
+          "summary": "Regulasi ini mengatur sanksi denda hingga 2% dari pendapatan tahunan bagi pelanggar kebocoran data.",
+          "source": "Detik.com",
+          "time": "3 jam lalu"
+        },
+        {
+          "tag": "Kebijakan",
+          "tagColor": "#1565c0",
+          "title": "Pemerintah Siapkan Subsidi Pupuk Rp 45 Triliun untuk Petani",
+          "summary": "Subsidi menyasar 12 juta petani dengan sistem digital berbasis kartu tani untuk tepat sasaran.",
+          "source": "Tempo.co",
+          "time": "5 jam lalu"
+        },
+        {
+          "tag": "Diplomasi",
+          "tagColor": "#1565c0",
+          "title": "Menlu Bertemu Utusan Khusus PBB Bahas Krisis Myanmar",
+          "summary": "Pertemuan berlangsung di sela-sela pertemuan ASEAN di Jakarta untuk mendorong dialog damai.",
+          "source": "Antara News",
+          "time": "7 jam lalu"
+        }
+      ]
+    },
+    {
+      "id": "slide-3",
+      "title": "📈 Ekonomi & Bisnis",
+      "badge": "Pasar",
+      "badgeColor": "#2e7d32",
+      "items": [
+        {
+          "tag": "Pasar Modal",
+          "tagColor": "#2e7d32",
+          "title": "IHSG Tembus 7.500, Dibanjiri Asing Selama Sepekan",
+          "summary": "Investor asing catat net buy Rp 3,2 triliun, didorong sentimen penurunan suku bunga global.",
+          "source": "Bisnis.com",
+          "time": "2 jam lalu"
+        },
+        {
+          "tag": "Korporasi",
+          "tagColor": "#2e7d32",
+          "title": "GoTo dan Grab Ekspansi Layanan Logistik Antar Kota",
+          "summary": "Kolaborasi dengan perusahaan BUMN untuk memperluas jangkauan pengiriman ke 500 kabupaten/kota.",
+          "source": "CNBC Indonesia",
+          "time": "4 jam lalu"
+        },
+        {
+          "tag": "UMKM",
+          "tagColor": "#2e7d32",
+          "title": "KUR 2026 Disiapkan Rp 350 Triliun, Bunga Turun Jadi 4,5%",
+          "summary": "Pemerintah dorong akses pembiayaan bagi pelaku usaha mikro dan kecil dengan skema baru.",
+          "source": "Kontan.co.id",
+          "time": "6 jam lalu"
+        }
+      ]
+    },
+    {
+      "id": "slide-4",
+      "title": "⚽ Olahraga",
+      "badge": "Skor",
+      "badgeColor": "#e65100",
+      "items": [
+        {
+          "tag": "Sepakbola",
+          "tagColor": "#e65100",
+          "title": "Timnas U-20 Lolos ke Piala Dunia usai Kalahkan Australia 2-1",
+          "summary": "Gol kemenangan dicetak Marselino Ferdinan di menit ke-89, memastikan tiket ke turnamen dunia.",
+          "source": "Bola.net",
+          "time": "1 jam lalu"
+        },
+        {
+          "tag": "Bulu Tangkis",
+          "tagColor": "#e65100",
+          "title": "Jonatan Christie Juara All England 2026, Kalahkan Viktor Axelsen",
+          "summary": "Kemenangan straight game 21-19, 21-17 membawa pulang gelar perdana dari Birmingham.",
+          "source": "Sportstars",
+          "time": "3 jam lalu"
+        },
+        {
+          "tag": "Basket",
+          "tagColor": "#e65100",
+          "title": "NBA Playoff: Lakers vs Celtics, Pertarungan Legenda di Final",
+          "summary": "LeBron James dan Jayson Tatum bersaing dalam duel terbaik musim ini untuk memperebutkan gelar.",
+          "source": "ESPN",
+          "time": "5 jam lalu"
+        }
+      ]
+    },
+    {
+      "id": "slide-5",
+      "title": "💻 Teknologi & Inovasi",
+      "badge": "Gadget",
+      "badgeColor": "#6a1b9a",
+      "items": [
+        {
+          "tag": "AI",
+          "tagColor": "#6a1b9a",
+          "title": "Google Luncurkan Gemini Ultra 2.0 dengan Kemampuan Multimodal",
+          "summary": "Model AI terbaru ini mampu memproses teks, gambar, dan video secara simultan dengan akurasi 98%.",
+          "source": "TechCrunch",
+          "time": "2 jam lalu"
+        },
+        {
+          "tag": "Startup",
+          "tagColor": "#6a1b9a",
+          "title": "eFishery Raih Pendanaan Seri E Rp 2,5 T, Jadi Unicorn Ke-7 Indonesia",
+          "summary": "Startup aquatech ini berencana ekspansi ke Vietnam dan Brasil dengan model kemitraan baru.",
+          "source": "DailySocial",
+          "time": "4 jam lalu"
+        },
+        {
+          "tag": "Keamanan",
+          "tagColor": "#6a1b9a",
+          "title": "Serangan Siber Global Targetkan Institusi Kesehatan di Asia",
+          "summary": "Badan Siber dan Sandi Negara imbau rumah sakit dan laboratorium untuk meningkatkan protokol keamanan.",
+          "source": "Reuters",
+          "time": "7 jam lalu"
+        }
+      ]
+    },
+    {
+      "id": "slide-6",
+      "title": "🎬 Gaya Hidup & Hiburan",
+      "badge": "Pop",
+      "badgeColor": "#00695c",
+      "items": [
+        {
+          "tag": "Film",
+          "tagColor": "#00695c",
+          "title": "Dune 3 Pecah Rekor Box Office Asia, Tembus Rp 1,2 T di Pekan Pertama",
+          "summary": "Adaptasi novel Frank Herbert ini menjadi film sci-fi terlaris sepanjang masa di Indonesia.",
+          "source": "Cinema21",
+          "time": "2 jam lalu"
+        },
+        {
+          "tag": "Musik",
+          "tagColor": "#00695c",
+          "title": "Taylor Swift Umumkan Tur Asia Tenggara, Singgah di Jakarta Desember",
+          "summary": "Konser bertajuk 'Eras Tour' akan digelar di Stadion Utama GBK dengan kapasitas 80.000 penonton.",
+          "source": "Rolling Stone",
+          "time": "5 jam lalu"
+        },
+        {
+          "tag": "Kuliner",
+          "tagColor": "#00695c",
+          "title": "5 Restoran Indonesia Masuk 50 Best Restaurants Asia 2026",
+          "summary": "Daftar dipimpin oleh Locavore di Bali dan August di Jakarta, menempati peringkat 3 dan 12.",
+          "source": "Food & Travel",
+          "time": "8 jam lalu"
+        }
+      ]
+    },
+    {
+      "id": "slide-7",
+      "title": "📍 Daerah & Sosial",
+      "badge": "Lokal",
+      "badgeColor": "#4a148c",
+      "items": [
+        {
+          "isList": true,
+          "title": "Banjir Rob Surut di Jakarta Utara, Warga Mulai Bersihkan Rumah",
+          "summary": "BPBD mencatat 12 RW terdampak, namun semua sudah dalam kondisi aman dan layak huni.",
+          "time": "1 jam lalu"
+        },
+        {
+          "isList": true,
+          "title": "Festival Budaya Nusantara Digelar di Yogyakarta, 200 Sanggar Tampil",
+          "summary": "Acara tahunan ini menampilkan tarian, musik, dan kuliner dari 34 provinsi se-Indonesia.",
+          "time": "3 jam lalu"
+        },
+        {
+          "isList": true,
+          "title": "Pemuda Desa Inovasi Pupuk Organik dari Limbah Kopi, Tembus Pasar Ekspor",
+          "summary": "Produk bernama 'KopiGro' telah dikirim ke 12 negara dengan nilai ekspor Rp 18 miliar.",
+          "time": "5 jam lalu"
+        },
+        {
+          "isList": true,
+          "title": "Guru SD di Semarang Raih Penghargaan Internasional untuk Metode Belajar Inklusif",
+          "summary": "Metode 'Belajar Tanpa Batas' diakui UNESCO sebagai praktik terbaik pendidikan inklusif.",
+          "time": "7 jam lalu"
+        }
+      ]
+    }
+  ],
+  "sidebar": {
+    "top": {
+      "title": "📡 Info Terkini",
+      "qrLabel": "Dapatkan notifikasi berita terbaru",
+      "contacts": [
+        { "icon": "📱", "label": "@berita_terkini" },
+        { "icon": "🌐", "label": "beritaterkini.id" },
+        { "icon": "📧", "label": "redaksi@beritaterkini.id" }
+      ]
+    },
+    "panels": [
+      {
+        "title": "🔥 Populer Hari Ini",
+        "type": "popular",
+        "data": [
+          { "title": "Prabowo Resmikan IKN Tahap 3", "meta": "Kompas • 1.200+ bagikan", "borderColor": "#b71c1c" },
+          { "title": "Harga Emas Antam Sentuh Rp 1,8 Juta", "meta": "Bisnis • 980 bagikan", "borderColor": "#1565c0" },
+          { "title": "Liverpool Juara Liga Inggris", "meta": "Bola • 2.100 bagikan", "borderColor": "#e65100" },
+          { "title": "Vaksin Baru untuk Demam Berdarah", "meta": "Sehat • 760 bagikan", "borderColor": "#2e7d32" }
+        ]
+      },
+      {
+        "title": "🌦️ Cuaca & IHSG",
+        "type": "weather",
+        "data": {
+          "temp": "28°C",
+          "desc": "Jakarta • Cerah Berawan",
+          "emoji": "⛅",
+          "humidity": "72%",
+          "wind": "12 km/j",
+          "ihsg": { "label": "IHSG", "value": "▲ 7.612 (+1,2%)", "class": "green" },
+          "dxy": { "label": "DXY (USD)", "value": "▼ 15.420 (-0,3%)", "class": "" },
+          "gold": { "label": "Emas", "value": "▲ 1.812.000 (+0,8%)", "class": "green" }
+        }
+      },
+      {
+        "title": "📅 Jadwal & Layanan",
+        "type": "schedule",
+        "data": [
+          { "event": "Konferensi Pers", "time": "14:00 WIB" },
+          { "event": "Sidang Paripurna", "time": "16:30 WIB" },
+          { "event": "Debat Capres", "time": "20:00 WIB" },
+          { "event": "Malam Inovasi", "time": "21:30 WIB" }
+        ],
+        "liveLink": "beritaterkini.id/live"
+      }
+    ]
+  },
+  "ticker": [
+    "🔴 BREAKING: Presiden Tinjau Langsung Lokasi Bencana di Sulawesi",
+    "📈 IHSG Ditutup Menguat 1,2% ke Level 7.612, Didorong Sektor Energi",
+    "⚽ Timnas U-20 Lolos Piala Dunia, Usai Kalahkan Australia 2-1",
+    "💻 Google Luncurkan Gemini Ultra 2.0 dengan Kemampuan Multimodal",
+    "🌿 Pemerintah Siapkan Subsidi Pupuk Rp 45 T untuk 12 Juta Petani",
+    "🎬 Dune 3 Pecah Rekor Box Office Asia Tembus Rp 1,2 T"
+  ]
+}
