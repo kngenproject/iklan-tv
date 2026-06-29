@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Signage 4K Display</title>
+    <style>
+        /* Konfigurasi Ukuran & Warna untuk Layar TV 4K (320 DPI) */
+        :root {
+            --bg-color: #0f172a;
+            --text-color: #f8fafc;
+            --accent-color: #2563eb;
+            --highlight-color: #f59e0b;
+            
+            /* Tipografi Skala Besar untuk Jarak Pandang TV */
+            --font-title: 5.5rem;   /* ~88px */
+            --font-body: 3.5rem;    /* ~56px */
+            --font-footer: 2.5rem;  /* ~40px */
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-user-select: none;
+            user-select: none;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            width: 3840px;
+            height: 2160px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            /* Memastikan skala tetap pas jika di-render di browser TV */
+            transform-origin: top left; 
+        }
+
+        /* Tata Letak Utama (Layout) */
+        header {
+            height: 250px;
+            background: linear-gradient(135deg, var(--accent-color), #1d4ed8);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 80px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            z-index: 10;
+        }
+
+        .logo-placeholder {
+            font-size: var(--font-title);
+            font-weight: 900;
+            letter-spacing: -2px;
+        }
+
+        .header-badge {
+            background-color: var(--highlight-color);
+            color: #000;
+            padding: 15px 40px;
+            border-radius: 50px;
+            font-size: 2.8rem;
+            font-weight: bold;
+        }
+
+        /* Area Konten / Slider */
+        main {
+            flex: 1;
+            position: relative;
+            background: radial-gradient(circle at center, #1e293b 0%, #0f172a 100%);
+        }
+
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            opacity: 0;
+            transition: opacity 1.5s ease-in-out;
+            padding: 100px 120px;
+            align-items: center;
+        }
+
+        .slide.active {
+            opacity: 1;
+        }
+
+        /* Layout Konten Dua Kolom (Teks & Gambar) */
+        .slide-text {
+            flex: 1.2;
+            padding-right: 60px;
+        }
+
+        .slide-text h1 {
+            font-size: var(--font-title);
+            line-height: 1.2;
+            margin-bottom: 40px;
+            color: #fff;
+        }
+
+        .slide-text p {
+            font-size: var(--font-body);
+            line-height: 1.6;
+            color: #cbd5e1;
+        }
+
+        .slide-visual {
+            flex: 0.8;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: rgba(255,255,255,0.03);
+            border-radius: 40px;
+            border: 2px solid rgba(255,255,255,0.05);
+            overflow: hidden;
+        }
+
+        /* Placeholder untuk Gambar atau Video Promosi */
+        .slide-visual img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Bagian Bawah / Running Text */
+        footer {
+            height: 160px;
+            background-color: #020617;
+            display: flex;
+            align-items: center;
+            border-top: 4px solid var(--accent-color);
+            overflow: hidden;
+        }
+
+        .marquee-container {
+            display: flex;
+            width: 100%;
+        }
+
+        .marquee-text {
+            white-space: nowrap;
+            font-size: var(--font-footer);
+            font-weight: 500;
+            color: #94a3b8;
+            animation: jalan 25s linear infinite;
+            padding-left: 100%;
+        }
+
+        .marquee-text strong {
+            color: var(--highlight-color);
+        }
+
+        @keyframes jalan {
+            0% { transform: translate3d(0, 0, 0); }
+            100% { transform: translate3d(-100%, 0, 0); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Atas -->
+    <header>
+        <div class="logo-placeholder">INFO DISPLAY</div>
+        <div class="header-badge" id="live-clock">00:00:00</div>
+    </header>
+    
+    <!-- Konten Promosi Utama -->
+    <main>
+        <!-- Slide 1 -->
+        <div class="slide active">
+            <div class="slide-text">
+                <h1>Penerimaan Siswa Baru <br><span style="color: var(--highlight-color)">Tahun Ajaran 2026/2027</span></h1>
+                <p>Mari bergabung bersama kami untuk mencetak generasi cerdas, kreatif, dan berakhlak mulia. Pendaftaran gelombang pertama telah dibuka dengan kuota terbatas!</p>
+            </div>
+            <div class="slide-visual">
+                <!-- Ganti src dengan path gambar promosi Anda -->
+                <div style="font-size: 3rem; color: #475569;">[ Banner / Foto Kegiatan ]</div>
+            </div>
+        </div>
+
+        <!-- Slide 2 -->
+        <div class="slide">
+            <div class="slide-text">
+                <h1>Fasilitas Belajar <br>Modern & Nyaman</h1>
+                <p>Kami menyediakan laboratorium komputer terintegrasi, ruang kelas ber-AC, perpustakaan digital, serta lingkungan sekolah yang aman dan mendukung tumbuh kembang anak.</p>
+            </div>
+            <div class="slide-visual">
+                <div style="font-size: 3rem; color: #475569;">[ Foto Fasilitas ]</div>
+            </div>
+        </div>
+    </main>
+    
+    <!-- Teks Berjalan di Bagian Bawah -->
+    <footer>
+        <div class="marquee-container">
+            <div class="marquee-text">
+                Hubungi Sekretariat Pendaftaran: <strong>0812-3456-7890</strong> &nbsp;&nbsp;&bull;&nbsp;&nbsp; 
+                Alamat: <strong>Jl. Raya Jepara Kudus KM 12</strong> &nbsp;&nbsp;&bull;&nbsp;&nbsp; 
+                Dapatkan diskon khusus bagi pendaftar sebelum tanggal 31 Juli! &nbsp;&nbsp;&bull;&nbsp;&nbsp;
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // JavaScript untuk Auto-Slide Konten
+        const slides = document.querySelectorAll('.slide');
+        let currentSlide = 0;
+        const slideInterval = 8000; // Durasi per slide (8 detik)
+
+        function nextSlide() {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (currentSlide + 1) % slides.length;
+            slides[currentSlide].classList.add('active');
+        }
+
+        setInterval(nextSlide, slideInterval);
+
+        // Jam Digital Real-time di Pojok Kanan Atas
+        function updateClock() {
+            const now = new Date();
+            const timeString = now.toLocaleTimeString('id-ID', { hour12: false });
+            document.getElementById('live-clock').textContent = timeString;
+        }
+        setInterval(updateClock, 1000);
+        updateClock();
+    </script>
+</body>
+</html>
