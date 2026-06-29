@@ -1,47 +1,43 @@
-/* ═══════════════════════════════════════════
-   4K DIGITAL SIGNAGE — STYLESHEET
-   Resolusi target : 3840 × 2160 px
-   Ditampilkan via : CSS transform scale (JS)
-   ═══════════════════════════════════════════ */
+/* ═══════════════════════════════════════
+   4K SIGNAGE — KURS & SAHAM
+   Canvas : 3840 × 2160 px (di-scale JS)
+   ═══════════════════════════════════════ */
 
-/* ── RESET & TOKEN ── */
 :root {
-    --bg-dark      : #090d16;
-    --bg-bar-1     : #1e3a5f;
-    --bg-bar-2     : #0f2044;
+    --bg-dark    : #060d1a;
+    --bg-header  : #0a1628;
+    --bg-main    : #0d1f38;
+    --bg-footer  : #050c18;
+    --bg-card    : #0f2540;
+    --bg-card-h  : #122b48;
 
-    --clr-white    : #ffffff;
-    --clr-slate    : #94a3b8;
-    --clr-slate-lt : #cbd5e1;
+    --clr-white  : #ffffff;
+    --clr-slate  : #94a3b8;
+    --clr-muted  : #64748b;
 
-    --clr-blue     : #38bdf8;
-    --clr-yellow   : #facc15;
-    --clr-green    : #4ade80;
-    --clr-red      : #ef4444;
+    --clr-blue   : #38bdf8;
+    --clr-yellow : #facc15;
+    --clr-green  : #4ade80;
+    --clr-red    : #f87171;
+    --clr-gold   : #fbbf24;
 
-    --h-header  : 380px;
-    --h-promo   : 260px;
-    --h-row1    : 300px;
-    --h-row2    : 260px;
-    --h-footer  : 180px;
+    --border-dim : rgba(56,189,248,0.15);
 }
 
 *, *::before, *::after {
     box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+    margin: 0; padding: 0;
     -webkit-user-select: none;
     user-select: none;
 }
 
 html, body {
-    width: 100%;
-    height: 100%;
+    width: 100%; height: 100%;
     overflow: hidden;
     background: #000;
 }
 
-/* ── ROOT CANVAS 3840×2160 — di-scale via JS ── */
+/* ── ROOT CANVAS ── */
 .signage-root {
     position: relative;
     width: 3840px;
@@ -50,264 +46,378 @@ html, body {
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    background-color: var(--bg-dark);
+    background: var(--bg-dark);
     color: var(--clr-white);
     font-family: 'Arial Black', Impact, sans-serif;
 }
 
-/* ════════════════════════════════
+/* ════════════════════════════
    HEADER
-   ════════════════════════════════ */
+   ════════════════════════════ */
 .s-header {
-    height: var(--h-header);
+    height: 300px;
     flex-shrink: 0;
-    background: linear-gradient(135deg, #0a1628, #1e3a5f);
+    background: linear-gradient(135deg, #060d1a, #0f2540);
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between;
     padding: 0 100px;
-    border-bottom: 10px solid var(--clr-blue);
+    border-bottom: 8px solid var(--clr-blue);
     position: relative;
 }
 
 .s-header::after {
     content: '';
     position: absolute;
-    bottom: -10px;
-    left: 0;
-    width: 100%;
-    height: 6px;
+    bottom: -8px; left: 0;
+    width: 100%; height: 4px;
     background: linear-gradient(90deg, transparent, var(--clr-yellow), transparent);
 }
 
-/* Branding kiri */
-.store-branding {
+.brand-left {
     display: flex;
     flex-direction: column;
-    gap: 14px;
+    gap: 12px;
 }
 
-.store-name {
-    font-size: 8.5rem;
+.brand-title {
+    font-size: 5.5rem;
+    letter-spacing: 6px;
     text-transform: uppercase;
-    letter-spacing: 4px;
     color: var(--clr-white);
     line-height: 1;
 }
 
-.store-tagline {
-    font-size: 3rem;
-    color: var(--clr-blue);
+.brand-title span { color: var(--clr-blue); }
+
+.brand-sub {
+    font-size: 2.4rem;
+    color: var(--clr-slate);
+    letter-spacing: 8px;
     font-weight: normal;
-    letter-spacing: 6px;
     text-transform: uppercase;
 }
 
-/* Jam & tanggal kanan */
 .header-right {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
-    gap: 20px;
+    gap: 14px;
 }
 
 .clock-display {
-    font-size: 7rem;
+    font-size: 6rem;
     font-family: monospace;
     background: #000;
-    padding: 20px 60px;
-    border-radius: 30px;
+    padding: 16px 50px;
+    border-radius: 24px;
     border: 4px solid var(--clr-yellow);
     color: var(--clr-yellow);
+    letter-spacing: 4px;
 }
 
 .date-display {
-    font-size: 2.8rem;
+    font-size: 2.4rem;
     color: var(--clr-slate);
-    letter-spacing: 2px;
+    letter-spacing: 3px;
 }
 
-/* ════════════════════════════════
+/* ════════════════════════════
    MAIN
-   ════════════════════════════════ */
+   ════════════════════════════ */
 .s-main {
     flex: 1;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    gap: 60px;
-    padding: 40px 0;
+    gap: 0;
+    overflow: hidden;
 }
 
-/* ── Promo Banner ── */
-.promo-banner {
-    height: var(--h-promo);
-    flex-shrink: 0;
-    background: linear-gradient(90deg, #0f2044, #1e3a5f, #0f2044);
+/* ── Label Seksi ── */
+.section-label {
+    height: 90px;
     display: flex;
     align-items: center;
-    justify-content: center;
-    gap: 100px;
-    border-top: 5px solid var(--clr-yellow);
-    border-bottom: 5px solid var(--clr-yellow);
+    padding: 0 80px;
+    gap: 30px;
+    font-size: 2.6rem;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    font-weight: 900;
+    flex-shrink: 0;
 }
 
-.promo-item {
+.section-label.kurs {
+    background: linear-gradient(90deg, #0a1f3d, #0d1f38);
+    color: var(--clr-blue);
+    border-bottom: 3px solid var(--border-dim);
+}
+
+.section-label.saham {
+    background: linear-gradient(90deg, #0d1a0d, #0a1f12);
+    color: var(--clr-green);
+    border-bottom: 3px solid rgba(74,222,128,0.15);
+    border-top: 3px solid rgba(74,222,128,0.1);
+}
+
+.section-label .dot {
+    width: 20px; height: 20px;
+    border-radius: 50%;
+    animation: blink 1.2s ease-in-out infinite;
+}
+
+.section-label.kurs  .dot { background: var(--clr-blue); }
+.section-label.saham .dot { background: var(--clr-green); }
+
+/* ── Grid Kurs ── */
+.kurs-grid {
+    display: flex;
+    flex: 1;
+    background: var(--bg-main);
+    border-bottom: 4px solid var(--border-dim);
+    flex-shrink: 0;
+}
+
+.kurs-card {
+    flex: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 10px;
+    justify-content: center;
+    gap: 16px;
+    padding: 30px 20px;
+    border-right: 2px solid var(--border-dim);
+    transition: background 0.3s;
 }
 
-.promo-badge {
+.kurs-card:last-child { border-right: none; }
+
+.kurs-flag {
     font-size: 5rem;
-    font-weight: 900;
-    color: var(--clr-yellow);
     line-height: 1;
 }
 
-.promo-badge.sm { font-size: 3.5rem; }
-
-.promo-label {
-    font-size: 2.4rem;
-    color: var(--clr-slate-lt);
-    letter-spacing: 3px;
-    text-transform: uppercase;
-}
-
-.promo-divider {
-    width: 6px;
-    height: 180px;
-    background: linear-gradient(to bottom, transparent, var(--clr-blue), transparent);
-    border-radius: 3px;
-}
-
-/* ── Live Badge ── */
-.live-badge {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    background: rgba(239, 68, 68, 0.15);
-    border: 3px solid var(--clr-red);
-    border-radius: 20px;
-    padding: 10px 40px;
-}
-
-.live-dot {
-    width: 28px;
-    height: 28px;
-    background: var(--clr-red);
-    border-radius: 50%;
-    animation: blink 1s ease-in-out infinite;
-}
-
-.live-text {
-    font-size: 2.8rem;
-    color: var(--clr-red);
+.kurs-code {
+    font-size: 3.4rem;
+    color: var(--clr-blue);
     letter-spacing: 4px;
 }
 
-/* ── Marquee Rows ── */
-.marquee-row-1 {
-    height: var(--h-row1);
-    flex-shrink: 0;
-    background-color: var(--bg-bar-1);
-    display: flex;
-    align-items: center;
-    overflow: hidden;
-    border-top: 5px solid rgba(56, 189, 248, 0.3);
-    border-bottom: 5px solid rgba(56, 189, 248, 0.3);
-    box-shadow: 0 0 60px rgba(56, 189, 248, 0.1) inset;
+.kurs-name {
+    font-size: 1.8rem;
+    color: var(--clr-muted);
+    letter-spacing: 2px;
+    text-align: center;
+    font-weight: normal;
 }
 
-.marquee-row-2 {
-    height: var(--h-row2);
+.kurs-rate {
+    font-size: 4.5rem;
+    color: var(--clr-white);
+    font-family: monospace;
+    letter-spacing: 1px;
+}
+
+.kurs-rate .unit {
+    font-size: 2.8rem;
+    color: var(--clr-slate);
+}
+
+.kurs-change {
+    font-size: 2.2rem;
+    padding: 8px 30px;
+    border-radius: 12px;
+    letter-spacing: 2px;
+    font-family: monospace;
+}
+
+.kurs-change.up   { background: rgba(74,222,128,0.15); color: var(--clr-green); }
+.kurs-change.down { background: rgba(248,113,113,0.15); color: var(--clr-red); }
+.kurs-change.flat { background: rgba(148,163,184,0.1); color: var(--clr-slate); }
+
+/* ── Grid Saham ── */
+.saham-grid {
+    display: flex;
+    flex: 1;
+    background: #080f08;
     flex-shrink: 0;
-    background-color: var(--bg-bar-2);
+}
+
+.saham-card {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    padding: 24px 20px;
+    border-right: 2px solid rgba(74,222,128,0.1);
+}
+
+.saham-card:last-child { border-right: none; }
+
+.saham-ticker {
+    font-size: 4rem;
+    color: var(--clr-green);
+    letter-spacing: 4px;
+}
+
+.saham-nama {
+    font-size: 1.8rem;
+    color: var(--clr-muted);
+    letter-spacing: 1px;
+    text-align: center;
+    font-weight: normal;
+}
+
+.saham-harga {
+    font-size: 5rem;
+    color: var(--clr-white);
+    font-family: monospace;
+    letter-spacing: 1px;
+}
+
+.saham-change {
+    font-size: 2.4rem;
+    padding: 8px 30px;
+    border-radius: 12px;
+    letter-spacing: 2px;
+    font-family: monospace;
+}
+
+.saham-change.up   { background: rgba(74,222,128,0.15); color: var(--clr-green); }
+.saham-change.down { background: rgba(248,113,113,0.15); color: var(--clr-red); }
+.saham-change.flat { background: rgba(148,163,184,0.1); color: var(--clr-slate); }
+
+.saham-vol {
+    font-size: 1.8rem;
+    color: var(--clr-muted);
+    letter-spacing: 1px;
+}
+
+/* ── Marquee (running text bawah) ── */
+.marquee-wrap {
+    height: 180px;
+    flex-shrink: 0;
+    background: #000814;
     display: flex;
     align-items: center;
     overflow: hidden;
-    border-top: 5px solid rgba(250, 204, 21, 0.2);
-    border-bottom: 5px solid rgba(250, 204, 21, 0.2);
+    border-top: 4px solid var(--clr-yellow);
 }
 
 .marquee-track {
     display: flex;
     white-space: nowrap;
     will-change: transform;
+    font-size: 3.2rem;
+    animation: jalanKiri 45s linear infinite;
 }
 
-.track-left {
-    font-size: 6.5rem;
-    animation: jalanKiri 30s linear infinite;
-}
+.m-item { color: var(--clr-slate); margin: 0 60px; }
+.m-item .ticker { color: var(--clr-yellow); }
+.m-item .harga  { color: var(--clr-white);  font-family: monospace; }
+.m-item .up     { color: var(--clr-green);  }
+.m-item .down   { color: var(--clr-red);    }
+.m-sep { color: var(--clr-muted); margin: 0 40px; opacity: 0.4; }
 
-.track-right {
-    font-size: 5.5rem;
-    animation: jalanKanan 38s linear infinite;
-}
-
-.bullet {
-    color: var(--clr-yellow);
-    margin: 0 80px;
-}
-
-/* Warna highlight teks */
-.hl-blue   { color: var(--clr-blue);   }
-.hl-yellow { color: var(--clr-yellow); }
-.hl-green  { color: var(--clr-green);  }
-
-/* ════════════════════════════════
+/* ════════════════════════════
    FOOTER
-   ════════════════════════════════ */
+   ════════════════════════════ */
 .s-footer {
-    height: var(--h-footer);
+    height: 160px;
     flex-shrink: 0;
-    background: linear-gradient(90deg, #000, #0a1628, #000);
+    background: var(--bg-footer);
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between;
     padding: 0 100px;
-    border-top: 4px solid rgba(56, 189, 248, 0.4);
+    border-top: 3px solid var(--border-dim);
 }
 
-.footer-contact               { font-size: 3.2rem; color: var(--clr-slate); }
-.footer-contact span          { color: var(--clr-blue); }
-.footer-website               { font-size: 3rem; color: var(--clr-yellow); letter-spacing: 3px; }
-.footer-social                { font-size: 3rem; color: var(--clr-slate); }
-.footer-social span           { color: var(--clr-green); }
+.footer-left {
+    font-size: 2.4rem;
+    color: var(--clr-muted);
+}
 
-/* ════════════════════════════════
-   TOAST NOTIFIKASI UPDATE
-   ════════════════════════════════ */
-.toast-update {
+.footer-left span { color: var(--clr-blue); }
+
+.footer-center {
+    font-size: 2rem;
+    color: var(--clr-muted);
+    letter-spacing: 2px;
+    text-align: center;
+}
+
+.footer-right {
+    font-size: 2.4rem;
+    color: var(--clr-muted);
+    text-align: right;
+}
+
+.footer-right span { color: var(--clr-yellow); }
+
+/* status update kecil di footer */
+.last-update {
+    font-size: 1.8rem;
+    color: var(--clr-muted);
+    letter-spacing: 1px;
+    font-family: monospace;
+}
+
+/* ════════════════════════════
+   LOADING OVERLAY
+   ════════════════════════════ */
+.loading-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(6,13,26,0.85);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    font-size: 4rem;
+    color: var(--clr-blue);
+    letter-spacing: 4px;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.loading-overlay.hidden { display: none; }
+
+.spinner {
+    width: 80px; height: 80px;
+    border: 8px solid rgba(56,189,248,0.2);
+    border-top-color: var(--clr-blue);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+/* ════════════════════════════
+   TOAST
+   ════════════════════════════ */
+.toast {
     display: none;
     position: absolute;
-    bottom: 220px;
-    right: 80px;
+    bottom: 200px; right: 80px;
     background: var(--clr-yellow);
     color: #000;
-    font-size: 2.5rem;
+    font-size: 2.4rem;
     font-weight: 900;
-    padding: 30px 60px;
-    border-radius: 20px;
-    z-index: 9999;
+    padding: 28px 56px;
+    border-radius: 18px;
+    z-index: 999;
     animation: fadeInUp 0.5s ease;
 }
 
-.toast-update.show { display: block; }
+.toast.show { display: block; }
 
-/* ════════════════════════════════
+/* ════════════════════════════
    KEYFRAMES
-   ════════════════════════════════ */
+   ════════════════════════════ */
 @keyframes jalanKiri {
     0%   { transform: translate3d(0, 0, 0); }
     100% { transform: translate3d(-50%, 0, 0); }
-}
-
-@keyframes jalanKanan {
-    0%   { transform: translate3d(-50%, 0, 0); }
-    100% { transform: translate3d(0, 0, 0); }
 }
 
 @keyframes blink {
@@ -315,7 +425,11 @@ html, body {
     50%       { opacity: 0.2; }
 }
 
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
 @keyframes fadeInUp {
-    from { opacity: 0; transform: translateY(30px); }
+    from { opacity: 0; transform: translateY(20px); }
     to   { opacity: 1; transform: translateY(0); }
 }

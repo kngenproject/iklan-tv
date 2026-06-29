@@ -3,18 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>4K Digital Signage</title>
+    <title>Signage Kurs & Saham</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <div class="signage-root" id="signage-root">
 
+    <!-- ══ LOADING OVERLAY ══ -->
+    <div class="loading-overlay" id="loading">
+        <div class="spinner"></div>
+        <div>Mengambil Data Pasar...</div>
+    </div>
+
     <!-- ══ HEADER ══ -->
     <header class="s-header">
-        <div class="store-branding">
-            <div class="store-name">✦ Toko Sejahtera</div>
-            <div class="store-tagline">Belanja Hemat, Kualitas Terjamin</div>
+        <div class="brand-left">
+            <div class="brand-title">📊 Info <span>Pasar</span> Real-Time</div>
+            <div class="brand-sub">Kurs Valuta Asing · Saham IDX</div>
         </div>
         <div class="header-right">
             <div class="clock-display" id="jam-tv">00:00:00</div>
@@ -25,87 +31,114 @@
     <!-- ══ MAIN ══ -->
     <main class="s-main">
 
-        <!-- Promo Banner -->
-        <div class="promo-banner">
-            <div class="promo-item">
-                <div class="promo-badge">DISKON</div>
-                <div class="promo-badge hl-yellow">s/d 70%</div>
-                <div class="promo-label">Semua Produk Pilihan</div>
+        <!-- Label Kurs -->
+        <div class="section-label kurs">
+            <div class="dot"></div>
+            💱 &nbsp;Kurs Valuta Asing terhadap Rupiah (IDR)
+        </div>
+
+        <!-- Grid Kurs -->
+        <div class="kurs-grid">
+            <div class="kurs-card" data-code="USD">
+                <div class="kurs-flag">🇺🇸</div>
+                <div class="kurs-code">USD</div>
+                <div class="kurs-name">Dolar Amerika</div>
+                <div class="kurs-rate">—</div>
+                <div class="kurs-change flat">–</div>
             </div>
-            <div class="promo-divider"></div>
-            <div class="promo-item">
-                <div class="promo-badge hl-blue">GRATIS</div>
-                <div class="promo-badge sm">Ongkir Min. 150rb</div>
-                <div class="promo-label">Area Dalam Kota</div>
+            <div class="kurs-card" data-code="EUR">
+                <div class="kurs-flag">🇪🇺</div>
+                <div class="kurs-code">EUR</div>
+                <div class="kurs-name">Euro</div>
+                <div class="kurs-rate">—</div>
+                <div class="kurs-change flat">–</div>
             </div>
-            <div class="promo-divider"></div>
-            <div class="promo-item">
-                <div class="promo-badge hl-green">BELI 2</div>
-                <div class="promo-badge sm">GRATIS 1</div>
-                <div class="promo-label">Produk Bundle Spesial</div>
+            <div class="kurs-card" data-code="GBP">
+                <div class="kurs-flag">🇬🇧</div>
+                <div class="kurs-code">GBP</div>
+                <div class="kurs-name">Poundsterling</div>
+                <div class="kurs-rate">—</div>
+                <div class="kurs-change flat">–</div>
             </div>
-            <div class="promo-divider"></div>
-            <div class="live-badge">
-                <div class="live-dot"></div>
-                <div class="live-text">PROMO AKTIF</div>
+            <div class="kurs-card" data-code="JPY">
+                <div class="kurs-flag">🇯🇵</div>
+                <div class="kurs-code">JPY</div>
+                <div class="kurs-name">Yen Jepang</div>
+                <div class="kurs-rate">—</div>
+                <div class="kurs-change flat">–</div>
+            </div>
+            <div class="kurs-card" data-code="SGD">
+                <div class="kurs-flag">🇸🇬</div>
+                <div class="kurs-code">SGD</div>
+                <div class="kurs-name">Dolar Singapura</div>
+                <div class="kurs-rate">—</div>
+                <div class="kurs-change flat">–</div>
+            </div>
+            <div class="kurs-card" data-code="SAR">
+                <div class="kurs-flag">🇸🇦</div>
+                <div class="kurs-code">SAR</div>
+                <div class="kurs-name">Riyal Saudi</div>
+                <div class="kurs-rate">—</div>
+                <div class="kurs-change flat">–</div>
+            </div>
+            <div class="kurs-card" data-code="CNY">
+                <div class="kurs-flag">🇨🇳</div>
+                <div class="kurs-code">CNY</div>
+                <div class="kurs-name">Yuan China</div>
+                <div class="kurs-rate">—</div>
+                <div class="kurs-change flat">–</div>
             </div>
         </div>
 
-        <!-- Running Text 1 — ke kiri -->
-        <div class="marquee-row-1">
-            <div class="marquee-track track-left">
-                <span>&bull; <span class="hl-yellow">FLASH SALE HARI INI!</span>
-                    Sepatu Sport Premium Hanya <span class="hl-green">Rp 299.000</span> </span>
-                <span class="bullet">&bull;</span>
-                <span>Tas Ransel Laptop Waterproof
-                    <span class="hl-blue">BEST SELLER</span> — Stok Terbatas! </span>
-                <span class="bullet">&bull;</span>
-                <span>Kemeja Batik Modern mulai
-                    <span class="hl-green">Rp 185.000</span> — Tersedia 20 Motif </span>
-                <span class="bullet">&bull;</span>
-                <span>Parfum Import Original
-                    <span class="hl-yellow">DISKON 40%</span> — Beli Sekarang! </span>
-                <span class="bullet">&bull;</span>
-                <!-- duplikat untuk seamless loop -->
-                <span>&bull; <span class="hl-yellow">FLASH SALE HARI INI!</span>
-                    Sepatu Sport Premium Hanya <span class="hl-green">Rp 299.000</span> </span>
-                <span class="bullet">&bull;</span>
-                <span>Tas Ransel Laptop Waterproof
-                    <span class="hl-blue">BEST SELLER</span> — Stok Terbatas! </span>
-                <span class="bullet">&bull;</span>
-                <span>Kemeja Batik Modern mulai
-                    <span class="hl-green">Rp 185.000</span> — Tersedia 20 Motif </span>
-                <span class="bullet">&bull;</span>
-                <span>Parfum Import Original
-                    <span class="hl-yellow">DISKON 40%</span> — Beli Sekarang! </span>
-                <span class="bullet">&bull;</span>
+        <!-- Label Saham -->
+        <div class="section-label saham">
+            <div class="dot"></div>
+            📈 &nbsp;Harga Saham IDX — Live Market
+        </div>
+
+        <!-- Grid Saham -->
+        <div class="saham-grid">
+            <div class="saham-card" data-ticker="BBCA.JK">
+                <div class="saham-ticker">BBCA</div>
+                <div class="saham-nama">Bank BCA</div>
+                <div class="saham-harga">—</div>
+                <div class="saham-change flat">–</div>
+                <div class="saham-vol">Vol: —</div>
+            </div>
+            <div class="saham-card" data-ticker="BBRI.JK">
+                <div class="saham-ticker">BBRI</div>
+                <div class="saham-nama">Bank BRI</div>
+                <div class="saham-harga">—</div>
+                <div class="saham-change flat">–</div>
+                <div class="saham-vol">Vol: —</div>
+            </div>
+            <div class="saham-card" data-ticker="TLKM.JK">
+                <div class="saham-ticker">TLKM</div>
+                <div class="saham-nama">Telkom</div>
+                <div class="saham-harga">—</div>
+                <div class="saham-change flat">–</div>
+                <div class="saham-vol">Vol: —</div>
+            </div>
+            <div class="saham-card" data-ticker="ASII.JK">
+                <div class="saham-ticker">ASII</div>
+                <div class="saham-nama">Astra Intl</div>
+                <div class="saham-harga">—</div>
+                <div class="saham-change flat">–</div>
+                <div class="saham-vol">Vol: —</div>
+            </div>
+            <div class="saham-card" data-ticker="GOTO.JK">
+                <div class="saham-ticker">GOTO</div>
+                <div class="saham-nama">GoTo Group</div>
+                <div class="saham-harga">—</div>
+                <div class="saham-change flat">–</div>
+                <div class="saham-vol">Vol: —</div>
             </div>
         </div>
 
-        <!-- Running Text 2 — ke kanan -->
-        <div class="marquee-row-2">
-            <div class="marquee-track track-right">
-                <span>&bull; Pembayaran:
-                    <span class="hl-blue">Tunai · Transfer · QRIS · Cicilan 0%</span> </span>
-                <span class="bullet">&bull;</span>
-                <span>Jam Buka:
-                    <span class="hl-yellow">Senin–Sabtu 08.00–21.00</span>
-                    · Minggu 09.00–18.00 </span>
-                <span class="bullet">&bull;</span>
-                <span>Garansi <span class="hl-green">30 Hari</span>
-                    — Tidak Puas? Uang Kembali! </span>
-                <span class="bullet">&bull;</span>
-                <!-- duplikat -->
-                <span>&bull; Pembayaran:
-                    <span class="hl-blue">Tunai · Transfer · QRIS · Cicilan 0%</span> </span>
-                <span class="bullet">&bull;</span>
-                <span>Jam Buka:
-                    <span class="hl-yellow">Senin–Sabtu 08.00–21.00</span>
-                    · Minggu 09.00–18.00 </span>
-                <span class="bullet">&bull;</span>
-                <span>Garansi <span class="hl-green">30 Hari</span>
-                    — Tidak Puas? Uang Kembali! </span>
-                <span class="bullet">&bull;</span>
+        <!-- Running Text -->
+        <div class="marquee-wrap">
+            <div class="marquee-track" id="marquee-track">
+                <span class="m-item" style="color:#64748b">Mengambil data...</span>
             </div>
         </div>
 
@@ -113,15 +146,21 @@
 
     <!-- ══ FOOTER ══ -->
     <footer class="s-footer">
-        <div class="footer-contact">📞 WA: <span>0812-3456-7890</span></div>
-        <div class="footer-website">🌐 www.tokosejahtera.com</div>
-        <div class="footer-social">📱 IG/TikTok: <span>@tokosejahtera</span></div>
+        <div class="footer-left">
+            Sumber: <span>ExchangeRate-API</span> · <span>Yahoo Finance</span>
+        </div>
+        <div class="footer-center">
+            <div class="last-update" id="last-update">Menghubungkan ke server data...</div>
+        </div>
+        <div class="footer-right">
+            Data bersifat indikatif · <span>Bukan rekomendasi investasi</span>
+        </div>
     </footer>
 
-    <!-- Toast notifikasi auto-reload -->
-    <div class="toast-update" id="toast-update">🔄 Memuat konten terbaru...</div>
+    <!-- Toast auto-reload -->
+    <div class="toast" id="toast">🔄 Memuat versi terbaru...</div>
 
-</div><!-- /signage-root -->
+</div>
 
 <script src="app.js"></script>
 </body>
