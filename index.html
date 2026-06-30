@@ -251,40 +251,31 @@
     letter-spacing:2px;
   }
 
-  /* === RUNNING TEXT — papan info berjalan, 3 baris === */
+  /* === RUNNING TEXT — satu baris info berjalan === */
   .ticker-stack{
     position:absolute;
     top:1180px;
     left:0; right:0;
     z-index:6;
-    display:flex;
-    flex-direction:column;
-    gap:14px;
   }
 
   .ticker{
-    height:130px;
+    height:140px;
     display:flex;
     align-items:center;
     overflow:hidden;
     position:relative;
-    border-top:5px solid var(--tanah);
-    border-bottom:5px solid var(--tanah);
+    background:var(--tanah);
+    border-top:5px solid var(--jeruk);
+    border-bottom:5px solid var(--jeruk);
   }
-
-  .ticker-1{ background:var(--jeruk); }
-  .ticker-2{ background:var(--krem); border-top:5px solid var(--tanah); }
-  .ticker-3{ background:var(--limau-deep); }
 
   .ticker-track{
     display:flex;
     white-space:nowrap;
     will-change: transform;
+    animation: scrollL 45s linear infinite;
   }
-
-  .ticker-1 .ticker-track{ animation: scrollL 38s linear infinite; }
-  .ticker-2 .ticker-track{ animation: scrollR 44s linear infinite; }
-  .ticker-3 .ticker-track{ animation: scrollL 50s linear infinite; }
 
   .ticker-item{
     flex-shrink:0;
@@ -295,19 +286,14 @@
     display:flex;
     align-items:center;
     gap:36px;
+    color:var(--krem);
   }
-
-  .ticker-1 .ticker-item{ color:var(--krem); }
-  .ticker-2 .ticker-item{ color:var(--tanah); }
-  .ticker-3 .ticker-item{ color:var(--krem); }
 
   .ticker-sep{
     font-family:'Space Mono', monospace;
     font-size:40px;
+    color:var(--kuning);
   }
-  .ticker-1 .ticker-sep{ color:var(--tanah); }
-  .ticker-2 .ticker-sep{ color:var(--jeruk); }
-  .ticker-3 .ticker-sep{ color:var(--kuning); }
 
   /* === FOOTER — kontak, alamat, jam, QR === */
   .footer{
@@ -510,36 +496,24 @@
 
   <!-- RUNNING TEXT -->
   <div class="ticker-stack">
-    <div class="ticker ticker-1">
+    <div class="ticker">
       <div class="ticker-track">
         <div class="ticker-item">STOK FRESH SETIAP HARI <span class="ticker-sep">//</span></div>
         <div class="ticker-item">KUALITAS TERBAIK, HARGA BERSAHABAT <span class="ticker-sep">//</span></div>
         <div class="ticker-item">PENGIRIMAN CEPAT SE-KEPANJEN <span class="ticker-sep">//</span></div>
+        <div class="ticker-item">PESAN SEKARANG, HEMAT LEBIH BANYAK <span class="ticker-sep">//</span></div>
+        <div class="ticker-item">PAKET PARSEL BUAH UNTUK SEGALA ACARA <span class="ticker-sep">//</span></div>
+        <div class="ticker-item">BUKA SETIAP HARI 07.00 — 20.00 <span class="ticker-sep">//</span></div>
+        <div class="ticker-item">TERIMA PEMBAYARAN TUNAI & TRANSFER <span class="ticker-sep">//</span></div>
+        <div class="ticker-item">LAYANAN ANTAR UNTUK WILAYAH KEPANJEN <span class="ticker-sep">//</span></div>
         <div class="ticker-item">STOK FRESH SETIAP HARI <span class="ticker-sep">//</span></div>
         <div class="ticker-item">KUALITAS TERBAIK, HARGA BERSAHABAT <span class="ticker-sep">//</span></div>
         <div class="ticker-item">PENGIRIMAN CEPAT SE-KEPANJEN <span class="ticker-sep">//</span></div>
-      </div>
-    </div>
-
-    <div class="ticker ticker-2">
-      <div class="ticker-track">
-        <div class="ticker-item">PESAN SEKARANG, HEMAT LEBIH BANYAK <span class="ticker-sep">·</span></div>
-        <div class="ticker-item">PAKET PARSEL BUAH UNTUK SEGALA ACARA <span class="ticker-sep">·</span></div>
-        <div class="ticker-item">BUAH IMPORT & LOKAL DALAM SATU TOKO <span class="ticker-sep">·</span></div>
-        <div class="ticker-item">PESAN SEKARANG, HEMAT LEBIH BANYAK <span class="ticker-sep">·</span></div>
-        <div class="ticker-item">PAKET PARSEL BUAH UNTUK SEGALA ACARA <span class="ticker-sep">·</span></div>
-        <div class="ticker-item">BUAH IMPORT & LOKAL DALAM SATU TOKO <span class="ticker-sep">·</span></div>
-      </div>
-    </div>
-
-    <div class="ticker ticker-3">
-      <div class="ticker-track">
-        <div class="ticker-item">BUKA SETIAP HARI 07.00 — 20.00 <span class="ticker-sep">★</span></div>
-        <div class="ticker-item">TERIMA PEMBAYARAN TUNAI & TRANSFER <span class="ticker-sep">★</span></div>
-        <div class="ticker-item">LAYANAN ANTAR UNTUK WILAYAH KEPANJEN <span class="ticker-sep">★</span></div>
-        <div class="ticker-item">BUKA SETIAP HARI 07.00 — 20.00 <span class="ticker-sep">★</span></div>
-        <div class="ticker-item">TERIMA PEMBAYARAN TUNAI & TRANSFER <span class="ticker-sep">★</span></div>
-        <div class="ticker-item">LAYANAN ANTAR UNTUK WILAYAH KEPANJEN <span class="ticker-sep">★</span></div>
+        <div class="ticker-item">PESAN SEKARANG, HEMAT LEBIH BANYAK <span class="ticker-sep">//</span></div>
+        <div class="ticker-item">PAKET PARSEL BUAH UNTUK SEGALA ACARA <span class="ticker-sep">//</span></div>
+        <div class="ticker-item">BUKA SETIAP HARI 07.00 — 20.00 <span class="ticker-sep">//</span></div>
+        <div class="ticker-item">TERIMA PEMBAYARAN TUNAI & TRANSFER <span class="ticker-sep">//</span></div>
+        <div class="ticker-item">LAYANAN ANTAR UNTUK WILAYAH KEPANJEN <span class="ticker-sep">//</span></div>
       </div>
     </div>
   </div>
