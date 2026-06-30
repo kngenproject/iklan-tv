@@ -12,148 +12,169 @@
     }
 
     body {
-      font-family: 'Poppins', sans-serif;
+      font-family: 'Arial', sans-serif;
+      background: #000000;
       overflow: hidden;
     }
 
     .signage-container {
       width: 3840px;
       height: 2160px;
-      background: linear-gradient(135deg, #1a3a1a 0%, #2d5016 50%, #1a3a1a 100%);
+      background: linear-gradient(180deg, #0a0e27 0%, #1a1f3a 100%);
       color: white;
       display: flex;
       flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      padding: 120px;
+      justify-content: space-between;
+      padding: 0;
       text-align: center;
       position: relative;
-      overflow: hidden;
     }
 
-    /* Running Text Section */
-    .running-text-section {
-      width: 100%;
-      margin-bottom: 120px;
+    /* Top Section - Logo & Title */
+    .header {
+      background: linear-gradient(90deg, #1a1f3a 0%, #0f1428 50%, #1a1f3a 100%);
+      padding: 80px 120px;
+      border-bottom: 3px solid #00d4ff;
+      box-shadow: 0 8px 32px rgba(0, 212, 255, 0.15);
     }
 
-    .running-text {
+    .header-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 30px;
+    }
+
+    .store-name {
       font-size: 140px;
-      font-weight: 700;
-      letter-spacing: 8px;
-      animation: slideLeft 15s linear infinite;
-      white-space: nowrap;
-      text-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+      font-weight: 900;
+      letter-spacing: 12px;
       color: #ffffff;
+      text-shadow: 0 0 40px rgba(0, 212, 255, 0.6);
+      line-height: 1;
     }
 
-    @keyframes slideLeft {
+    .store-tagline {
+      font-size: 100px;
+      font-weight: 700;
+      letter-spacing: 6px;
+      color: #00d4ff;
+      text-shadow: 0 0 30px rgba(0, 212, 255, 0.4);
+    }
+
+    /* Main Running Text Section */
+    .ticker-section {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(90deg, #000000 0%, #0a0e27 50%, #000000 100%);
+      position: relative;
+      overflow: hidden;
+      border-top: 3px solid #00d4ff;
+      border-bottom: 3px solid #00d4ff;
+      box-shadow: 
+        inset 0 0 60px rgba(0, 212, 255, 0.1),
+        0 0 60px rgba(0, 212, 255, 0.2);
+    }
+
+    .ticker-wrapper {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .ticker-content {
+      display: flex;
+      animation: scroll 20s linear infinite;
+      white-space: nowrap;
+      padding: 0 200px;
+    }
+
+    .ticker-item {
+      display: flex;
+      align-items: center;
+      gap: 100px;
+      margin-right: 200px;
+      flex-shrink: 0;
+    }
+
+    .ticker-label {
+      font-size: 80px;
+      font-weight: 900;
+      letter-spacing: 8px;
+      color: #ffffff;
+      text-shadow: 0 0 30px rgba(0, 212, 255, 0.8);
+      min-width: max-content;
+    }
+
+    .ticker-value {
+      font-size: 120px;
+      font-weight: 700;
+      color: #00ff00;
+      text-shadow: 0 0 40px rgba(0, 255, 0, 0.8);
+      letter-spacing: 4px;
+      min-width: max-content;
+    }
+
+    .divider-ticker {
+      font-size: 100px;
+      color: #00d4ff;
+      opacity: 0.6;
+      margin: 0 100px;
+      font-weight: 300;
+    }
+
+    @keyframes scroll {
       0% {
-        transform: translateX(3840px);
+        transform: translateX(0);
       }
       100% {
-        transform: translateX(-100%);
+        transform: translateX(-50%);
       }
     }
 
-    /* Elegant Divider */
-    .divider {
-      width: 80%;
-      height: 4px;
-      background: linear-gradient(90deg, transparent, #4a7c2c, transparent);
-      margin: 80px auto;
+    /* Bottom Section - Contact Info */
+    .footer {
+      background: linear-gradient(90deg, #1a1f3a 0%, #0f1428 50%, #1a1f3a 100%);
+      padding: 80px 120px;
+      border-top: 3px solid #00d4ff;
+      box-shadow: 0 -8px 32px rgba(0, 212, 255, 0.15);
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
     }
 
-    /* Info Section */
-    .info-section {
-      background: rgba(255, 255, 255, 0.08);
-      backdrop-filter: blur(20px);
-      border: 2px solid rgba(255, 255, 255, 0.15);
-      border-radius: 40px;
-      padding: 100px 150px;
-      max-width: 3000px;
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    .footer-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
     }
 
-    .info-title {
-      font-size: 88px;
+    .footer-label {
+      font-size: 64px;
       font-weight: 700;
-      margin-bottom: 60px;
+      color: #00d4ff;
       letter-spacing: 4px;
-      text-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+      text-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
     }
 
-    .info-subtitle {
-      font-size: 72px;
-      font-weight: 500;
-      margin-bottom: 80px;
-      color: #b8e6b8;
-      letter-spacing: 2px;
-    }
-
-    /* Features Grid */
-    .features {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 80px;
-      margin-bottom: 80px;
-    }
-
-    .feature-item {
-      padding: 40px;
-      background: rgba(255, 255, 255, 0.05);
-      border-radius: 20px;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      font-size: 48px;
-      font-weight: 600;
-      letter-spacing: 2px;
-      transition: all 0.3s ease;
-    }
-
-    .feature-item:hover {
-      background: rgba(255, 255, 255, 0.1);
-      border-color: rgba(255, 255, 255, 0.2);
-      transform: translateY(-8px);
-    }
-
-    /* Contact Info */
-    .contact-info {
-      font-size: 56px;
-      margin-bottom: 30px;
-      font-weight: 600;
-      letter-spacing: 2px;
-      color: #e8f5e9;
-    }
-
-    .contact-phone {
-      font-size: 72px;
-      margin-bottom: 60px;
-      font-weight: 700;
+    .footer-value {
+      font-size: 80px;
+      font-weight: 900;
+      color: #ffffff;
       letter-spacing: 3px;
-      color: #4a7c2c;
-      text-shadow: 0 4px 12px rgba(74, 124, 44, 0.3);
+      text-shadow: 0 0 30px rgba(0, 212, 255, 0.6);
     }
 
-    .cta-button {
-      display: inline-block;
-      background: linear-gradient(135deg, #4a7c2c 0%, #5a9c3c 100%);
-      color: white;
-      padding: 50px 120px;
-      font-size: 56px;
-      border-radius: 25px;
-      border: 2px solid rgba(255, 255, 255, 0.2);
-      cursor: pointer;
-      font-weight: 700;
-      transition: all 0.3s ease;
-      box-shadow: 0 16px 48px rgba(74, 124, 44, 0.4);
-      letter-spacing: 3px;
-    }
-
-    .cta-button:hover {
-      background: linear-gradient(135deg, #5a9c3c 0%, #6aac4c 100%);
-      transform: translateY(-10px);
-      box-shadow: 0 24px 64px rgba(74, 124, 44, 0.6);
-      border-color: rgba(255, 255, 255, 0.4);
+    .footer-divider {
+      width: 4px;
+      height: 200px;
+      background: linear-gradient(180deg, transparent, #00d4ff, transparent);
+      opacity: 0.5;
     }
 
     /* Responsive */
@@ -161,93 +182,141 @@
       .signage-container {
         width: 100%;
         height: auto;
-        padding: 60px;
+        min-height: 100vh;
+        flex-wrap: wrap;
       }
 
-      .running-text {
+      .header {
+        padding: 40px 60px;
+        border-bottom: 2px solid #00d4ff;
+      }
+
+      .store-name {
         font-size: 72px;
-        animation: slideLeftMobile 12s linear infinite;
+        letter-spacing: 6px;
       }
 
-      @keyframes slideLeftMobile {
-        0% {
-          transform: translateX(1920px);
-        }
-        100% {
-          transform: translateX(-100%);
-        }
+      .store-tagline {
+        font-size: 52px;
+        letter-spacing: 3px;
       }
 
-      .divider {
-        margin: 40px auto;
+      .ticker-section {
+        min-height: 600px;
+        border-top: 2px solid #00d4ff;
+        border-bottom: 2px solid #00d4ff;
       }
 
-      .info-section {
-        padding: 60px 80px;
-        border-radius: 24px;
+      .ticker-label {
+        font-size: 44px;
+        letter-spacing: 4px;
       }
 
-      .info-title {
-        font-size: 48px;
-        margin-bottom: 30px;
+      .ticker-value {
+        font-size: 64px;
+        letter-spacing: 2px;
       }
 
-      .info-subtitle {
-        font-size: 40px;
-        margin-bottom: 40px;
+      .divider-ticker {
+        font-size: 52px;
+        margin: 0 50px;
       }
 
-      .features {
-        grid-template-columns: repeat(3, 1fr);
+      .footer {
+        padding: 40px 60px;
+        border-top: 2px solid #00d4ff;
+        flex-direction: column;
         gap: 40px;
-        margin-bottom: 40px;
       }
 
-      .feature-item {
-        font-size: 28px;
-        padding: 24px;
+      .footer-item {
+        gap: 12px;
       }
 
-      .contact-info {
-        font-size: 32px;
+      .footer-label {
+        font-size: 36px;
       }
 
-      .contact-phone {
-        font-size: 40px;
+      .footer-value {
+        font-size: 44px;
       }
 
-      .cta-button {
-        padding: 28px 64px;
-        font-size: 32px;
+      .footer-divider {
+        width: 2px;
+        height: 100px;
       }
     }
   </style>
 </head>
 <body>
   <div class="signage-container">
-    <!-- Running Text -->
-    <div class="running-text-section">
-      <div class="running-text">TOKO BUAH ABS • ANEKA BUAH SEGAR • TOKO BUAH ABS • ANEKA BUAH SEGAR •</div>
+    <!-- Header -->
+    <div class="header">
+      <div class="header-content">
+        <h1 class="store-name">TOKO BUAH ABS</h1>
+        <h2 class="store-tagline">ANEKA BUAH SEGAR</h2>
+      </div>
     </div>
 
-    <div class="divider"></div>
+    <!-- Main Ticker -->
+    <div class="ticker-section">
+      <div class="ticker-wrapper">
+        <div class="ticker-content">
+          <div class="ticker-item">
+            <span class="ticker-label">BUAH LOKAL</span>
+            <span class="divider-ticker">•</span>
+            <span class="ticker-value">SEGAR TERBAIK</span>
+          </div>
+          <div class="ticker-item">
+            <span class="ticker-label">BUAH IMPORT</span>
+            <span class="divider-ticker">•</span>
+            <span class="ticker-value">BERKUALITAS PREMIUM</span>
+          </div>
+          <div class="ticker-item">
+            <span class="ticker-label">PARCEL BUAH</span>
+            <span class="divider-ticker">•</span>
+            <span class="ticker-value">HADIAH ISTIMEWA</span>
+          </div>
+          <!-- Duplicate untuk loop seamless -->
+          <div class="ticker-item">
+            <span class="ticker-label">BUAH LOKAL</span>
+            <span class="divider-ticker">•</span>
+            <span class="ticker-value">SEGAR TERBAIK</span>
+          </div>
+          <div class="ticker-item">
+            <span class="ticker-label">BUAH IMPORT</span>
+            <span class="divider-ticker">•</span>
+            <span class="ticker-value">BERKUALITAS PREMIUM</span>
+          </div>
+          <div class="ticker-item">
+            <span class="ticker-label">PARCEL BUAH</span>
+            <span class="divider-ticker">•</span>
+            <span class="ticker-value">HADIAH ISTIMEWA</span>
+          </div>
+        </div>
+      </div>
+    </div>
 
-    <!-- Info Section -->
-    <div class="info-section">
-      <h1 class="info-title">TOKO BUAH ABS</h1>
-      <h2 class="info-subtitle">ANEKA BUAH SEGAR</h2>
-
-      <div class="features">
-        <div class="feature-item">Buah Lokal</div>
-        <div class="feature-item">Buah Import</div>
-        <div class="feature-item">Parcel Buah</div>
+    <!-- Footer Contact -->
+    <div class="footer">
+      <div class="footer-item">
+        <div class="footer-label">LOKASI</div>
+        <div class="footer-value">KEPANJEN, MALANG</div>
       </div>
 
-      <div class="divider"></div>
+      <div class="footer-divider"></div>
 
-      <div class="contact-info">KEPANJEN, MALANG</div>
-      <div class="contact-phone">081333527527</div>
-      <button class="cta-button">HUBUNGI SEKARANG</button>
+      <div class="footer-item">
+        <div class="footer-label">WHATSAPP</div>
+        <div class="footer-value">081333527527</div>
+      </div>
+
+      <div class="footer-divider"></div>
+
+      <div class="footer-item">
+        <div class="footer-label">STATUS</div>
+        <div class="footer-value">BUKA SETIAP HARI</div>
+      </div>
     </div>
   </div>
 </body>
