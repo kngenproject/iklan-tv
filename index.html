@@ -1,298 +1,677 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Iklan ABS Aneka Buah Segar</title>
-    <style>
-        /* Reset & Base Setup untuk Layar 4K */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TOKO BUAH ABS — Aneka Buah Segar | Digital Signage</title>
 
-        body {
-            width: 3840px;
-            height: 2160px;
-            background: linear-gradient(135deg, #1e4d2b 0%, #0a2f1d 100%);
-            color: #ffffff;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            padding: 120px; /* Jarak aman layar TV (Overscan mitigation) */
-        }
+<style>
+/* ============================================================
+   TOKO BUAH ABS — DIGITAL SIGNAGE PREMIUM
+   Resolusi target: 3840x2160 (4K UHD) — Rasio 16:9
+   Pure HTML5 + CSS3 + Vanilla JS, no framework, offline-ready
+   ============================================================ */
 
-        /* Header Section */
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 5px solid #ffcc00;
-            padding-bottom: 50px;
-        }
+/* ---------- RESET & BASE ---------- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-        .logo-area {
-            display: flex;
-            align-items: center;
-            gap: 40px;
-        }
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  font-family: 'Poppins', 'Montserrat', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+  background: #0a1f15;
+  -webkit-font-smoothing: antialiased;
+}
 
-        .logo-circle {
-            width: 180px;
-            height: 180px;
-            background-color: #ffcc00;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 80px;
-            font-weight: 900;
-            color: #1e4d2b;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-        }
+/* ---------- VARIABLES (skala berbasis vw agar responsif ke 4K) ---------- */
+:root {
+  --emerald: #064e3b;
+  --emerald-light: #0f9d6b;
+  --leaf: #1faa59;
+  --gold: #d4af37;
+  --gold-light: #f5d57a;
+  --white: #ffffff;
+  --glass-bg: rgba(255, 255, 255, 0.08);
+  --glass-border: rgba(255, 255, 255, 0.18);
+}
 
-        .brand-name h1 {
-            font-size: 90px;
-            font-weight: 800;
-            letter-spacing: 2px;
-            color: #ffffff;
-        }
+/* ---------- BACKGROUND ANIMATED GRADIENT ---------- */
+.bg-gradient {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background: linear-gradient(125deg,
+    #06281c 0%,
+    #0b4632 20%,
+    #0f9d6b 45%,
+    #064e3b 70%,
+    #0a1f15 100%);
+  background-size: 300% 300%;
+  animation: gradientMove 22s ease-in-out infinite;
+}
 
-        .brand-name p {
-            font-size: 45px;
-            color: #ffcc00;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 4px;
-        }
+@keyframes gradientMove {
+  0%   { background-position: 0% 30%; }
+  50%  { background-position: 100% 70%; }
+  100% { background-position: 0% 30%; }
+}
 
-        .tagline {
-            font-size: 55px;
-            font-style: italic;
-            font-weight: 500;
-            color: #e2f0d9;
-            text-align: right;
-            max-width: 120px0px;
-        }
+/* Overlay vignette agar teks tetap kontras */
+.bg-vignette {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  background: radial-gradient(circle at center, transparent 40%, rgba(0,0,0,0.35) 100%);
+  pointer-events: none;
+}
 
-        /* Main Content Grid */
-        main {
-            display: grid;
-            grid-template-columns: 1.2fr 1.8fr;
-            gap: 100px;
-            align-items: center;
-            margin: 80px 0;
-            flex-grow: 1;
-        }
+/* ---------- FLOATING PARTICLES ---------- */
+.particles {
+  position: fixed;
+  inset: 0;
+  z-index: 2;
+  overflow: hidden;
+  pointer-events: none;
+}
 
-        /* Promo Banner (Kiri) */
-        .promo-side {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(20px);
-            border-radius: 40px;
-            padding: 80px;
-            border: 3px solid rgba(255, 255, 255, 0.2);
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            box-shadow: 0 25px 50px rgba(0,0,0,0.2);
-        }
+.particle {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(212,175,55,0.35) 0%, rgba(255,255,255,0.05) 70%, transparent 100%);
+  border: 1px solid rgba(255,255,255,0.08);
+  animation: floatParticle linear infinite;
+}
 
-        .promo-badge {
-            background-color: #e63946;
-            color: white;
-            font-size: 45px;
-            font-weight: bold;
-            padding: 15px 40px;
-            border-radius: 50px;
-            align-self: flex-start;
-            margin-bottom: 40px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            animation: pulse 2s infinite;
-        }
+@keyframes floatParticle {
+  0%   { transform: translateY(0) translateX(0) scale(1); opacity: 0; }
+  10%  { opacity: 0.6; }
+  50%  { transform: translateY(-6vh) translateX(2vw) scale(1.15); }
+  90%  { opacity: 0.6; }
+  100% { transform: translateY(-12vh) translateX(-1vw) scale(1); opacity: 0; }
+}
 
-        .promo-side h2 {
-            font-size: 110px;
-            line-height: 1.1;
-            margin-bottom: 30px;
-            font-weight: 800;
-        }
+/* ---------- MAIN LAYOUT WRAPPER ---------- */
+.signage {
+  position: relative;
+  z-index: 5;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: 2.2vh 3vw 0 3vw;
+}
 
-        .promo-side h2 span {
-            color: #ffcc00;
-        }
+/* ============================================================
+   HEADER
+   ============================================================ */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.6vh 2.4vw;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 1.8vh;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: 0 1.2vh 3vh rgba(0,0,0,0.25), 0 0 0 1px rgba(255,255,255,0.04) inset;
+  animation: fadeInDown 1s ease forwards;
+}
 
-        .promo-side .price {
-            font-size: 130px;
-            font-weight: 900;
-            color: #4cc9f0;
-            margin-top: 20px;
-        }
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 1.6vw;
+}
 
-        /* Grid Buah (Kanan) */
-        .grid-fruits {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 50px;
-        }
+.logo-badge {
+  width: 6.5vh;
+  height: 6.5vh;
+  border-radius: 50%;
+  background: linear-gradient(145deg, var(--gold-light), var(--gold));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3.2vh;
+  box-shadow: 0 0 2.5vh rgba(212,175,55,0.55), inset 0 0 1vh rgba(255,255,255,0.4);
+  animation: pulseGlow 3.2s ease-in-out infinite;
+  flex-shrink: 0;
+}
 
-        .fruit-card {
-            background: #ffffff;
-            color: #333333;
-            border-radius: 40px;
-            overflow: hidden;
-            box-shadow: 0 30px 60px rgba(0,0,0,0.3);
-            display: flex;
-            flex-direction: column;
-            height: 550px;
-            position: relative;
-        }
+.header-text h1 {
+  font-size: 3.6vh;
+  font-weight: 800;
+  color: var(--white);
+  letter-spacing: 0.05em;
+  text-shadow: 0 0.3vh 1vh rgba(0,0,0,0.4);
+  line-height: 1.1;
+}
 
-        /* Placeholder untuk gambar (Ganti dengan URL gambar asli Anda nanti) */
-        .fruit-image {
-            height: 350px;
-            background-color: #f0f0f0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 150px;
-        }
+.header-text p {
+  font-size: 1.6vh;
+  font-weight: 600;
+  letter-spacing: 0.35em;
+  color: var(--gold-light);
+  margin-top: 0.4vh;
+}
 
-        .fruit-info {
-            padding: 40px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            flex-grow: 1;
-        }
+.header-right {
+  text-align: right;
+}
 
-        .fruit-name {
-            font-size: 55px;
-            font-weight: 700;
-            color: #1e4d2b;
-        }
+.clock {
+  font-size: 4vh;
+  font-weight: 700;
+  color: var(--white);
+  letter-spacing: 0.04em;
+  text-shadow: 0 0 1.5vh rgba(212,175,55,0.4);
+}
 
-        .fruit-price {
-            font-size: 50px;
-            font-weight: 800;
-            color: #e63946;
-            text-align: right;
-        }
+.date {
+  font-size: 1.5vh;
+  font-weight: 500;
+  color: rgba(255,255,255,0.75);
+  margin-top: 0.3vh;
+  letter-spacing: 0.06em;
+}
 
-        /* Footer Section */
-        footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: rgba(0, 0, 0, 0.4);
-            padding: 40px 80px;
-            border-radius: 30px;
-            font-size: 40px;
-        }
+/* ============================================================
+   HERO SECTION
+   ============================================================ */
+.hero {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+  margin-top: 2vh;
+}
 
-        .info-item {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
+.hero-slide {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 1.4s ease;
+}
 
-        .info-item span.icon {
-            color: #ffcc00;
-            font-weight: bold;
-        }
+.hero-slide.active {
+  opacity: 1;
+  pointer-events: auto;
+}
 
-        /* Animasi berkedip lembut untuk menarik perhatian */
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
-        }
-    </style>
+.hero-slide h2 {
+  font-size: 7.2vh;
+  font-weight: 800;
+  color: var(--white);
+  text-shadow: 0 0.4vh 2vh rgba(0,0,0,0.45);
+  max-width: 85vw;
+  line-height: 1.15;
+  animation: slideUpFade 1s ease forwards;
+}
+
+.hero-slide h2 .highlight {
+  color: var(--gold-light);
+  background: linear-gradient(90deg, var(--gold-light), var(--gold), var(--gold-light));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero-slide p {
+  font-size: 2.4vh;
+  font-weight: 400;
+  color: rgba(255,255,255,0.85);
+  margin-top: 2vh;
+  max-width: 60vw;
+  letter-spacing: 0.02em;
+  animation: slideUpFade 1.2s ease forwards;
+}
+
+@keyframes slideUpFade {
+  0%   { transform: translateY(3vh); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+/* ---------- HERO DOTS INDICATOR ---------- */
+.hero-dots {
+  position: absolute;
+  bottom: -2vh;
+  display: flex;
+  gap: 1vw;
+}
+
+.dot {
+  width: 1.1vh;
+  height: 1.1vh;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.3);
+  transition: all 0.4s ease;
+}
+
+.dot.active {
+  background: var(--gold-light);
+  width: 3.2vh;
+  box-shadow: 0 0 1vh rgba(212,175,55,0.7);
+}
+
+/* ============================================================
+   FEATURE CARDS
+   ============================================================ */
+.features {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.6vw;
+  margin: 1vh 0 1.6vh 0;
+}
+
+.card {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 2vh;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  padding: 2.4vh 1.6vw;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 1vh 2.5vh rgba(0,0,0,0.2);
+  transition: transform 0.5s ease, box-shadow 0.5s ease, border-color 0.5s ease;
+  animation: floatCard 5s ease-in-out infinite;
+}
+
+.card:nth-child(1) { animation-delay: 0s; }
+.card:nth-child(2) { animation-delay: 0.4s; }
+.card:nth-child(3) { animation-delay: 0.8s; }
+.card:nth-child(4) { animation-delay: 1.2s; }
+
+.card::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(115deg, transparent 40%, rgba(212,175,55,0.12) 50%, transparent 60%);
+  transform: translateX(-100%);
+  transition: transform 1.2s ease;
+}
+
+.card:hover::before {
+  transform: translateX(0%);
+}
+
+.card:hover {
+  transform: translateY(-1.2vh) scale(1.03);
+  border-color: rgba(212,175,55,0.55);
+  box-shadow: 0 1.6vh 4vh rgba(0,0,0,0.35), 0 0 3vh rgba(212,175,55,0.25);
+}
+
+@keyframes floatCard {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-0.8vh); }
+}
+
+.card-icon {
+  width: 7vh;
+  height: 7vh;
+  margin: 0 auto 1.4vh auto;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3.4vh;
+  background: linear-gradient(145deg, var(--leaf), var(--emerald));
+  box-shadow: 0 0 2vh rgba(31,170,89,0.5), inset 0 0 1vh rgba(255,255,255,0.25);
+}
+
+.card h3 {
+  font-size: 2.2vh;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 0.8vh;
+  letter-spacing: 0.02em;
+}
+
+.card p {
+  font-size: 1.5vh;
+  font-weight: 400;
+  color: rgba(255,255,255,0.7);
+  line-height: 1.4;
+}
+
+/* ============================================================
+   RUNNING TEXT (MARQUEE)
+   ============================================================ */
+.marquee-wrap {
+  width: 100%;
+  height: 6.5vh;
+  background: linear-gradient(90deg, var(--gold), var(--gold-light), var(--gold));
+  box-shadow: 0 -1vh 3vh rgba(0,0,0,0.25);
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  align-items: center;
+  border-top: 2px solid rgba(255,255,255,0.3);
+}
+
+.marquee-track {
+  display: flex;
+  white-space: nowrap;
+  animation: marqueeScroll 38s linear infinite;
+  will-change: transform;
+}
+
+.marquee-track span {
+  font-size: 2.1vh;
+  font-weight: 700;
+  color: #0a1f15;
+  padding-right: 4vw;
+  letter-spacing: 0.03em;
+  text-shadow: 0 0.1vh 0 rgba(255,255,255,0.3);
+}
+
+@keyframes marqueeScroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* ============================================================
+   SHARED ANIMATION KEYFRAMES
+   ============================================================ */
+@keyframes fadeInDown {
+  0%   { opacity: 0; transform: translateY(-2vh); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 0 2.5vh rgba(212,175,55,0.55), inset 0 0 1vh rgba(255,255,255,0.4); }
+  50%      { box-shadow: 0 0 4vh rgba(212,175,55,0.85), inset 0 0 1vh rgba(255,255,255,0.5); }
+}
+
+/* ---------- 4K / Large screen scaling ---------- */
+@media (min-width: 3000px) {
+  html, body { font-size: 110%; }
+}
+
+/* ---------- Smaller preview screens (tetap proporsional) ---------- */
+@media (max-width: 1280px) {
+  .hero-slide h2 { font-size: 5.6vh; }
+  .header-text h1 { font-size: 2.8vh; }
+}
+</style>
 </head>
 <body>
 
-    <!-- HEADER: Identitas Toko -->
-    <header>
-        <div class="logo-area">
-            <div class="logo-circle">ABS</div>
-            <div class="brand-name">
-                <h1>ABS ANEKA BUAH SEGAR</h1>
-                <p>Pusat Buah Segar & Berkualitas</p>
-            </div>
-        </div>
-        <div class="tagline">
-            "Setiap Hari Segar, Setiap Hari Sehat"
-        </div>
-    </header>
+<!-- ============================================================
+     LAYER BACKGROUND
+     ============================================================ -->
+<div class="bg-gradient"></div>
+<div class="bg-vignette"></div>
+<div class="particles" id="particles"></div>
 
-    <!-- MAIN: Konten Utama Iklan -->
-    <main>
-        <!-- Banner Promo Utama -->
-        <div class="promo-side">
-            <div class="promo-badge">Promo Minggu Ini</div>
-            <h2>Spesial<br>Diskon <span>20%</span></h2>
-            <p style="font-size: 45px; color: #e2f0d9; line-height: 1.4;">Untuk pembelian varian buah lokal pilihan. Persediaan terbatas!</p>
-            <div class="price">Mulai Rp 15rb</div>
-        </div>
+<!-- ============================================================
+     MAIN SIGNAGE CONTAINER
+     ============================================================ -->
+<div class="signage">
 
-        <!-- Grid Etalase Buah -->
-        <div class="grid-fruits">
-            <!-- Buah 1 -->
-            <div class="fruit-card">
-                <!-- Emoji digunakan sebagai placeholder gambar, silakan ganti tag div ini dengan <img> jika ada foto asli -->
-                <div class="fruit-image" style="background-color: #fff3cd;">🍎</div>
-                <div class="fruit-info">
-                    <div class="fruit-name">Apel Fuji Super</div>
-                    <div class="fruit-price">Rp 45.000 / Kg</div>
-                </div>
-            </div>
+  <!-- ===================== HEADER ===================== -->
+  <header class="header">
+    <div class="header-left">
+      <div class="logo-badge">🍉</div>
+      <div class="header-text">
+        <h1>TOKO BUAH ABS</h1>
+        <p>ANEKA BUAH SEGAR</p>
+      </div>
+    </div>
+    <div class="header-right">
+      <div class="clock" id="clock">00:00:00</div>
+      <div class="date" id="date">Memuat tanggal...</div>
+    </div>
+  </header>
 
-            <!-- Buah 2 -->
-            <div class="fruit-card">
-                <div class="fruit-image" style="background-color: #d1e7dd;">🥑</div>
-                <div class="fruit-info">
-                    <div class="fruit-name">Alpukat Mentega</div>
-                    <div class="fruit-price">Rp 35.000 / Kg</div>
-                </div>
-            </div>
+  <!-- ===================== HERO SLIDESHOW ===================== -->
+  <section class="hero" id="hero">
+    <!-- Slide diisi otomatis oleh JavaScript -->
+  </section>
 
-            <!-- Buah 3 -->
-            <div class="fruit-card">
-                <div class="fruit-image" style="background-color: #f8d7da;">🍓</div>
-                <div class="fruit-info">
-                    <div class="fruit-name">Strawberry Fresh</div>
-                    <div class="fruit-price">Rp 25.000 / Pak</div>
-                </div>
-            </div>
+  <!-- ===================== FEATURE CARDS ===================== -->
+  <section class="features">
+    <div class="card">
+      <div class="card-icon">🍎</div>
+      <h3>Buah Lokal</h3>
+      <p>Hasil panen segar dari petani lokal terbaik</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">🍇</div>
+      <h3>Buah Impor</h3>
+      <p>Pilihan buah impor premium berkualitas tinggi</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">🎁</div>
+      <h3>Hampers Buah</h3>
+      <p>Paket hampers cantik untuk segala momen spesial</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">🌿</div>
+      <h3>Fresh Setiap Hari</h3>
+      <p>Stok diperbarui setiap hari demi kesegaran maksimal</p>
+    </div>
+  </section>
 
-            <!-- Buah 4 -->
-            <div class="fruit-card">
-                <div class="fruit-image" style="background-color: #fff3cd;">🍊</div>
-                <div class="fruit-info">
-                    <div class="fruit-name">Jeruk Santang</div>
-                    <div class="fruit-price">Rp 38.000 / Kg</div>
-                </div>
-            </div>
-        </div>
-    </main>
+  <!-- ===================== RUNNING TEXT ===================== -->
+  <div class="marquee-wrap">
+    <div class="marquee-track" id="marqueeTrack">
+      <!-- Duplikasi otomatis diisi oleh JavaScript agar infinite loop mulus -->
+    </div>
+  </div>
 
-    <!-- FOOTER: Informasi Kontak/Lokasi -->
-    <footer>
-        <div class="info-item">
-            <span class="icon">📍</span> Jl. Raya Aneka Buah No. 123, Kota Sekitar
-        </div>
-        <div class="info-item">
-            <span class="icon">📞</span> WhatsApp: 0812-3456-7890
-        </div>
-        <div class="info-item">
-            <span class="icon">📸</span> @abs.anekabuahsegar
-        </div>
-    </footer>
+</div>
+
+<script>
+/* ============================================================
+   TOKO BUAH ABS — DIGITAL SIGNAGE SCRIPT
+   Pure Vanilla JavaScript — tidak ada dependency eksternal
+   ============================================================ */
+
+(function () {
+  'use strict';
+
+  /* ---------------------------------------------------------
+     1. JAM DIGITAL & TANGGAL REALTIME
+     --------------------------------------------------------- */
+  const clockEl = document.getElementById('clock');
+  const dateEl  = document.getElementById('date');
+
+  const HARI = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', "Jumat", 'Sabtu'];
+  const BULAN = [
+    'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni',
+    'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'
+  ];
+
+  function updateClock() {
+    const now = new Date();
+    const h = String(now.getHours()).padStart(2, '0');
+    const m = String(now.getMinutes()).padStart(2, '0');
+    const s = String(now.getSeconds()).padStart(2, '0');
+    clockEl.textContent = `${h}:${m}:${s}`;
+
+    const namaHari  = HARI[now.getDay()];
+    const tgl       = now.getDate();
+    const namaBulan = BULAN[now.getMonth()];
+    const tahun     = now.getFullYear();
+    dateEl.textContent = `${namaHari}, ${tgl} ${namaBulan} ${tahun}`;
+  }
+
+  updateClock();
+  setInterval(updateClock, 1000);
+
+  /* ---------------------------------------------------------
+     2. HERO SLIDESHOW (auto-rotate setiap 8 detik, fade)
+     --------------------------------------------------------- */
+  const slideData = [
+    {
+      title: 'Aneka <span class="highlight">Buah Segar</span> Setiap Hari',
+      desc: 'Dipetik dan dipilih langsung dari sumber terbaik untuk kualitas terjamin.'
+    },
+    {
+      title: 'Buah Lokal & <span class="highlight">Impor Berkualitas</span>',
+      desc: 'Kombinasi terbaik buah nusantara dan pilihan impor premium.'
+    },
+    {
+      title: '<span class="highlight">Segar</span> • <span class="highlight">Manis</span> • Berkualitas',
+      desc: 'Setiap buah melalui proses seleksi ketat sebelum sampai ke tangan Anda.'
+    },
+    {
+      title: 'Belanja Buah Jadi <span class="highlight">Lebih Mudah</span>',
+      desc: 'Pelayanan ramah dan cepat, untuk kebutuhan eceran maupun partai besar.'
+    },
+    {
+      title: 'Terima Pesanan <span class="highlight">Hampers Buah</span>',
+      desc: 'Hadiah spesial penuh kesegaran untuk orang-orang istimewa di hidup Anda.'
+    }
+  ];
+
+  const heroSection = document.getElementById('hero');
+  let currentSlide = 0;
+  const SLIDE_DURATION = 8000; // 8 detik
+
+  function buildSlides() {
+    // Bangun elemen slide
+    slideData.forEach((data, index) => {
+      const slideEl = document.createElement('div');
+      slideEl.className = 'hero-slide' + (index === 0 ? ' active' : '');
+      slideEl.innerHTML = `
+        <h2>${data.title}</h2>
+        <p>${data.desc}</p>
+      `;
+      heroSection.appendChild(slideEl);
+    });
+
+    // Bangun dot indicator
+    const dotsWrap = document.createElement('div');
+    dotsWrap.className = 'hero-dots';
+    slideData.forEach((_, index) => {
+      const dotEl = document.createElement('div');
+      dotEl.className = 'dot' + (index === 0 ? ' active' : '');
+      dotsWrap.appendChild(dotEl);
+    });
+    heroSection.appendChild(dotsWrap);
+  }
+
+  function goToSlide(index) {
+    const slides = heroSection.querySelectorAll('.hero-slide');
+    const dots   = heroSection.querySelectorAll('.dot');
+
+    slides[currentSlide].classList.remove('active');
+    dots[currentSlide].classList.remove('active');
+
+    currentSlide = index;
+
+    slides[currentSlide].classList.add('active');
+    dots[currentSlide].classList.add('active');
+  }
+
+  function nextSlide() {
+    const next = (currentSlide + 1) % slideData.length;
+    goToSlide(next);
+  }
+
+  buildSlides();
+  setInterval(nextSlide, SLIDE_DURATION);
+
+  /* ---------------------------------------------------------
+     3. RUNNING TEXT INFINITE (marquee tanpa putus)
+     --------------------------------------------------------- */
+  const marqueeTrack = document.getElementById('marqueeTrack');
+  const marqueeText =
+    'SELAMAT DATANG DI TOKO BUAH ABS • ANEKA BUAH SEGAR BERKUALITAS • ' +
+    'BUAH LOKAL DAN IMPOR • STOK SELALU FRESH • TERSEDIA HAMPERS BUAH • ' +
+    'MELAYANI ECER DAN PARTAI • TERIMA KASIH ATAS KUNJUNGAN ANDA • ';
+
+  // Duplikasi teks 2x agar animasi translateX(-50%) terlihat seamless/infinite
+  const span1 = document.createElement('span');
+  span1.textContent = marqueeText;
+  const span2 = document.createElement('span');
+  span2.textContent = marqueeText;
+
+  marqueeTrack.appendChild(span1);
+  marqueeTrack.appendChild(span2);
+
+  /* ---------------------------------------------------------
+     4. PARTIKEL TRANSPARAN BERGERAK (efek "layar hidup")
+     --------------------------------------------------------- */
+  const particlesContainer = document.getElementById('particles');
+  const PARTICLE_COUNT = 22; // jumlah dijaga sedikit demi performa ringan 24 jam
+
+  function createParticles() {
+    for (let i = 0; i < PARTICLE_COUNT; i++) {
+      const p = document.createElement('div');
+      p.className = 'particle';
+
+      const size = Math.random() * 6 + 2; // 2vh - 8vh
+      const left = Math.random() * 100;   // posisi horizontal acak
+      const duration = Math.random() * 18 + 14; // 14s - 32s
+      const delay = Math.random() * 20;
+
+      p.style.width = size + 'vh';
+      p.style.height = size + 'vh';
+      p.style.left = left + 'vw';
+      p.style.bottom = '-10vh';
+      p.style.animationDuration = duration + 's';
+      p.style.animationDelay = delay + 's';
+
+      particlesContainer.appendChild(p);
+    }
+  }
+
+  createParticles();
+
+  /* ---------------------------------------------------------
+     5. FULLSCREEN HANDLER
+     Klik dimana saja pada layar (sekali) untuk masuk fullscreen.
+     Berguna untuk TV/perangkat yang mendukung Fullscreen API.
+     --------------------------------------------------------- */
+  function enableFullscreenOnFirstClick() {
+    document.addEventListener('click', function activateFullscreen() {
+      const el = document.documentElement;
+      if (el.requestFullscreen) {
+        el.requestFullscreen().catch(() => {});
+      } else if (el.webkitRequestFullscreen) {
+        el.webkitRequestFullscreen();
+      } else if (el.msRequestFullscreen) {
+        el.msRequestFullscreen();
+      }
+      document.removeEventListener('click', activateFullscreen);
+    }, { once: true });
+  }
+
+  enableFullscreenOnFirstClick();
+
+  /* ---------------------------------------------------------
+     6. VISIBILITY GUARD
+     Jika tab/layar tersembunyi lalu kembali aktif (misal TV
+     standby-resume), pastikan jam & slide tetap akurat.
+     --------------------------------------------------------- */
+  document.addEventListener('visibilitychange', function () {
+    if (!document.hidden) {
+      updateClock();
+    }
+  });
+
+})();
+</script>
 
 </body>
 </html>
