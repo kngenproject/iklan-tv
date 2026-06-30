@@ -3,113 +3,180 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Toko Buah ABS - Design 2</title>
+    <title>Toko Buah ABS - Modern Design</title>
+    <!-- Menggunakan Font Modern: Inter & Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+    
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Fredoka', sans-serif; }
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background: #0f172a; 
+            overflow: hidden; 
+        }
+        
         .container {
             width: 3840px;
             height: 2160px;
-            background: linear-gradient(135deg, #FFD93D 0%, #FF6B6B 50%, #2ecc71 100%);
+            /* Gradasi warna buah modern yang lebih soft dan premium */
+            background: linear-gradient(135deg, #FF9F43 0%, #FF5252 45%, #10B981 100%);
             display: flex;
             align-items: center;
             justify-content: center;
             flex-direction: column;
             padding: 200px;
             text-align: center;
+            position: relative;
         }
-        .fruits-top {
-            font-size: 300px;
+
+        /* Dekorasi latar belakang modern sebagai pengganti emoji */
+        .container::before {
+            content: '';
+            position: absolute;
+            width: 1500px;
+            height: 1500px;
+            background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0) 70%);
+            top: 10%;
+            animation: pulse 8s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.6; }
+            50% { transform: scale(1.2); opacity: 0.9; }
+        }
+
+        /* Badge Atas */
+        .brand-badge {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 55px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 12px;
+            color: rgba(255, 255, 255, 0.9);
+            background: rgba(255, 255, 255, 0.12);
+            padding: 30px 80px;
+            border-radius: 100px;
+            border: 2px solid rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(15px);
             margin-bottom: 100px;
-            animation: float 3s ease-in-out infinite;
         }
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-60px); }
-        }
+
         .title {
-            font-size: 350px;
-            font-weight: 900;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 380px;
+            font-weight: 800;
             color: white;
-            text-shadow: 10px 10px 30px rgba(0, 0, 0, 0.3);
+            letter-spacing: -6px;
+            line-height: 0.95;
             margin-bottom: 40px;
+            background: linear-gradient(to bottom, #ffffff 60%, #f1f5f9);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 20px 40px rgba(0,0,0,0.15));
         }
+
         .tagline {
-            font-size: 120px;
-            color: white;
-            margin-bottom: 100px;
+            font-size: 110px;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 140px;
             font-weight: 300;
+            letter-spacing: -1px;
         }
+
+        /* Grid Fitur */
         .feature-boxes {
             display: flex;
-            gap: 80px;
+            gap: 60px;
             justify-content: center;
-            margin-bottom: 120px;
-            flex-wrap: wrap;
+            margin-bottom: 140px;
         }
+
         .feature {
-            background: rgba(255, 255, 255, 0.25);
-            backdrop-filter: blur(10px);
-            padding: 80px 100px;
-            border-radius: 50px;
-            border: 3px solid rgba(255, 255, 255, 0.5);
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
+            padding: 55px 90px;
+            border-radius: 40px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
             color: white;
-            font-size: 80px;
-            font-weight: 600;
+            font-size: 75px;
+            font-weight: 500;
+            letter-spacing: -1px;
+            box-shadow: 0 40px 100px rgba(0, 0, 0, 0.1);
         }
+
+        /* Box Lokasi */
         .location-box {
-            background: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(10px);
-            padding: 100px 150px;
-            border-radius: 60px;
-            border: 3px solid white;
-            color: white;
-            margin-bottom: 100px;
-        }
-        .address {
-            font-size: 100px;
-            font-weight: 700;
-            margin-bottom: 30px;
-        }
-        .detail {
-            font-size: 85px;
-            opacity: 0.95;
-        }
-        .btn {
-            background: white;
-            color: #FF6B6B;
-            padding: 80px 200px;
-            font-size: 110px;
-            font-weight: 900;
-            border: none;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
+            padding: 85px 160px;
             border-radius: 50px;
-            cursor: pointer;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
-            transition: all 0.3s;
+            border: 2px solid rgba(255, 255, 255, 0.35);
+            color: white;
+            margin-bottom: 140px;
+            box-shadow: 0 50px 120px rgba(0, 0, 0, 0.15);
         }
+
+        .address {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 90px;
+            font-weight: 700;
+            margin-bottom: 25px;
+            letter-spacing: -1px;
+        }
+
+        .detail {
+            font-size: 75px;
+            color: rgba(255, 255, 255, 0.85);
+            font-weight: 400;
+        }
+
+        /* Tombol Modern */
+        .btn {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: #ffffff;
+            color: #1e293b;
+            padding: 65px 180px;
+            font-size: 90px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            border: none;
+            border-radius: 40px;
+            cursor: pointer;
+            box-shadow: 0 40px 90px rgba(0, 0, 0, 0.25);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
         .btn:hover {
-            transform: scale(1.08);
+            transform: translateY(-15px);
+            background: #f8fafc;
+            box-shadow: 0 60px 110px rgba(0, 0, 0, 0.35);
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="fruits-top">🍓🍊🍌🥝🍇</div>
+        <!-- Pengganti emoji: Label kategori yang clean -->
+        <div class="brand-badge">Premium Handpicked Fruits</div>
+        
         <h1 class="title">ABS</h1>
         <p class="tagline">Toko Buah Terpercaya</p>
 
         <div class="feature-boxes">
-            <div class="feature">✨ Segar 100%</div>
-            <div class="feature">🚚 Pengiriman Cepat</div>
-            <div class="feature">💯 Berkualitas</div>
+            <div class="feature">Segar 100%</div>
+            <div class="feature">Pengiriman Cepat</div>
+            <div class="feature">Berkualitas</div>
         </div>
 
         <div class="location-box">
-            <div class="address">📍 Jl. Raya Penarukan No.2</div>
+            <div class="address">Jl. Raya Penarukan No.2</div>
             <div class="detail">Kepanjen, Kab. Malang, Jawa Timur</div>
         </div>
 
-        <button class="btn">🛍️ BELI SEKARANG</button>
+        <button class="btn">BELI SEKARANG</button>
     </div>
 </body>
 </html>
