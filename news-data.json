@@ -1,281 +1,40 @@
 {
   "version": "1.0.0",
-  "slides": [
-    {
-      "id": "slide-1",
-      "title": "🍎 Produk Unggulan Hari Ini",
-      "badge": "SEGAR",
-      "badgeColor": "#2e7d32",
-      "items": [
-        {
-          "tag": "Lokal",
-          "tagColor": "#2e7d32",
-          "title": "Apel Malang Super Manis",
-          "summary": "Apel hijau segar dari kebun sendiri, kaya vitamin C dan serat. Cocok untuk camilan sehat.",
-          "source": "Petani Lokal",
-          "time": "Rp 25.000/kg"
-        },
-        {
-          "tag": "Import",
-          "tagColor": "#4caf50",
-          "title": "Anggur Red Globe Australia",
-          "summary": "Anggur merah besar dengan rasa manis legit, langsung diimpor dari Australia. Kualitas premium.",
-          "source": "Importir Resmi",
-          "time": "Rp 75.000/kg"
-        },
-        {
-          "tag": "Parfait",
-          "tagColor": "#e65100",
-          "title": "Parcel Buah Spesial Lebaran",
-          "summary": "Paket parcel berisi 5 jenis buah pilihan, dikemas cantik untuk hadiah atau acara spesial.",
-          "source": "Toko Buah ABS",
-          "time": "Mulai Rp 150.000"
-        }
-      ]
+  "market": {
+    "index": {
+      "value": "1.234,56",
+      "change": "+0,85%",
+      "volume": "2.4M"
     },
-    {
-      "id": "slide-2",
-      "title": "🥭 Buah Lokal Segar",
-      "badge": "Lokal",
-      "badgeColor": "#2e7d32",
-      "items": [
-        {
-          "tag": "Mangga",
-          "tagColor": "#2e7d32",
-          "title": "Mangga Harum Manis (Arumanis)",
-          "summary": "Mangga lokal dengan aroma harum dan daging manis tanpa serat. Panen langsung dari kebun.",
-          "source": "Desa Bumiayu",
-          "time": "Rp 30.000/kg"
-        },
-        {
-          "tag": "Jeruk",
-          "tagColor": "#2e7d32",
-          "title": "Jeruk Pamelo Merah",
-          "summary": "Buah jeruk besar dengan daging merah segar dan rasa manis-asam. Kaya vitamin C.",
-          "source": "Kepanjen, Malang",
-          "time": "Rp 20.000/buah"
-        },
-        {
-          "tag": "Naga",
-          "tagColor": "#2e7d32",
-          "title": "Buah Naga Merah Super",
-          "summary": "Buah naga merah dengan daging merah keunguan, kaya antioksidan, cocok untuk diet.",
-          "source": "Petani Organik",
-          "time": "Rp 35.000/kg"
-        }
-      ]
-    },
-    {
-      "id": "slide-3",
-      "title": "🍇 Buah Import Premium",
-      "badge": "Import",
-      "badgeColor": "#4caf50",
-      "items": [
-        {
-          "tag": "Durian",
-          "tagColor": "#4caf50",
-          "title": "Durian Musang King (Malaysia)",
-          "summary": "Durian premium dengan daging tebal, kuning, dan rasa manis pahit khas. Beku segar.",
-          "source": "Impor Malaysia",
-          "time": "Rp 250.000/kg"
-        },
-        {
-          "tag": "Blueberry",
-          "tagColor": "#4caf50",
-          "title": "Blueberry Segar (USA)",
-          "summary": "Blueberry besar dan manis, kaya antioksidan. Dikirim langsung dari California.",
-          "source": "USA Import",
-          "time": "Rp 120.000/box"
-        },
-        {
-          "tag": "Cherry",
-          "tagColor": "#4caf50",
-          "title": "Cherry Chile (Rainier)",
-          "summary": "Cherry putih keemasan dengan rasa manis segar. Musim panen terbaik dari Chile.",
-          "source": "Chile Import",
-          "time": "Rp 180.000/kg"
-        }
-      ]
-    },
-    {
-      "id": "slide-4",
-      "title": "🎁 Parcel Buah Spesial",
-      "badge": "Hadiah",
-      "badgeColor": "#e65100",
-      "items": [
-        {
-          "tag": "Paket Ekonomis",
-          "tagColor": "#e65100",
-          "title": "Parcel Hemat (5 buah)",
-          "summary": "Apel, jeruk, pir, anggur, dan melon. Dikemas rapi, cocok untuk hadiah ulang tahun.",
-          "source": "Toko Buah ABS",
-          "time": "Rp 150.000"
-        },
-        {
-          "tag": "Paket Premium",
-          "tagColor": "#e65100",
-          "title": "Parcel Mewah (8 buah)",
-          "summary": "Durian, mangga, naga, blueberry, cherry, apel, jeruk, dan alpukat. Kemasan elegan.",
-          "source": "Toko Buah ABS",
-          "time": "Rp 350.000"
-        },
-        {
-          "tag": "Paket Sehat",
-          "tagColor": "#e65100",
-          "title": "Parcel Diet (6 buah organik)",
-          "summary": "Buah organik pilihan: apel hijau, jeruk, pisang, pepaya, nanas, dan kiwi.",
-          "source": "Toko Buah ABS",
-          "time": "Rp 220.000"
-        }
-      ]
-    },
-    {
-      "id": "slide-5",
-      "title": "🔥 Promo & Diskon Spesial",
-      "badge": "Diskon",
-      "badgeColor": "#c62828",
-      "items": [
-        {
-          "tag": "Hari Ini",
-          "tagColor": "#c62828",
-          "title": "Diskon 20% untuk Pembelian Apel & Jeruk",
-          "summary": "Beli minimal 2 kg apel atau jeruk, dapat potongan 20%. Promo terbatas!",
-          "source": "Toko Buah ABS",
-          "time": "Berlaku hari ini"
-        },
-        {
-          "tag": "Paket Keluarga",
-          "tagColor": "#c62828",
-          "title": "Paket Buah Keluarga (5 kg) Cuma Rp 100.000",
-          "summary": "Berisi apel, jeruk, pisang, pepaya, dan semangka. Hemat 40% dari harga normal.",
-          "source": "Toko Buah ABS",
-          "time": "Sampai stok habis"
-        },
-        {
-          "tag": "Member",
-          "tagColor": "#c62828",
-          "title": "Diskon 10% untuk Member & Pembelian Online",
-          "summary": "Gunakan kode promo 'BUAHABS10' saat checkout via WhatsApp atau aplikasi.",
-          "source": "Toko Buah ABS",
-          "time": "Sepanjang bulan"
-        }
-      ]
-    },
-    {
-      "id": "slide-6",
-      "title": "💬 Testimoni Pelanggan",
-      "badge": "Kepuasan",
-      "badgeColor": "#2e7d32",
-      "items": [
-        {
-          "tag": "Ibu Rina",
-          "tagColor": "#2e7d32",
-          "title": "Buah selalu segar dan harga bersaing",
-          "summary": "\"Sudah langganan sejak 2022, buah selalu fresh dan pelayanan ramah. Sangat direkomendasikan!\"",
-          "source": "Pelanggan Setia",
-          "time": "⭐⭐⭐⭐⭐"
-        },
-        {
-          "tag": "Bapak Andi",
-          "tagColor": "#2e7d32",
-          "title": "Parcel buah untuk acara kantor",
-          "summary": "\"Parcel buah dari Toko ABS selalu menjadi pilihan utama saya untuk hadiah rekan kerja. Kualitas terjamin.\"",
-          "source": "Corporate Customer",
-          "time": "⭐⭐⭐⭐⭐"
-        },
-        {
-          "tag": "Mahasiswa",
-          "tagColor": "#2e7d32",
-          "title": "Harga ramah di kantong",
-          "summary": "\"Toko ini favorit anak kos karena harga terjangkau dan buah selalu segar. Banyak pilihan import juga.\"",
-          "source": "Pelanggan Muda",
-          "time": "⭐⭐⭐⭐"
-        }
-      ]
-    },
-    {
-      "id": "slide-7",
-      "title": "📍 Layanan & Kontak Kami",
-      "badge": "Info",
-      "badgeColor": "#1a237e",
-      "items": [
-        {
-          "isList": true,
-          "title": "🚚 Layanan Antar ke Seluruh Malang Raya",
-          "summary": "Pesan via WhatsApp, gratis ongkir untuk pembelian di atas Rp 150.000.",
-          "time": "Hubungi 0813-3352-7527"
-        },
-        {
-          "isList": true,
-          "title": "🕒 Jam Buka: Senin-Minggu, 07.00 - 21.00 WIB",
-          "summary": "Toko buka setiap hari, termasuk hari libur nasional. Datang langsung ke Kepanjen.",
-          "time": "Alamat: Jl. Raya Kepanjen No.88"
-        },
-        {
-          "isList": true,
-          "title": "💳 Pembayaran: Cash, QRIS, Transfer Bank, E-Wallet",
-          "summary": "Kami menerima semua metode pembayaran digital untuk kenyamanan Anda.",
-          "time": "Info lebih lanjut hubungi kami"
-        },
-        {
-          "isList": true,
-          "title": "📦 Parcel & Hadiah Korporat",
-          "summary": "Kami menyediakan parcel buah untuk keperluan perusahaan, acara, atau hadiah spesial.",
-          "time": "Pesan minimal 5 parcel"
-        }
-      ]
-    }
-  ],
-  "sidebar": {
-    "top": {
-      "title": "🍍 Toko Buah ABS",
-      "qrLabel": "Scan QR untuk pesan online",
-      "contacts": [
-        { "icon": "📱", "label": "0813-3352-7527" },
-        { "icon": "📍", "label": "Kepanjen, Malang" },
-        { "icon": "📧", "label": "buahabs@email.com" }
-      ]
-    },
-    "panels": [
-      {
-        "title": "🌟 Tentang Kami",
-        "type": "popular",
-        "data": [
-          { "title": "Berdiri sejak 2015, menyediakan buah segar berkualitas", "meta": "Lokal & Import", "borderColor": "#2e7d32" },
-          { "title": "Mitra petani langsung dari seluruh Indonesia", "meta": "Dukungan petani lokal", "borderColor": "#4caf50" },
-          { "title": "Komitmen terhadap kesegaran dan kepuasan pelanggan", "meta": "Kualitas utama", "borderColor": "#e65100" },
-          { "title": "Parcel buah terbaik untuk hadiah", "meta": "Rekomendasi pelanggan", "borderColor": "#1a237e" }
-        ]
-      },
-      {
-        "title": "🕒 Jam Buka & Lokasi",
-        "type": "schedule",
-        "data": [
-          { "event": "Senin - Jumat", "time": "07.00 - 21.00" },
-          { "event": "Sabtu - Minggu", "time": "07.00 - 20.00" },
-          { "event": "Hari Libur Nasional", "time": "08.00 - 18.00" },
-          { "event": "Alamat Toko", "time": "Jl. Raya Kepanjen No.88" }
-        ],
-        "liveLink": "maps.google.com/tokobuahabs"
-      },
-      {
-        "title": "🏆 Produk Terlaris",
-        "type": "popular",
-        "data": [
-          { "title": "Apel Malang (terjual 500 kg/minggu)", "meta": "Rp 25.000/kg", "borderColor": "#2e7d32" },
-          { "title": "Jeruk Pamelo (terjual 300 buah/minggu)", "meta": "Rp 20.000/buah", "borderColor": "#4caf50" },
-          { "title": "Durian Musang King (terjual 200 kg/minggu)", "meta": "Rp 250.000/kg", "borderColor": "#e65100" },
-          { "title": "Parcel Premium (terjual 100 paket/minggu)", "meta": "Rp 350.000", "borderColor": "#1a237e" }
-        ]
-      }
+    "topGainer": "Apel +5,2%",
+    "topLoser": "Nanas -2,1%",
+    "totalVolume": "2.450.000 kg",
+    "fruits": [
+      { "name": "Apel Malang", "price": "25.000", "change": "+5.2", "volume": "320.000", "type": "lokal" },
+      { "name": "Jeruk Pamelo", "price": "20.000", "change": "+2.1", "volume": "180.000", "type": "lokal" },
+      { "name": "Mangga Arumanis", "price": "30.000", "change": "-0.5", "volume": "210.000", "type": "lokal" },
+      { "name": "Anggur Red Globe", "price": "75.000", "change": "+3.8", "volume": "95.000", "type": "import" },
+      { "name": "Durian Musang King", "price": "250.000", "change": "-1.2", "volume": "45.000", "type": "import" },
+      { "name": "Blueberry (USA)", "price": "120.000", "change": "+0.9", "volume": "32.000", "type": "import" },
+      { "name": "Cherry Chile", "price": "180.000", "change": "+4.0", "volume": "28.000", "type": "import" },
+      { "name": "Buah Naga Merah", "price": "35.000", "change": "-0.2", "volume": "140.000", "type": "lokal" },
+      { "name": "Pisang Cavendish", "price": "18.000", "change": "+1.5", "volume": "400.000", "type": "lokal" },
+      { "name": "Nanas Madu", "price": "22.000", "change": "-2.1", "volume": "250.000", "type": "lokal" }
+    ],
+    "chart": [
+      { "label": "Apel", "value": 85 },
+      { "label": "Jeruk", "value": 70 },
+      { "label": "Mangga", "value": 92 },
+      { "label": "Anggur", "value": 60 },
+      { "label": "Durian", "value": 45 },
+      { "label": "Naga", "value": 78 }
     ]
   },
   "ticker": [
-    "🍍 Toko Buah ABS | Aneka Buah Segar | Kepanjen, Malang",
-    "📱 Pesan via WhatsApp 0813-3352-7527 | Gratis Ongkir Minimal Rp 150.000",
-    "🍎 Diskon 20% Apel & Jeruk Hari Ini! | Segera kunjungi toko",
-    "🎁 Parcel Buah Spesial Mulai Rp 150.000 | Cocok untuk Hadiah",
-    "🥭 Buah Lokal & Import Selalu Tersedia | Kualitas Terjamin",
-    "📍 Buka Setiap Hari 07.00-21.00 | Jl. Raya Kepanjen No.88"
+    "📈 Apel Malang naik +5,2% · Jeruk +2,1% · Anggur +3,8%",
+    "🍍 Indeks Buah Segar 1.234,56 (+0,85%) · Volume 2,4M kg",
+    "📊 Top Gainer: Apel +5,2% · Top Loser: Nanas -2,1%",
+    "🛒 Pesan via WhatsApp 0813-3352-7527 · Gratis Ongkir Min Rp 150.000",
+    "📍 Toko Buah ABS · Kepanjen, Malang · Buka 07.00-21.00"
   ]
 }

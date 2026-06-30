@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Toko Buah ABS — Digital Signage</title>
+    <title>Toko Buah ABS — Market Dashboard</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -12,14 +12,14 @@
     <!-- ══ HEADER ══ -->
     <header class="s-header">
         <div class="logo-area">
-            <div class="logo-icon">🍉</div>
+            <div class="logo-icon">📈</div>
             <div class="logo-text">
                 <h1 class="logo-abs"><span>Buah</span>ABS</h1>
-                <div class="logo-tagline">Aneka Buah Segar</div>
+                <div class="logo-tagline">Fruit Market Exchange</div>
             </div>
         </div>
         <div class="header-right">
-            <div class="header-badge">🍍 SEGAR<br>BERKUALITAS</div>
+            <div class="header-badge" id="index-badge">🍍 INDEX<br><span id="index-value">1.234,56</span></div>
             <div class="clock-box">
                 <div class="clock-time" id="jam-tv">00:00:00</div>
                 <div class="clock-date" id="tanggal-tv">—</div>
@@ -30,35 +30,54 @@
     <!-- ══ MAIN CONTENT ══ -->
     <main class="s-main">
 
-        <!-- PANEL KIRI — SLIDESHOW PROMO -->
-        <section class="panel-left" aria-label="Slideshow Promo Toko Buah">
-            <div class="slide-dots">
-                <div class="dot"></div>
-                <div class="dot"></div>
-                <div class="dot"></div>
-                <div class="dot"></div>
-                <div class="dot"></div>
-                <div class="dot"></div>
-                <div class="dot"></div>
+        <!-- PANEL KIRI — CHART & OVERVIEW -->
+        <section class="panel-left" aria-label="Market Chart">
+            <div class="chart-container">
+                <div class="chart-header">
+                    <h2>📊 Indeks Buah Segar</h2>
+                    <div class="chart-stats">
+                        <span class="stat-item" id="index-change">+0,85%</span>
+                        <span class="stat-item" id="index-volume">Vol 2.4M</span>
+                    </div>
+                </div>
+                <div class="chart-area" id="fruit-chart">
+                    <!-- Bar chart akan diisi oleh JS -->
+                </div>
+                <div class="market-summary">
+                    <div class="summary-item"><span>Top Gainer</span> <strong id="top-gainer">Apel +5,2%</strong></div>
+                    <div class="summary-item"><span>Top Loser</span> <strong id="top-loser">Nanas -2,1%</strong></div>
+                    <div class="summary-item"><span>Total Volume</span> <strong id="total-volume">2.450.000 kg</strong></div>
+                </div>
             </div>
         </section>
 
-        <!-- PANEL KANAN — SIDEBAR -->
-        <aside class="panel-right" aria-label="Info Toko">
-            <div class="right-top">
-                <h3 class="right-top-title">🍍 Toko Buah ABS</h3>
-                <div class="qr-box">
-                    <div class="qr-placeholder">Scan QR<br>Pesan Online</div>
-                </div>
-                <p class="qr-label">Hubungi kami via WhatsApp</p>
-                <div class="kontak-list">
-                    <div class="kontak-item">📱 <span>0813-3352-7527</span></div>
-                    <div class="kontak-item">📍 <span>Kepanjen, Malang</span></div>
-                    <div class="kontak-item">📧 <span>buahabs@email.com</span></div>
+        <!-- PANEL KANAN — DAFTAR HARGA SAHAM BUAH -->
+        <aside class="panel-right" aria-label="Price List">
+            <div class="price-header">
+                <h3>🍎 Harga Buah (per kg)</h3>
+                <div class="price-controls">
+                    <span class="pill active">Semua</span>
+                    <span class="pill">Lokal</span>
+                    <span class="pill">Import</span>
                 </div>
             </div>
-            <div class="right-middle">
-                <!-- Akan diisi oleh JS -->
+            <div class="price-table-wrap">
+                <table class="price-table" id="price-table">
+                    <thead>
+                        <tr>
+                            <th>Buah</th>
+                            <th>Harga</th>
+                            <th>Perubahan</th>
+                            <th>Volume (kg)</th>
+                        </tr>
+                    </thead>
+                    <tbody id="price-body">
+                        <!-- diisi JS -->
+                    </tbody>
+                </table>
+            </div>
+            <div class="price-footer">
+                <span>🔄 Update real-time · Sumber: Toko Buah ABS</span>
             </div>
         </aside>
     </main>
@@ -69,7 +88,7 @@
     </footer>
 
     <!-- Toast Notifikasi -->
-    <div class="toast" id="toast">🍍 Promo terbaru!</div>
+    <div class="toast" id="toast">📊 Market update!</div>
 
 </div>
 <script src="app.js"></script>
