@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<title>ABS Aneka Buah Segar - Signage</title>
+<title>ABS Aneka Buah Segar - Running Text Signage</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap');
 
@@ -24,119 +24,92 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 160px;
   }
 
-  /* decorative soft circles */
-  .blob {
-    position: absolute;
-    border-radius: 50%;
-    opacity: 0.12;
-  }
-  .blob.green { width: 1400px; height: 1400px; background:#3e9b4f; top:-400px; left:-400px; }
-  .blob.orange { width: 1200px; height: 1200px; background:#f2994a; bottom:-350px; right:-350px; }
+  .blob { position:absolute; border-radius:50%; opacity:0.12; }
+  .blob.green  { width:1400px; height:1400px; background:#3e9b4f; top:-400px; left:-400px; }
+  .blob.orange { width:1200px; height:1200px; background:#f2994a; bottom:-350px; right:-350px; }
 
-  .logo-row {
+  /* HEADER */
+  .header {
+    z-index: 2;
     display: flex;
     align-items: center;
     gap: 36px;
-    margin-bottom: 40px;
-    z-index: 2;
+    margin-bottom: 30px;
   }
-  .logo-row .icon {
-    font-size: 110px;
-    line-height: 1;
-  }
-  .brand-name {
-    font-size: 128px;
-    font-weight: 800;
-    color: #2c6e35;
-    letter-spacing: 2px;
-  }
+  .header .icon { font-size: 110px; }
+  .header .brand { font-size: 130px; font-weight: 800; color: #2c6e35; letter-spacing: 2px; }
+
   .tagline {
-    font-size: 52px;
-    font-weight: 400;
+    z-index: 2;
+    font-size: 50px;
     color: #5b6b58;
-    margin-bottom: 110px;
+    margin-bottom: 90px;
+  }
+
+  /* INFO MINI ROW */
+  .mini-info {
     z-index: 2;
-    text-align: center;
-  }
-
-  .info-card {
-    background: #ffffff;
-    border-radius: 48px;
-    box-shadow: 0 30px 80px rgba(0,0,0,0.08);
-    padding: 90px 140px;
     display: flex;
-    flex-direction: column;
-    gap: 64px;
-    z-index: 2;
-    width: 2400px;
-  }
-
-  .info-row {
-    display: flex;
-    align-items: flex-start;
-    gap: 48px;
-  }
-  .info-row .ico {
-    font-size: 70px;
-    width: 110px;
-    text-align: center;
-    flex-shrink: 0;
-  }
-  .info-row .label {
-    font-size: 38px;
-    font-weight: 600;
-    color: #a0a0a0;
-    text-transform: uppercase;
-    letter-spacing: 3px;
-    margin-bottom: 10px;
-  }
-  .info-row .value {
-    font-size: 54px;
-    font-weight: 600;
-    color: #333333;
-    line-height: 1.4;
-  }
-  .info-row .value.hours {
-    color: #2c6e35;
-    font-weight: 700;
-  }
-
-  .divider {
-    height: 2px;
-    background: #f0ede6;
-    width: 100%;
-  }
-
-  .footer-row {
-    margin-top: 100px;
-    display: flex;
-    align-items: center;
-    gap: 28px;
-    z-index: 2;
-  }
-  .footer-row .ig-icon {
-    font-size: 48px;
-  }
-  .footer-row .ig-handle {
-    font-size: 46px;
-    font-weight: 600;
+    gap: 100px;
+    margin-bottom: 130px;
+    font-size: 42px;
     color: #444;
+    font-weight: 600;
+  }
+  .mini-info span.ico { margin-right: 16px; }
+
+  /* RUNNING TEXT BAR */
+  .marquee-wrap {
+    z-index: 2;
+    width: 100%;
+    background: #2c6e35;
+    padding: 70px 0;
+    box-shadow: 0 -20px 60px rgba(0,0,0,0.06);
+    overflow: hidden;
+    position: relative;
+  }
+
+  .marquee-track {
+    display: flex;
+    white-space: nowrap;
+    width: max-content;
+    animation: scroll-left 28s linear infinite;
+  }
+
+  .marquee-track span.item {
+    font-size: 76px;
+    font-weight: 700;
+    color: #ffffff;
+    padding: 0 90px;
+    display: inline-flex;
+    align-items: center;
+    gap: 30px;
+  }
+
+  .marquee-track span.item .dot {
+    width: 20px;
+    height: 20px;
+    background: #ffce54;
+    border-radius: 50%;
+  }
+
+  @keyframes scroll-left {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
   }
 
   .badge {
     position: absolute;
-    top: 120px;
+    top: 110px;
     right: 160px;
-    background: #2c6e35;
+    background: #f2994a;
     color: #fff;
-    font-size: 40px;
+    font-size: 42px;
     font-weight: 700;
-    padding: 24px 56px;
+    padding: 26px 60px;
     border-radius: 100px;
-    letter-spacing: 2px;
     z-index: 3;
   }
 </style>
@@ -149,57 +122,36 @@
 
   <div class="badge">BUKA SETIAP HARI</div>
 
-  <div class="logo-row">
+  <div class="header">
     <span class="icon">🍇</span>
-    <span class="brand-name">ABS</span>
+    <span class="brand">ABS</span>
     <span class="icon">🍊</span>
   </div>
   <div class="tagline">Aneka Buah Segar — Pilihan Terbaik untuk Keluarga Anda</div>
 
-  <div class="info-card">
-
-    <div class="info-row">
-      <div class="ico">📍</div>
-      <div>
-        <div class="label">Lokasi</div>
-        <div class="value">Jl. Raya Penarukan No.2, Kepanjen,<br>Kabupaten Malang, Jawa Timur 65163</div>
-      </div>
-    </div>
-
-    <div class="divider"></div>
-
-    <div class="info-row">
-      <div class="ico">🕒</div>
-      <div>
-        <div class="label">Jam Operasional</div>
-        <div class="value hours">07.00 – 21.00 WIB</div>
-      </div>
-    </div>
-
-    <div class="divider"></div>
-
-    <div class="info-row">
-      <div class="ico">📷</div>
-      <div>
-        <div class="label">Instagram</div>
-        <div class="value">@abskepanjen</div>
-      </div>
-    </div>
-
+  <div class="mini-info">
+    <div><span class="ico">📍</span>Jl. Raya Penarukan No.2, Kepanjen, Malang</div>
+    <div><span class="ico">🕒</span>07.00 – 21.00 WIB</div>
+    <div><span class="ico">📷</span>@abskepanjen</div>
   </div>
 
-  <div class="footer-row">
-    <span class="ig-icon">📷</span>
-    <span class="ig-handle">@abskepanjen</span>
+  <div class="marquee-wrap">
+    <div class="marquee-track" id="marqueeTrack">
+      <span class="item"><span class="dot"></span>🍓 BUAH SEGAR PILIHAN LANGSUNG DARI KEBUN</span>
+      <span class="item"><span class="dot"></span>🎉 DISKON SPESIAL HARI INI — TANYA KASIR!</span>
+      <span class="item"><span class="dot"></span>🍉 GRATIS ONGKIR AREA KEPANJEN MIN. BELANJA TERTENTU</span>
+      <span class="item"><span class="dot"></span>📍 KUNJUNGI TOKO KAMI DI JL. RAYA PENARUKAN NO.2</span>
+      <span class="item"><span class="dot"></span>🍇 BUAH SEGAR PILIHAN LANGSUNG DARI KEBUN</span>
+      <span class="item"><span class="dot"></span>🎉 DISKON SPESIAL HARI INI — TANYA KASIR!</span>
+      <span class="item"><span class="dot"></span>🍉 GRATIS ONGKIR AREA KEPANJEN MIN. BELANJA TERTENTU</span>
+      <span class="item"><span class="dot"></span>📍 KUNJUNGI TOKO KAMI DI JL. RAYA PENARUKAN NO.2</span>
+    </div>
   </div>
 </div>
 
 <audio id="bgm" src="./music.mp3" loop autoplay></audio>
 
 <script>
-  // Browser modern memblokir autoplay dengan suara sebelum interaksi user.
-  // Untuk perangkat signage (kiosk mode / autoplay policy dimatikan), ini akan langsung play.
-  // Fallback: play saat ada interaksi pertama (klik/tap layar), berguna saat testing di browser biasa.
   const audio = document.getElementById('bgm');
   const tryPlay = () => audio.play().catch(()=>{});
   window.addEventListener('load', tryPlay);
