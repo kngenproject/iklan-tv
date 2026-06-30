@@ -2,162 +2,518 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<title>ABS Aneka Buah Segar - Running Text Signage</title>
+<title>Toko Buah ABS Kepanjen - Digital Signage</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap');
+  :root{
+    --green:#1B8F3A;
+    --orange:#F7941D;
+    --red:#D62828;
+    --white:#FFFFFF;
+    --gray:#F5F6F8;
+    --radius:24px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',-apple-system,'Helvetica Neue',Arial,sans-serif;}
+  html,body{width:3840px;height:2160px;overflow:hidden;background:var(--gray);}
 
-  * { margin:0; padding:0; box-sizing:border-box; }
-
-  html, body {
-    width: 3840px;
-    height: 2160px;
-    font-family: 'Poppins', sans-serif;
-    overflow: hidden;
-    background: linear-gradient(135deg, #fff9f0 0%, #fef3e2 100%);
+  body{
+    position:relative;
+    background:
+      radial-gradient(circle at 20% 10%, rgba(27,143,58,0.08), transparent 40%),
+      radial-gradient(circle at 85% 90%, rgba(247,148,29,0.08), transparent 45%),
+      linear-gradient(135deg, #F5F6F8 0%, #EFF3EF 50%, #F5F6F8 100%);
+    background-size:200% 200%;
+    animation: bgShift 40s ease-in-out infinite;
+  }
+  @keyframes bgShift{
+    0%{background-position:0% 0%;}
+    50%{background-position:100% 100%;}
+    100%{background-position:0% 0%;}
   }
 
-  .stage {
-    width: 3840px;
-    height: 2160px;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+  .screen{
+    display:flex;
+    flex-direction:column;
+    width:3840px;
+    height:2160px;
   }
 
-  .blob { position:absolute; border-radius:50%; opacity:0.12; }
-  .blob.green  { width:1400px; height:1400px; background:#3e9b4f; top:-400px; left:-400px; }
-  .blob.orange { width:1200px; height:1200px; background:#f2994a; bottom:-350px; right:-350px; }
-
-  /* HEADER */
-  .header {
-    z-index: 2;
-    display: flex;
-    align-items: center;
-    gap: 36px;
-    margin-bottom: 30px;
+  /* ===================== HEADER (15% = 324px) ===================== */
+  .header{
+    height:324px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 70px;
+    position:relative;
   }
-  .header .icon { font-size: 110px; }
-  .header .brand { font-size: 130px; font-weight: 800; color: #2c6e35; letter-spacing: 2px; }
-
-  .tagline {
-    z-index: 2;
-    font-size: 50px;
-    color: #5b6b58;
-    margin-bottom: 90px;
+  .header-left{
+    display:flex;
+    align-items:center;
+    gap:30px;
   }
-
-  /* INFO MINI ROW */
-  .mini-info {
-    z-index: 2;
-    display: flex;
-    gap: 100px;
-    margin-bottom: 130px;
-    font-size: 42px;
-    color: #444;
-    font-weight: 600;
+  .logo-badge{
+    width:140px;
+    height:140px;
+    border-radius:32px;
+    background:linear-gradient(145deg, var(--green), #146b2b);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    box-shadow:0 16px 40px rgba(27,143,58,0.35);
+    animation: logoZoom 6s ease-in-out infinite;
   }
-  .mini-info span.ico { margin-right: 16px; }
-
-  /* RUNNING TEXT BAR */
-  .marquee-wrap {
-    z-index: 2;
-    width: 100%;
-    background: #2c6e35;
-    padding: 70px 0;
-    box-shadow: 0 -20px 60px rgba(0,0,0,0.06);
-    overflow: hidden;
-    position: relative;
+  @keyframes logoZoom{
+    0%,100%{transform:scale(1);}
+    50%{transform:scale(1.02);}
   }
-
-  .marquee-track {
-    display: flex;
-    white-space: nowrap;
-    width: max-content;
-    animation: scroll-left 28s linear infinite;
+  .logo-badge svg{width:78px;height:78px;}
+  .logo-text{
+    display:flex;
+    flex-direction:column;
+  }
+  .logo-text .brand{
+    font-size:34px;
+    font-weight:800;
+    color:var(--green);
+    letter-spacing:1px;
+  }
+  .logo-text .brand-sub{
+    font-size:22px;
+    font-weight:600;
+    color:#5b6470;
+    letter-spacing:3px;
   }
 
-  .marquee-track span.item {
-    font-size: 76px;
-    font-weight: 700;
-    color: #ffffff;
-    padding: 0 90px;
-    display: inline-flex;
-    align-items: center;
-    gap: 30px;
+  .header-center{
+    position:absolute;
+    left:50%;
+    transform:translateX(-50%);
+    text-align:center;
+    animation: fadeIn 1.4s ease-out;
+  }
+  @keyframes fadeIn{
+    from{opacity:0; transform:translateX(-50%) translateY(-14px);}
+    to{opacity:1; transform:translateX(-50%) translateY(0);}
+  }
+  .main-title{
+    font-size:84px;
+    font-weight:900;
+    letter-spacing:4px;
+    background:linear-gradient(90deg, var(--green), #2bb551 60%, var(--green));
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+    line-height:1.05;
+  }
+  .main-subtitle{
+    margin-top:10px;
+    font-size:28px;
+    font-weight:500;
+    color:#5b6470;
+    letter-spacing:2px;
+  }
+  .main-subtitle .dot{color:var(--orange); font-weight:800; margin:0 14px;}
+
+  .header-right{
+    text-align:right;
+    display:flex;
+    flex-direction:column;
+    align-items:flex-end;
+    gap:6px;
+  }
+  .clock{
+    font-size:58px;
+    font-weight:800;
+    color:#1d2530;
+    letter-spacing:2px;
+    font-variant-numeric:tabular-nums;
+  }
+  .date{
+    font-size:24px;
+    font-weight:500;
+    color:#5b6470;
   }
 
-  .marquee-track span.item .dot {
-    width: 20px;
-    height: 20px;
-    background: #ffce54;
-    border-radius: 50%;
+  .divider{
+    height:2px;
+    margin:0 70px;
+    background:linear-gradient(90deg, transparent, rgba(27,143,58,0.35) 20%, rgba(214,40,40,0.25) 50%, rgba(247,148,29,0.35) 80%, transparent);
   }
 
-  @keyframes scroll-left {
-    0%   { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
+  /* ===================== MAIN CONTENT (65% = 1404px) ===================== */
+  .main-content{
+    height:1404px;
+    padding:60px 70px;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    grid-template-rows:1fr 1fr;
+    gap:48px;
   }
 
-  .badge {
-    position: absolute;
-    top: 110px;
-    right: 160px;
-    background: #f2994a;
-    color: #fff;
-    font-size: 42px;
-    font-weight: 700;
-    padding: 26px 60px;
-    border-radius: 100px;
-    z-index: 3;
+  .card{
+    position:relative;
+    border-radius:var(--radius);
+    background:rgba(255,255,255,0.72);
+    backdrop-filter:blur(18px);
+    -webkit-backdrop-filter:blur(18px);
+    border:1px solid rgba(255,255,255,0.6);
+    box-shadow:0 24px 60px rgba(20,30,30,0.10), 0 4px 14px rgba(20,30,30,0.06);
+    display:flex;
+    align-items:center;
+    padding:0 70px;
+    gap:54px;
+    overflow:hidden;
+    opacity:0;
+    transform:translateY(40px);
+    animation: slideUp 0.9s ease-out forwards;
+  }
+  .card::before{
+    content:"";
+    position:absolute;
+    top:0; left:0;
+    width:10px; height:100%;
+    border-radius:var(--radius) 0 0 var(--radius);
+  }
+  .card1::before{background:var(--red);}
+  .card2::before{background:var(--green);}
+  .card3::before{background:var(--orange);}
+  .card4::before{background:var(--green);}
+
+  .card1{animation-delay:0.1s;}
+  .card2{animation-delay:0.35s;}
+  .card3{animation-delay:0.6s;}
+  .card4{animation-delay:0.85s;}
+
+  @keyframes slideUp{
+    to{opacity:1; transform:translateY(0);}
+  }
+
+  .icon-wrap{
+    flex-shrink:0;
+    width:170px;
+    height:170px;
+    border-radius:36px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    animation: bounce 4s ease-in-out infinite;
+  }
+  @keyframes bounce{
+    0%,100%{transform:translateY(0);}
+    50%{transform:translateY(-8px);}
+  }
+  .card1 .icon-wrap{background:linear-gradient(145deg,#fdeaea,#fbd6d6);}
+  .card2 .icon-wrap{background:linear-gradient(145deg,#e6f5ea,#d2eedb);}
+  .card3 .icon-wrap{background:linear-gradient(145deg,#fef0dc,#fde2bb);}
+  .card4 .icon-wrap{background:linear-gradient(145deg,#e6f5ea,#d2eedb);}
+
+  .icon-wrap svg{width:88px;height:88px;}
+
+  .card-text{display:flex; flex-direction:column; gap:14px;}
+  .card-title{
+    font-size:46px;
+    font-weight:800;
+    letter-spacing:1px;
+    color:#1d2530;
+  }
+  .card-desc{
+    font-size:28px;
+    font-weight:500;
+    color:#5b6470;
+    line-height:1.4;
+  }
+
+  /* ===================== FOOTER (20% = 432px) ===================== */
+  .footer{
+    height:432px;
+    display:flex;
+    flex-direction:column;
+  }
+  .footer-main{
+    flex:1;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 70px;
+  }
+  .footer-block{
+    display:flex;
+    align-items:center;
+    gap:24px;
+  }
+  .footer-icon{
+    width:88px;
+    height:88px;
+    border-radius:22px;
+    background:rgba(27,143,58,0.10);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-shrink:0;
+  }
+  .footer-icon svg{width:46px;height:46px;}
+  .footer-label{
+    font-size:22px;
+    color:#5b6470;
+    font-weight:600;
+    letter-spacing:1px;
+  }
+  .footer-value{
+    font-size:32px;
+    color:#1d2530;
+    font-weight:800;
+  }
+  .phones{display:flex; flex-direction:column; gap:18px;}
+  .phone-row{display:flex; align-items:center; gap:20px;}
+
+  .qr-block{
+    display:flex;
+    align-items:center;
+    gap:30px;
+  }
+  .qr-box{
+    width:170px;
+    height:170px;
+    background:#fff;
+    border-radius:20px;
+    box-shadow:0 12px 30px rgba(20,30,30,0.12);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:12px;
+  }
+  .qr-caption{
+    font-size:24px;
+    font-weight:800;
+    color:var(--green);
+    letter-spacing:1px;
+    max-width:260px;
+    line-height:1.3;
+  }
+
+  /* Ticker */
+  .ticker{
+    height:96px;
+    background:linear-gradient(90deg, #b91c1c, var(--red) 40%, #b91c1c);
+    display:flex;
+    align-items:center;
+    overflow:hidden;
+    position:relative;
+  }
+  .ticker-track{
+    display:flex;
+    white-space:nowrap;
+    animation: scrollLeft 38s linear infinite;
+  }
+  .ticker-track span{
+    font-size:30px;
+    font-weight:700;
+    color:#fff;
+    letter-spacing:0.5px;
+    padding:0 60px;
+    display:inline-flex;
+    align-items:center;
+  }
+  .ticker-track span::before{
+    content:"●";
+    color:#ffd9d9;
+    margin-right:24px;
+    font-size:16px;
+  }
+  @keyframes scrollLeft{
+    from{transform:translateX(0);}
+    to{transform:translateX(-50%);}
   }
 </style>
 </head>
 <body>
+<div class="screen">
 
-<div class="stage">
-  <div class="blob green"></div>
-  <div class="blob orange"></div>
-
-  <div class="badge">BUKA SETIAP HARI</div>
-
-  <div class="header">
-    <span class="icon">🍇</span>
-    <span class="brand">ABS</span>
-    <span class="icon">🍊</span>
-  </div>
-  <div class="tagline">Aneka Buah Segar — Pilihan Terbaik untuk Keluarga Anda</div>
-
-  <div class="mini-info">
-    <div><span class="ico">📍</span>Jl. Raya Penarukan No.2, Kepanjen, Malang</div>
-    <div><span class="ico">🕒</span>07.00 – 21.00 WIB</div>
-    <div><span class="ico">📷</span>@abskepanjen</div>
-  </div>
-
-  <div class="marquee-wrap">
-    <div class="marquee-track" id="marqueeTrack">
-      <span class="item"><span class="dot"></span>🍓 BUAH SEGAR PILIHAN LANGSUNG DARI KEBUN</span>
-      <span class="item"><span class="dot"></span>🎉 DISKON SPESIAL HARI INI — TANYA KASIR!</span>
-      <span class="item"><span class="dot"></span>🍉 GRATIS ONGKIR AREA KEPANJEN MIN. BELANJA TERTENTU</span>
-      <span class="item"><span class="dot"></span>📍 KUNJUNGI TOKO KAMI DI JL. RAYA PENARUKAN NO.2</span>
-      <span class="item"><span class="dot"></span>🍇 BUAH SEGAR PILIHAN LANGSUNG DARI KEBUN</span>
-      <span class="item"><span class="dot"></span>🎉 DISKON SPESIAL HARI INI — TANYA KASIR!</span>
-      <span class="item"><span class="dot"></span>🍉 GRATIS ONGKIR AREA KEPANJEN MIN. BELANJA TERTENTU</span>
-      <span class="item"><span class="dot"></span>📍 KUNJUNGI TOKO KAMI DI JL. RAYA PENARUKAN NO.2</span>
+  <!-- HEADER -->
+  <header class="header">
+    <div class="header-left">
+      <div class="logo-badge">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2v4M8 4c0 2 1.5 3.5 4 3.5S16 6 16 4"/>
+          <circle cx="12" cy="14" r="7.5" fill="rgba(255,255,255,0.12)"/>
+        </svg>
+      </div>
+      <div class="logo-text">
+        <span class="brand">TOKO BUAH ABS</span>
+        <span class="brand-sub">KEPANJEN</span>
+      </div>
     </div>
-  </div>
+
+    <div class="header-center">
+      <div class="main-title">ANEKA BUAH SEGAR</div>
+      <div class="main-subtitle">Segar Setiap Hari <span class="dot">•</span> Kualitas Terjamin</div>
+    </div>
+
+    <div class="header-right">
+      <div class="clock" id="clock">00:00:00</div>
+      <div class="date" id="date">Hari, 00 Bulan 0000</div>
+    </div>
+  </header>
+
+  <div class="divider"></div>
+
+  <!-- MAIN CONTENT -->
+  <main class="main-content">
+
+    <div class="card card1">
+      <div class="icon-wrap">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#D62828" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="9"/>
+          <path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/>
+        </svg>
+      </div>
+      <div class="card-text">
+        <span class="card-title">BUAH IMPORT</span>
+        <span class="card-desc">Kualitas pilihan dari berbagai negara</span>
+      </div>
+    </div>
+
+    <div class="card card2">
+      <div class="icon-wrap">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#1B8F3A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 21c-5-3-8-6.5-8-11A6 6 0 0 1 12 6a6 6 0 0 1 8 4c0 4.5-3 8-8 11Z"/>
+          <path d="M12 6V3"/>
+        </svg>
+      </div>
+      <div class="card-text">
+        <span class="card-title">BUAH LOKAL</span>
+        <span class="card-desc">Segar langsung dari petani Indonesia</span>
+      </div>
+    </div>
+
+    <div class="card card3">
+      <div class="icon-wrap">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#F7941D" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="9" width="18" height="11" rx="2"/>
+          <path d="M3 9h18M12 9v11M7.5 9C6 9 5 7.8 5 6.5S6 4 7.5 4 10 5.8 12 9c2-3.2 3-5 4.5-5S19 5.2 19 6.5 18 9 16.5 9"/>
+        </svg>
+      </div>
+      <div class="card-text">
+        <span class="card-title">PARCEL BUAH PREMIUM</span>
+        <span class="card-desc">Cocok untuk hadiah dan berbagai acara</span>
+      </div>
+    </div>
+
+    <div class="card card4">
+      <div class="icon-wrap">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#1B8F3A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="1.5" y="7" width="13" height="9" rx="1.5"/>
+          <path d="M14.5 10h4l3 3.2V16h-7z"/>
+          <circle cx="6" cy="18.5" r="1.7"/>
+          <circle cx="17.5" cy="18.5" r="1.7"/>
+        </svg>
+      </div>
+      <div class="card-text">
+        <span class="card-title">LAYANAN PESANAN</span>
+        <span class="card-desc">Eceran • Partai • Instansi • Perusahaan</span>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-main">
+
+      <div class="footer-block">
+        <div class="footer-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#1B8F3A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 21s-7-7.2-7-12a7 7 0 0 1 14 0c0 4.8-7 12-7 12Z"/>
+            <circle cx="12" cy="9" r="2.4"/>
+          </svg>
+        </div>
+        <div>
+          <div class="footer-label">LOKASI</div>
+          <div class="footer-value">ABS Kepanjen</div>
+        </div>
+      </div>
+
+      <div class="footer-block phones">
+        <div class="phone-row">
+          <div class="footer-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#1B8F3A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M5 4h3l2 5-2.5 1.5a11 11 0 0 0 5 5L14 13l5 2v3a2 2 0 0 1-2 2C9.5 20 4 14.5 4 7a2 2 0 0 1 1-3Z"/>
+            </svg>
+          </div>
+          <div class="footer-value">081235269000</div>
+        </div>
+        <div class="phone-row">
+          <div class="footer-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#1B8F3A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M5 4h3l2 5-2.5 1.5a11 11 0 0 0 5 5L14 13l5 2v3a2 2 0 0 1-2 2C9.5 20 4 14.5 4 7a2 2 0 0 1 1-3Z"/>
+            </svg>
+          </div>
+          <div class="footer-value">081333527527</div>
+        </div>
+      </div>
+
+      <div class="qr-block">
+        <div class="qr-caption">SCAN UNTUK<br>ORDER WHATSAPP</div>
+        <div class="qr-box" id="qrcode"></div>
+      </div>
+
+    </div>
+
+    <div class="ticker">
+      <div class="ticker-track" id="tickerTrack"></div>
+    </div>
+  </footer>
+
 </div>
 
-<audio id="bgm" src="./music.mp3" loop autoplay></audio>
-
 <script>
-  const audio = document.getElementById('bgm');
-  const tryPlay = () => audio.play().catch(()=>{});
-  window.addEventListener('load', tryPlay);
-  document.addEventListener('click', tryPlay, { once: true });
-  document.addEventListener('touchstart', tryPlay, { once: true });
-</script>
+  // Live clock + date
+  const days = ['Minggu','Senin','Selasa','Rabu','Kamis',"Jum'at",'Sabtu'];
+  const months = ['Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember'];
 
+  function updateClock(){
+    const now = new Date();
+    const h = String(now.getHours()).padStart(2,'0');
+    const m = String(now.getMinutes()).padStart(2,'0');
+    const s = String(now.getSeconds()).padStart(2,'0');
+    document.getElementById('clock').textContent = `${h}:${m}:${s}`;
+    document.getElementById('date').textContent =
+      `${days[now.getDay()]}, ${now.getDate()} ${months[now.getMonth()]} ${now.getFullYear()}`;
+  }
+  updateClock();
+  setInterval(updateClock, 1000);
+
+  // QR Code -> WhatsApp link
+  new QRCode(document.getElementById("qrcode"), {
+    text: "https://wa.me/6281235269000",
+    width: 146,
+    height: 146,
+    colorDark: "#1B8F3A",
+    colorLight: "#ffffff",
+    correctLevel: QRCode.CorrectLevel.H
+  });
+
+  // Ticker messages (duplicated for seamless loop)
+  const messages = [
+    "Selamat datang di Toko Buah ABS Kepanjen",
+    "Menyediakan buah lokal dan buah import berkualitas",
+    "Parcel buah premium untuk hadiah dan berbagai acara",
+    "Hubungi WhatsApp 081235269000",
+    "Terima kasih telah berbelanja di Toko Buah ABS"
+  ];
+  const track = document.getElementById('tickerTrack');
+  function buildTicker(){
+    track.innerHTML = '';
+    for(let i=0;i<2;i++){
+      messages.forEach(msg=>{
+        const span = document.createElement('span');
+        span.textContent = msg;
+        track.appendChild(span);
+      });
+    }
+  }
+  buildTicker();
+</script>
 </body>
 </html>
