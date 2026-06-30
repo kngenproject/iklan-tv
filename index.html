@@ -1,130 +1,211 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Toko Buah ABS — Digital Signage</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<title>ABS Aneka Buah Segar - Signage</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap');
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+
+  html, body {
+    width: 3840px;
+    height: 2160px;
+    font-family: 'Poppins', sans-serif;
+    overflow: hidden;
+    background: linear-gradient(135deg, #fff9f0 0%, #fef3e2 100%);
+  }
+
+  .stage {
+    width: 3840px;
+    height: 2160px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 160px;
+  }
+
+  /* decorative soft circles */
+  .blob {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.12;
+  }
+  .blob.green { width: 1400px; height: 1400px; background:#3e9b4f; top:-400px; left:-400px; }
+  .blob.orange { width: 1200px; height: 1200px; background:#f2994a; bottom:-350px; right:-350px; }
+
+  .logo-row {
+    display: flex;
+    align-items: center;
+    gap: 36px;
+    margin-bottom: 40px;
+    z-index: 2;
+  }
+  .logo-row .icon {
+    font-size: 110px;
+    line-height: 1;
+  }
+  .brand-name {
+    font-size: 128px;
+    font-weight: 800;
+    color: #2c6e35;
+    letter-spacing: 2px;
+  }
+  .tagline {
+    font-size: 52px;
+    font-weight: 400;
+    color: #5b6b58;
+    margin-bottom: 110px;
+    z-index: 2;
+    text-align: center;
+  }
+
+  .info-card {
+    background: #ffffff;
+    border-radius: 48px;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.08);
+    padding: 90px 140px;
+    display: flex;
+    flex-direction: column;
+    gap: 64px;
+    z-index: 2;
+    width: 2400px;
+  }
+
+  .info-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 48px;
+  }
+  .info-row .ico {
+    font-size: 70px;
+    width: 110px;
+    text-align: center;
+    flex-shrink: 0;
+  }
+  .info-row .label {
+    font-size: 38px;
+    font-weight: 600;
+    color: #a0a0a0;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin-bottom: 10px;
+  }
+  .info-row .value {
+    font-size: 54px;
+    font-weight: 600;
+    color: #333333;
+    line-height: 1.4;
+  }
+  .info-row .value.hours {
+    color: #2c6e35;
+    font-weight: 700;
+  }
+
+  .divider {
+    height: 2px;
+    background: #f0ede6;
+    width: 100%;
+  }
+
+  .footer-row {
+    margin-top: 100px;
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    z-index: 2;
+  }
+  .footer-row .ig-icon {
+    font-size: 48px;
+  }
+  .footer-row .ig-handle {
+    font-size: 46px;
+    font-weight: 600;
+    color: #444;
+  }
+
+  .badge {
+    position: absolute;
+    top: 120px;
+    right: 160px;
+    background: #2c6e35;
+    color: #fff;
+    font-size: 40px;
+    font-weight: 700;
+    padding: 24px 56px;
+    border-radius: 100px;
+    letter-spacing: 2px;
+    z-index: 3;
+  }
+</style>
 </head>
 <body>
 
-<canvas id="particleCanvas"></canvas>
+<div class="stage">
+  <div class="blob green"></div>
+  <div class="blob orange"></div>
 
-<div class="signage-root" id="signage-root">
+  <div class="badge">BUKA SETIAP HARI</div>
 
-    <header class="s-header">
-        <div class="logo-area">
-            <div class="logo-icon">🍇</div>
-            <div class="logo-text">
-                <h1 class="logo-abs"><span>Buah</span>ABS</h1>
-                <div class="logo-tagline">Aneka Buah Segar</div>
-            </div>
-        </div>
-        <div class="header-right">
-            <div class="header-badge pulse-badge">Promo Hari Ini</div>
-            <div class="clock-box">
-                <div class="clock-time" id="jam-tv">00:00:00</div>
-                <div class="clock-date" id="tanggal-tv">—</div>
-            </div>
-        </div>
-    </header>
+  <div class="logo-row">
+    <span class="icon">🍇</span>
+    <span class="brand-name">ABS</span>
+    <span class="icon">🍊</span>
+  </div>
+  <div class="tagline">Aneka Buah Segar — Pilihan Terbaik untuk Keluarga Anda</div>
 
-    <main class="s-main">
+  <div class="info-card">
 
-        <section class="panel-left" aria-label="Promo Utama">
-            <div class="slide-container">
-                <div class="slide-wrapper" id="slideWrapper"></div>
-                <div class="slide-dots" id="slideDots"></div>
-            </div>
-            <div class="category-strip">
-                <div class="category-box cat-import">
-                    <div class="cat-icon">🍊</div>
-                    <div class="cat-text">
-                        <div class="cat-title">Buah Import</div>
-                        <div class="cat-desc">Kualitas ekspor premium</div>
-                    </div>
-                </div>
-                <div class="category-box cat-lokal">
-                    <div class="cat-icon">🍎</div>
-                    <div class="cat-text">
-                        <div class="cat-title">Buah Lokal</div>
-                        <div class="cat-desc">Segar langsung dari petani</div>
-                    </div>
-                </div>
-                <div class="category-box cat-parcel">
-                    <div class="cat-icon">🎁</div>
-                    <div class="cat-text">
-                        <div class="cat-title">Parcel Buah</div>
-                        <div class="cat-desc">Untuk hadiah & acara spesial</div>
-                    </div>
-                </div>
-            </div>
-        </section>
+    <div class="info-row">
+      <div class="ico">📍</div>
+      <div>
+        <div class="label">Lokasi</div>
+        <div class="value">Jl. Raya Penarukan No.2, Kepanjen,<br>Kabupaten Malang, Jawa Timur 65163</div>
+      </div>
+    </div>
 
-        <aside class="panel-right" aria-label="Info Toko">
-            <div class="right-top">
-                <h3 class="right-top-title">Hubungi Kami</h3>
-                <div class="kontak-list">
-                    <div class="kontak-item">
-                        <span class="lbl">Telp / WA</span>
-                        <div class="run-line"><div class="run-line-track"><span>0813-3352-7527</span><span>0813-3352-7527</span></div></div>
-                    </div>
-                    <div class="kontak-item">
-                        <span class="lbl">Lokasi</span>
-                        <div class="run-line"><div class="run-line-track"><span>Jl. Penarukan No. 15, Kepanjen (depan Kawedanan/Diknas)</span><span>Jl. Penarukan No. 15, Kepanjen (depan Kawedanan/Diknas)</span></div></div>
-                    </div>
-                    <div class="kontak-item">
-                        <span class="lbl">Instagram</span>
-                        <div class="run-line"><div class="run-line-track"><span>@abskepanjen</span><span>@abskepanjen</span></div></div>
-                    </div>
-                </div>
-            </div>
-            <div class="right-middle">
-                <div class="info-card span-2">
-                    <h4>Produk Terlaris</h4>
-                    <ul class="top-list" id="topList">
-                        <li>
-                            <span>Apel Malang</span>
-                            <div class="run-line"><div class="run-line-track"><span>500 kg/mg</span><span>500 kg/mg</span></div></div>
-                        </li>
-                        <li>
-                            <span>Jeruk Pamelo</span>
-                            <div class="run-line"><div class="run-line-track"><span>300 kg/mg</span><span>300 kg/mg</span></div></div>
-                        </li>
-                        <li>
-                            <span>Mangga Arumanis</span>
-                            <div class="run-line"><div class="run-line-track"><span>210 kg/mg</span><span>210 kg/mg</span></div></div>
-                        </li>
-                    </ul>
-                </div>
-                <div class="info-card">
-                    <h4>Jam Buka</h4>
-                    <p><strong><div class="run-line"><div class="run-line-track"><span>07.00 – 21.00 WIB</span><span>07.00 – 21.00 WIB</span></div></div></strong></p>
-                    <p class="small">Setiap hari, termasuk libur</p>
-                </div>
-                <div class="info-card highlight">
-                    <h4>Pembayaran</h4>
-                    <div class="run-line"><div class="run-line-track"><span>Cash · QRIS · Transfer · E-Wallet</span><span>Cash · QRIS · Transfer · E-Wallet</span></div></div>
-                </div>
-            </div>
-        </aside>
-    </main>
+    <div class="divider"></div>
 
-    <footer class="marquee-wrap">
-        <div class="marquee-track" id="marquee-track"></div>
-    </footer>
+    <div class="info-row">
+      <div class="ico">🕒</div>
+      <div>
+        <div class="label">Jam Operasional</div>
+        <div class="value hours">07.00 – 21.00 WIB</div>
+      </div>
+    </div>
 
-    <button class="music-btn" id="musicToggle">🔊</button>
+    <div class="divider"></div>
 
-    <audio id="bgMusic" loop>
-        <source src="music.mp3" type="audio/mpeg">
-    </audio>
+    <div class="info-row">
+      <div class="ico">📷</div>
+      <div>
+        <div class="label">Instagram</div>
+        <div class="value">@abskepanjen</div>
+      </div>
+    </div>
 
-    <div class="toast" id="toast">Promo Terbaru</div>
+  </div>
+
+  <div class="footer-row">
+    <span class="ig-icon">📷</span>
+    <span class="ig-handle">@abskepanjen</span>
+  </div>
 </div>
 
-<script src="app.js"></script>
+<audio id="bgm" src="./music.mp3" loop autoplay></audio>
+
+<script>
+  // Browser modern memblokir autoplay dengan suara sebelum interaksi user.
+  // Untuk perangkat signage (kiosk mode / autoplay policy dimatikan), ini akan langsung play.
+  // Fallback: play saat ada interaksi pertama (klik/tap layar), berguna saat testing di browser biasa.
+  const audio = document.getElementById('bgm');
+  const tryPlay = () => audio.play().catch(()=>{});
+  window.addEventListener('load', tryPlay);
+  document.addEventListener('click', tryPlay, { once: true });
+  document.addEventListener('touchstart', tryPlay, { once: true });
+</script>
+
 </body>
 </html>
