@@ -3,36 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Digital Signage Toko Buah Premium</title>
+    <title>Digital Signage - Toko Buah ABS Kepanjen</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Montserrat:wght@500;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
     <style>
-        /* Desain Dasar Layar 16:9 */
+        /* Konfigurasi Utama & Variabel */
+        :root {
+            --primary-green: #103B2B;  /* Hijau Botol Premium */
+            --accent-orange: #FF8200;  /* Oranye Segar */
+            --bg-dark: #051410;        /* Background Dasar */
+            --text-cream: #FFFDF9;     /* Warna Teks Terang */
+            --text-muted: #A3C1AD;     /* Warna Teks Redup */
+            
+            /* SILAKAN GANTI NAMA FILE LOGO ANDA DI SINI */
+            --logo-file: 'logo.png'; 
+        }
+
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
         }
+
         body, html {
             width: 100%;
             height: 100%;
             overflow: hidden;
-            background-color: #051410;
+            background-color: var(--bg-dark);
             font-family: 'Montserrat', sans-serif;
-            cursor: none; /* Menyembunyikan kursor mouse agar rapi di layar TV */
+            cursor: none; /* Menyembunyikan kursor di layar monitor toko */
         }
 
-        /* Container Utama */
+        /* Container Layout Utama (16:9) */
         .signage-container {
             position: relative;
             width: 100vw;
             height: 100vh;
-            background: #103B2B; /* Warna Hijau Botol Premium */
-            color: #FFFDF9;
+            background: var(--primary-green);
+            color: var(--text-cream);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
-        /* Sistem Slide */
+        /* Slide Area */
+        .slide-wrapper {
+            position: relative;
+            flex-grow: 1;
+            width: 100%;
+            height: calc(100vh - 60px); /* Menyisakan ruang untuk running text */
+        }
+
         .slide {
             position: absolute;
             top: 0;
@@ -45,7 +67,7 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            padding: 6% 8%;
+            padding: 4% 6%;
         }
 
         .slide.active {
@@ -53,24 +75,38 @@
             visibility: visible;
         }
 
-        /* Header Komponen */
+        /* Komponen Header Global */
         .header-bar {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 3px solid #FF8200;
-            padding-bottom: 20px;
-            margin-bottom: 20px;
+            border-bottom: 3px solid var(--accent-orange);
+            padding-bottom: 15px;
+            margin-bottom: 15px;
         }
+
         .logo-area {
+            display: flex;
+            align-items: center;
             font-family: 'Poppins', sans-serif;
             font-size: 2.5rem;
             font-weight: 700;
-            letter-spacing: 2px;
+            letter-spacing: 1px;
         }
+
+        /* Tempat Logo PNG Anda */
+        .logo-img {
+            height: 60px; /* Sesuaikan tinggi ukuran logo di TV */
+            width: auto;
+            margin-right: 20px;
+            object-fit: contain;
+        }
+
         .logo-area span {
-            color: #FF8200; /* Warna Oranye Segar */
+            color: var(--accent-orange);
+            margin-left: 10px;
         }
+
         .tagline {
             font-size: 1.2rem;
             color: #E5F7F0;
@@ -78,9 +114,10 @@
             background: rgba(255, 130, 0, 0.15);
             padding: 8px 20px;
             border-radius: 30px;
+            font-weight: 600;
         }
 
-        /* Konten Utama */
+        /* Konten Struktur */
         .main-content {
             display: flex;
             align-items: center;
@@ -88,33 +125,45 @@
             flex-grow: 1;
             gap: 5%;
         }
+
         .text-zone {
-            flex: 1;
+            flex: 1.2;
         }
+
         .visual-zone {
-            flex: 1;
+            flex: 0.8;
             display: flex;
             justify-content: center;
             align-items: center;
         }
 
-        /* Gaya Khusus Tiap Slide */
-        /* SLIDE 1: Welcome */
+        /* Slide khusus: Slide 1 */
         .welcome-title {
-            font-size: 5rem;
+            font-size: 4.2rem;
             font-family: 'Poppins', sans-serif;
             line-height: 1.1;
             margin-bottom: 20px;
         }
+
         .welcome-title span {
-            color: #FF8200;
+            color: var(--accent-orange);
         }
 
-        /* SLIDE 2: Promo Sore */
+        .rating-box {
+            font-size: 1.6rem;
+            color: #FFD700;
+            margin-top: 20px;
+            background: rgba(0, 0, 0, 0.2);
+            display: inline-block;
+            padding: 10px 20px;
+            border-radius: 10px;
+        }
+
+        /* Slide khusus: Slide 2 */
         .promo-badge {
-            background: #FF8200;
-            color: #FFFDF9;
-            font-size: 4rem;
+            background: var(--accent-orange);
+            color: var(--text-cream);
+            font-size: 3.8rem;
             font-weight: 800;
             padding: 20px 40px;
             border-radius: 20px;
@@ -122,37 +171,36 @@
             box-shadow: 0 15px 30px rgba(0,0,0,0.3);
             animation: pulse 2s infinite;
         }
+
         .promo-desc {
             font-size: 2.2rem;
-            margin-top: 30px;
-            line-height: 1.4;
+            margin-top: 35px;
+            line-height: 1.5;
             color: #E5F7F0;
         }
 
-        /* SLIDE 3: Edukasi / Menu Sehat */
-        .fruit-title {
-            font-size: 3.5rem;
-            color: #FFFDF9;
-            margin-bottom: 15px;
+        /* Slide khusus: Slide 3 */
+        .info-title {
+            font-size: 3.2rem;
+            color: var(--text-cream);
+            margin-bottom: 20px;
         }
+
         .benefit-list {
             list-style: none;
-            font-size: 1.8rem;
+            font-size: 1.7rem;
         }
+
         .benefit-list li {
-            margin-bottom: 15px;
+            margin-bottom: 18px;
             display: flex;
             align-items: center;
         }
+
         .benefit-list i {
-            color: #FF8200;
+            color: var(--accent-orange);
             margin-right: 20px;
-        }
-        .price-tag {
-            font-size: 3.5rem;
-            font-weight: 800;
-            color: #FF8200;
-            margin-top: 20px;
+            font-size: 2rem;
         }
 
         /* Footer Komponen */
@@ -160,25 +208,71 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-top: 30px;
+            margin-top: 20px;
             font-size: 1.3rem;
-            color: #A3C1AD;
+            color: var(--text-muted);
             border-top: 1px solid rgba(255,255,255,0.1);
-            padding-top: 20px;
+            padding-top: 15px;
         }
-        .social-media i {
-            color: #FF8200;
+
+        .footer-bar i {
+            color: var(--accent-orange);
             margin-right: 10px;
         }
 
-        /* Animasi berdenyut untuk promo */
+        /* ================= MARQUEE RUNNING TEXT ================= */
+        .marquee-container {
+            width: 100%;
+            height: 60px;
+            background: #0A261C;
+            border-top: 2px solid var(--accent-orange);
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            align-items: center;
+            z-index: 999;
+        }
+
+        .marquee-label {
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            background: var(--accent-orange);
+            color: var(--text-cream);
+            padding: 0 25px;
+            display: flex;
+            align-items: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+            z-index: 10;
+            box-shadow: 10px 0 15px rgba(0,0,0,0.3);
+            text-transform: uppercase;
+        }
+
+        .marquee-text {
+            display: inline-block;
+            white-space: nowrap;
+            padding-left: 100%;
+            animation: marquee 28s linear infinite;
+            font-size: 1.3rem;
+            font-weight: 500;
+            color: var(--text-cream);
+            letter-spacing: 1px;
+        }
+
+        /* Animasi */
+        @keyframes marquee {
+            0% { transform: translate3d(0, 0, 0); }
+            100% { transform: translate3d(-100%, 0, 0); }
+        }
+
         @keyframes pulse {
             0% { transform: scale(1); }
             50% { transform: scale(1.03); }
             100% { transform: scale(1); }
         }
 
-        /* Sembunyikan elemen audio asli agar tidak merusak tampilan */
         audio {
             display: none;
         }
@@ -188,83 +282,113 @@
 
     <audio id="bg-music" autoplay loop>
         <source src="music.mp3" type="audio/mpeg">
-        Browser tidak mendukung audio.
     </audio>
 
     <div class="signage-container">
 
-        <div class="slide active">
-            <div class="header-bar">
-                <div class="logo-area"><i class="fa-solid fa-lemon"></i> FRUIT<span>MARKET</span></div>
-                <div class="tagline">Pilihan Keluarga Sehat</div>
-            </div>
-            <div class="main-content">
-                <div class="text-zone">
-                    <h1 class="welcome-title">GARANSI<br><span>SEGAR</span><br>SETIAP HARI</h1>
-                    <p style="font-size: 1.8rem; color: #E5F7F0;">Langsung didatangkan dari petani lokal pilihan terbaik.</p>
+        <div class="slide-wrapper">
+            <div class="slide active">
+                <div class="header-bar">
+                    <div class="logo-area">
+                        <img src="" class="logo-img" alt="Logo" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 24 24\' fill=\'%23FF8200\'><path d=\'M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z\'/></svg>';">
+                        TOKO BUAH <span>ABS</span>
+                    </div>
+                    <div class="tagline">Premium Dry Fruits</div>
                 </div>
-                <div class="visual-zone">
-                    <i class="fa-solid fa-basket-shopping" style="font-size: 15rem; color: #FF8200; opacity: 0.8;"></i>
+                <div class="main-content">
+                    <div class="text-zone">
+                        <h1 class="welcome-title">TOKO KHUSUS<br><span>BUAH KERING</span><br>PREMIUM</h1>
+                        <p style="font-size: 1.8rem; color: #E5F7F0;">Kualitas nutrisi alami, diproses higienis untuk keluarga sehat.</p>
+                        <div class="rating-box">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star-half-stroke"></i>
+                            <span style="color: var(--text-cream); font-weight: bold; margin-left: 10px;">4.5 Pilihan Utama di Google</span>
+                        </div>
+                    </div>
+                    <div class="visual-zone">
+                        <i class="fa-solid fa-box-open" style="font-size: 14rem; color: var(--accent-orange); opacity: 0.85;"></i>
+                    </div>
+                </div>
+                <div class="footer-bar">
+                    <div><i class="fa-solid fa-location-dot"></i> Jl. Raya Penarukan No.2, Kepanjen, Malang</div>
+                    <div><i class="fa-solid fa-phone"></i> +62 813-3352-7527</div>
                 </div>
             </div>
-            <div class="footer-bar">
-                <div><i class="fa-solid fa-location-dot"></i> Jl. Buah Segar No. 88</div>
-                <div class="social-media"><i class="fa-brands fa-instagram"></i> @TokoBuahAnda</div>
+
+            <div class="slide">
+                <div class="header-bar">
+                    <div class="logo-area">
+                        <img src="" class="logo-img" alt="Logo">
+                        TOKO BUAH <span>ABS</span>
+                    </div>
+                    <div class="tagline">Camilan Sehat Modern</div>
+                </div>
+                <div class="main-content">
+                    <div class="text-zone" style="text-align: center; width: 100%;">
+                        <div class="promo-badge">PROMO MINGGU INI</div>
+                        <h2 class="promo-desc">
+                            Ubah Pola Hidup Lebih Praktis & Bernutrisi!<br>
+                            <span style="color: var(--accent-orange); font-size: 1.9rem; display: block; margin-top: 15px;">Sedia aneka kismis, kurma, buah tin, dan aprikot kering kaya antioksidan.</span>
+                        </h2>
+                    </div>
+                </div>
+                <div class="footer-bar">
+                    <div>*Silakan hubungi admin kasir untuk info harga grosir</div>
+                    <div><i class="fa-solid fa-clock"></i> Jam Buka: Rabu 07.00–21.00</div>
+                </div>
+            </div>
+
+            <div class="slide">
+                <div class="header-bar">
+                    <div class="logo-area">
+                        <img src="" class="logo-img" alt="Logo">
+                        TOKO BUAH <span>ABS</span>
+                    </div>
+                    <div class="tagline">Jaminan Mutu Premium</div>
+                </div>
+                <div class="main-content">
+                    <div class="text-zone">
+                        <h2 class="info-title">Keunggulan Buah Kering Kami:</h2>
+                        <ul class="benefit-list">
+                            <li><i class="fa-solid fa-circle-check"></i> Lebih awet alami tanpa bahan pengawet kimia buatan.</li>
+                            <li><i class="fa-solid fa-circle-check"></i> Sumber serat, vitamin, dan mineral berkonsentrasi tinggi.</li>
+                            <li><i class="fa-solid fa-circle-check"></i> Sangat praktis dibawa untuk bekal energi aktivitas harian.</li>
+                        </ul>
+                    </div>
+                    <div class="visual-zone">
+                        <i class="fa-solid fa-heart-pulse" style="font-size: 13rem; color: #E5F7F0;"></i>
+                    </div>
+                </div>
+                <div class="footer-bar">
+                    <div><i class="fa-solid fa-shield-halved"></i> 100% Produk Bersih & Higienis</div>
+                    <div><i class="fa-brands fa-whatsapp"></i> Hubungi: +62 813-3352-7527</div>
+                </div>
             </div>
         </div>
 
-        <div class="slide">
-            <div class="header-bar">
-                <div class="logo-area"><i class="fa-solid fa-lemon"></i> FRUIT<span>MARKET</span></div>
-                <div class="tagline">Penawaran Terbatas</div>
-            </div>
-            <div class="main-content">
-                <div class="text-zone" style="text-align: center; width: 100%;">
-                    <div class="promo-badge">DISKON 30%</div>
-                    <h2 class="promo-desc">
-                        Semua Varian <strong>Buah Potong Segar</strong> & <strong>Jus Alami</strong>!<br>
-                        <span style="color: #FF8200; font-size: 1.8rem; display: block; margin-top: 15px;">Mulai Pukul 19:00 WIB s/d Tutup Toko</span>
-                    </h2>
-                </div>
-            </div>
-            <div class="footer-bar">
-                <div>*Selama persediaan masih ada</div>
-                <div class="social-media"><i class="fa-brands fa-instagram"></i> @TokoBuahAnda</div>
-            </div>
-        </div>
-
-        <div class="slide">
-            <div class="header-bar">
-                <div class="logo-area"><i class="fa-solid fa-lemon"></i> FRUIT<span>MARKET</span></div>
-                <div class="tagline">Manfaat Sehat Hari Ini</div>
-            </div>
-            <div class="main-content">
-                <div class="text-zone">
-                    <h2 class="fruit-title">Alpukat Mentega Super</h2>
-                    <ul class="benefit-list">
-                        <li><i class="fa-solid fa-circle-check"></i> Lemak baik untuk kesehatan jantung.</li>
-                        <li><i class="fa-solid fa-circle-check"></i> Tekstur super lembut & matang pas.</li>
-                        <li><i class="fa-solid fa-circle-check"></i> Sangat baik untuk diet bernutrisi.</li>
-                    </ul>
-                    <div class="price-tag">Rp 27.500 <span style="font-size: 1.5rem; color:#FFFDF9;">/ kg</span></div>
-                </div>
-                <div class="visual-zone">
-                    <i class="fa-solid fa-seedling" style="font-size: 13rem; color: #E5F7F0;"></i>
-                </div>
-            </div>
-            <div class="footer-bar">
-                <div><i class="fa-solid fa-certificate"></i> Jaminan Kualitas Bebas Bahan Lilin</div>
-                <div class="social-media"><i class="fa-brands fa-instagram"></i> @TokoBuahAnda</div>
+        <div class="marquee-container">
+            <div class="marquee-label"><i class="fa-solid fa-circle-info" style="margin-right: 8px;"></i> Info ABS</div>
+            <div class="marquee-text">
+                Selamat Datang di Toko Buah ABS Kepanjen --- Menyediakan produk khusus buah-buahan kering berkualitas tinggi dengan rating kepuasan pelanggan 4,5 bintang! --- Alamat toko kami berada di Jl. Raya Penarukan No.2, Kec. Kepanjen, Kab. Malang, Jawa Timur 65163 --- Untuk info stok atau pemesanan paket hampers, hubungi nomor telepon kami di +62 813-3352-7527 --- Jam Operasional khusus hari Rabu buka mulai pukul 07.00 s/d 21.00 WIB --- Jaga kebugaran tubuh Anda dan keluarga dengan konsumsi buah kering kaya nutrisi setiap hari!
             </div>
         </div>
 
     </div>
 
     <script>
-        // 1. Logika Pergantian Slide Otomatis
+        // 1. Sinkronisasi Gambar Logo Otomatis dari Variabel CSS :root
+        const logoPath = getComputedStyle(document.documentElement).getPropertyValue('--logo-file').trim().replace(/['"]/g, '');
+        document.querySelectorAll('.logo-img').forEach(img => {
+            if(logoPath) img.src = logoPath;
+        });
+
+        // 2. Sistem Pergantian Slide Otomatis
         const slides = document.querySelectorAll('.slide');
         let currentSlide = 0;
-        const slideInterval = 6000; // Layar berganti setiap 6 detik (6000 ms)
+        const slideInterval = 6000; // Layar berpindah slide setiap 6 detik
 
         function nextSlide() {
             slides[currentSlide].classList.remove('active');
@@ -273,16 +397,13 @@
         }
         setInterval(nextSlide, slideInterval);
 
-        // 2. Trik Autoplay Musik Latar Belakang
-        // Banyak browser modern memblokir lagu berputar sebelum ada interaksi.
-        // Script ini akan memicu lagu berputar segera setelah layar pertama kali di-klik/sentuh di toko.
+        // 3. Sistem Pemicu Autoplay Audio Latar Belakang (Bypass Browser)
         const audio = document.getElementById('bg-music');
-        document.addEventListener('click', () => {
-            audio.play().catch(error => console.log("Musik memerlukan interaksi pertama kali."));
-        });
-        document.addEventListener('touchstart', () => {
-            audio.play().catch(error => console.log("Musik memerlukan interaksi pertama kali."));
-        });
+        const triggerMusic = () => {
+            audio.play().catch(err => console.log("Menunggu interaksi awal layar monitor."));
+        };
+        document.addEventListener('click', triggerMusic);
+        document.addEventListener('touchstart', triggerMusic);
     </script>
 </body>
 </html>
