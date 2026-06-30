@@ -1,563 +1,188 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<title>ABS Kepanjen — Pasar Buah Segar</title>
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@500;700;900&family=Space+Mono:wght@400;700&display=swap');
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Toko Buah ABS - Digital Signage</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-  :root{
-    --krem: #f2ead9;
-    --tanah: #1c1208;
-    --jeruk: #e8650f;
-    --jeruk-deep: #b8460a;
-    --limau: #8aa92e;
-    --limau-deep: #5c7320;
-    --naga: #c0233f;
-    --kuning: #f0b429;
-    --garis: #1c1208;
-  }
+    body {
+      font-family: 'Poppins', sans-serif;
+    }
 
-  *{margin:0;padding:0;box-sizing:border-box;}
+    .signage-container {
+      width: 3840px;
+      height: 2160px;
+      background: linear-gradient(135deg, #2d5016 0%, #4a7c2c 100%);
+      color: white;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      align-items: center;
+      padding: 120px;
+      text-align: center;
+    }
 
-  body{
-    width:3840px;
-    height:2160px;
-    background:var(--krem);
-    font-family:'Archivo',sans-serif;
-    overflow:hidden;
-    position:relative;
-  }
+    /* Title Section */
+    .store-name {
+      font-size: 120px;
+      font-weight: 700;
+      text-shadow: 0 6px 24px rgba(0, 0, 0, 0.4);
+      margin-bottom: 20px;
+      letter-spacing: 4px;
+    }
 
-  /* === Tekstur kertas / noise pasar === */
-  .noise{
-    position:absolute; inset:0;
-    background-image:
-      repeating-linear-gradient(0deg, rgba(28,18,8,0.025) 0px, transparent 2px, transparent 5px),
-      repeating-linear-gradient(90deg, rgba(28,18,8,0.02) 0px, transparent 2px, transparent 5px);
-    pointer-events:none;
-    z-index:1;
-  }
+    .store-tagline {
+      font-size: 80px;
+      font-weight: 500;
+      text-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+      margin-bottom: 100px;
+    }
 
-  .stage{
-    position:relative;
-    width:100%;
-    height:100%;
-    z-index:2;
-  }
+    /* Features Section */
+    .features {
+      display: flex;
+      justify-content: center;
+      gap: 150px;
+      font-size: 48px;
+      margin-bottom: 120px;
+      flex-wrap: wrap;
+    }
 
-  /* === Garis grid pasar (struktur papan) === */
-  .grid-line-v{
-    position:absolute;
-    top:0; bottom:0;
-    width:6px;
-    background:var(--garis);
-    opacity:0.08;
-  }
+    .feature-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 30px;
+    }
 
-  /* === HEADER STRIP — judul utama, dipotong miring seperti papan harga === */
-  .header-strip{
-    position:absolute;
-    top:0; left:0; right:0;
-    height:520px;
-    background:var(--tanah);
-    clip-path:polygon(0 0, 100% 0, 100% 78%, 0 100%);
-    z-index:5;
-  }
+    .feature-item .icon {
+      font-size: 100px;
+      filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+    }
 
-  .header-content{
-    position:relative;
-    height:100%;
-    display:flex;
-    align-items:center;
-    padding:0 100px;
-    gap:70px;
-  }
+    /* Contact Section */
+    .contact-section {
+      background: rgba(0, 0, 0, 0.15);
+      padding: 80px 120px;
+      border-radius: 30px;
+      backdrop-filter: blur(10px);
+      border: 2px solid rgba(255, 255, 255, 0.2);
+    }
 
-  .mark{
-    flex-shrink:0;
-    width:340px;
-    height:340px;
-    border:8px solid var(--kuning);
-    border-radius:50%;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:center;
-    position:relative;
-    animation: markIn 1.1s cubic-bezier(.2,.9,.2,1) both;
-  }
+    .contact-location {
+      font-size: 56px;
+      margin-bottom: 40px;
+      font-weight: 600;
+    }
 
-  .mark::before{
-    content:'';
-    position:absolute;
-    inset:-22px;
-    border:3px dashed var(--kuning);
-    border-radius:50%;
-    opacity:0.5;
-    animation: spinSlow 30s linear infinite;
-  }
+    .contact-whatsapp {
+      font-size: 56px;
+      margin-bottom: 60px;
+      font-weight: 600;
+      letter-spacing: 2px;
+    }
 
-  .mark-abs{
-    font-family:'Anton',sans-serif;
-    font-size:130px;
-    color:var(--kuning);
-    line-height:1;
-    letter-spacing:4px;
-  }
+    .cta-button {
+      display: inline-block;
+      background: linear-gradient(135deg, #ff6b35 0%, #ff5a1f 100%);
+      color: white;
+      padding: 40px 100px;
+      font-size: 48px;
+      border-radius: 20px;
+      border: none;
+      cursor: pointer;
+      font-weight: 700;
+      transition: all 0.3s ease;
+      box-shadow: 0 12px 40px rgba(255, 107, 53, 0.4);
+      letter-spacing: 2px;
+    }
 
-  .mark-sub{
-    font-family:'Space Mono', monospace;
-    font-size:26px;
-    color:var(--krem);
-    letter-spacing:6px;
-    margin-top:14px;
-  }
+    .cta-button:hover {
+      background: linear-gradient(135deg, #ff5a1f 0%, #ff4900 100%);
+      transform: translateY(-8px);
+      box-shadow: 0 16px 48px rgba(255, 107, 53, 0.6);
+    }
 
-  .title-block{
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    animation: titleIn 1s cubic-bezier(.2,.9,.2,1) 0.15s both;
-  }
+    /* Responsive untuk testing */
+    @media (max-width: 1920px) {
+      .signage-container {
+        width: 100%;
+        height: auto;
+        padding: 60px;
+      }
 
-  .eyebrow{
-    font-family:'Space Mono', monospace;
-    color:var(--kuning);
-    font-size:32px;
-    letter-spacing:10px;
-    margin-bottom:14px;
-  }
+      .store-name {
+        font-size: 64px;
+      }
 
-  .title-main{
-    font-family:'Anton', sans-serif;
-    font-size:188px;
-    line-height:0.92;
-    color:var(--krem);
-    letter-spacing:2px;
-  }
+      .store-tagline {
+        font-size: 48px;
+        margin-bottom: 60px;
+      }
 
-  .title-main .accent{
-    color:var(--jeruk);
-  }
+      .features {
+        gap: 80px;
+        font-size: 28px;
+        margin-bottom: 60px;
+      }
 
-  /* === PAPAN HARGA — 3 kartu kategori miring, seperti papan kayu pasar === */
-  .price-boards{
-    position:absolute;
-    top:600px;
-    left:100px;
-    right:100px;
-    display:flex;
-    gap:50px;
-    z-index:6;
-  }
+      .feature-item .icon {
+        font-size: 56px;
+      }
 
-  .board{
-    flex:1;
-    background:var(--krem);
-    border:7px solid var(--tanah);
-    border-radius:18px;
-    padding:50px 45px 40px;
-    position:relative;
-    transform:rotate(-1.2deg);
-    box-shadow: 14px 14px 0 var(--tanah);
-  }
-  .board:nth-child(2){ transform:rotate(0.8deg); }
-  .board:nth-child(3){ transform:rotate(-0.6deg); }
+      .contact-section {
+        padding: 40px 60px;
+        border-radius: 16px;
+      }
 
-  .board-tag{
-    position:absolute;
-    top:-32px;
-    left:40px;
-    font-family:'Space Mono', monospace;
-    font-size:30px;
-    background:var(--garis);
-    color:var(--krem);
-    padding:10px 26px;
-    border-radius:8px;
-    letter-spacing:4px;
-  }
+      .contact-location {
+        font-size: 36px;
+      }
 
-  .board-1{ animation: boardIn 0.9s cubic-bezier(.2,.9,.2,1) 0.3s both; }
-  .board-2{ animation: boardIn 0.9s cubic-bezier(.2,.9,.2,1) 0.45s both; }
-  .board-3{ animation: boardIn 0.9s cubic-bezier(.2,.9,.2,1) 0.6s both; }
+      .contact-whatsapp {
+        font-size: 36px;
+      }
 
-  .board-icon-row{
-    display:flex;
-    align-items:baseline;
-    gap:24px;
-    margin-bottom:18px;
-  }
-
-  .board-number{
-    font-family:'Anton', sans-serif;
-    font-size:90px;
-    line-height:1;
-  }
-
-  .board:nth-child(1) .board-number{ color:var(--jeruk); }
-  .board:nth-child(2) .board-number{ color:var(--limau-deep); }
-  .board:nth-child(3) .board-number{ color:var(--naga); }
-
-  .board-title{
-    font-family:'Anton', sans-serif;
-    font-size:64px;
-    color:var(--tanah);
-    line-height:1.05;
-  }
-
-  .board-desc{
-    font-family:'Archivo', sans-serif;
-    font-weight:500;
-    font-size:32px;
-    color:var(--tanah);
-    opacity:0.75;
-    line-height:1.4;
-    margin-top:16px;
-  }
-
-  .board-strip{
-    margin-top:34px;
-    height:8px;
-    border-radius:4px;
-  }
-  .board:nth-child(1) .board-strip{ background:var(--jeruk); }
-  .board:nth-child(2) .board-strip{ background:var(--limau); }
-  .board:nth-child(3) .board-strip{ background:var(--naga); }
-
-  /* === STAMP — jaminan kualitas, seperti cap pasar === */
-  .stamp{
-    position:absolute;
-    top:560px;
-    right:200px;
-    width:260px;
-    height:260px;
-    border:6px solid var(--naga);
-    border-radius:50%;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    transform:rotate(14deg);
-    z-index:8;
-    animation: stampIn 0.6s ease-out 1.1s both;
-  }
-
-  .stamp-text{
-    font-family:'Anton', sans-serif;
-    font-size:30px;
-    color:var(--naga);
-    text-align:center;
-    line-height:1.3;
-    letter-spacing:2px;
-  }
-
-  /* === RUNNING TEXT — satu baris info berjalan === */
-  .ticker-stack{
-    position:absolute;
-    top:1180px;
-    left:0; right:0;
-    z-index:6;
-  }
-
-  .ticker{
-    height:140px;
-    display:flex;
-    align-items:center;
-    overflow:hidden;
-    position:relative;
-    background:var(--tanah);
-    border-top:5px solid var(--jeruk);
-    border-bottom:5px solid var(--jeruk);
-  }
-
-  .ticker-track{
-    display:flex;
-    white-space:nowrap;
-    will-change: transform;
-    animation: scrollL 45s linear infinite;
-  }
-
-  .ticker-item{
-    flex-shrink:0;
-    font-family:'Anton', sans-serif;
-    font-size:58px;
-    letter-spacing:2px;
-    padding:0 50px;
-    display:flex;
-    align-items:center;
-    gap:36px;
-    color:var(--krem);
-  }
-
-  .ticker-sep{
-    font-family:'Space Mono', monospace;
-    font-size:40px;
-    color:var(--kuning);
-  }
-
-  /* === FOOTER — kontak, alamat, jam, QR === */
-  .footer{
-    position:absolute;
-    bottom:0; left:0; right:0;
-    height:580px;
-    background:var(--tanah);
-    clip-path:polygon(0 22%, 100% 0, 100% 100%, 0 100%);
-    z-index:7;
-  }
-
-  .footer-grid{
-    position:relative;
-    height:100%;
-    display:flex;
-    align-items:center;
-    padding:90px 100px 60px;
-    gap:0;
-  }
-
-  .footer-col{
-    flex:1;
-    display:flex;
-    align-items:center;
-    gap:30px;
-    padding-right:50px;
-  }
-
-  .footer-divider{
-    width:4px;
-    height:200px;
-    background:var(--jeruk);
-    opacity:0.5;
-    flex-shrink:0;
-  }
-
-  .footer-num{
-    font-family:'Anton', sans-serif;
-    font-size:50px;
-    color:var(--jeruk);
-    border:4px solid var(--jeruk);
-    border-radius:50%;
-    width:90px;
-    height:90px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    flex-shrink:0;
-  }
-
-  .footer-label{
-    font-family:'Space Mono', monospace;
-    font-size:24px;
-    color:var(--kuning);
-    letter-spacing:4px;
-    margin-bottom:10px;
-  }
-
-  .footer-value{
-    font-family:'Archivo', sans-serif;
-    font-weight:700;
-    font-size:42px;
-    color:var(--krem);
-    line-height:1.25;
-  }
-
-  .footer-qr{
-    flex:0 0 auto;
-    display:flex;
-    align-items:center;
-    gap:30px;
-  }
-
-  .qr-box{
-    width:200px;
-    height:200px;
-    background:var(--krem);
-    border-radius:14px;
-    padding:14px;
-    flex-shrink:0;
-  }
-
-  .qr-grid{
-    width:100%;
-    height:100%;
-    display:grid;
-    grid-template-columns:repeat(6,1fr);
-    grid-template-rows:repeat(6,1fr);
-    gap:6px;
-  }
-
-  .qr-grid div{ background:var(--tanah); border-radius:2px; }
-  .qr-grid div:nth-child(odd){ background:transparent; }
-  .qr-grid div:nth-child(3n){ background:var(--tanah); }
-  .qr-grid div:nth-child(5n+2){ background:var(--tanah); }
-
-  .qr-caption{
-    font-family:'Archivo', sans-serif;
-    font-weight:700;
-    font-size:30px;
-    color:var(--krem);
-    line-height:1.3;
-    max-width:220px;
-  }
-
-  .qr-caption span{ color:var(--kuning); }
-
-  /* === ANIMATIONS === */
-  @keyframes markIn{
-    from{ opacity:0; transform:scale(0.7) rotate(-15deg); }
-    to{ opacity:1; transform:scale(1) rotate(0deg); }
-  }
-  @keyframes titleIn{
-    from{ opacity:0; transform:translateX(60px); }
-    to{ opacity:1; transform:translateX(0); }
-  }
-  @keyframes boardIn{
-    from{ opacity:0; transform:translateY(70px) rotate(0deg); }
-    to{ opacity:1; }
-  }
-  @keyframes stampIn{
-    from{ opacity:0; transform:scale(0) rotate(14deg); }
-    to{ opacity:1; transform:scale(1) rotate(14deg); }
-  }
-  @keyframes spinSlow{
-    from{ transform:rotate(0deg); }
-    to{ transform:rotate(360deg); }
-  }
-  @keyframes scrollL{
-    from{ transform:translateX(0); }
-    to{ transform:translateX(-50%); }
-  }
-  @keyframes scrollR{
-    from{ transform:translateX(-50%); }
-    to{ transform:translateX(0); }
-  }
-
-  @media (prefers-reduced-motion: reduce){
-    *{ animation-duration:0.01ms !important; animation-iteration-count:1 !important; }
-  }
-</style>
+      .cta-button {
+        padding: 24px 64px;
+        font-size: 28px;
+      }
+    }
+  </style>
 </head>
 <body>
+  <div class="signage-container">
+    <div>
+      <h1 class="store-name">TOKO BUAH ABS</h1>
+      <h2 class="store-tagline">ANEKA BUAH SEGAR</h2>
 
-<div class="noise"></div>
-
-<div class="stage">
-
-  <!-- HEADER -->
-  <div class="header-strip">
-    <div class="header-content">
-      <div class="mark">
-        <div class="mark-abs">ABS</div>
-        <div class="mark-sub">KEPANJEN</div>
-      </div>
-      <div class="title-block">
-        <div class="eyebrow">PASAR BUAH RESMI · SEJAK HARI INI SEGAR</div>
-        <div class="title-main">ANEKA BUAH<br><span class="accent">SEGAR PILIHAN</span></div>
-      </div>
-    </div>
-  </div>
-
-  <!-- STAMP -->
-  <div class="stamp">
-    <div class="stamp-text">GARANSI<br>SEGAR<br>100%</div>
-  </div>
-
-  <!-- PAPAN HARGA / KATEGORI -->
-  <div class="price-boards">
-    <div class="board board-1">
-      <div class="board-tag">RAK 01</div>
-      <div class="board-icon-row">
-        <div class="board-number">01</div>
-        <div class="board-title">BUAH<br>IMPORT</div>
-      </div>
-      <div class="board-desc">Didatangkan langsung dari kebun pilihan luar negeri, kualitas premium terjaga.</div>
-      <div class="board-strip"></div>
-    </div>
-
-    <div class="board board-2">
-      <div class="board-tag">RAK 02</div>
-      <div class="board-icon-row">
-        <div class="board-number">02</div>
-        <div class="board-title">BUAH<br>LOKAL</div>
-      </div>
-      <div class="board-desc">Hasil panen petani Nusantara, dipanen matang dan diantar segar setiap hari.</div>
-      <div class="board-strip"></div>
-    </div>
-
-    <div class="board board-3">
-      <div class="board-tag">RAK 03</div>
-      <div class="board-icon-row">
-        <div class="board-number">03</div>
-        <div class="board-title">PARSEL<br>PREMIUM</div>
-      </div>
-      <div class="board-desc">Rangkaian buah eksklusif untuk hadiah, ulang tahun, dan momen spesial.</div>
-      <div class="board-strip"></div>
-    </div>
-  </div>
-
-  <!-- RUNNING TEXT -->
-  <div class="ticker-stack">
-    <div class="ticker">
-      <div class="ticker-track">
-        <div class="ticker-item">STOK FRESH SETIAP HARI <span class="ticker-sep">//</span></div>
-        <div class="ticker-item">KUALITAS TERBAIK, HARGA BERSAHABAT <span class="ticker-sep">//</span></div>
-        <div class="ticker-item">PENGIRIMAN CEPAT SE-KEPANJEN <span class="ticker-sep">//</span></div>
-        <div class="ticker-item">PESAN SEKARANG, HEMAT LEBIH BANYAK <span class="ticker-sep">//</span></div>
-        <div class="ticker-item">PAKET PARSEL BUAH UNTUK SEGALA ACARA <span class="ticker-sep">//</span></div>
-        <div class="ticker-item">BUKA SETIAP HARI 07.00 — 20.00 <span class="ticker-sep">//</span></div>
-        <div class="ticker-item">TERIMA PEMBAYARAN TUNAI & TRANSFER <span class="ticker-sep">//</span></div>
-        <div class="ticker-item">LAYANAN ANTAR UNTUK WILAYAH KEPANJEN <span class="ticker-sep">//</span></div>
-        <div class="ticker-item">STOK FRESH SETIAP HARI <span class="ticker-sep">//</span></div>
-        <div class="ticker-item">KUALITAS TERBAIK, HARGA BERSAHABAT <span class="ticker-sep">//</span></div>
-        <div class="ticker-item">PENGIRIMAN CEPAT SE-KEPANJEN <span class="ticker-sep">//</span></div>
-        <div class="ticker-item">PESAN SEKARANG, HEMAT LEBIH BANYAK <span class="ticker-sep">//</span></div>
-        <div class="ticker-item">PAKET PARSEL BUAH UNTUK SEGALA ACARA <span class="ticker-sep">//</span></div>
-        <div class="ticker-item">BUKA SETIAP HARI 07.00 — 20.00 <span class="ticker-sep">//</span></div>
-        <div class="ticker-item">TERIMA PEMBAYARAN TUNAI & TRANSFER <span class="ticker-sep">//</span></div>
-        <div class="ticker-item">LAYANAN ANTAR UNTUK WILAYAH KEPANJEN <span class="ticker-sep">//</span></div>
-      </div>
-    </div>
-  </div>
-
-  <!-- FOOTER -->
-  <div class="footer">
-    <div class="footer-grid">
-      <div class="footer-col">
-        <div class="footer-num">①</div>
-        <div>
-          <div class="footer-label">LOKASI TOKO</div>
-          <div class="footer-value">Jl. Raya Kepanjen,<br>Malang, Jawa Timur</div>
+      <div class="features">
+        <div class="feature-item">
+          <span class="icon">🍎</span>
+          <span>Buah Lokal</span>
+        </div>
+        <div class="feature-item">
+          <span class="icon">🍌</span>
+          <span>Buah Import</span>
+        </div>
+        <div class="feature-item">
+          <span class="icon">🎁</span>
+          <span>Parcel Buah</span>
         </div>
       </div>
+    </div>
 
-      <div class="footer-divider"></div>
-
-      <div class="footer-col">
-        <div class="footer-num">②</div>
-        <div>
-          <div class="footer-label">HUBUNGI KAMI</div>
-          <div class="footer-value">0812-3526-900<br>0813-3352-727</div>
-        </div>
-      </div>
-
-      <div class="footer-divider"></div>
-
-      <div class="footer-col footer-qr">
-        <div class="qr-box">
-          <div class="qr-grid">
-            <div></div><div></div><div></div><div></div><div></div><div></div>
-            <div></div><div></div><div></div><div></div><div></div><div></div>
-            <div></div><div></div><div></div><div></div><div></div><div></div>
-            <div></div><div></div><div></div><div></div><div></div><div></div>
-            <div></div><div></div><div></div><div></div><div></div><div></div>
-            <div></div><div></div><div></div><div></div><div></div><div></div>
-          </div>
-        </div>
-        <div class="qr-caption"><span>SCAN</span> untuk order langsung via WhatsApp</div>
-      </div>
+    <div class="contact-section">
+      <div class="contact-location">📍 KEPANJEN, MALANG</div>
+      <div class="contact-whatsapp">💬 WhatsApp: 081333527527</div>
+      <button class="cta-button">HUBUNGI SEKARANG</button>
     </div>
   </div>
-
-</div>
-
 </body>
 </html>
