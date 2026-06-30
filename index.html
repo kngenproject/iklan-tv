@@ -3,180 +3,296 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Toko Buah ABS - Modern Design</title>
-    <!-- Menggunakan Font Modern: Inter & Plus Jakarta Sans -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
-    
+    <title>Iklan ABS Aneka Buah Segar</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { 
-            font-family: 'Inter', sans-serif; 
-            background: #0f172a; 
-            overflow: hidden; 
+        /* Reset & Base Setup untuk Layar 4K */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
         }
-        
-        .container {
+
+        body {
             width: 3840px;
             height: 2160px;
-            /* Gradasi warna buah modern yang lebih soft dan premium */
-            background: linear-gradient(135deg, #FF9F43 0%, #FF5252 45%, #10B981 100%);
+            background: linear-gradient(135deg, #1e4d2b 0%, #0a2f1d 100%);
+            color: #ffffff;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 120px; /* Jarak aman layar TV (Overscan mitigation) */
+        }
+
+        /* Header Section */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 5px solid #ffcc00;
+            padding-bottom: 50px;
+        }
+
+        .logo-area {
             display: flex;
             align-items: center;
+            gap: 40px;
+        }
+
+        .logo-circle {
+            width: 180px;
+            height: 180px;
+            background-color: #ffcc00;
+            border-radius: 50%;
+            display: flex;
             justify-content: center;
-            flex-direction: column;
-            padding: 200px;
-            text-align: center;
-            position: relative;
+            align-items: center;
+            font-size: 80px;
+            font-weight: 900;
+            color: #1e4d2b;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
         }
 
-        /* Dekorasi latar belakang modern sebagai pengganti emoji */
-        .container::before {
-            content: '';
-            position: absolute;
-            width: 1500px;
-            height: 1500px;
-            background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0) 70%);
-            top: 10%;
-            animation: pulse 8s ease-in-out infinite;
+        .brand-name h1 {
+            font-size: 90px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            color: #ffffff;
         }
 
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); opacity: 0.6; }
-            50% { transform: scale(1.2); opacity: 0.9; }
-        }
-
-        /* Badge Atas */
-        .brand-badge {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            font-size: 55px;
+        .brand-name p {
+            font-size: 45px;
+            color: #ffcc00;
             font-weight: 600;
             text-transform: uppercase;
-            letter-spacing: 12px;
-            color: rgba(255, 255, 255, 0.9);
-            background: rgba(255, 255, 255, 0.12);
-            padding: 30px 80px;
-            border-radius: 100px;
-            border: 2px solid rgba(255, 255, 255, 0.25);
-            backdrop-filter: blur(15px);
-            margin-bottom: 100px;
-        }
-
-        .title {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            font-size: 380px;
-            font-weight: 800;
-            color: white;
-            letter-spacing: -6px;
-            line-height: 0.95;
-            margin-bottom: 40px;
-            background: linear-gradient(to bottom, #ffffff 60%, #f1f5f9);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            filter: drop-shadow(0 20px 40px rgba(0,0,0,0.15));
+            letter-spacing: 4px;
         }
 
         .tagline {
-            font-size: 110px;
-            color: rgba(255, 255, 255, 0.9);
-            margin-bottom: 140px;
-            font-weight: 300;
-            letter-spacing: -1px;
-        }
-
-        /* Grid Fitur */
-        .feature-boxes {
-            display: flex;
-            gap: 60px;
-            justify-content: center;
-            margin-bottom: 140px;
-        }
-
-        .feature {
-            background: rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(30px);
-            -webkit-backdrop-filter: blur(30px);
-            padding: 55px 90px;
-            border-radius: 40px;
-            border: 2px solid rgba(255, 255, 255, 0.2);
-            color: white;
-            font-size: 75px;
+            font-size: 55px;
+            font-style: italic;
             font-weight: 500;
-            letter-spacing: -1px;
-            box-shadow: 0 40px 100px rgba(0, 0, 0, 0.1);
+            color: #e2f0d9;
+            text-align: right;
+            max-width: 120px0px;
         }
 
-        /* Box Lokasi */
-        .location-box {
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(30px);
-            -webkit-backdrop-filter: blur(30px);
-            padding: 85px 160px;
-            border-radius: 50px;
-            border: 2px solid rgba(255, 255, 255, 0.35);
-            color: white;
-            margin-bottom: 140px;
-            box-shadow: 0 50px 120px rgba(0, 0, 0, 0.15);
+        /* Main Content Grid */
+        main {
+            display: grid;
+            grid-template-columns: 1.2fr 1.8fr;
+            gap: 100px;
+            align-items: center;
+            margin: 80px 0;
+            flex-grow: 1;
         }
 
-        .address {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            font-size: 90px;
-            font-weight: 700;
-            margin-bottom: 25px;
-            letter-spacing: -1px;
-        }
-
-        .detail {
-            font-size: 75px;
-            color: rgba(255, 255, 255, 0.85);
-            font-weight: 400;
-        }
-
-        /* Tombol Modern */
-        .btn {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background: #ffffff;
-            color: #1e293b;
-            padding: 65px 180px;
-            font-size: 90px;
-            font-weight: 700;
-            letter-spacing: 2px;
-            border: none;
+        /* Promo Banner (Kiri) */
+        .promo-side {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
             border-radius: 40px;
-            cursor: pointer;
-            box-shadow: 0 40px 90px rgba(0, 0, 0, 0.25);
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            padding: 80px;
+            border: 3px solid rgba(255, 255, 255, 0.2);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.2);
         }
 
-        .btn:hover {
-            transform: translateY(-15px);
-            background: #f8fafc;
-            box-shadow: 0 60px 110px rgba(0, 0, 0, 0.35);
+        .promo-badge {
+            background-color: #e63946;
+            color: white;
+            font-size: 45px;
+            font-weight: bold;
+            padding: 15px 40px;
+            border-radius: 50px;
+            align-self: flex-start;
+            margin-bottom: 40px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            animation: pulse 2s infinite;
+        }
+
+        .promo-side h2 {
+            font-size: 110px;
+            line-height: 1.1;
+            margin-bottom: 30px;
+            font-weight: 800;
+        }
+
+        .promo-side h2 span {
+            color: #ffcc00;
+        }
+
+        .promo-side .price {
+            font-size: 130px;
+            font-weight: 900;
+            color: #4cc9f0;
+            margin-top: 20px;
+        }
+
+        /* Grid Buah (Kanan) */
+        .grid-fruits {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 50px;
+        }
+
+        .fruit-card {
+            background: #ffffff;
+            color: #333333;
+            border-radius: 40px;
+            overflow: hidden;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.3);
+            display: flex;
+            flex-direction: column;
+            height: 550px;
+            position: relative;
+        }
+
+        /* Placeholder untuk gambar (Ganti dengan URL gambar asli Anda nanti) */
+        .fruit-image {
+            height: 350px;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 150px;
+        }
+
+        .fruit-info {
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            flex-grow: 1;
+        }
+
+        .fruit-name {
+            font-size: 55px;
+            font-weight: 700;
+            color: #1e4d2b;
+        }
+
+        .fruit-price {
+            font-size: 50px;
+            font-weight: 800;
+            color: #e63946;
+            text-align: right;
+        }
+
+        /* Footer Section */
+        footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(0, 0, 0, 0.4);
+            padding: 40px 80px;
+            border-radius: 30px;
+            font-size: 40px;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .info-item span.icon {
+            color: #ffcc00;
+            font-weight: bold;
+        }
+
+        /* Animasi berkedip lembut untuk menarik perhatian */
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <!-- Pengganti emoji: Label kategori yang clean -->
-        <div class="brand-badge">Premium Handpicked Fruits</div>
-        
-        <h1 class="title">ABS</h1>
-        <p class="tagline">Toko Buah Terpercaya</p>
 
-        <div class="feature-boxes">
-            <div class="feature">Segar 100%</div>
-            <div class="feature">Pengiriman Cepat</div>
-            <div class="feature">Berkualitas</div>
+    <!-- HEADER: Identitas Toko -->
+    <header>
+        <div class="logo-area">
+            <div class="logo-circle">ABS</div>
+            <div class="brand-name">
+                <h1>ABS ANEKA BUAH SEGAR</h1>
+                <p>Pusat Buah Segar & Berkualitas</p>
+            </div>
+        </div>
+        <div class="tagline">
+            "Setiap Hari Segar, Setiap Hari Sehat"
+        </div>
+    </header>
+
+    <!-- MAIN: Konten Utama Iklan -->
+    <main>
+        <!-- Banner Promo Utama -->
+        <div class="promo-side">
+            <div class="promo-badge">Promo Minggu Ini</div>
+            <h2>Spesial<br>Diskon <span>20%</span></h2>
+            <p style="font-size: 45px; color: #e2f0d9; line-height: 1.4;">Untuk pembelian varian buah lokal pilihan. Persediaan terbatas!</p>
+            <div class="price">Mulai Rp 15rb</div>
         </div>
 
-        <div class="location-box">
-            <div class="address">Jl. Raya Penarukan No.2</div>
-            <div class="detail">Kepanjen, Kab. Malang, Jawa Timur</div>
-        </div>
+        <!-- Grid Etalase Buah -->
+        <div class="grid-fruits">
+            <!-- Buah 1 -->
+            <div class="fruit-card">
+                <!-- Emoji digunakan sebagai placeholder gambar, silakan ganti tag div ini dengan <img> jika ada foto asli -->
+                <div class="fruit-image" style="background-color: #fff3cd;">🍎</div>
+                <div class="fruit-info">
+                    <div class="fruit-name">Apel Fuji Super</div>
+                    <div class="fruit-price">Rp 45.000 / Kg</div>
+                </div>
+            </div>
 
-        <button class="btn">BELI SEKARANG</button>
-    </div>
+            <!-- Buah 2 -->
+            <div class="fruit-card">
+                <div class="fruit-image" style="background-color: #d1e7dd;">🥑</div>
+                <div class="fruit-info">
+                    <div class="fruit-name">Alpukat Mentega</div>
+                    <div class="fruit-price">Rp 35.000 / Kg</div>
+                </div>
+            </div>
+
+            <!-- Buah 3 -->
+            <div class="fruit-card">
+                <div class="fruit-image" style="background-color: #f8d7da;">🍓</div>
+                <div class="fruit-info">
+                    <div class="fruit-name">Strawberry Fresh</div>
+                    <div class="fruit-price">Rp 25.000 / Pak</div>
+                </div>
+            </div>
+
+            <!-- Buah 4 -->
+            <div class="fruit-card">
+                <div class="fruit-image" style="background-color: #fff3cd;">🍊</div>
+                <div class="fruit-info">
+                    <div class="fruit-name">Jeruk Santang</div>
+                    <div class="fruit-price">Rp 38.000 / Kg</div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- FOOTER: Informasi Kontak/Lokasi -->
+    <footer>
+        <div class="info-item">
+            <span class="icon">📍</span> Jl. Raya Aneka Buah No. 123, Kota Sekitar
+        </div>
+        <div class="info-item">
+            <span class="icon">📞</span> WhatsApp: 0812-3456-7890
+        </div>
+        <div class="info-item">
+            <span class="icon">📸</span> @abskepanjen
+        </div>
+    </footer>
+
 </body>
 </html>
