@@ -1,9 +1,9 @@
 {
-  "version": "1.0.1",
+  "version": "1.0.2",
   "slides": [
     {
       "id": "slide-1",
-      "image": "🍎",
+      "image": "assets/apel.jpg",
       "tag": "Promo Terbatas",
       "title": "Apel Malang <span>Super Manis</span>",
       "desc": "Segar dari kebun, kaya vitamin C",
@@ -11,7 +11,7 @@
     },
     {
       "id": "slide-2",
-      "image": "🥭",
+      "image": "assets/mangga.jpg",
       "tag": "Lokal Terbaik",
       "title": "Mangga Harum Manis <span>Arumanis</span>",
       "desc": "Daging tebal, tanpa serat",
@@ -19,7 +19,7 @@
     },
     {
       "id": "slide-3",
-      "image": "🍇",
+      "image": "assets/anggur.jpg",
       "tag": "Import Premium",
       "title": "Anggur Red Globe <span>Australia</span>",
       "desc": "Manis legit, kualitas ekspor",
@@ -27,7 +27,7 @@
     },
     {
       "id": "slide-4",
-      "image": "🎁",
+      "image": "assets/parcel.jpg",
       "tag": "Parcel Spesial",
       "title": "Parcel Buah <span>Mewah</span>",
       "desc": "Isi 8 buah pilihan, kemasan elegan",
@@ -35,7 +35,7 @@
     },
     {
       "id": "slide-5",
-      "image": "🍉",
+      "image": "assets/paket-keluarga.jpg",
       "tag": "Paket Hemat",
       "title": "Paket Keluarga <span>5 kg</span>",
       "desc": "Apel + Jeruk + Pisang + Pepaya + Semangka",
