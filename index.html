@@ -11,16 +11,16 @@
             box-sizing: border-box;
         }
 
-        body {
-            width: 3840px;
-            height: 2160px;
+        html, body {
+            width: 100%;
+            height: 100vh;
             overflow: hidden;
-            background: linear-gradient(135deg, #0d5f3f 0%, #2a9d5f 50%, #4dcc80 100%);
-            font-family: 'Segoe UI', 'Arial', sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #1a5f3f 0%, #2d8f5a 50%, #4db868 100%);
             position: relative;
         }
 
-        /* Background animasi */
+        /* === BACKGROUND ANIMASI === */
         .bg-container {
             position: fixed;
             top: 0;
@@ -28,190 +28,218 @@
             width: 100%;
             height: 100%;
             z-index: 1;
-            overflow: hidden;
         }
 
         .leaf {
             position: absolute;
-            font-size: 120px;
-            opacity: 0.15;
-            animation: float 20s infinite ease-in-out;
+            font-size: 3vw;
+            opacity: 0.08;
+            filter: blur(1px);
         }
 
-        .leaf:nth-child(1) { left: 10%; animation-delay: 0s; animation-duration: 25s; }
-        .leaf:nth-child(2) { left: 25%; animation-delay: 5s; animation-duration: 30s; }
-        .leaf:nth-child(3) { left: 40%; animation-delay: 10s; animation-duration: 28s; }
-        .leaf:nth-child(4) { left: 55%; animation-delay: 3s; animation-duration: 32s; }
-        .leaf:nth-child(5) { left: 70%; animation-delay: 8s; animation-duration: 26s; }
-        .leaf:nth-child(6) { left: 85%; animation-delay: 12s; animation-duration: 29s; }
+        .leaf:nth-child(1) { left: 5%; top: 10%; animation: float1 28s infinite ease-in-out; }
+        .leaf:nth-child(2) { left: 20%; top: 20%; animation: float2 35s infinite ease-in-out; animation-delay: 5s; }
+        .leaf:nth-child(3) { right: 15%; top: 15%; animation: float3 32s infinite ease-in-out; animation-delay: 10s; }
+        .leaf:nth-child(4) { right: 5%; top: 30%; animation: float1 30s infinite ease-in-out; animation-delay: 8s; }
+        .leaf:nth-child(5) { left: 15%; bottom: 20%; animation: float2 33s infinite ease-in-out; animation-delay: 3s; }
+        .leaf:nth-child(6) { right: 20%; bottom: 25%; animation: float3 36s infinite ease-in-out; animation-delay: 12s; }
 
-        @keyframes float {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(200px) rotate(180deg); }
+        @keyframes float1 {
+            0% { transform: translateY(0) rotate(0deg); opacity: 0.08; }
+            25% { opacity: 0.12; }
+            50% { transform: translateY(100px) rotate(90deg); opacity: 0.08; }
+            75% { opacity: 0.05; }
+            100% { transform: translateY(0) rotate(0deg); opacity: 0.08; }
         }
 
-        .glow-effect {
+        @keyframes float2 {
+            0% { transform: translateY(0) rotate(0deg); opacity: 0.05; }
+            50% { transform: translateY(-80px) rotate(-90deg); opacity: 0.1; }
+            100% { transform: translateY(0) rotate(0deg); opacity: 0.05; }
+        }
+
+        @keyframes float3 {
+            0% { transform: translateY(0) rotate(0deg); opacity: 0.1; }
+            50% { transform: translateY(120px) rotate(180deg); opacity: 0.06; }
+            100% { transform: translateY(0) rotate(0deg); opacity: 0.1; }
+        }
+
+        .glow {
             position: absolute;
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
             border-radius: 50%;
-            animation: glow-pulse 6s ease-in-out infinite;
+            filter: blur(80px);
         }
 
-        .glow-effect:nth-child(7) { top: -300px; right: 10%; animation-delay: 0s; }
-        .glow-effect:nth-child(8) { bottom: -300px; left: 15%; animation-delay: 2s; }
-
-        @keyframes glow-pulse {
-            0%, 100% { opacity: 0.3; transform: scale(1); }
-            50% { opacity: 0.6; transform: scale(1.1); }
+        .glow:nth-child(7) {
+            width: 500px;
+            height: 500px;
+            top: -100px;
+            right: 5%;
+            background: radial-gradient(circle, rgba(255,255,255,0.08) 0%, transparent 70%);
+            animation: pulse 8s ease-in-out infinite;
         }
 
-        /* Main content */
-        .container {
+        .glow:nth-child(8) {
+            width: 400px;
+            height: 400px;
+            bottom: 50px;
+            left: 5%;
+            background: radial-gradient(circle, rgba(255,255,255,0.06) 0%, transparent 70%);
+            animation: pulse 10s ease-in-out infinite;
+            animation-delay: 2s;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.4; transform: scale(1); }
+            50% { opacity: 0.7; transform: scale(1.1); }
+        }
+
+        /* === MAIN CONTENT === */
+        .content {
             position: relative;
             z-index: 10;
             width: 100%;
             height: 100%;
             display: flex;
             flex-direction: column;
-            justify-content: flex-start;
+            justify-content: center;
             align-items: center;
-            padding-top: 200px;
         }
 
-        /* Logo area */
-        .logo-area {
+        /* Logo Section */
+        .logo-section {
             text-align: center;
-            margin-bottom: 80px;
+            margin-bottom: 3vh;
         }
 
-        .logo {
-            width: 280px;
-            height: 280px;
+        .logo-circle {
+            width: 12vw;
+            height: 12vw;
+            max-width: 280px;
+            max-height: 280px;
             background: rgba(255, 255, 255, 0.95);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 60px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
-            font-size: 180px;
+            margin: 0 auto 2.5vh;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.2);
+            font-size: 6vw;
+            animation: float-logo 4s ease-in-out infinite;
+        }
+
+        @keyframes float-logo {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
         }
 
         .title {
-            font-size: 140px;
-            font-weight: 900;
+            font-size: 8vw;
+            font-weight: 800;
             color: white;
-            text-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
-            letter-spacing: 4px;
-            margin-bottom: 20px;
-            filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.4));
+            text-shadow: 
+                0 4px 20px rgba(0, 0, 0, 0.25),
+                0 0 40px rgba(255, 255, 255, 0.3);
+            letter-spacing: 0.15em;
+            line-height: 1;
+            margin-bottom: 1vh;
         }
 
         .subtitle {
-            font-size: 80px;
-            color: rgba(255, 255, 255, 0.9);
+            font-size: 3.5vw;
+            color: rgba(255, 255, 255, 0.95);
             font-weight: 300;
-            letter-spacing: 2px;
-            margin-bottom: 120px;
+            letter-spacing: 0.08em;
+            line-height: 1.2;
         }
 
-        /* Running text container */
-        .ticker-area {
+        /* === TICKER AREA === */
+        .ticker-section {
             position: absolute;
             bottom: 0;
             width: 100%;
-            height: 520px;
-            background: rgba(0, 0, 0, 0.35);
-            backdrop-filter: blur(8px);
+            height: 22vh;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3));
+            backdrop-filter: blur(10px);
             display: flex;
             flex-direction: column;
-            justify-content: space-around;
-            padding: 60px 0;
+            justify-content: space-evenly;
+            align-items: center;
+            padding: 2vh 0;
             z-index: 20;
         }
 
         .ticker {
             position: relative;
-            height: 90px;
+            width: 95%;
+            height: 4.5vh;
             overflow: hidden;
             display: flex;
             align-items: center;
         }
 
-        .ticker-content {
-            display: flex;
+        .ticker-text {
+            display: inline-flex;
             align-items: center;
             white-space: nowrap;
-            font-size: 72px;
+            font-size: 2.8vw;
             font-weight: 500;
             color: white;
-            letter-spacing: 3px;
+            letter-spacing: 0.05em;
             position: absolute;
+            left: 100%;
         }
 
-        /* Ticker 1 - kanan ke kiri */
-        .ticker:nth-child(1) .ticker-content {
-            animation: scroll-left 30s linear infinite;
+        /* Ticker animations */
+        .ticker:nth-child(1) .ticker-text {
+            animation: scroll-left 35s linear infinite;
         }
 
-        /* Ticker 2 - kiri ke kanan */
-        .ticker:nth-child(2) .ticker-content {
-            animation: scroll-right 30s linear infinite;
+        .ticker:nth-child(2) .ticker-text {
+            animation: scroll-right 35s linear infinite;
         }
 
-        /* Ticker 3 - kanan ke kiri */
-        .ticker:nth-child(3) .ticker-content {
-            animation: scroll-left 30s linear infinite;
+        .ticker:nth-child(3) .ticker-text {
+            animation: scroll-left 35s linear infinite;
         }
 
-        /* Ticker 4 - kiri ke kanan */
-        .ticker:nth-child(4) .ticker-content {
-            animation: scroll-right 30s linear infinite;
+        .ticker:nth-child(4) .ticker-text {
+            animation: scroll-right 35s linear infinite;
         }
 
         @keyframes scroll-left {
-            0% {
-                left: 100%;
-            }
-            100% {
-                left: -100%;
-            }
+            from { left: 100%; }
+            to { left: -100%; }
         }
 
         @keyframes scroll-right {
-            0% {
-                left: -100%;
-            }
-            100% {
-                left: 100%;
-            }
+            from { left: -100%; }
+            to { left: 100%; }
         }
 
-        .ticker-content span.accent {
+        .ticker-text .separator {
+            margin: 0 1.5vw;
+            opacity: 0.6;
+        }
+
+        .ticker-text .highlight {
             color: #FFD700;
             font-weight: 700;
-            margin: 0 15px;
-            text-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+            text-shadow: 0 0 15px rgba(255, 215, 0, 0.4);
+            margin: 0 0.8vw;
         }
 
-        .ticker-content .separator {
-            color: rgba(255, 255, 255, 0.6);
-            margin: 0 20px;
-            font-size: 80px;
-        }
-
-        /* Safe area indicator (untuk preview, bisa dihapus di production) */
-        .safe-area {
-            position: absolute;
-            top: 150px;
-            left: 240px;
-            right: 240px;
-            bottom: 520px;
-            border: 3px dashed rgba(255, 255, 255, 0.1);
-            pointer-events: none;
-            display: none; /* Set to flex untuk development */
+        /* === RESPONSIVE === */
+        @media (max-aspect-ratio: 16/9) {
+            body {
+                font-size: 14px;
+            }
+            .title {
+                font-size: 10vw;
+            }
+            .subtitle {
+                font-size: 4vw;
+            }
         }
     </style>
 </head>
@@ -223,28 +251,26 @@
         <div class="leaf">🍃</div>
         <div class="leaf">🍃</div>
         <div class="leaf">🍃</div>
-        <div class="glow-effect"></div>
-        <div class="glow-effect"></div>
+        <div class="glow"></div>
+        <div class="glow"></div>
     </div>
 
-    <div class="safe-area"></div>
-
-    <div class="container">
-        <div class="logo-area">
-            <div class="logo">🥗</div>
-            <div class="title">ABS</div>
-            <div class="subtitle">Aneka Buah Segar</div>
+    <div class="content">
+        <div class="logo-section">
+            <div class="logo-circle">🍎</div>
+            <h1 class="title">ABS</h1>
+            <p class="subtitle">Aneka Buah Segar</p>
         </div>
     </div>
 
-    <div class="ticker-area">
+    <div class="ticker-section">
         <div class="ticker">
-            <div class="ticker-content">
+            <div class="ticker-text">
                 <span>Selamat Datang di ABS Aneka Buah Segar</span>
                 <span class="separator">•</span>
                 <span>Buah Segar Setiap Hari</span>
                 <span class="separator">•</span>
-                <span class="accent">KUALITAS TERBAIK</span>
+                <span class="highlight">KUALITAS TERBAIK</span>
                 <span class="separator">•</span>
                 <span>Harga Bersahabat</span>
                 <span class="separator">•</span>
@@ -252,32 +278,34 @@
                 <span class="separator">•</span>
                 <span>Buah Segar Setiap Hari</span>
                 <span class="separator">•</span>
-                <span class="accent">KUALITAS TERBAIK</span>
+                <span class="highlight">KUALITAS TERBAIK</span>
                 <span class="separator">•</span>
                 <span>Harga Bersahabat</span>
             </div>
         </div>
+
         <div class="ticker">
-            <div class="ticker-content">
-                <span class="accent">PROMO HARI INI</span>
+            <div class="ticker-text">
+                <span class="highlight">PROMO HARI INI</span>
                 <span class="separator">•</span>
                 <span>Melayani Ecer & Partai</span>
                 <span class="separator">•</span>
                 <span>Parcel Buah Premium</span>
                 <span class="separator">•</span>
-                <span>Pesanan untuk Berbagai Acara</span>
+                <span>Pesanan untuk Acara</span>
                 <span class="separator">•</span>
-                <span class="accent">PROMO HARI INI</span>
+                <span class="highlight">PROMO HARI INI</span>
                 <span class="separator">•</span>
                 <span>Melayani Ecer & Partai</span>
                 <span class="separator">•</span>
                 <span>Parcel Buah Premium</span>
                 <span class="separator">•</span>
-                <span>Pesanan untuk Berbagai Acara</span>
+                <span>Pesanan untuk Acara</span>
             </div>
         </div>
+
         <div class="ticker">
-            <div class="ticker-content">
+            <div class="ticker-text">
                 <span>Apel</span>
                 <span class="separator">•</span>
                 <span>Jeruk</span>
@@ -286,15 +314,13 @@
                 <span class="separator">•</span>
                 <span>Pir</span>
                 <span class="separator">•</span>
-                <span class="accent">KIWI</span>
+                <span class="highlight">KIWI</span>
                 <span class="separator">•</span>
                 <span>Melon</span>
                 <span class="separator">•</span>
                 <span>Semangka</span>
                 <span class="separator">•</span>
                 <span>Pisang</span>
-                <span class="separator">•</span>
-                <span>Buah Musiman Segar</span>
                 <span class="separator">•</span>
                 <span>Apel</span>
                 <span class="separator">•</span>
@@ -304,32 +330,31 @@
                 <span class="separator">•</span>
                 <span>Pir</span>
                 <span class="separator">•</span>
-                <span class="accent">KIWI</span>
+                <span class="highlight">KIWI</span>
                 <span class="separator">•</span>
                 <span>Melon</span>
                 <span class="separator">•</span>
                 <span>Semangka</span>
                 <span class="separator">•</span>
                 <span>Pisang</span>
-                <span class="separator">•</span>
-                <span>Buah Musiman Segar</span>
             </div>
         </div>
+
         <div class="ticker">
-            <div class="ticker-content">
+            <div class="ticker-text">
                 <span>📍 Hubungi Kami</span>
                 <span class="separator">•</span>
-                <span class="accent">BUKA SETIAP HARI</span>
+                <span class="highlight">BUKA SETIAP HARI</span>
                 <span class="separator">•</span>
-                <span>Jam Operasional 08:00 - 18:00</span>
+                <span>08:00 - 18:00</span>
                 <span class="separator">•</span>
                 <span>Terima Kasih Telah Berbelanja</span>
                 <span class="separator">•</span>
                 <span>📍 Hubungi Kami</span>
                 <span class="separator">•</span>
-                <span class="accent">BUKA SETIAP HARI</span>
+                <span class="highlight">BUKA SETIAP HARI</span>
                 <span class="separator">•</span>
-                <span>Jam Operasional 08:00 - 18:00</span>
+                <span>08:00 - 18:00</span>
                 <span class="separator">•</span>
                 <span>Terima Kasih Telah Berbelanja</span>
             </div>
