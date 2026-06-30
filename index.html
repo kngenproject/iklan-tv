@@ -1,269 +1,339 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Toko Buah ABS - Digital Signage</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ABS Aneka Buah Segar - Digital Signage</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    body {
-      font-family: 'Arial', sans-serif;
-      background: #000000;
-      overflow: hidden;
-    }
+        body {
+            width: 3840px;
+            height: 2160px;
+            overflow: hidden;
+            background: linear-gradient(135deg, #0d5f3f 0%, #2a9d5f 50%, #4dcc80 100%);
+            font-family: 'Segoe UI', 'Arial', sans-serif;
+            position: relative;
+        }
 
-    .signage-container {
-      width: 3840px;
-      height: 2160px;
-      background: #000000;
-      color: white;
-      display: grid;
-      grid-template-rows: 1fr 2fr 1fr;
-      grid-gap: 40px;
-      padding: 60px;
-    }
+        /* Background animasi */
+        .bg-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            overflow: hidden;
+        }
 
-    /* Header */
-    .header {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: flex-start;
-      border-left: 12px solid #00d4ff;
-      padding-left: 80px;
-    }
+        .leaf {
+            position: absolute;
+            font-size: 120px;
+            opacity: 0.15;
+            animation: float 20s infinite ease-in-out;
+        }
 
-    .store-name {
-      font-size: 120px;
-      font-weight: 900;
-      letter-spacing: 10px;
-      color: #ffffff;
-      text-shadow: 0 0 40px rgba(0, 212, 255, 0.6);
-      line-height: 0.9;
-      margin-bottom: 20px;
-    }
+        .leaf:nth-child(1) { left: 10%; animation-delay: 0s; animation-duration: 25s; }
+        .leaf:nth-child(2) { left: 25%; animation-delay: 5s; animation-duration: 30s; }
+        .leaf:nth-child(3) { left: 40%; animation-delay: 10s; animation-duration: 28s; }
+        .leaf:nth-child(4) { left: 55%; animation-delay: 3s; animation-duration: 32s; }
+        .leaf:nth-child(5) { left: 70%; animation-delay: 8s; animation-duration: 26s; }
+        .leaf:nth-child(6) { left: 85%; animation-delay: 12s; animation-duration: 29s; }
 
-    .store-tagline {
-      font-size: 80px;
-      font-weight: 400;
-      letter-spacing: 4px;
-      color: #888888;
-    }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(200px) rotate(180deg); }
+        }
 
-    /* Main Ticker */
-    .ticker-section {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: #0a0a0a;
-      border: 2px solid #00d4ff;
-      position: relative;
-      overflow: hidden;
-      border-radius: 8px;
-    }
+        .glow-effect {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: glow-pulse 6s ease-in-out infinite;
+        }
 
-    .ticker-wrapper {
-      width: 100%;
-      height: 100%;
-      position: relative;
-      display: flex;
-      align-items: center;
-      padding: 0 100px;
-    }
+        .glow-effect:nth-child(7) { top: -300px; right: 10%; animation-delay: 0s; }
+        .glow-effect:nth-child(8) { bottom: -300px; left: 15%; animation-delay: 2s; }
 
-    .ticker-content {
-      display: flex;
-      animation: scroll 18s linear infinite;
-      white-space: nowrap;
-    }
+        @keyframes glow-pulse {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 0.6; transform: scale(1.1); }
+        }
 
-    .ticker-item {
-      display: flex;
-      align-items: center;
-      gap: 60px;
-      margin-right: 200px;
-      flex-shrink: 0;
-    }
+        /* Main content */
+        .container {
+            position: relative;
+            z-index: 10;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            padding-top: 200px;
+        }
 
-    .ticker-label {
-      font-size: 90px;
-      font-weight: 900;
-      letter-spacing: 6px;
-      color: #ffffff;
-      text-shadow: 0 0 30px rgba(0, 212, 255, 0.8);
-      min-width: max-content;
-    }
+        /* Logo area */
+        .logo-area {
+            text-align: center;
+            margin-bottom: 80px;
+        }
 
-    .divider-ticker {
-      font-size: 60px;
-      color: #00d4ff;
-      opacity: 0.5;
-    }
+        .logo {
+            width: 280px;
+            height: 280px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 60px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+            font-size: 180px;
+        }
 
-    @keyframes scroll {
-      0% {
-        transform: translateX(0);
-      }
-      100% {
-        transform: translateX(-50%);
-      }
-    }
+        .title {
+            font-size: 140px;
+            font-weight: 900;
+            color: white;
+            text-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+            letter-spacing: 4px;
+            margin-bottom: 20px;
+            filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.4));
+        }
 
-    /* Footer - 3 Column Grid */
-    .footer {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      grid-gap: 60px;
-      align-items: center;
-    }
+        .subtitle {
+            font-size: 80px;
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 300;
+            letter-spacing: 2px;
+            margin-bottom: 120px;
+        }
 
-    .footer-item {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 40px;
-      border: 2px solid #00d4ff;
-      border-radius: 8px;
-      gap: 20px;
-    }
+        /* Running text container */
+        .ticker-area {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 520px;
+            background: rgba(0, 0, 0, 0.35);
+            backdrop-filter: blur(8px);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            padding: 60px 0;
+            z-index: 20;
+        }
 
-    .footer-label {
-      font-size: 56px;
-      font-weight: 700;
-      color: #00d4ff;
-      letter-spacing: 3px;
-      text-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
-    }
+        .ticker {
+            position: relative;
+            height: 90px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+        }
 
-    .footer-value {
-      font-size: 72px;
-      font-weight: 900;
-      color: #ffffff;
-      letter-spacing: 2px;
-      text-align: center;
-      text-shadow: 0 0 30px rgba(0, 212, 255, 0.6);
-    }
+        .ticker-content {
+            display: flex;
+            align-items: center;
+            white-space: nowrap;
+            font-size: 72px;
+            font-weight: 500;
+            color: white;
+            letter-spacing: 3px;
+            position: absolute;
+        }
 
-    /* Responsive */
-    @media (max-width: 1920px) {
-      .signage-container {
-        width: 100%;
-        height: auto;
-        min-height: 100vh;
-        grid-template-rows: auto 600px auto;
-        grid-gap: 30px;
-        padding: 40px;
-      }
+        /* Ticker 1 - kanan ke kiri */
+        .ticker:nth-child(1) .ticker-content {
+            animation: scroll-left 30s linear infinite;
+        }
 
-      .header {
-        padding-left: 40px;
-        border-left: 8px solid #00d4ff;
-      }
+        /* Ticker 2 - kiri ke kanan */
+        .ticker:nth-child(2) .ticker-content {
+            animation: scroll-right 30s linear infinite;
+        }
 
-      .store-name {
-        font-size: 64px;
-        letter-spacing: 5px;
-        margin-bottom: 10px;
-      }
+        /* Ticker 3 - kanan ke kiri */
+        .ticker:nth-child(3) .ticker-content {
+            animation: scroll-left 30s linear infinite;
+        }
 
-      .store-tagline {
-        font-size: 44px;
-        letter-spacing: 2px;
-      }
+        /* Ticker 4 - kiri ke kanan */
+        .ticker:nth-child(4) .ticker-content {
+            animation: scroll-right 30s linear infinite;
+        }
 
-      .ticker-section {
-        border-width: 1px;
-        border-radius: 4px;
-      }
+        @keyframes scroll-left {
+            0% {
+                left: 100%;
+            }
+            100% {
+                left: -100%;
+            }
+        }
 
-      .ticker-wrapper {
-        padding: 0 50px;
-      }
+        @keyframes scroll-right {
+            0% {
+                left: -100%;
+            }
+            100% {
+                left: 100%;
+            }
+        }
 
-      .ticker-label {
-        font-size: 48px;
-        letter-spacing: 3px;
-      }
+        .ticker-content span.accent {
+            color: #FFD700;
+            font-weight: 700;
+            margin: 0 15px;
+            text-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+        }
 
-      .divider-ticker {
-        font-size: 32px;
-      }
+        .ticker-content .separator {
+            color: rgba(255, 255, 255, 0.6);
+            margin: 0 20px;
+            font-size: 80px;
+        }
 
-      .footer {
-        grid-template-columns: repeat(3, 1fr);
-        grid-gap: 30px;
-      }
-
-      .footer-item {
-        padding: 24px;
-        border-width: 1px;
-        border-radius: 4px;
-        gap: 12px;
-      }
-
-      .footer-label {
-        font-size: 32px;
-      }
-
-      .footer-value {
-        font-size: 40px;
-      }
-    }
-  </style>
+        /* Safe area indicator (untuk preview, bisa dihapus di production) */
+        .safe-area {
+            position: absolute;
+            top: 150px;
+            left: 240px;
+            right: 240px;
+            bottom: 520px;
+            border: 3px dashed rgba(255, 255, 255, 0.1);
+            pointer-events: none;
+            display: none; /* Set to flex untuk development */
+        }
+    </style>
 </head>
 <body>
-  <div class="signage-container">
-    <!-- Header -->
-    <div class="header">
-      <h1 class="store-name">TOKO BUAH ABS</h1>
-      <h2 class="store-tagline">Aneka Buah Segar</h2>
+    <div class="bg-container">
+        <div class="leaf">🍃</div>
+        <div class="leaf">🍃</div>
+        <div class="leaf">🍃</div>
+        <div class="leaf">🍃</div>
+        <div class="leaf">🍃</div>
+        <div class="leaf">🍃</div>
+        <div class="glow-effect"></div>
+        <div class="glow-effect"></div>
     </div>
 
-    <!-- Main Ticker -->
-    <div class="ticker-section">
-      <div class="ticker-wrapper">
-        <div class="ticker-content">
-          <div class="ticker-item">
-            <span class="ticker-label">BUAH LOKAL</span>
-            <span class="divider-ticker">•</span>
-            <span class="ticker-label">BUAH IMPORT</span>
-            <span class="divider-ticker">•</span>
-            <span class="ticker-label">PARCEL BUAH</span>
-          </div>
-          <div class="ticker-item">
-            <span class="ticker-label">BUAH LOKAL</span>
-            <span class="divider-ticker">•</span>
-            <span class="ticker-label">BUAH IMPORT</span>
-            <span class="divider-ticker">•</span>
-            <span class="ticker-label">PARCEL BUAH</span>
-          </div>
+    <div class="safe-area"></div>
+
+    <div class="container">
+        <div class="logo-area">
+            <div class="logo">🥗</div>
+            <div class="title">ABS</div>
+            <div class="subtitle">Aneka Buah Segar</div>
         </div>
-      </div>
     </div>
 
-    <!-- Footer Contact -->
-    <div class="footer">
-      <div class="footer-item">
-        <div class="footer-label">LOKASI</div>
-        <div class="footer-value">KEPANJEN<br>MALANG</div>
-      </div>
-
-      <div class="footer-item">
-        <div class="footer-label">WHATSAPP</div>
-        <div class="footer-value">081333527527</div>
-      </div>
-
-      <div class="footer-item">
-        <div class="footer-label">JAM BUKA</div>
-        <div class="footer-value">SETIAP HARI<br>BUKA</div>
-      </div>
+    <div class="ticker-area">
+        <div class="ticker">
+            <div class="ticker-content">
+                <span>Selamat Datang di ABS Aneka Buah Segar</span>
+                <span class="separator">•</span>
+                <span>Buah Segar Setiap Hari</span>
+                <span class="separator">•</span>
+                <span class="accent">KUALITAS TERBAIK</span>
+                <span class="separator">•</span>
+                <span>Harga Bersahabat</span>
+                <span class="separator">•</span>
+                <span>Selamat Datang di ABS Aneka Buah Segar</span>
+                <span class="separator">•</span>
+                <span>Buah Segar Setiap Hari</span>
+                <span class="separator">•</span>
+                <span class="accent">KUALITAS TERBAIK</span>
+                <span class="separator">•</span>
+                <span>Harga Bersahabat</span>
+            </div>
+        </div>
+        <div class="ticker">
+            <div class="ticker-content">
+                <span class="accent">PROMO HARI INI</span>
+                <span class="separator">•</span>
+                <span>Melayani Ecer & Partai</span>
+                <span class="separator">•</span>
+                <span>Parcel Buah Premium</span>
+                <span class="separator">•</span>
+                <span>Pesanan untuk Berbagai Acara</span>
+                <span class="separator">•</span>
+                <span class="accent">PROMO HARI INI</span>
+                <span class="separator">•</span>
+                <span>Melayani Ecer & Partai</span>
+                <span class="separator">•</span>
+                <span>Parcel Buah Premium</span>
+                <span class="separator">•</span>
+                <span>Pesanan untuk Berbagai Acara</span>
+            </div>
+        </div>
+        <div class="ticker">
+            <div class="ticker-content">
+                <span>Apel</span>
+                <span class="separator">•</span>
+                <span>Jeruk</span>
+                <span class="separator">•</span>
+                <span>Anggur</span>
+                <span class="separator">•</span>
+                <span>Pir</span>
+                <span class="separator">•</span>
+                <span class="accent">KIWI</span>
+                <span class="separator">•</span>
+                <span>Melon</span>
+                <span class="separator">•</span>
+                <span>Semangka</span>
+                <span class="separator">•</span>
+                <span>Pisang</span>
+                <span class="separator">•</span>
+                <span>Buah Musiman Segar</span>
+                <span class="separator">•</span>
+                <span>Apel</span>
+                <span class="separator">•</span>
+                <span>Jeruk</span>
+                <span class="separator">•</span>
+                <span>Anggur</span>
+                <span class="separator">•</span>
+                <span>Pir</span>
+                <span class="separator">•</span>
+                <span class="accent">KIWI</span>
+                <span class="separator">•</span>
+                <span>Melon</span>
+                <span class="separator">•</span>
+                <span>Semangka</span>
+                <span class="separator">•</span>
+                <span>Pisang</span>
+                <span class="separator">•</span>
+                <span>Buah Musiman Segar</span>
+            </div>
+        </div>
+        <div class="ticker">
+            <div class="ticker-content">
+                <span>📍 Hubungi Kami</span>
+                <span class="separator">•</span>
+                <span class="accent">BUKA SETIAP HARI</span>
+                <span class="separator">•</span>
+                <span>Jam Operasional 08:00 - 18:00</span>
+                <span class="separator">•</span>
+                <span>Terima Kasih Telah Berbelanja</span>
+                <span class="separator">•</span>
+                <span>📍 Hubungi Kami</span>
+                <span class="separator">•</span>
+                <span class="accent">BUKA SETIAP HARI</span>
+                <span class="separator">•</span>
+                <span>Jam Operasional 08:00 - 18:00</span>
+                <span class="separator">•</span>
+                <span>Terima Kasih Telah Berbelanja</span>
+            </div>
+        </div>
     </div>
-  </div>
 </body>
 </html>
