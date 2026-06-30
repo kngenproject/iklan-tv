@@ -33,12 +33,27 @@
             cursor: none;
         }
 
+        /* Background Pattern/Texture */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 20% 50%, rgba(255, 130, 0, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(10, 41, 30, 0.4) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: -1;
+        }
+
         /* Container Utama 4K */
         .signage-container {
             position: relative;
             width: 100%;
             height: 100%;
-            background: radial-gradient(circle at center, #144534 0%, var(--primary-green) 100%);
+            background: linear-gradient(135deg, #051f17 0%, #0a291e 50%, #144534 100%);
             color: var(--text-cream);
             display: flex;
             flex-direction: column;
@@ -51,7 +66,7 @@
             position: relative;
             flex-grow: 1;
             width: 100%;
-            height: calc(100% - 130px);
+            height: calc(100% - 280px);
         }
 
         .slide {
@@ -66,7 +81,7 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            padding: 6vh 6vw; /* Diperlebar jaraknya mengikuti teks yang membesar */
+            padding: 80px 180px;
         }
 
         .slide.active {
@@ -79,48 +94,51 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 10px solid var(--accent-orange); /* Dipertebal */
-            padding-bottom: 3vh;
-            margin-bottom: 2vh;
+            border-bottom: 12px solid var(--accent-orange);
+            padding-bottom: 40px;
+            margin-bottom: 30px;
         }
 
         .brand-text {
             font-family: 'Poppins', sans-serif;
-            font-size: 6.5vw; /* DIPERBESAR */
+            font-size: 140px;
             font-weight: 900;
-            letter-spacing: 4px;
+            letter-spacing: 6px;
             text-transform: uppercase;
             line-height: 1;
+            text-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
         }
 
         .brand-text span {
             color: var(--accent-orange);
-            text-shadow: 0 0 50px rgba(255, 130, 0, 0.5);
+            text-shadow: 0 0 50px rgba(255, 130, 0, 0.6);
         }
 
-        /* Widget Jam Tanpa Bingkai/Kotak Latar Belakang */
+        /* Widget Jam */
         .live-clock-box {
             text-align: right;
             font-family: 'Poppins', sans-serif;
-            background: none; /* Hapus latar belakang */
-            padding: 0; /* Hapus padding internal kotak */
-            border-left: none; /* Hapus garis pembatas oranye */
+            background: none;
+            padding: 0;
+            border-left: none;
         }
+        
         #live-time {
-            font-size: 4vw; /* DIPERBESAR */
+            font-size: 90px;
             font-weight: 900;
             color: var(--text-cream);
             display: block;
             line-height: 1;
             text-shadow: 0 0 30px rgba(255, 255, 255, 0.2);
         }
+        
         #live-date {
-            font-size: 1.5vw; /* DIPERBESAR */
+            font-size: 32px;
             color: var(--text-muted);
             font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-top: 0.5vh;
+            letter-spacing: 3px;
+            margin-top: 12px;
         }
 
         /* Layout Grid Konten */
@@ -129,8 +147,8 @@
             align-items: center;
             justify-content: space-between;
             flex-grow: 1;
-            gap: 5vw;
-            margin: 3vh 0;
+            gap: 120px;
+            margin: 40px 0;
         }
 
         .text-zone {
@@ -144,72 +162,86 @@
             align-items: center;
         }
 
-        /* Judul Konten Raksasa */
+        /* Judul Konten */
         .welcome-title {
-            font-size: 9.5vw; /* DIPERBESAR EKSTREM */
+            font-size: 160px;
             font-family: 'Poppins', sans-serif;
             font-weight: 900;
-            line-height: 1.05;
-            margin-bottom: 3vh;
-            letter-spacing: -3px;
-            text-shadow: 0 15px 40px rgba(0,0,0,0.4);
+            line-height: 1.1;
+            margin-bottom: 50px;
+            letter-spacing: -2px;
+            text-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
         }
 
         .welcome-title span {
             color: var(--accent-orange);
             display: block;
+            text-shadow: 0 0 60px rgba(255, 130, 0, 0.3);
         }
 
-        /* Subdeskripsi Slide 1 */
+        /* Subdeskripsi */
         .welcome-sub {
-            font-size: 3.5vw; /* DIPERBESAR */
+            font-size: 56px;
             color: #E5F7F0;
             font-weight: 600;
-            line-height: 1.4;
+            line-height: 1.5;
+            letter-spacing: 0.5px;
         }
 
         .rating-box {
-            font-size: 3vw; /* DIPERBESAR */
+            font-size: 52px;
             color: #FFD700;
-            margin-top: 4vh;
+            margin-top: 60px;
             background: rgba(0, 0, 0, 0.3);
             display: inline-flex;
             align-items: center;
-            padding: 2.5vh 3vw;
-            border-radius: 25px;
-            gap: 0.8vw;
+            padding: 35px 60px;
+            border-radius: 35px;
+            gap: 20px;
             font-weight: 800;
+            border: 3px solid rgba(255, 130, 0, 0.2);
+            box-shadow: 0 0 40px rgba(255, 130, 0, 0.15);
         }
 
         /* Slide Promo */
         .promo-badge {
-            background: linear-gradient(45deg, var(--accent-orange), #ffaa00);
+            background: linear-gradient(135deg, #FF8200 0%, #ffaa00 100%);
             color: var(--text-cream);
-            font-size: 8vw; /* DIPERBESAR */
+            font-size: 140px;
             font-weight: 900;
-            padding: 3.5vh 6vw;
-            border-radius: 40px;
+            padding: 60px 120px;
+            border-radius: 50px;
             display: inline-block;
-            box-shadow: 0 35px 70px rgba(0,0,0,0.5);
+            box-shadow: 0 35px 80px rgba(255, 130, 0, 0.3);
             animation: pulse 2s infinite;
-            letter-spacing: 2px;
+            letter-spacing: 3px;
+            border: 4px solid rgba(255, 255, 255, 0.1);
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
         }
 
         .promo-desc {
-            font-size: 4.5vw; /* DIPERBESAR */
-            margin-top: 6vh;
-            line-height: 1.4;
+            font-size: 70px;
+            margin-top: 80px;
+            line-height: 1.5;
             color: #E5F7F0;
             font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .promo-desc span {
+            color: var(--accent-orange);
+            font-size: 65px;
+            text-shadow: 0 0 40px rgba(255, 130, 0, 0.2);
         }
 
         /* Slide Informasi */
         .info-title {
-            font-size: 6vw; /* DIPERBESAR */
+            font-size: 100px;
             font-family: 'Poppins', sans-serif;
             font-weight: 900;
             color: var(--text-cream);
-            margin-bottom: 5vh;
+            margin-bottom: 60px;
+            text-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
         }
 
         .benefit-list {
@@ -217,17 +249,21 @@
         }
 
         .benefit-list li {
-            font-size: 3.5vw; /* DIPERBESAR */
-            margin-bottom: 4vh;
+            font-size: 54px;
+            margin-bottom: 50px;
             display: flex;
             align-items: center;
-            font-weight: 700; /* Dibuat lebih tebal agar kontras di 4K */
+            font-weight: 700;
+            line-height: 1.4;
+            letter-spacing: 0.3px;
+            color: #E5F7F0;
         }
 
         .benefit-list i {
             color: var(--accent-orange);
-            margin-right: 2.5vw;
-            font-size: 4.2vw;
+            margin-right: 40px;
+            font-size: 70px;
+            text-shadow: 0 0 30px rgba(255, 130, 0, 0.2);
         }
 
         /* Footer Bar */
@@ -235,29 +271,31 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            font-size: 2.4vw; /* DIPERBESAR */
+            font-size: 44px;
             color: var(--text-muted);
-            border-top: 5px solid rgba(255,255,255,0.15);
-            padding-top: 3vh;
+            border-top: 6px solid rgba(255, 130, 0, 0.2);
+            padding-top: 35px;
             font-weight: 800;
         }
 
         .footer-bar i {
             color: var(--accent-orange);
-            margin-right: 1.2vw;
+            margin-right: 20px;
+            text-shadow: 0 0 20px rgba(255, 130, 0, 0.15);
         }
 
         /* ================= MARQUEE RUNNING TEXT ================= */
         .marquee-container {
             width: 100%;
-            height: 130px;
-            background: #061f16;
-            border-top: 6px solid var(--accent-orange);
+            height: 280px;
+            background: linear-gradient(to right, #061f16, #0a291e);
+            border-top: 8px solid var(--accent-orange);
             overflow: hidden;
             position: relative;
             display: flex;
             align-items: center;
             z-index: 999;
+            box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.4);
         }
 
         .marquee-label {
@@ -265,25 +303,25 @@
             left: 0;
             top: 0;
             height: 100%;
-            background: var(--accent-orange);
+            background: linear-gradient(135deg, var(--accent-orange), #ffaa00);
             color: var(--text-cream);
-            padding: 0 3vw;
+            padding: 0 60px;
             display: flex;
             align-items: center;
             font-weight: 900;
-            font-size: 2.2vw;
+            font-size: 44px;
             z-index: 10;
-            box-shadow: 25px 0 30px rgba(0,0,0,0.5);
+            box-shadow: 25px 0 40px rgba(0, 0, 0, 0.5);
             text-transform: uppercase;
-            letter-spacing: 2px;
+            letter-spacing: 3px;
         }
 
         .marquee-text {
             display: inline-block;
             white-space: nowrap;
             padding-left: 100%;
-            animation: marquee 60s linear infinite; 
-            font-size: 2.3vw;
+            animation: marquee 80s linear infinite;
+            font-size: 42px;
             font-weight: 600;
             color: var(--text-cream);
             letter-spacing: 2px;
@@ -332,11 +370,11 @@
                             <i class="fa-solid fa-star"></i>
                             <i class="fa-solid fa-star"></i>
                             <i class="fa-solid fa-star-half-stroke"></i>
-                            <span style="color: var(--text-cream); margin-left: 1vw;">4.5 Google Review</span>
+                            <span style="color: var(--text-cream); margin-left: 20px;">4.5 Google Review</span>
                         </div>
                     </div>
                     <div class="visual-zone">
-                        <i class="fa-solid fa-box-open" style="font-size: 22vw; color: var(--accent-orange); opacity: 0.9;"></i>
+                        <i class="fa-solid fa-box-open" style="font-size: 420px; color: var(--accent-orange); opacity: 0.85; filter: drop-shadow(0 0 60px rgba(255, 130, 0, 0.2));"></i>
                     </div>
                 </div>
                 <div class="footer-bar">
@@ -349,7 +387,7 @@
                 <div class="header-bar">
                     <div class="brand-text">TOKO BUAH <span>ABS</span></div>
                     <div class="live-clock-box">
-                        <span class="live-time-alt" style="font-size: 4vw; font-weight: 900; color: var(--text-cream);">00:00:00</span>
+                        <span class="live-time-alt" style="font-size: 90px; font-weight: 900; color: var(--text-cream);">00:00:00</span>
                     </div>
                 </div>
                 <div class="main-content">
@@ -357,7 +395,7 @@
                         <div class="promo-badge">PROMO MINGGU INI</div>
                         <h2 class="promo-desc">
                             Ubah Pola Hidup Lebih Praktis & Bernutrisi!<br><br>
-                            <span style="color: var(--accent-orange); font-size: 4vw; display: block; font-weight: 800; line-height: 1.4;">Sedia aneka kismis, kurma, buah tin, dan aprikot kering kaya antioksidan.</span>
+                            <span>Sedia aneka kismis, kurma, buah tin, dan aprikot kering kaya antioksidan.</span>
                         </h2>
                     </div>
                 </div>
@@ -371,7 +409,7 @@
                 <div class="header-bar">
                     <div class="brand-text">TOKO BUAH <span>ABS</span></div>
                     <div class="live-clock-box">
-                        <span class="live-time-alt" style="font-size: 4vw; font-weight: 900; color: var(--text-cream);">00:00:00</span>
+                        <span class="live-time-alt" style="font-size: 90px; font-weight: 900; color: var(--text-cream);">00:00:00</span>
                     </div>
                 </div>
                 <div class="main-content">
@@ -384,7 +422,7 @@
                         </ul>
                     </div>
                     <div class="visual-zone">
-                        <i class="fa-solid fa-heart-pulse" style="font-size: 18vw; color: #E5F7F0;"></i>
+                        <i class="fa-solid fa-heart-pulse" style="font-size: 340px; color: #E5F7F0; filter: drop-shadow(0 0 50px rgba(229, 247, 240, 0.2));"></i>
                     </div>
                 </div>
                 <div class="footer-bar">
@@ -395,7 +433,7 @@
         </div>
 
         <div class="marquee-container">
-            <div class="marquee-label"><i class="fa-solid fa-circle-info" style="margin-right: 1.5vw;"></i> Info Toko</div>
+            <div class="marquee-label"><i class="fa-solid fa-circle-info" style="margin-right: 25px;"></i> Info Toko</div>
             <div class="marquee-text">
                 Selamat Datang di Toko Buah ABS Kepanjen --- Menyediakan produk khusus buah-buahan kering berkualitas tinggi dengan rating kepuasan pelanggan 4,5 bintang! --- Alamat toko kami berada di Jl. Raya Penarukan No.2, Kec. Kepanjen, Kab. Malang, Jawa Timur 65163 --- Untuk info stok atau pemesanan paket hampers, hubungi nomor telepon kami di +62 813-3352-7527 --- Jam Operasional khusus hari Rabu buka mulai pukul 07.00 s/d 21.00 WIB --- Jaga kebugaran tubuh Anda dan keluarga dengan konsumsi buah kering kaya nutrisi setiap hari!
             </div>
@@ -403,7 +441,7 @@
 
     </div>
 
-    <script {nonce-123}>
+    <script>
         // 1. Logika Jam Real-Time
         function updateClock() {
             const now = new Date();
