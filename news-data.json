@@ -3,283 +3,279 @@
   "slides": [
     {
       "id": "slide-1",
-      "title": "🔴 Headline Utama Hari Ini",
-      "badge": "BREAKING",
-      "badgeColor": "#b71c1c",
+      "title": "🍎 Produk Unggulan Hari Ini",
+      "badge": "SEGAR",
+      "badgeColor": "#2e7d32",
       "items": [
         {
-          "tag": "Teratas",
-          "tagColor": "#b71c1c",
-          "title": "Presiden Resmikan Proyek Infrastruktur Hijau Senilai Rp 120 T",
-          "summary": "Proyek mencakup pembangunan 12 bendungan dan 800 km jalur kereta listrik yang ditargetkan selesai 2028.",
-          "source": "Kompas.com",
-          "time": "2 jam lalu"
+          "tag": "Lokal",
+          "tagColor": "#2e7d32",
+          "title": "Apel Malang Super Manis",
+          "summary": "Apel hijau segar dari kebun sendiri, kaya vitamin C dan serat. Cocok untuk camilan sehat.",
+          "source": "Petani Lokal",
+          "time": "Rp 25.000/kg"
         },
         {
-          "tag": "Ekonomi",
-          "tagColor": "#1565c0",
-          "title": "Inflasi Terkendali di 2,8%, BI Pertahankan Suku Bunga 5,75%",
-          "summary": "Bank Indonesia menilai stabilitas harga tetap terjaga seiring dengan kuatnya nilai tukar rupiah dan konsumsi domestik.",
-          "source": "CNN Indonesia",
-          "time": "4 jam lalu"
+          "tag": "Import",
+          "tagColor": "#4caf50",
+          "title": "Anggur Red Globe Australia",
+          "summary": "Anggur merah besar dengan rasa manis legit, langsung diimpor dari Australia. Kualitas premium.",
+          "source": "Importir Resmi",
+          "time": "Rp 75.000/kg"
         },
         {
-          "tag": "Internasional",
+          "tag": "Parfait",
           "tagColor": "#e65100",
-          "title": "G20 Sepakati Paket Bantuan Pangan Global untuk Negara Berkembang",
-          "summary": "Paket senilai $5 miliar akan difokuskan pada ketahanan pangan di Afrika dan Asia Tenggara.",
-          "source": "Reuters",
-          "time": "6 jam lalu"
+          "title": "Parcel Buah Spesial Lebaran",
+          "summary": "Paket parcel berisi 5 jenis buah pilihan, dikemas cantik untuk hadiah atau acara spesial.",
+          "source": "Toko Buah ABS",
+          "time": "Mulai Rp 150.000"
         }
       ]
     },
     {
       "id": "slide-2",
-      "title": "🏛️ Politik & Pemerintahan",
-      "badge": "Update",
-      "badgeColor": "#1565c0",
+      "title": "🥭 Buah Lokal Segar",
+      "badge": "Lokal",
+      "badgeColor": "#2e7d32",
       "items": [
         {
-          "tag": "DPR",
-          "tagColor": "#1565c0",
-          "title": "DPR Sahkan RUU Perlindungan Data Pribadi Final",
-          "summary": "Regulasi ini mengatur sanksi denda hingga 2% dari pendapatan tahunan bagi pelanggar kebocoran data.",
-          "source": "Detik.com",
-          "time": "3 jam lalu"
+          "tag": "Mangga",
+          "tagColor": "#2e7d32",
+          "title": "Mangga Harum Manis (Arumanis)",
+          "summary": "Mangga lokal dengan aroma harum dan daging manis tanpa serat. Panen langsung dari kebun.",
+          "source": "Desa Bumiayu",
+          "time": "Rp 30.000/kg"
         },
         {
-          "tag": "Kebijakan",
-          "tagColor": "#1565c0",
-          "title": "Pemerintah Siapkan Subsidi Pupuk Rp 45 Triliun untuk Petani",
-          "summary": "Subsidi menyasar 12 juta petani dengan sistem digital berbasis kartu tani untuk tepat sasaran.",
-          "source": "Tempo.co",
-          "time": "5 jam lalu"
+          "tag": "Jeruk",
+          "tagColor": "#2e7d32",
+          "title": "Jeruk Pamelo Merah",
+          "summary": "Buah jeruk besar dengan daging merah segar dan rasa manis-asam. Kaya vitamin C.",
+          "source": "Kepanjen, Malang",
+          "time": "Rp 20.000/buah"
         },
         {
-          "tag": "Diplomasi",
-          "tagColor": "#1565c0",
-          "title": "Menlu Bertemu Utusan Khusus PBB Bahas Krisis Myanmar",
-          "summary": "Pertemuan berlangsung di sela-sela pertemuan ASEAN di Jakarta untuk mendorong dialog damai.",
-          "source": "Antara News",
-          "time": "7 jam lalu"
+          "tag": "Naga",
+          "tagColor": "#2e7d32",
+          "title": "Buah Naga Merah Super",
+          "summary": "Buah naga merah dengan daging merah keunguan, kaya antioksidan, cocok untuk diet.",
+          "source": "Petani Organik",
+          "time": "Rp 35.000/kg"
         }
       ]
     },
     {
       "id": "slide-3",
-      "title": "📈 Ekonomi & Bisnis",
-      "badge": "Pasar",
-      "badgeColor": "#2e7d32",
+      "title": "🍇 Buah Import Premium",
+      "badge": "Import",
+      "badgeColor": "#4caf50",
       "items": [
         {
-          "tag": "Pasar Modal",
-          "tagColor": "#2e7d32",
-          "title": "IHSG Tembus 7.500, Dibanjiri Asing Selama Sepekan",
-          "summary": "Investor asing catat net buy Rp 3,2 triliun, didorong sentimen penurunan suku bunga global.",
-          "source": "Bisnis.com",
-          "time": "2 jam lalu"
+          "tag": "Durian",
+          "tagColor": "#4caf50",
+          "title": "Durian Musang King (Malaysia)",
+          "summary": "Durian premium dengan daging tebal, kuning, dan rasa manis pahit khas. Beku segar.",
+          "source": "Impor Malaysia",
+          "time": "Rp 250.000/kg"
         },
         {
-          "tag": "Korporasi",
-          "tagColor": "#2e7d32",
-          "title": "GoTo dan Grab Ekspansi Layanan Logistik Antar Kota",
-          "summary": "Kolaborasi dengan perusahaan BUMN untuk memperluas jangkauan pengiriman ke 500 kabupaten/kota.",
-          "source": "CNBC Indonesia",
-          "time": "4 jam lalu"
+          "tag": "Blueberry",
+          "tagColor": "#4caf50",
+          "title": "Blueberry Segar (USA)",
+          "summary": "Blueberry besar dan manis, kaya antioksidan. Dikirim langsung dari California.",
+          "source": "USA Import",
+          "time": "Rp 120.000/box"
         },
         {
-          "tag": "UMKM",
-          "tagColor": "#2e7d32",
-          "title": "KUR 2026 Disiapkan Rp 350 Triliun, Bunga Turun Jadi 4,5%",
-          "summary": "Pemerintah dorong akses pembiayaan bagi pelaku usaha mikro dan kecil dengan skema baru.",
-          "source": "Kontan.co.id",
-          "time": "6 jam lalu"
+          "tag": "Cherry",
+          "tagColor": "#4caf50",
+          "title": "Cherry Chile (Rainier)",
+          "summary": "Cherry putih keemasan dengan rasa manis segar. Musim panen terbaik dari Chile.",
+          "source": "Chile Import",
+          "time": "Rp 180.000/kg"
         }
       ]
     },
     {
       "id": "slide-4",
-      "title": "⚽ Olahraga",
-      "badge": "Skor",
+      "title": "🎁 Parcel Buah Spesial",
+      "badge": "Hadiah",
       "badgeColor": "#e65100",
       "items": [
         {
-          "tag": "Sepakbola",
+          "tag": "Paket Ekonomis",
           "tagColor": "#e65100",
-          "title": "Timnas U-20 Lolos ke Piala Dunia usai Kalahkan Australia 2-1",
-          "summary": "Gol kemenangan dicetak Marselino Ferdinan di menit ke-89, memastikan tiket ke turnamen dunia.",
-          "source": "Bola.net",
-          "time": "1 jam lalu"
+          "title": "Parcel Hemat (5 buah)",
+          "summary": "Apel, jeruk, pir, anggur, dan melon. Dikemas rapi, cocok untuk hadiah ulang tahun.",
+          "source": "Toko Buah ABS",
+          "time": "Rp 150.000"
         },
         {
-          "tag": "Bulu Tangkis",
+          "tag": "Paket Premium",
           "tagColor": "#e65100",
-          "title": "Jonatan Christie Juara All England 2026, Kalahkan Viktor Axelsen",
-          "summary": "Kemenangan straight game 21-19, 21-17 membawa pulang gelar perdana dari Birmingham.",
-          "source": "Sportstars",
-          "time": "3 jam lalu"
+          "title": "Parcel Mewah (8 buah)",
+          "summary": "Durian, mangga, naga, blueberry, cherry, apel, jeruk, dan alpukat. Kemasan elegan.",
+          "source": "Toko Buah ABS",
+          "time": "Rp 350.000"
         },
         {
-          "tag": "Basket",
+          "tag": "Paket Sehat",
           "tagColor": "#e65100",
-          "title": "NBA Playoff: Lakers vs Celtics, Pertarungan Legenda di Final",
-          "summary": "LeBron James dan Jayson Tatum bersaing dalam duel terbaik musim ini untuk memperebutkan gelar.",
-          "source": "ESPN",
-          "time": "5 jam lalu"
+          "title": "Parcel Diet (6 buah organik)",
+          "summary": "Buah organik pilihan: apel hijau, jeruk, pisang, pepaya, nanas, dan kiwi.",
+          "source": "Toko Buah ABS",
+          "time": "Rp 220.000"
         }
       ]
     },
     {
       "id": "slide-5",
-      "title": "💻 Teknologi & Inovasi",
-      "badge": "Gadget",
-      "badgeColor": "#6a1b9a",
+      "title": "🔥 Promo & Diskon Spesial",
+      "badge": "Diskon",
+      "badgeColor": "#c62828",
       "items": [
         {
-          "tag": "AI",
-          "tagColor": "#6a1b9a",
-          "title": "Google Luncurkan Gemini Ultra 2.0 dengan Kemampuan Multimodal",
-          "summary": "Model AI terbaru ini mampu memproses teks, gambar, dan video secara simultan dengan akurasi 98%.",
-          "source": "TechCrunch",
-          "time": "2 jam lalu"
+          "tag": "Hari Ini",
+          "tagColor": "#c62828",
+          "title": "Diskon 20% untuk Pembelian Apel & Jeruk",
+          "summary": "Beli minimal 2 kg apel atau jeruk, dapat potongan 20%. Promo terbatas!",
+          "source": "Toko Buah ABS",
+          "time": "Berlaku hari ini"
         },
         {
-          "tag": "Startup",
-          "tagColor": "#6a1b9a",
-          "title": "eFishery Raih Pendanaan Seri E Rp 2,5 T, Jadi Unicorn Ke-7 Indonesia",
-          "summary": "Startup aquatech ini berencana ekspansi ke Vietnam dan Brasil dengan model kemitraan baru.",
-          "source": "DailySocial",
-          "time": "4 jam lalu"
+          "tag": "Paket Keluarga",
+          "tagColor": "#c62828",
+          "title": "Paket Buah Keluarga (5 kg) Cuma Rp 100.000",
+          "summary": "Berisi apel, jeruk, pisang, pepaya, dan semangka. Hemat 40% dari harga normal.",
+          "source": "Toko Buah ABS",
+          "time": "Sampai stok habis"
         },
         {
-          "tag": "Keamanan",
-          "tagColor": "#6a1b9a",
-          "title": "Serangan Siber Global Targetkan Institusi Kesehatan di Asia",
-          "summary": "Badan Siber dan Sandi Negara imbau rumah sakit dan laboratorium untuk meningkatkan protokol keamanan.",
-          "source": "Reuters",
-          "time": "7 jam lalu"
+          "tag": "Member",
+          "tagColor": "#c62828",
+          "title": "Diskon 10% untuk Member & Pembelian Online",
+          "summary": "Gunakan kode promo 'BUAHABS10' saat checkout via WhatsApp atau aplikasi.",
+          "source": "Toko Buah ABS",
+          "time": "Sepanjang bulan"
         }
       ]
     },
     {
       "id": "slide-6",
-      "title": "🎬 Gaya Hidup & Hiburan",
-      "badge": "Pop",
-      "badgeColor": "#00695c",
+      "title": "💬 Testimoni Pelanggan",
+      "badge": "Kepuasan",
+      "badgeColor": "#2e7d32",
       "items": [
         {
-          "tag": "Film",
-          "tagColor": "#00695c",
-          "title": "Dune 3 Pecah Rekor Box Office Asia, Tembus Rp 1,2 T di Pekan Pertama",
-          "summary": "Adaptasi novel Frank Herbert ini menjadi film sci-fi terlaris sepanjang masa di Indonesia.",
-          "source": "Cinema21",
-          "time": "2 jam lalu"
+          "tag": "Ibu Rina",
+          "tagColor": "#2e7d32",
+          "title": "Buah selalu segar dan harga bersaing",
+          "summary": "\"Sudah langganan sejak 2022, buah selalu fresh dan pelayanan ramah. Sangat direkomendasikan!\"",
+          "source": "Pelanggan Setia",
+          "time": "⭐⭐⭐⭐⭐"
         },
         {
-          "tag": "Musik",
-          "tagColor": "#00695c",
-          "title": "Taylor Swift Umumkan Tur Asia Tenggara, Singgah di Jakarta Desember",
-          "summary": "Konser bertajuk 'Eras Tour' akan digelar di Stadion Utama GBK dengan kapasitas 80.000 penonton.",
-          "source": "Rolling Stone",
-          "time": "5 jam lalu"
+          "tag": "Bapak Andi",
+          "tagColor": "#2e7d32",
+          "title": "Parcel buah untuk acara kantor",
+          "summary": "\"Parcel buah dari Toko ABS selalu menjadi pilihan utama saya untuk hadiah rekan kerja. Kualitas terjamin.\"",
+          "source": "Corporate Customer",
+          "time": "⭐⭐⭐⭐⭐"
         },
         {
-          "tag": "Kuliner",
-          "tagColor": "#00695c",
-          "title": "5 Restoran Indonesia Masuk 50 Best Restaurants Asia 2026",
-          "summary": "Daftar dipimpin oleh Locavore di Bali dan August di Jakarta, menempati peringkat 3 dan 12.",
-          "source": "Food & Travel",
-          "time": "8 jam lalu"
+          "tag": "Mahasiswa",
+          "tagColor": "#2e7d32",
+          "title": "Harga ramah di kantong",
+          "summary": "\"Toko ini favorit anak kos karena harga terjangkau dan buah selalu segar. Banyak pilihan import juga.\"",
+          "source": "Pelanggan Muda",
+          "time": "⭐⭐⭐⭐"
         }
       ]
     },
     {
       "id": "slide-7",
-      "title": "📍 Daerah & Sosial",
-      "badge": "Lokal",
-      "badgeColor": "#4a148c",
+      "title": "📍 Layanan & Kontak Kami",
+      "badge": "Info",
+      "badgeColor": "#1a237e",
       "items": [
         {
           "isList": true,
-          "title": "Banjir Rob Surut di Jakarta Utara, Warga Mulai Bersihkan Rumah",
-          "summary": "BPBD mencatat 12 RW terdampak, namun semua sudah dalam kondisi aman dan layak huni.",
-          "time": "1 jam lalu"
+          "title": "🚚 Layanan Antar ke Seluruh Malang Raya",
+          "summary": "Pesan via WhatsApp, gratis ongkir untuk pembelian di atas Rp 150.000.",
+          "time": "Hubungi 0813-3352-7527"
         },
         {
           "isList": true,
-          "title": "Festival Budaya Nusantara Digelar di Yogyakarta, 200 Sanggar Tampil",
-          "summary": "Acara tahunan ini menampilkan tarian, musik, dan kuliner dari 34 provinsi se-Indonesia.",
-          "time": "3 jam lalu"
+          "title": "🕒 Jam Buka: Senin-Minggu, 07.00 - 21.00 WIB",
+          "summary": "Toko buka setiap hari, termasuk hari libur nasional. Datang langsung ke Kepanjen.",
+          "time": "Alamat: Jl. Raya Kepanjen No.88"
         },
         {
           "isList": true,
-          "title": "Pemuda Desa Inovasi Pupuk Organik dari Limbah Kopi, Tembus Pasar Ekspor",
-          "summary": "Produk bernama 'KopiGro' telah dikirim ke 12 negara dengan nilai ekspor Rp 18 miliar.",
-          "time": "5 jam lalu"
+          "title": "💳 Pembayaran: Cash, QRIS, Transfer Bank, E-Wallet",
+          "summary": "Kami menerima semua metode pembayaran digital untuk kenyamanan Anda.",
+          "time": "Info lebih lanjut hubungi kami"
         },
         {
           "isList": true,
-          "title": "Guru SD di Semarang Raih Penghargaan Internasional untuk Metode Belajar Inklusif",
-          "summary": "Metode 'Belajar Tanpa Batas' diakui UNESCO sebagai praktik terbaik pendidikan inklusif.",
-          "time": "7 jam lalu"
+          "title": "📦 Parcel & Hadiah Korporat",
+          "summary": "Kami menyediakan parcel buah untuk keperluan perusahaan, acara, atau hadiah spesial.",
+          "time": "Pesan minimal 5 parcel"
         }
       ]
     }
   ],
   "sidebar": {
     "top": {
-      "title": "📡 Info Terkini",
-      "qrLabel": "Dapatkan notifikasi berita terbaru",
+      "title": "🍍 Toko Buah ABS",
+      "qrLabel": "Scan QR untuk pesan online",
       "contacts": [
-        { "icon": "📱", "label": "@berita_terkini" },
-        { "icon": "🌐", "label": "beritaterkini.id" },
-        { "icon": "📧", "label": "redaksi@beritaterkini.id" }
+        { "icon": "📱", "label": "0813-3352-7527" },
+        { "icon": "📍", "label": "Kepanjen, Malang" },
+        { "icon": "📧", "label": "buahabs@email.com" }
       ]
     },
     "panels": [
       {
-        "title": "🔥 Populer Hari Ini",
+        "title": "🌟 Tentang Kami",
         "type": "popular",
         "data": [
-          { "title": "Prabowo Resmikan IKN Tahap 3", "meta": "Kompas • 1.200+ bagikan", "borderColor": "#b71c1c" },
-          { "title": "Harga Emas Antam Sentuh Rp 1,8 Juta", "meta": "Bisnis • 980 bagikan", "borderColor": "#1565c0" },
-          { "title": "Liverpool Juara Liga Inggris", "meta": "Bola • 2.100 bagikan", "borderColor": "#e65100" },
-          { "title": "Vaksin Baru untuk Demam Berdarah", "meta": "Sehat • 760 bagikan", "borderColor": "#2e7d32" }
+          { "title": "Berdiri sejak 2015, menyediakan buah segar berkualitas", "meta": "Lokal & Import", "borderColor": "#2e7d32" },
+          { "title": "Mitra petani langsung dari seluruh Indonesia", "meta": "Dukungan petani lokal", "borderColor": "#4caf50" },
+          { "title": "Komitmen terhadap kesegaran dan kepuasan pelanggan", "meta": "Kualitas utama", "borderColor": "#e65100" },
+          { "title": "Parcel buah terbaik untuk hadiah", "meta": "Rekomendasi pelanggan", "borderColor": "#1a237e" }
         ]
       },
       {
-        "title": "🌦️ Cuaca & IHSG",
-        "type": "weather",
-        "data": {
-          "temp": "28°C",
-          "desc": "Jakarta • Cerah Berawan",
-          "emoji": "⛅",
-          "humidity": "72%",
-          "wind": "12 km/j",
-          "ihsg": { "label": "IHSG", "value": "▲ 7.612 (+1,2%)", "class": "green" },
-          "dxy": { "label": "DXY (USD)", "value": "▼ 15.420 (-0,3%)", "class": "" },
-          "gold": { "label": "Emas", "value": "▲ 1.812.000 (+0,8%)", "class": "green" }
-        }
-      },
-      {
-        "title": "📅 Jadwal & Layanan",
+        "title": "🕒 Jam Buka & Lokasi",
         "type": "schedule",
         "data": [
-          { "event": "Konferensi Pers", "time": "14:00 WIB" },
-          { "event": "Sidang Paripurna", "time": "16:30 WIB" },
-          { "event": "Debat Capres", "time": "20:00 WIB" },
-          { "event": "Malam Inovasi", "time": "21:30 WIB" }
+          { "event": "Senin - Jumat", "time": "07.00 - 21.00" },
+          { "event": "Sabtu - Minggu", "time": "07.00 - 20.00" },
+          { "event": "Hari Libur Nasional", "time": "08.00 - 18.00" },
+          { "event": "Alamat Toko", "time": "Jl. Raya Kepanjen No.88" }
         ],
-        "liveLink": "beritaterkini.id/live"
+        "liveLink": "maps.google.com/tokobuahabs"
+      },
+      {
+        "title": "🏆 Produk Terlaris",
+        "type": "popular",
+        "data": [
+          { "title": "Apel Malang (terjual 500 kg/minggu)", "meta": "Rp 25.000/kg", "borderColor": "#2e7d32" },
+          { "title": "Jeruk Pamelo (terjual 300 buah/minggu)", "meta": "Rp 20.000/buah", "borderColor": "#4caf50" },
+          { "title": "Durian Musang King (terjual 200 kg/minggu)", "meta": "Rp 250.000/kg", "borderColor": "#e65100" },
+          { "title": "Parcel Premium (terjual 100 paket/minggu)", "meta": "Rp 350.000", "borderColor": "#1a237e" }
+        ]
       }
     ]
   },
   "ticker": [
-    "🔴 BREAKING: Presiden Tinjau Langsung Lokasi Bencana di Sulawesi",
-    "📈 IHSG Ditutup Menguat 1,2% ke Level 7.612, Didorong Sektor Energi",
-    "⚽ Timnas U-20 Lolos Piala Dunia, Usai Kalahkan Australia 2-1",
-    "💻 Google Luncurkan Gemini Ultra 2.0 dengan Kemampuan Multimodal",
-    "🌿 Pemerintah Siapkan Subsidi Pupuk Rp 45 T untuk 12 Juta Petani",
-    "🎬 Dune 3 Pecah Rekor Box Office Asia Tembus Rp 1,2 T"
+    "🍍 Toko Buah ABS | Aneka Buah Segar | Kepanjen, Malang",
+    "📱 Pesan via WhatsApp 0813-3352-7527 | Gratis Ongkir Minimal Rp 150.000",
+    "🍎 Diskon 20% Apel & Jeruk Hari Ini! | Segera kunjungi toko",
+    "🎁 Parcel Buah Spesial Mulai Rp 150.000 | Cocok untuk Hadiah",
+    "🥭 Buah Lokal & Import Selalu Tersedia | Kualitas Terjamin",
+    "📍 Buka Setiap Hari 07.00-21.00 | Jl. Raya Kepanjen No.88"
   ]
 }

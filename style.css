@@ -1,23 +1,24 @@
 /* ═══════════════════════════════════════
-   BERITA TERKINI — DIGITAL SIGNAGE
+   TOKO BUAH ABS — DIGITAL SIGNAGE
    Canvas : 3840 × 2160 px (Ultra HD 4K)
    ═══════════════════════════════════════ */
 
 :root {
-    /* Berita Theme */
-    --news-red: #b71c1c;
-    --news-red-light: #e53935;
-    --news-dark: #1a1a2e;
-    --news-gray: #2d2d44;
-    --news-muted: #8888aa;
-    
+    /* Tema Buah Segar */
+    --fruit-green: #2e7d32;
+    --fruit-green-light: #4caf50;
+    --fruit-green-pale: #a5d6a7;
+    --fruit-dark: #1a2e1a;
+    --fruit-gray: #2d442d;
+    --fruit-muted: #6a8f6a;
+
     /* Neutrals */
     --ui-white         : #ffffff;
-    --ui-canvas        : #f8f8fc;
-    --ui-text-main     : #1a1a2e;
-    --ui-text-muted    : #4a4a6a;
-    --ui-text-light    : #8888aa;
-    
+    --ui-canvas        : #f4faf4;
+    --ui-text-main     : #1a2e1a;
+    --ui-text-muted    : #3a5a3a;
+    --ui-text-light    : #6a8f6a;
+
     /* System */
     --shadow-sm        : 0 4px 20px rgba(0, 0, 0, 0.05);
     --shadow-md        : 0 12px 45px rgba(0, 0, 0, 0.08);
@@ -60,14 +61,14 @@ html, body {
 .s-header {
     height: 260px;
     flex-shrink: 0;
-    background: var(--news-dark);
+    background: var(--fruit-dark);
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 0 120px;
     position: relative;
     z-index: 10;
-    border-bottom: 8px solid var(--news-red-light);
+    border-bottom: 8px solid var(--fruit-green-light);
 }
 
 .logo-area {
@@ -96,12 +97,12 @@ html, body {
 }
 
 .logo-abs span { 
-    color: var(--news-red-light); 
+    color: var(--fruit-green-light); 
 }
 
 .logo-tagline {
     font-size: 2.4rem;
-    color: var(--news-muted);
+    color: var(--fruit-muted);
     letter-spacing: 6px;
     text-transform: uppercase;
     font-weight: 600;
@@ -114,7 +115,7 @@ html, body {
 }
 
 .header-badge {
-    background: linear-gradient(135deg, var(--news-red), var(--news-red-light));
+    background: linear-gradient(135deg, var(--fruit-green), var(--fruit-green-light));
     color: var(--ui-white);
     font-size: 2.2rem;
     font-weight: 800;
@@ -143,7 +144,7 @@ html, body {
 
 .clock-date {
     font-size: 2.2rem;
-    color: var(--news-muted);
+    color: var(--fruit-muted);
     letter-spacing: 1px;
     font-weight: 500;
 }
@@ -169,7 +170,7 @@ html, body {
     flex: 1;
     display: flex;
     flex-direction: column;
-    background: #f0f0f6;
+    background: #e8f5e9;
     border-left: 2px solid rgba(0,0,0,0.06);
     overflow: hidden;
 }
@@ -195,17 +196,17 @@ html, body {
     padding: 50px 80px 10px 80px;
     font-size: 4.2rem;
     font-weight: 800;
-    color: var(--news-dark);
+    color: var(--fruit-dark);
     letter-spacing: -1px;
     display: flex;
     align-items: center;
     gap: 20px;
-    border-left: 8px solid var(--news-red-light);
+    border-left: 8px solid var(--fruit-green-light);
     padding-left: 40px;
 }
 
 .slide-header .badge-news {
-    background: var(--news-red-light);
+    background: var(--fruit-green-light);
     color: #fff;
     font-size: 1.8rem;
     padding: 4px 24px;
@@ -214,7 +215,7 @@ html, body {
     letter-spacing: 1px;
 }
 
-/* ── NEWS GRID ── */
+/* ── GRID (untuk produk) ── */
 .news-grid {
     flex: 1;
     display: grid;
@@ -251,7 +252,7 @@ html, body {
 .news-card .title {
     font-size: 3.2rem;
     font-weight: 800;
-    color: var(--news-dark);
+    color: var(--fruit-dark);
     line-height: 1.3;
 }
 
@@ -264,7 +265,7 @@ html, body {
 
 .news-card .meta {
     font-size: 1.8rem;
-    color: var(--news-muted);
+    color: var(--fruit-muted);
     display: flex;
     align-items: center;
     gap: 16px;
@@ -274,10 +275,10 @@ html, body {
 }
 .news-card .meta .source {
     font-weight: 600;
-    color: var(--news-dark);
+    color: var(--fruit-dark);
 }
 
-/* ── NEWS LIST (untuk slide daerah) ── */
+/* ── LIST (untuk slide layanan) ── */
 .news-list {
     flex: 1;
     display: flex;
@@ -300,7 +301,7 @@ html, body {
 .news-list-item .num {
     width: 64px;
     height: 64px;
-    background: var(--news-red-light);
+    background: var(--fruit-green-light);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -317,7 +318,7 @@ html, body {
 .news-list-item .content .headline {
     font-size: 2.8rem;
     font-weight: 700;
-    color: var(--news-dark);
+    color: var(--fruit-dark);
 }
 .news-list-item .content .desc {
     font-size: 2rem;
@@ -326,7 +327,7 @@ html, body {
 }
 .news-list-item .time-tag {
     font-size: 1.8rem;
-    color: var(--news-muted);
+    color: var(--fruit-muted);
     font-weight: 500;
     flex-shrink: 0;
 }
@@ -334,7 +335,7 @@ html, body {
 /* ── SIDEBAR ── */
 .right-top {
     padding: 40px 36px;
-    background: var(--news-dark);
+    background: var(--fruit-dark);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -368,7 +369,7 @@ html, body {
 
 .qr-label {
     font-size: 2rem;
-    color: var(--news-muted);
+    color: var(--fruit-muted);
     line-height: 1.4;
     font-weight: 500;
 }
@@ -385,7 +386,7 @@ html, body {
     font-weight: 600;
 }
 .kontak-item span {
-    color: var(--news-red-light);
+    color: var(--fruit-green-light);
 }
 
 .right-middle {
@@ -416,16 +417,16 @@ html, body {
 .right-panel-title {
     font-size: 2.8rem;
     font-weight: 800;
-    color: var(--news-dark);
+    color: var(--fruit-dark);
     padding-bottom: 12px;
-    border-bottom: 3px solid var(--news-red-light);
+    border-bottom: 3px solid var(--fruit-green-light);
 }
 
 .mini-news-item {
     background: #fff;
     border-radius: var(--border-radius-md);
     padding: 18px 24px;
-    border-left: 4px solid var(--news-red-light);
+    border-left: 4px solid var(--fruit-green-light);
     display: flex;
     flex-direction: column;
     gap: 2px;
@@ -433,67 +434,22 @@ html, body {
 .mini-news-item .mini-title {
     font-size: 2.2rem;
     font-weight: 700;
-    color: var(--news-dark);
+    color: var(--fruit-dark);
 }
 .mini-news-item .mini-meta {
     font-size: 1.6rem;
-    color: var(--news-muted);
-}
-
-.weather-box {
-    background: #fff;
-    border-radius: var(--border-radius-md);
-    padding: 24px 28px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-.weather-box .temp {
-    font-size: 4.4rem;
-    font-weight: 800;
-    color: var(--news-dark);
-}
-.weather-box .desc {
-    font-size: 2rem;
-    color: var(--ui-text-muted);
-}
-.weather-box .emoji {
-    font-size: 5rem;
-}
-
-.stock-list {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-}
-.stock-row {
-    display: flex;
-    justify-content: space-between;
-    background: #fff;
-    padding: 16px 24px;
-    border-radius: var(--border-radius-md);
-    font-size: 2rem;
-    font-weight: 600;
-}
-.stock-row .name {
-    color: var(--news-dark);
-}
-.stock-row .val {
-    color: var(--news-red-light);
-}
-.stock-row .val.green {
-    color: #2e7d32;
+    color: var(--fruit-muted);
 }
 
 /* ── TICKER ── */
 .marquee-wrap {
     height: 130px;
     flex-shrink: 0;
-    background: var(--news-dark);
+    background: var(--fruit-dark);
     display: flex;
     align-items: center;
     overflow: hidden;
-    border-top: 4px solid var(--news-red-light);
+    border-top: 4px solid var(--fruit-green-light);
 }
 
 .marquee-track {
@@ -514,7 +470,7 @@ html, body {
 }
 
 .m-item .hl {
-    color: var(--news-red-light);
+    color: var(--fruit-green-light);
     font-weight: 700;
 }
 .m-sep {
@@ -540,7 +496,7 @@ html, body {
 }
 
 .dot.active {
-    background: var(--news-red-light);
+    background: var(--fruit-green-light);
     width: 48px;
     border-radius: 8px;
 }
