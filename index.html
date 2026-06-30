@@ -4,16 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Digital Signage - Toko Buah ABS Kepanjen</title>
-    <!-- Font & Icon Pack -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Montserrat:wght@500;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700;900&family=Montserrat:wght@500;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
     <style>
         /* Konfigurasi Warna Utama */
         :root {
-            --primary-green: #103B2B;  /* Hijau Botol Premium */
+            --primary-green: #0a291e;  /* Hijau Botol Deep Premium */
             --accent-orange: #FF8200;  /* Oranye Segar */
-            --bg-dark: #051410;        /* Warna Dasar Latar Belakang */
+            --bg-dark: #030d0a;        /* Warna Dasar Latar Belakang */
             --text-cream: #FFFDF9;     /* Warna Teks Terang */
             --text-muted: #A3C1AD;     /* Warna Teks Redup */
         }
@@ -38,7 +37,7 @@
             position: relative;
             width: 100vw;
             height: 100vh;
-            background: var(--primary-green);
+            background: radial-gradient(circle at center, #144534 0%, var(--primary-green) 100%);
             color: var(--text-cream);
             display: flex;
             flex-direction: column;
@@ -50,7 +49,7 @@
             position: relative;
             flex-grow: 1;
             width: 100%;
-            height: calc(100vh - 60px); /* Menyisakan ruang untuk running text */
+            height: calc(100vh - 65px); /* Menyisakan ruang untuk running text */
         }
 
         .slide {
@@ -73,46 +72,51 @@
             visibility: visible;
         }
 
-        /* Komponen Header Global */
+        /* Komponen Header Global (Tanpa Gambar Logo) */
         .header-bar {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 3px solid var(--accent-orange);
-            padding-bottom: 15px;
-            margin-bottom: 15px;
+            border-bottom: 4px solid var(--accent-orange);
+            padding-bottom: 20px;
+            margin-bottom: 10px;
         }
 
-        .logo-area {
-            display: flex;
-            align-items: center;
+        .brand-text {
             font-family: 'Poppins', sans-serif;
-            font-size: 2.5rem;
-            font-weight: 700;
-            letter-spacing: 1px;
-        }
-
-        /* Otomatis Membaca logo.png */
-        .logo-img {
-            height: 60px; /* Tinggi proporsional untuk layar monitor */
-            width: auto;
-            margin-right: 20px;
-            object-fit: contain;
-        }
-
-        .logo-area span {
-            color: var(--accent-orange);
-            margin-left: 10px;
-        }
-
-        .tagline {
-            font-size: 1.2rem;
-            color: #E5F7F0;
+            font-size: 3.5rem; /* Ukuran diperbesar */
+            font-weight: 900;
+            letter-spacing: 2px;
             text-transform: uppercase;
-            background: rgba(255, 130, 0, 0.15);
-            padding: 8px 20px;
-            border-radius: 30px;
-            font-weight: 600;
+        }
+
+        .brand-text span {
+            color: var(--accent-orange);
+            text-shadow: 0 0 20px rgba(255, 130, 0, 0.3);
+        }
+
+        /* Widget Jam & Tanggal Real-time */
+        .live-clock-box {
+            text-align: right;
+            font-family: 'Poppins', sans-serif;
+            background: rgba(0, 0, 0, 0.25);
+            padding: 10px 25px;
+            border-radius: 15px;
+            border-left: 4px solid var(--accent-orange);
+        }
+        #live-time {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--text-cream);
+            display: block;
+            line-height: 1.2;
+        }
+        #live-date {
+            font-size: 1rem;
+            color: var(--text-muted);
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         /* Layout Grid Konten */
@@ -122,81 +126,89 @@
             justify-content: space-between;
             flex-grow: 1;
             gap: 5%;
+            margin: 20px 0;
         }
 
         .text-zone {
-            flex: 1.2;
+            flex: 1.3;
         }
 
         .visual-zone {
-            flex: 0.8;
+            flex: 0.7;
             display: flex;
             justify-content: center;
             align-items: center;
         }
 
-        /* Komponen Desain Khusus Tiap Slide */
+        /* Judul Konten Utama Diperbesar Ekstrem */
         .welcome-title {
-            font-size: 4.2rem;
+            font-size: 5.5rem; /* Ukuran teks diperbesar ekstrem */
             font-family: 'Poppins', sans-serif;
-            line-height: 1.1;
-            margin-bottom: 20px;
+            font-weight: 900;
+            line-height: 1.05;
+            margin-bottom: 25px;
+            letter-spacing: -1px;
         }
 
         .welcome-title span {
             color: var(--accent-orange);
+            display: block; /* Membuat kata penekanan berada di baris baru */
         }
 
         .rating-box {
-            font-size: 1.6rem;
+            font-size: 1.8rem;
             color: #FFD700;
             margin-top: 20px;
-            background: rgba(0, 0, 0, 0.2);
+            background: rgba(0, 0, 0, 0.3);
             display: inline-block;
-            padding: 10px 20px;
-            border-radius: 10px;
+            padding: 12px 25px;
+            border-radius: 12px;
         }
 
         .promo-badge {
-            background: var(--accent-orange);
+            background: linear-gradient(45deg, var(--accent-orange), #ffaa00);
             color: var(--text-cream);
-            font-size: 3.8rem;
-            font-weight: 800;
-            padding: 20px 40px;
-            border-radius: 20px;
+            font-size: 4.5rem; /* Diperbesar */
+            font-weight: 900;
+            padding: 25px 50px;
+            border-radius: 25px;
             display: inline-block;
-            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+            box-shadow: 0 20px 45px rgba(0,0,0,0.4);
             animation: pulse 2s infinite;
+            letter-spacing: 1px;
         }
 
         .promo-desc {
-            font-size: 2.2rem;
-            margin-top: 35px;
-            line-height: 1.5;
+            font-size: 2.6rem; /* Diperbesar */
+            margin-top: 40px;
+            line-height: 1.4;
             color: #E5F7F0;
+            font-weight: 500;
         }
 
         .info-title {
-            font-size: 3.2rem;
+            font-size: 4rem; /* Diperbesar */
+            font-family: 'Poppins', sans-serif;
+            font-weight: 800;
             color: var(--text-cream);
-            margin-bottom: 20px;
+            margin-bottom: 30px;
         }
 
         .benefit-list {
             list-style: none;
-            font-size: 1.7rem;
+            font-size: 2rem; /* Diperbesar */
         }
 
         .benefit-list li {
-            margin-bottom: 18px;
+            margin-bottom: 22px;
             display: flex;
             align-items: center;
         }
 
         .benefit-list i {
             color: var(--accent-orange);
-            margin-right: 20px;
-            font-size: 2rem;
+            margin-right: 25px;
+            font-size: 2.4rem;
         }
 
         /* Komponen Footer Bar */
@@ -204,24 +216,24 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-top: 20px;
-            font-size: 1.3rem;
+            font-size: 1.5rem; /* Diperbesar */
             color: var(--text-muted);
-            border-top: 1px solid rgba(255,255,255,0.1);
-            padding-top: 15px;
+            border-top: 2px solid rgba(255,255,255,0.1);
+            padding-top: 20px;
+            font-weight: 500;
         }
 
         .footer-bar i {
             color: var(--accent-orange);
-            margin-right: 10px;
+            margin-right: 12px;
         }
 
         /* ================= MARQUEE RUNNING TEXT ================= */
         .marquee-container {
             width: 100%;
-            height: 60px;
-            background: #0A261C;
-            border-top: 2px solid var(--accent-orange);
+            height: 65px;
+            background: #061f16;
+            border-top: 3px solid var(--accent-orange);
             overflow: hidden;
             position: relative;
             display: flex;
@@ -236,23 +248,24 @@
             height: 100%;
             background: var(--accent-orange);
             color: var(--text-cream);
-            padding: 0 25px;
+            padding: 0 30px;
             display: flex;
             align-items: center;
-            font-weight: bold;
-            font-size: 1.2rem;
+            font-weight: 800;
+            font-size: 1.4rem;
             z-index: 10;
-            box-shadow: 10px 0 15px rgba(0,0,0,0.3);
+            box-shadow: 15px 0 20px rgba(0,0,0,0.4);
             text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         .marquee-text {
             display: inline-block;
             white-space: nowrap;
             padding-left: 100%;
-            animation: marquee 28s linear infinite; /* Kecepatan jalan teks */
-            font-size: 1.3rem;
-            font-weight: 500;
+            animation: marquee 30s linear infinite;
+            font-size: 1.5rem;
+            font-weight: 600;
             color: var(--text-cream);
             letter-spacing: 1px;
         }
@@ -265,7 +278,7 @@
 
         @keyframes pulse {
             0% { transform: scale(1); }
-            50% { transform: scale(1.03); }
+            50% { transform: scale(1.04); }
             100% { transform: scale(1); }
         }
 
@@ -276,7 +289,6 @@
 </head>
 <body>
 
-    <!-- PEMUTAR LAGU LATAR BELAKANG -->
     <audio id="bg-music" autoplay loop>
         <source src="music.mp3" type="audio/mpeg">
     </audio>
@@ -284,31 +296,29 @@
     <div class="signage-container">
 
         <div class="slide-wrapper">
-            <!-- ================= SLIDE 1: WELCOME SCREEN ================= -->
             <div class="slide active">
                 <div class="header-bar">
-                    <div class="logo-area">
-                        <!-- Memanggil berkas logo.png Anda -->
-                        <img src="logo.png" class="logo-img" alt="Logo ABS">
-                        TOKO BUAH <span>ABS</span>
+                    <div class="brand-text">TOKO BUAH <span>ABS</span></div>
+                    <div class="live-clock-box">
+                        <span id="live-time">00:00:00</span>
+                        <span id="live-date">Memuat Tanggal...</span>
                     </div>
-                    <div class="tagline">Premium Dry Fruits</div>
                 </div>
                 <div class="main-content">
                     <div class="text-zone">
-                        <h1 class="welcome-title">TOKO KHUSUS<br><span>BUAH KERING</span><br>PREMIUM</h1>
-                        <p style="font-size: 1.8rem; color: #E5F7F0;">Kualitas nutrisi alami, diproses higienis untuk keluarga sehat.</p>
+                        <h1 class="welcome-title">TOKO KHUSUS<br><span>BUAH KERING</span></h1>
+                        <p style="font-size: 2.2rem; color: #E5F7F0; font-weight: 500;">Kualitas nutrisi alami, diproses higienis untuk camilan sehat keluarga.</p>
                         <div class="rating-box">
                             <i class="fa-solid fa-star"></i>
                             <i class="fa-solid fa-star"></i>
                             <i class="fa-solid fa-star"></i>
                             <i class="fa-solid fa-star"></i>
                             <i class="fa-solid fa-star-half-stroke"></i>
-                            <span style="color: var(--text-cream); font-weight: bold; margin-left: 10px;">4.5 Pilihan Utama di Google</span>
+                            <span style="color: var(--text-cream); font-weight: bold; margin-left: 15px;">4.5 Google Review</span>
                         </div>
                     </div>
                     <div class="visual-zone">
-                        <i class="fa-solid fa-box-open" style="font-size: 14rem; color: var(--accent-orange); opacity: 0.85;"></i>
+                        <i class="fa-solid fa-box-open" style="font-size: 18rem; color: var(--accent-orange); opacity: 0.9;"></i>
                     </div>
                 </div>
                 <div class="footer-bar">
@@ -317,21 +327,19 @@
                 </div>
             </div>
 
-            <!-- ================= SLIDE 2: PROMO & HIGHLIGHT ================= -->
             <div class="slide">
                 <div class="header-bar">
-                    <div class="logo-area">
-                        <img src="logo.png" class="logo-img" alt="Logo ABS">
-                        TOKO BUAH <span>ABS</span>
+                    <div class="brand-text">TOKO BUAH <span>ABS</span></div>
+                    <div class="live-clock-box">
+                        <span class="live-time-alt" style="font-size: 2rem; font-weight: 700; color: var(--text-cream);">PREMIUM</span>
                     </div>
-                    <div class="tagline">Camilan Sehat Modern</div>
                 </div>
                 <div class="main-content">
                     <div class="text-zone" style="text-align: center; width: 100%;">
                         <div class="promo-badge">PROMO MINGGU INI</div>
                         <h2 class="promo-desc">
                             Ubah Pola Hidup Lebih Praktis & Bernutrisi!<br>
-                            <span style="color: var(--accent-orange); font-size: 1.9rem; display: block; margin-top: 15px;">Sedia aneka kismis, kurma, buah tin, dan aprikot kering kaya antioksidan.</span>
+                            <span style="color: var(--accent-orange); font-size: 2.4rem; display: block; margin-top: 20px; font-weight: 700;">Sedia aneka kismis, kurma, buah tin, dan aprikot kering kaya antioksidan.</span>
                         </h2>
                     </div>
                 </div>
@@ -341,14 +349,12 @@
                 </div>
             </div>
 
-            <!-- ================= SLIDE 3: KEUNGGULAN PRODUK ================= -->
             <div class="slide">
                 <div class="header-bar">
-                    <div class="logo-area">
-                        <img src="logo.png" class="logo-img" alt="Logo ABS">
-                        TOKO BUAH <span>ABS</span>
+                    <div class="brand-text">TOKO BUAH <span>ABS</span></div>
+                    <div class="live-clock-box">
+                        <span class="live-time-alt" style="font-size: 2rem; font-weight: 700; color: var(--text-cream);">INFO SEHAT</span>
                     </div>
-                    <div class="tagline">Jaminan Mutu Premium</div>
                 </div>
                 <div class="main-content">
                     <div class="text-zone">
@@ -360,7 +366,7 @@
                         </ul>
                     </div>
                     <div class="visual-zone">
-                        <i class="fa-solid fa-heart-pulse" style="font-size: 13rem; color: #E5F7F0;"></i>
+                        <i class="fa-solid fa-heart-pulse" style="font-size: 16rem; color: #E5F7F0;"></i>
                     </div>
                 </div>
                 <div class="footer-bar">
@@ -370,9 +376,8 @@
             </div>
         </div>
 
-        <!-- ================= RUNNING TEXT BAR ================= -->
         <div class="marquee-container">
-            <div class="marquee-label"><i class="fa-solid fa-circle-info" style="margin-right: 8px;"></i> Info ABS</div>
+            <div class="marquee-label"><i class="fa-solid fa-circle-info" style="margin-right: 8px;"></i> Info Toko</div>
             <div class="marquee-text">
                 Selamat Datang di Toko Buah ABS Kepanjen --- Menyediakan produk khusus buah-buahan kering berkualitas tinggi dengan rating kepuasan pelanggan 4,5 bintang! --- Alamat toko kami berada di Jl. Raya Penarukan No.2, Kec. Kepanjen, Kab. Malang, Jawa Timur 65163 --- Untuk info stok atau pemesanan paket hampers, hubungi nomor telepon kami di +62 813-3352-7527 --- Jam Operasional khusus hari Rabu buka mulai pukul 07.00 s/d 21.00 WIB --- Jaga kebugaran tubuh Anda dan keluarga dengan konsumsi buah kering kaya nutrisi setiap hari!
             </div>
@@ -380,9 +385,36 @@
 
     </div>
 
-    <!-- JAVASCRIPT ENGINE -->
     <script>
-        // 1. Sistem Pergantian Slide Otomatis (Setiap 6 Detik)
+        // 1. Logika Pembaruan Jam & Tanggal Real-Time secara Otomatis
+        function updateClock() {
+            const now = new Date();
+            
+            // Format Jam (HH:MM:SS)
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+            const timeString = `${hours}:${minutes}:${seconds}`;
+            
+            // Format Tanggal Indonesia
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            const dateString = now.toLocaleDateString('id-ID', options);
+            
+            const timeElement = document.getElementById('live-time');
+            const dateElement = document.getElementById('live-date');
+            
+            if(timeElement) timeElement.textContent = timeString;
+            if(dateElement) dateElement.textContent = dateString;
+            
+            // Sinkronisasi teks info sampingan di slide 2 & 3 agar jamnya tetap update jika diinginkan
+            document.querySelectorAll('.live-time-alt').forEach(el => {
+                el.textContent = timeString;
+            });
+        }
+        setInterval(updateClock, 1000);
+        updateClock(); // Jalankan langsung saat load awal
+
+        // 2. Sistem Pergantian Slide Otomatis (Setiap 6 Detik)
         const slides = document.querySelectorAll('.slide');
         let currentSlide = 0;
         const slideInterval = 6000;
@@ -394,7 +426,7 @@
         }
         setInterval(nextSlide, slideInterval);
 
-        // 2. Sistem Pemicu Autoplay Audio Latar Belakang (Bypass Kebijakan Browser)
+        // 3. Sistem Pemicu Autoplay Audio Latar Belakang (Bypass Kebijakan Browser)
         const audio = document.getElementById('bg-music');
         const triggerMusic = () => {
             audio.play().catch(err => console.log("Menunggu interaksi awal pada layar monitor."));
