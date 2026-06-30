@@ -34,7 +34,7 @@ const startClock = () => {
     }, 1000);
 };
 
-// ── PARTIKEL (Background ramai) ──
+// ── PARTIKEL ──
 class Particle {
     constructor(canvas) {
         this.canvas = canvas;
@@ -94,6 +94,11 @@ function initParticles() {
     });
 }
 
+// ── HELPER: bungkus teks jadi running line ──
+function runLine(text, duration) {
+    return `<div class="run-line"><div class="run-line-track" style="animation-duration:${duration}s"><span>${text}</span><span>${text}</span></div></div>`;
+}
+
 // ── RENDER SLIDES ──
 let currentSlide = 0;
 let slideInterval = null;
@@ -113,9 +118,9 @@ function renderSlides(slides) {
                 <div class="slide-image">${slide.image}</div>
                 <div class="slide-text">
                     <div class="tag">${slide.tag}</div>
-                    <h2>${slide.title}</h2>
-                    <div class="desc">${slide.desc}</div>
-                    <div class="price">${slide.price}</div>
+                    <h2>${runLine(slide.title, 14)}</h2>
+                    <div class="desc">${runLine(slide.desc, 16)}</div>
+                    <div class="price">${runLine(slide.price, 10)}</div>
                 </div>
             </div>
         `;
@@ -180,7 +185,7 @@ async function updateContent() {
     renderTicker(data.ticker);
     const toast = document.getElementById('toast');
     if (toast) {
-        toast.textContent = '🍍 Promo terbaru!';
+        toast.textContent = 'Promo Terbaru';
         toast.classList.add('show');
         setTimeout(() => toast.classList.remove('show'), 3000);
     }
@@ -192,10 +197,8 @@ function initAudio() {
     const btn = document.getElementById('musicToggle');
     if (!audio || !btn) return;
 
-    // Coba putar otomatis (bisa diblokir browser)
     audio.volume = 0.4;
 
-    // Klik tombol untuk toggle
     btn.addEventListener('click', () => {
         if (audio.paused) {
             audio.play().then(() => {
@@ -212,7 +215,6 @@ function initAudio() {
         }
     });
 
-    // Klik di mana saja di layar untuk mulai (bypass autoplay)
     document.addEventListener('click', () => {
         if (audio.paused) {
             audio.play().then(() => {
