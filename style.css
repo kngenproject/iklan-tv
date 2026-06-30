@@ -1,6 +1,6 @@
 /* ═══════════════════════════════════════
    TOKO BUAH ABS — DIGITAL SIGNAGE
-   BRIGHT & PLAYFUL THEME
+   BRIGHT & PLAYFUL THEME — FULL
    ═══════════════════════════════════════ */
 
 * {
@@ -61,7 +61,6 @@ html, body {
     font-size: 5.6rem;
     font-weight: 800;
     color: #3a2a14;
-    letter-spacing: 0px;
 }
 .logo-abs span { color: #2f8f2f; }
 .logo-tagline {
@@ -217,37 +216,45 @@ html, body {
 }
 .dot.active { background: #fff; width: 40px; border-radius: 10px; }
 
-/* STRIP STATISTIK */
-.stats-strip {
+/* STRIP KATEGORI LAYANAN */
+.category-strip {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 16px;
     flex-shrink: 0;
-    height: 160px;
+    height: 170px;
 }
-.stat-box {
-    background: #fff;
-    border-radius: 20px;
+.category-box {
+    border-radius: 24px;
     display: flex;
-    flex-direction: column;
     align-items: center;
-    justify-content: center;
-    gap: 8px;
-    box-shadow: 0 10px 24px rgba(0,0,0,0.12);
+    gap: 20px;
+    padding: 0 30px;
+    box-shadow: 0 12px 28px rgba(0,0,0,0.15);
+    border: 4px solid #fff;
 }
-.stat-box .num {
+.cat-icon {
+    font-size: 5rem;
+    flex-shrink: 0;
+    filter: drop-shadow(0 6px 10px rgba(0,0,0,0.15));
+}
+.cat-text { min-width: 0; }
+.cat-title {
     font-family: 'Baloo 2', sans-serif;
-    font-size: 3.6rem;
-    color: #ff9f1c;
+    font-size: 2.2rem;
     font-weight: 800;
+    color: #fff;
+    line-height: 1.2;
 }
-.stat-box .lbl {
-    font-size: 1.6rem;
-    color: #8a7550;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    font-weight: 600;
+.cat-desc {
+    font-size: 1.5rem;
+    color: rgba(255,255,255,0.9);
+    font-weight: 500;
+    margin-top: 4px;
 }
+.cat-import { background: linear-gradient(135deg, #ff7a45, #ff5a36); }
+.cat-lokal { background: linear-gradient(135deg, #4caf50, #2f8f2f); }
+.cat-parcel { background: linear-gradient(135deg, #ffb13c, #ff9f1c); }
 
 /* PANEL KANAN */
 .panel-right {
