@@ -3,23 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Toko Buah ABS — Market Dashboard</title>
+    <title>Toko Buah ABS — Digital Signage</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
+<!-- ══ CANVAS UNTUK PARTIKEL BACKGROUND ══ -->
+<canvas id="particleCanvas"></canvas>
+
 <div class="signage-root" id="signage-root">
 
     <!-- ══ HEADER ══ -->
     <header class="s-header">
         <div class="logo-area">
-            <div class="logo-icon">📈</div>
+            <div class="logo-icon">🍉</div>
             <div class="logo-text">
                 <h1 class="logo-abs"><span>Buah</span>ABS</h1>
-                <div class="logo-tagline">Fruit Market Exchange</div>
+                <div class="logo-tagline">Aneka Buah Segar</div>
             </div>
         </div>
         <div class="header-right">
-            <div class="header-badge" id="index-badge">🍍 INDEX<br><span id="index-value">1.234,56</span></div>
+            <div class="header-badge pulse-badge">🔥 PROMO<br>HARI INI</div>
             <div class="clock-box">
                 <div class="clock-time" id="jam-tv">00:00:00</div>
                 <div class="clock-date" id="tanggal-tv">—</div>
@@ -30,67 +34,71 @@
     <!-- ══ MAIN CONTENT ══ -->
     <main class="s-main">
 
-        <!-- PANEL KIRI — CHART & OVERVIEW -->
-        <section class="panel-left" aria-label="Market Chart">
-            <div class="chart-container">
-                <div class="chart-header">
-                    <h2>📊 Indeks Buah Segar</h2>
-                    <div class="chart-stats">
-                        <span class="stat-item" id="index-change">+0,85%</span>
-                        <span class="stat-item" id="index-volume">Vol 2.4M</span>
-                    </div>
+        <!-- PANEL KIRI — SLIDE HERO -->
+        <section class="panel-left" aria-label="Promo Utama">
+            <div class="slide-container">
+                <div class="slide-wrapper" id="slideWrapper">
+                    <!-- diisi oleh JS -->
                 </div>
-                <div class="chart-area" id="fruit-chart">
-                    <!-- Bar chart akan diisi oleh JS -->
-                </div>
-                <div class="market-summary">
-                    <div class="summary-item"><span>Top Gainer</span> <strong id="top-gainer">Apel +5,2%</strong></div>
-                    <div class="summary-item"><span>Top Loser</span> <strong id="top-loser">Nanas -2,1%</strong></div>
-                    <div class="summary-item"><span>Total Volume</span> <strong id="total-volume">2.450.000 kg</strong></div>
+                <div class="slide-dots" id="slideDots">
+                    <!-- diisi oleh JS -->
                 </div>
             </div>
         </section>
 
-        <!-- PANEL KANAN — DAFTAR HARGA SAHAM BUAH -->
-        <aside class="panel-right" aria-label="Price List">
-            <div class="price-header">
-                <h3>🍎 Harga Buah (per kg)</h3>
-                <div class="price-controls">
-                    <span class="pill active">Semua</span>
-                    <span class="pill">Lokal</span>
-                    <span class="pill">Import</span>
+        <!-- PANEL KANAN — SIDEBAR INFO -->
+        <aside class="panel-right" aria-label="Info Toko">
+            <div class="right-top">
+                <h3 class="right-top-title">🌟 Hubungi Kami</h3>
+                <div class="qr-box">
+                    <div class="qr-placeholder">📱 Scan QR<br>Pesan Online</div>
+                </div>
+                <div class="kontak-list">
+                    <div class="kontak-item">📱 <span>0813-3352-7527</span></div>
+                    <div class="kontak-item">📍 <span>Jl. Raya Penarukan No.2, Kepanjen, Malang</span></div>
+                    <div class="kontak-item">📸 <span>@abskepanjen</span></div>
+                    <div class="kontak-item">📧 <span>buahabs@email.com</span></div>
                 </div>
             </div>
-            <div class="price-table-wrap">
-                <table class="price-table" id="price-table">
-                    <thead>
-                        <tr>
-                            <th>Buah</th>
-                            <th>Harga</th>
-                            <th>Perubahan</th>
-                            <th>Volume (kg)</th>
-                        </tr>
-                    </thead>
-                    <tbody id="price-body">
-                        <!-- diisi JS -->
-                    </tbody>
-                </table>
-            </div>
-            <div class="price-footer">
-                <span>🔄 Update real-time · Sumber: Toko Buah ABS</span>
+            <div class="right-middle">
+                <div class="info-card">
+                    <h4>🏆 Produk Terlaris</h4>
+                    <ul class="top-list" id="topList">
+                        <li>🍎 Apel Malang <span>500 kg/mg</span></li>
+                        <li>🍊 Jeruk Pamelo <span>300 kg/mg</span></li>
+                        <li>🥭 Mangga Arumanis <span>210 kg/mg</span></li>
+                    </ul>
+                </div>
+                <div class="info-card">
+                    <h4>🕒 Jam Buka</h4>
+                    <p>Setiap Hari <strong>07.00 – 21.00 WIB</strong></p>
+                    <p class="small">Toko buka 7 hari, termasuk libur nasional</p>
+                </div>
+                <div class="info-card highlight">
+                    <h4>💳 Pembayaran</h4>
+                    <p>Cash • QRIS • Transfer • E-Wallet</p>
+                </div>
             </div>
         </aside>
     </main>
 
-    <!-- ══ RUNNING TICKER ══ -->
+    <!-- ══ TICKER ══ -->
     <footer class="marquee-wrap">
         <div class="marquee-track" id="marquee-track"></div>
     </footer>
 
-    <!-- Toast Notifikasi -->
-    <div class="toast" id="toast">📊 Market update!</div>
+    <!-- ══ KONTROL MUSIK ══ -->
+    <button class="music-btn" id="musicToggle">🔊</button>
 
+    <!-- ══ AUDIO ══ -->
+    <audio id="bgMusic" loop>
+        <source src="music.mp3" type="audio/mpeg">
+        <!-- Browser akan menampilkan pesan jika file tidak ditemukan -->
+    </audio>
+
+    <div class="toast" id="toast">🍍 Promo terbaru!</div>
 </div>
+
 <script src="app.js"></script>
 </body>
 </html>

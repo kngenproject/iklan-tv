@@ -1,40 +1,53 @@
 {
   "version": "1.0.0",
-  "market": {
-    "index": {
-      "value": "1.234,56",
-      "change": "+0,85%",
-      "volume": "2.4M"
+  "slides": [
+    {
+      "id": "slide-1",
+      "image": "🍎",
+      "tag": "🔥 PROMO TERBATAS",
+      "title": "Apel Malang <span>Super Manis</span>",
+      "desc": "Segar dari kebun, kaya vitamin C",
+      "price": "Rp 25.000 / kg"
     },
-    "topGainer": "Apel +5,2%",
-    "topLoser": "Nanas -2,1%",
-    "totalVolume": "2.450.000 kg",
-    "fruits": [
-      { "name": "Apel Malang", "price": "25.000", "change": "+5.2", "volume": "320.000", "type": "lokal" },
-      { "name": "Jeruk Pamelo", "price": "20.000", "change": "+2.1", "volume": "180.000", "type": "lokal" },
-      { "name": "Mangga Arumanis", "price": "30.000", "change": "-0.5", "volume": "210.000", "type": "lokal" },
-      { "name": "Anggur Red Globe", "price": "75.000", "change": "+3.8", "volume": "95.000", "type": "import" },
-      { "name": "Durian Musang King", "price": "250.000", "change": "-1.2", "volume": "45.000", "type": "import" },
-      { "name": "Blueberry (USA)", "price": "120.000", "change": "+0.9", "volume": "32.000", "type": "import" },
-      { "name": "Cherry Chile", "price": "180.000", "change": "+4.0", "volume": "28.000", "type": "import" },
-      { "name": "Buah Naga Merah", "price": "35.000", "change": "-0.2", "volume": "140.000", "type": "lokal" },
-      { "name": "Pisang Cavendish", "price": "18.000", "change": "+1.5", "volume": "400.000", "type": "lokal" },
-      { "name": "Nanas Madu", "price": "22.000", "change": "-2.1", "volume": "250.000", "type": "lokal" }
-    ],
-    "chart": [
-      { "label": "Apel", "value": 85 },
-      { "label": "Jeruk", "value": 70 },
-      { "label": "Mangga", "value": 92 },
-      { "label": "Anggur", "value": 60 },
-      { "label": "Durian", "value": 45 },
-      { "label": "Naga", "value": 78 }
-    ]
-  },
+    {
+      "id": "slide-2",
+      "image": "🥭",
+      "tag": "🌿 LOKAL TERBAIK",
+      "title": "Mangga Harum Manis <span>Arumanis</span>",
+      "desc": "Daging tebal, tanpa serat",
+      "price": "Rp 30.000 / kg"
+    },
+    {
+      "id": "slide-3",
+      "image": "🍇",
+      "tag": "⭐ IMPORT PREMIUM",
+      "title": "Anggur Red Globe <span>Australia</span>",
+      "desc": "Manis legit, kualitas ekspor",
+      "price": "Rp 75.000 / kg"
+    },
+    {
+      "id": "slide-4",
+      "image": "🎁",
+      "tag": "🎀 PARCEL SPESIAL",
+      "title": "Parcel Buah <span>Mewah</span>",
+      "desc": "Isi 8 buah pilihan, kemasan elegan",
+      "price": "Mulai Rp 150.000"
+    },
+    {
+      "id": "slide-5",
+      "image": "🍉",
+      "tag": "💰 HEMAT BESAR",
+      "title": "Paket Keluarga <span>5 kg</span>",
+      "desc": "Apel + Jeruk + Pisang + Pepaya + Semangka",
+      "price": "Rp 100.000"
+    }
+  ],
   "ticker": [
-    "📈 Apel Malang naik +5,2% · Jeruk +2,1% · Anggur +3,8%",
-    "🍍 Indeks Buah Segar 1.234,56 (+0,85%) · Volume 2,4M kg",
-    "📊 Top Gainer: Apel +5,2% · Top Loser: Nanas -2,1%",
-    "🛒 Pesan via WhatsApp 0813-3352-7527 · Gratis Ongkir Min Rp 150.000",
-    "📍 Toko Buah ABS · Kepanjen, Malang · Buka 07.00-21.00"
+    "🍍 Toko Buah ABS · Jl. Raya Penarukan No.2, Kepanjen, Malang · Buka 07.00-21.00",
+    "🔥 Promo Apel Malang Rp 25.000/kg · Beli 2 kg gratis 500gr!",
+    "📱 Pesan via WhatsApp 0813-3352-7527 · Gratis ongkir min Rp 150.000",
+    "📸 Follow Instagram @abskepanjen untuk promo terbaru",
+    "🎁 Parcel Buah Spesial mulai Rp 150.000 · Cocok untuk hadiah",
+    "🌿 Buah lokal & import selalu tersedia · Kualitas terjamin"
   ]
 }

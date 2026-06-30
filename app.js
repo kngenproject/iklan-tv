@@ -1,11 +1,10 @@
 /* ═══════════════════════════════════════════════
-   TOKO BUAH ABS — Market Dashboard
-   Render data pasar saham buah
+   TOKO BUAH ABS — Digital Signage + Partikel + Audio
    ═══════════════════════════════════════════════ */
 'use strict';
 
-// --- SCALING ---
-const configureSignageScale = () => {
+// ── SCALING ──
+const configureScale = () => {
     const root = document.getElementById('signage-root');
     if (!root) return;
     const baseW = 3840, baseH = 2160;
@@ -16,10 +15,10 @@ const configureSignageScale = () => {
     root.style.marginLeft = `${(window.innerWidth - baseW * s) / 2}px`;
     root.style.marginTop = `${(window.innerHeight - baseH * s) / 2}px`;
 };
-window.addEventListener('resize', configureSignageScale);
-document.addEventListener('DOMContentLoaded', configureSignageScale);
+window.addEventListener('resize', configureScale);
+document.addEventListener('DOMContentLoaded', configureScale);
 
-// --- CLOCK ---
+// ── CLOCK ──
 const startClock = () => {
     const days = ['Minggu','Senin','Selasa','Rabu','Kamis','Jumat','Sabtu'];
     const months = ['Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember'];
@@ -35,61 +34,120 @@ const startClock = () => {
     }, 1000);
 };
 
-// --- RENDER CHART ---
-function renderChart(chartData) {
-    const container = document.getElementById('fruit-chart');
-    if (!container) return;
-    container.innerHTML = '';
-    const max = Math.max(...chartData.map(d => d.value));
-    chartData.forEach(item => {
-        const wrapper = document.createElement('div');
-        wrapper.className = 'bar-wrapper';
-        const percent = (item.value / max) * 100;
-        const barHeight = Math.max(30, (percent / 100) * 280);
-        const bar = document.createElement('div');
-        bar.className = 'bar';
-        bar.style.height = barHeight + 'px';
-        bar.innerHTML = `<span class="bar-value">${item.value}</span>`;
-        const label = document.createElement('div');
-        label.className = 'bar-label';
-        label.textContent = item.label;
-        wrapper.appendChild(bar);
-        wrapper.appendChild(label);
-        container.appendChild(wrapper);
+// ── PARTIKEL (Background ramai) ──
+class Particle {
+    constructor(canvas) {
+        this.canvas = canvas;
+        this.ctx = canvas.getContext('2d');
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.size = Math.random() * 8 + 3;
+        this.speedX = (Math.random() - 0.5) * 0.6;
+        this.speedY = (Math.random() - 0.5) * 0.6;
+        this.opacity = Math.random() * 0.5 + 0.1;
+        this.color = `hsl(${Math.floor(Math.random() * 60 + 30)}, 80%, 60%)`;
+    }
+    update() {
+        this.x += this.speedX;
+        this.y += this.speedY;
+        if (this.x > this.canvas.width) this.x = 0;
+        if (this.x < 0) this.x = this.canvas.width;
+        if (this.y > this.canvas.height) this.y = 0;
+        if (this.y < 0) this.y = this.canvas.height;
+    }
+    draw() {
+        this.ctx.beginPath();
+        this.ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        this.ctx.fillStyle = this.color;
+        this.ctx.globalAlpha = this.opacity;
+        this.ctx.fill();
+        this.ctx.globalAlpha = 1;
+    }
+}
+
+function initParticles() {
+    const canvas = document.getElementById('particleCanvas');
+    if (!canvas) return;
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    const particles = [];
+    for (let i = 0; i < 120; i++) {
+        particles.push(new Particle(canvas));
+    }
+    const ctx = canvas.getContext('2d');
+    function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        particles.forEach(p => {
+            p.update();
+            p.draw();
+        });
+        requestAnimationFrame(animate);
+    }
+    animate();
+    window.addEventListener('resize', () => {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        particles.forEach(p => {
+            p.x = Math.random() * canvas.width;
+            p.y = Math.random() * canvas.height;
+        });
     });
 }
 
-// --- RENDER PRICE TABLE ---
-function renderPriceTable(fruits) {
-    const tbody = document.getElementById('price-body');
-    if (!tbody) return;
-    tbody.innerHTML = '';
-    fruits.forEach(f => {
-        const tr = document.createElement('tr');
-        const changeNum = parseFloat(f.change);
-        const changeClass = changeNum >= 0 ? 'up' : 'down';
-        const changeSign = changeNum >= 0 ? '+' : '';
-        tr.innerHTML = `
-            <td><strong>${f.name}</strong></td>
-            <td>Rp ${f.price}</td>
-            <td class="change ${changeClass}">${changeSign}${f.change}%</td>
-            <td class="volume">${f.volume}</td>
+// ── RENDER SLIDES ──
+let currentSlide = 0;
+let slideInterval = null;
+
+function renderSlides(slides) {
+    const wrapper = document.getElementById('slideWrapper');
+    const dots = document.getElementById('slideDots');
+    if (!wrapper || !dots) return;
+    wrapper.innerHTML = '';
+    dots.innerHTML = '';
+
+    slides.forEach((slide, idx) => {
+        const div = document.createElement('div');
+        div.className = `slide-item${idx === 0 ? ' active' : ''}`;
+        div.innerHTML = `
+            <div class="slide-content">
+                <div class="slide-image">${slide.image}</div>
+                <div class="slide-text">
+                    <div class="tag">${slide.tag}</div>
+                    <h2>${slide.title}</h2>
+                    <div class="desc">${slide.desc}</div>
+                    <div class="price">${slide.price}</div>
+                </div>
+            </div>
         `;
-        tbody.appendChild(tr);
+        wrapper.appendChild(div);
+
+        const dot = document.createElement('span');
+        dot.className = `dot${idx === 0 ? ' active' : ''}`;
+        dot.dataset.index = idx;
+        dot.addEventListener('click', () => goToSlide(idx));
+        dots.appendChild(dot);
     });
+
+    currentSlide = 0;
+    if (slideInterval) clearInterval(slideInterval);
+    slideInterval = setInterval(() => {
+        const total = slides.length;
+        goToSlide((currentSlide + 1) % total);
+    }, 7000);
 }
 
-// --- RENDER INDEX & SUMMARY ---
-function renderMarketOverview(market) {
-    document.getElementById('index-value').textContent = market.index.value;
-    document.getElementById('index-change').textContent = market.index.change;
-    document.getElementById('index-volume').textContent = `Vol ${market.index.volume}`;
-    document.getElementById('top-gainer').textContent = market.topGainer;
-    document.getElementById('top-loser').textContent = market.topLoser;
-    document.getElementById('total-volume').textContent = market.totalVolume;
+function goToSlide(index) {
+    const items = document.querySelectorAll('.slide-item');
+    const dots = document.querySelectorAll('.dot');
+    if (!items.length) return;
+    items.forEach(el => el.classList.remove('active'));
+    dots.forEach(el => el.classList.remove('active'));
+    currentSlide = (index + items.length) % items.length;
+    items[currentSlide].classList.add('active');
+    dots[currentSlide].classList.add('active');
 }
 
-// --- RENDER TICKER ---
+// ── RENDER TICKER ──
 function renderTicker(items) {
     const track = document.getElementById('marquee-track');
     if (!track) return;
@@ -99,60 +157,97 @@ function renderTicker(items) {
     ).join('');
 }
 
-// --- DATA FETCH ---
+// ── FETCH DATA ──
 let cachedData = null;
 
-async function fetchMarketData() {
+async function fetchData() {
     try {
         const resp = await fetch(`./news-data.json?nocache=${Date.now()}`);
         if (!resp.ok) throw new Error('Network error');
         return await resp.json();
     } catch (e) {
-        console.warn('Gagal mengambil data:', e);
+        console.warn('Gagal ambil data:', e);
         return null;
     }
 }
 
 async function updateContent() {
-    const data = await fetchMarketData();
+    const data = await fetchData();
     if (!data) return;
     if (cachedData && data.version === cachedData.version) return;
     cachedData = data;
-    const market = data.market;
-    renderMarketOverview(market);
-    renderChart(market.chart);
-    renderPriceTable(market.fruits);
+    renderSlides(data.slides);
     renderTicker(data.ticker);
     const toast = document.getElementById('toast');
     if (toast) {
-        toast.textContent = '📊 Market update!';
+        toast.textContent = '🍍 Promo terbaru!';
         toast.classList.add('show');
         setTimeout(() => toast.classList.remove('show'), 3000);
     }
-    console.log('[Update] Data market versi', data.version);
 }
 
-// --- SERVICE WORKER ---
+// ── AUDIO CONTROL ──
+function initAudio() {
+    const audio = document.getElementById('bgMusic');
+    const btn = document.getElementById('musicToggle');
+    if (!audio || !btn) return;
+
+    // Coba putar otomatis (bisa diblokir browser)
+    audio.volume = 0.4;
+
+    // Klik tombol untuk toggle
+    btn.addEventListener('click', () => {
+        if (audio.paused) {
+            audio.play().then(() => {
+                btn.textContent = '🔊';
+                btn.classList.remove('muted');
+            }).catch(() => {
+                btn.textContent = '🔇';
+                btn.classList.add('muted');
+            });
+        } else {
+            audio.pause();
+            btn.textContent = '🔇';
+            btn.classList.add('muted');
+        }
+    });
+
+    // Klik di mana saja di layar untuk mulai (bypass autoplay)
+    document.addEventListener('click', () => {
+        if (audio.paused) {
+            audio.play().then(() => {
+                btn.textContent = '🔊';
+                btn.classList.remove('muted');
+            }).catch(() => {});
+        }
+    }, { once: true });
+}
+
+// ── SW ──
 function registerSW() {
     if ('serviceWorker' in navigator) {
         navigator.serviceWorker.register('./sw.js')
             .then(() => console.log('[SW] Registered'))
-            .catch(err => console.warn('[SW Error]', err));
+            .catch(() => {});
     }
 }
 
-// --- INIT ---
+// ── INIT ──
 document.addEventListener('DOMContentLoaded', async () => {
     startClock();
-    const data = await fetchMarketData();
+    initParticles();
+    initAudio();
+
+    const data = await fetchData();
     if (data) {
         cachedData = data;
-        const market = data.market;
-        renderMarketOverview(market);
-        renderChart(market.chart);
-        renderPriceTable(market.fruits);
+        renderSlides(data.slides);
         renderTicker(data.ticker);
     }
+
     setInterval(updateContent, 30000);
     registerSW();
 });
+
+window.goToSlide = goToSlide;
+window.updateContent = updateContent;
