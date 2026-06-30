@@ -3,187 +3,113 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Iklan Toko Buah ABS</title>
+    <title>Toko Buah ABS - Design 2</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Fredoka', sans-serif; }
         .container {
             width: 3840px;
             height: 2160px;
+            background: linear-gradient(135deg, #FFD93D 0%, #FF6B6B 50%, #2ecc71 100%);
             display: flex;
-            background: linear-gradient(135deg, #2ecc71 0%, #27ae60 100%);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .content {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
             align-items: center;
-            width: 100%;
-            height: 100%;
+            justify-content: center;
+            flex-direction: column;
             padding: 200px;
             text-align: center;
-            color: white;
         }
-
-        .logo-section {
+        .fruits-top {
+            font-size: 300px;
             margin-bottom: 100px;
+            animation: float 3s ease-in-out infinite;
         }
-
-        .emoji-fruits {
-            font-size: 280px;
-            margin-bottom: 60px;
-            animation: bounce 2s infinite;
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-60px); }
         }
-
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-40px); }
-        }
-
         .title {
-            font-size: 280px;
+            font-size: 350px;
             font-weight: 900;
+            color: white;
+            text-shadow: 10px 10px 30px rgba(0, 0, 0, 0.3);
             margin-bottom: 40px;
-            text-shadow: 8px 8px 0px rgba(0, 0, 0, 0.3);
-            letter-spacing: -15px;
         }
-
         .tagline {
             font-size: 120px;
+            color: white;
+            margin-bottom: 100px;
             font-weight: 300;
-            margin-bottom: 80px;
-            opacity: 0.95;
         }
-
-        .info-box {
-            background: rgba(255, 255, 255, 0.15);
+        .feature-boxes {
+            display: flex;
+            gap: 80px;
+            justify-content: center;
+            margin-bottom: 120px;
+            flex-wrap: wrap;
+        }
+        .feature {
+            background: rgba(255, 255, 255, 0.25);
             backdrop-filter: blur(10px);
-            padding: 80px 120px;
-            border-radius: 60px;
-            border: 4px solid rgba(255, 255, 255, 0.3);
-            margin: 60px 0;
-            max-width: 2400px;
-        }
-
-        .address {
-            font-size: 90px;
-            margin-bottom: 50px;
+            padding: 80px 100px;
+            border-radius: 50px;
+            border: 3px solid rgba(255, 255, 255, 0.5);
+            color: white;
+            font-size: 80px;
             font-weight: 600;
         }
-
-        .location-detail {
-            font-size: 80px;
-            line-height: 1.4;
-            opacity: 0.9;
-        }
-
-        .cta-button {
-            display: inline-block;
-            background: #e74c3c;
+        .location-box {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            padding: 100px 150px;
+            border-radius: 60px;
+            border: 3px solid white;
             color: white;
-            padding: 70px 180px;
+            margin-bottom: 100px;
+        }
+        .address {
             font-size: 100px;
-            font-weight: bold;
+            font-weight: 700;
+            margin-bottom: 30px;
+        }
+        .detail {
+            font-size: 85px;
+            opacity: 0.95;
+        }
+        .btn {
+            background: white;
+            color: #FF6B6B;
+            padding: 80px 200px;
+            font-size: 110px;
+            font-weight: 900;
+            border: none;
             border-radius: 50px;
-            text-decoration: none;
-            margin-top: 80px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s;
         }
-
-        .cta-button:hover {
-            transform: scale(1.05);
-            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.4);
-        }
-
-        .rating {
-            font-size: 100px;
-            margin-top: 80px;
-        }
-
-        .stars {
-            color: #f1c40f;
-            margin: 0 20px;
-        }
-
-        .decorative-shapes {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        .circle {
-            position: absolute;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.1);
-        }
-
-        .circle1 {
-            width: 600px;
-            height: 600px;
-            top: -200px;
-            right: -200px;
-        }
-
-        .circle2 {
-            width: 800px;
-            height: 800px;
-            bottom: -300px;
-            left: -300px;
-        }
-
-        .content-wrapper {
-            position: relative;
-            z-index: 1;
+        .btn:hover {
+            transform: scale(1.08);
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="decorative-shapes">
-            <div class="circle circle1"></div>
-            <div class="circle circle2"></div>
+        <div class="fruits-top">🍓🍊🍌🥝🍇</div>
+        <h1 class="title">ABS</h1>
+        <p class="tagline">Toko Buah Terpercaya</p>
+
+        <div class="feature-boxes">
+            <div class="feature">✨ Segar 100%</div>
+            <div class="feature">🚚 Pengiriman Cepat</div>
+            <div class="feature">💯 Berkualitas</div>
         </div>
 
-        <div class="content">
-            <div class="content-wrapper">
-                <div class="logo-section">
-                    <div class="emoji-fruits">🍎🍌🍊🥝🍇</div>
-                </div>
-
-                <h1 class="title">TOKO BUAH ABS</h1>
-                <p class="tagline">Buah Segar Pilihan Terbaik</p>
-
-                <div class="info-box">
-                    <div class="address">📍 Jl. Raya Penarukan No.2</div>
-                    <div class="location-detail">
-                        Kepanjen, Kab. Malang<br>
-                        Jawa Timur 65163
-                    </div>
-                </div>
-
-                <div class="rating">
-                    <span class="stars">★★★★★</span>
-                </div>
-
-                <button class="cta-button">🛒 Kunjungi Sekarang</button>
-            </div>
+        <div class="location-box">
+            <div class="address">📍 Jl. Raya Penarukan No.2</div>
+            <div class="detail">Kepanjen, Kab. Malang, Jawa Timur</div>
         </div>
+
+        <button class="btn">🛍️ BELI SEKARANG</button>
     </div>
 </body>
 </html>
