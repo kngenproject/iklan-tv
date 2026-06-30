@@ -1,519 +1,726 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<title>Toko Buah ABS Kepanjen - Digital Signage</title>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-<style>
-  :root{
-    --green:#1B8F3A;
-    --orange:#F7941D;
-    --red:#D62828;
-    --white:#FFFFFF;
-    --gray:#F5F6F8;
-    --radius:24px;
-  }
-  *{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',-apple-system,'Helvetica Neue',Arial,sans-serif;}
-  html,body{width:3840px;height:2160px;overflow:hidden;background:var(--gray);}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ABS Kepanjen - Toko Buah Aneka Buah Segar</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-  body{
-    position:relative;
-    background:
-      radial-gradient(circle at 20% 10%, rgba(27,143,58,0.08), transparent 40%),
-      radial-gradient(circle at 85% 90%, rgba(247,148,29,0.08), transparent 45%),
-      linear-gradient(135deg, #F5F6F8 0%, #EFF3EF 50%, #F5F6F8 100%);
-    background-size:200% 200%;
-    animation: bgShift 40s ease-in-out infinite;
-  }
-  @keyframes bgShift{
-    0%{background-position:0% 0%;}
-    50%{background-position:100% 100%;}
-    100%{background-position:0% 0%;}
-  }
+        body {
+            width: 3840px;
+            height: 2160px;
+            background: linear-gradient(135deg, #f5f5f5 0%, #ffffff 100%);
+            font-family: 'Arial', sans-serif;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
 
-  .screen{
-    display:flex;
-    flex-direction:column;
-    width:3840px;
-    height:2160px;
-  }
+        .container {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+            background: white;
+        }
 
-  /* ===================== HEADER (15% = 324px) ===================== */
-  .header{
-    height:324px;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    padding:0 70px;
-    position:relative;
-  }
-  .header-left{
-    display:flex;
-    align-items:center;
-    gap:30px;
-  }
-  .logo-badge{
-    width:140px;
-    height:140px;
-    border-radius:32px;
-    background:linear-gradient(145deg, var(--green), #146b2b);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    box-shadow:0 16px 40px rgba(27,143,58,0.35);
-    animation: logoZoom 6s ease-in-out infinite;
-  }
-  @keyframes logoZoom{
-    0%,100%{transform:scale(1);}
-    50%{transform:scale(1.02);}
-  }
-  .logo-badge svg{width:78px;height:78px;}
-  .logo-text{
-    display:flex;
-    flex-direction:column;
-  }
-  .logo-text .brand{
-    font-size:34px;
-    font-weight:800;
-    color:var(--green);
-    letter-spacing:1px;
-  }
-  .logo-text .brand-sub{
-    font-size:22px;
-    font-weight:600;
-    color:#5b6470;
-    letter-spacing:3px;
-  }
+        /* Dekorasi background */
+        .deco-top-left {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 400px;
+            height: 400px;
+            background: linear-gradient(135deg, #d4ff3c 0%, #a8ff00 100%);
+            border-radius: 0 0 400px 0;
+            opacity: 0.9;
+            animation: floatDeco 6s ease-in-out infinite;
+        }
 
-  .header-center{
-    position:absolute;
-    left:50%;
-    transform:translateX(-50%);
-    text-align:center;
-    animation: fadeIn 1.4s ease-out;
-  }
-  @keyframes fadeIn{
-    from{opacity:0; transform:translateX(-50%) translateY(-14px);}
-    to{opacity:1; transform:translateX(-50%) translateY(0);}
-  }
-  .main-title{
-    font-size:84px;
-    font-weight:900;
-    letter-spacing:4px;
-    background:linear-gradient(90deg, var(--green), #2bb551 60%, var(--green));
-    -webkit-background-clip:text;
-    background-clip:text;
-    color:transparent;
-    line-height:1.05;
-  }
-  .main-subtitle{
-    margin-top:10px;
-    font-size:28px;
-    font-weight:500;
-    color:#5b6470;
-    letter-spacing:2px;
-  }
-  .main-subtitle .dot{color:var(--orange); font-weight:800; margin:0 14px;}
+        .deco-top-right {
+            position: absolute;
+            top: -100px;
+            right: 0;
+            width: 500px;
+            height: 600px;
+            background: linear-gradient(180deg, rgba(180,0,0,0.8) 0%, rgba(200,50,50,0.6) 100%);
+            clip-path: polygon(0 0, 60% 0, 40% 100%, 0 100%);
+            animation: slideIn 8s ease-in-out infinite;
+        }
 
-  .header-right{
-    text-align:right;
-    display:flex;
-    flex-direction:column;
-    align-items:flex-end;
-    gap:6px;
-  }
-  .clock{
-    font-size:58px;
-    font-weight:800;
-    color:#1d2530;
-    letter-spacing:2px;
-    font-variant-numeric:tabular-nums;
-  }
-  .date{
-    font-size:24px;
-    font-weight:500;
-    color:#5b6470;
-  }
+        .deco-bottom-left {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, #d4ff3c 0%, #a8ff00 100%);
+            border-radius: 100px 100px 0 0;
+            opacity: 0.7;
+            animation: pulse 5s ease-in-out infinite;
+        }
 
-  .divider{
-    height:2px;
-    margin:0 70px;
-    background:linear-gradient(90deg, transparent, rgba(27,143,58,0.35) 20%, rgba(214,40,40,0.25) 50%, rgba(247,148,29,0.35) 80%, transparent);
-  }
+        .deco-bottom-right {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 350px;
+            height: 350px;
+            background: linear-gradient(135deg, #2d7a2d 0%, #1a4d1a 100%);
+            border-radius: 350px 0 0 0;
+            opacity: 0.8;
+            animation: bounce 7s ease-in-out infinite;
+        }
 
-  /* ===================== MAIN CONTENT (65% = 1404px) ===================== */
-  .main-content{
-    height:1404px;
-    padding:60px 70px;
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    grid-template-rows:1fr 1fr;
-    gap:48px;
-  }
+        /* Logo section */
+        .logo-section {
+            position: absolute;
+            left: 80px;
+            top: 150px;
+            width: 500px;
+            text-align: center;
+            z-index: 10;
+            animation: slideInLeft 1s ease-out;
+        }
 
-  .card{
-    position:relative;
-    border-radius:var(--radius);
-    background:rgba(255,255,255,0.72);
-    backdrop-filter:blur(18px);
-    -webkit-backdrop-filter:blur(18px);
-    border:1px solid rgba(255,255,255,0.6);
-    box-shadow:0 24px 60px rgba(20,30,30,0.10), 0 4px 14px rgba(20,30,30,0.06);
-    display:flex;
-    align-items:center;
-    padding:0 70px;
-    gap:54px;
-    overflow:hidden;
-    opacity:0;
-    transform:translateY(40px);
-    animation: slideUp 0.9s ease-out forwards;
-  }
-  .card::before{
-    content:"";
-    position:absolute;
-    top:0; left:0;
-    width:10px; height:100%;
-    border-radius:var(--radius) 0 0 var(--radius);
-  }
-  .card1::before{background:var(--red);}
-  .card2::before{background:var(--green);}
-  .card3::before{background:var(--orange);}
-  .card4::before{background:var(--green);}
+        .logo-circle {
+            width: 380px;
+            height: 380px;
+            margin: 0 auto 30px;
+            background: linear-gradient(135deg, #ff4444 0%, #ff6666 50%, #ff9900 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+            animation: rotateLogic 20s linear infinite;
+        }
 
-  .card1{animation-delay:0.1s;}
-  .card2{animation-delay:0.35s;}
-  .card3{animation-delay:0.6s;}
-  .card4{animation-delay:0.85s;}
+        .logo-inner {
+            width: 340px;
+            height: 340px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
 
-  @keyframes slideUp{
-    to{opacity:1; transform:translateY(0);}
-  }
+        .logo-fruit {
+            font-size: 140px;
+            line-height: 1;
+            margin-bottom: 20px;
+            animation: swing 3s ease-in-out infinite;
+        }
 
-  .icon-wrap{
-    flex-shrink:0;
-    width:170px;
-    height:170px;
-    border-radius:36px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    animation: bounce 4s ease-in-out infinite;
-  }
-  @keyframes bounce{
-    0%,100%{transform:translateY(0);}
-    50%{transform:translateY(-8px);}
-  }
-  .card1 .icon-wrap{background:linear-gradient(145deg,#fdeaea,#fbd6d6);}
-  .card2 .icon-wrap{background:linear-gradient(145deg,#e6f5ea,#d2eedb);}
-  .card3 .icon-wrap{background:linear-gradient(145deg,#fef0dc,#fde2bb);}
-  .card4 .icon-wrap{background:linear-gradient(145deg,#e6f5ea,#d2eedb);}
+        .logo-text {
+            color: #2d5a2d;
+            font-size: 48px;
+            font-weight: bold;
+            margin: 10px 0;
+            font-style: italic;
+            animation: fadeInUp 1.2s ease-out;
+        }
 
-  .icon-wrap svg{width:88px;height:88px;}
+        .logo-abs {
+            color: #d32020;
+            font-size: 120px;
+            font-weight: bold;
+            line-height: 1;
+            margin: 10px 0;
+            animation: scaleIn 1.5s ease-out;
+        }
 
-  .card-text{display:flex; flex-direction:column; gap:14px;}
-  .card-title{
-    font-size:46px;
-    font-weight:800;
-    letter-spacing:1px;
-    color:#1d2530;
-  }
-  .card-desc{
-    font-size:28px;
-    font-weight:500;
-    color:#5b6470;
-    line-height:1.4;
-  }
+        .logo-subtitle {
+            color: #2d5a2d;
+            font-size: 32px;
+            margin-top: 15px;
+            font-weight: bold;
+        }
 
-  /* ===================== FOOTER (20% = 432px) ===================== */
-  .footer{
-    height:432px;
-    display:flex;
-    flex-direction:column;
-  }
-  .footer-main{
-    flex:1;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    padding:0 70px;
-  }
-  .footer-block{
-    display:flex;
-    align-items:center;
-    gap:24px;
-  }
-  .footer-icon{
-    width:88px;
-    height:88px;
-    border-radius:22px;
-    background:rgba(27,143,58,0.10);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    flex-shrink:0;
-  }
-  .footer-icon svg{width:46px;height:46px;}
-  .footer-label{
-    font-size:22px;
-    color:#5b6470;
-    font-weight:600;
-    letter-spacing:1px;
-  }
-  .footer-value{
-    font-size:32px;
-    color:#1d2530;
-    font-weight:800;
-  }
-  .phones{display:flex; flex-direction:column; gap:18px;}
-  .phone-row{display:flex; align-items:center; gap:20px;}
+        .tagline {
+            color: #d32020;
+            font-size: 36px;
+            font-style: italic;
+            margin-top: 20px;
+            line-height: 1.4;
+            animation: fadeInUp 1.4s ease-out 0.3s backwards;
+        }
 
-  .qr-block{
-    display:flex;
-    align-items:center;
-    gap:30px;
-  }
-  .qr-box{
-    width:170px;
-    height:170px;
-    background:#fff;
-    border-radius:20px;
-    box-shadow:0 12px 30px rgba(20,30,30,0.12);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    padding:12px;
-  }
-  .qr-caption{
-    font-size:24px;
-    font-weight:800;
-    color:var(--green);
-    letter-spacing:1px;
-    max-width:260px;
-    line-height:1.3;
-  }
+        /* Main content section */
+        .main-section {
+            position: absolute;
+            left: 650px;
+            top: 100px;
+            width: 3050px;
+            height: 900px;
+            z-index: 20;
+        }
 
-  /* Ticker */
-  .ticker{
-    height:96px;
-    background:linear-gradient(90deg, #b91c1c, var(--red) 40%, #b91c1c);
-    display:flex;
-    align-items:center;
-    overflow:hidden;
-    position:relative;
-  }
-  .ticker-track{
-    display:flex;
-    white-space:nowrap;
-    animation: scrollLeft 38s linear infinite;
-  }
-  .ticker-track span{
-    font-size:30px;
-    font-weight:700;
-    color:#fff;
-    letter-spacing:0.5px;
-    padding:0 60px;
-    display:inline-flex;
-    align-items:center;
-  }
-  .ticker-track span::before{
-    content:"●";
-    color:#ffd9d9;
-    margin-right:24px;
-    font-size:16px;
-  }
-  @keyframes scrollLeft{
-    from{transform:translateX(0);}
-    to{transform:translateX(-50%);}
-  }
-</style>
+        .header {
+            font-size: 140px;
+            font-weight: bold;
+            color: #d32020;
+            margin-bottom: 40px;
+            letter-spacing: 8px;
+            text-shadow: 4px 4px 0px rgba(0,0,0,0.1);
+            animation: slideInRight 1s ease-out;
+        }
+
+        .header .green {
+            color: #2d7a2d;
+            display: block;
+            margin-top: 20px;
+            letter-spacing: 6px;
+        }
+
+        /* Category buttons */
+        .categories {
+            display: flex;
+            gap: 80px;
+            margin-bottom: 60px;
+            animation: fadeIn 1.2s ease-out 0.6s backwards;
+        }
+
+        .category-btn {
+            flex: 1;
+            border: 5px solid #d32020;
+            border-radius: 40px;
+            padding: 40px 30px;
+            background: white;
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            min-height: 150px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .category-btn:nth-child(1) {
+            border-color: #d32020;
+        }
+
+        .category-btn:nth-child(1) .icon {
+            background: #d32020;
+        }
+
+        .category-btn:nth-child(2) {
+            border-color: #2d7a2d;
+        }
+
+        .category-btn:nth-child(2) .icon {
+            background: #2d7a2d;
+        }
+
+        .category-btn:nth-child(3) {
+            border-color: #ff9900;
+        }
+
+        .category-btn:nth-child(3) .icon {
+            background: #ff9900;
+        }
+
+        .category-btn:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+        }
+
+        .icon {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 70px;
+            color: white;
+            flex-shrink: 0;
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        .category-text {
+            flex: 1;
+        }
+
+        .category-text-main {
+            color: #d32020;
+            font-size: 60px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .category-btn:nth-child(2) .category-text-main {
+            color: #2d7a2d;
+        }
+
+        .category-btn:nth-child(3) .category-text-main {
+            color: #ff9900;
+        }
+
+        .category-text-sub {
+            color: #333;
+            font-size: 50px;
+            font-weight: bold;
+        }
+
+        /* Promise banner */
+        .promise-banner {
+            background: linear-gradient(90deg, #2d7a2d 0%, #1a4d1a 100%);
+            border-radius: 50px;
+            padding: 40px 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 60px;
+            color: white;
+            font-size: 70px;
+            font-weight: bold;
+            text-transform: uppercase;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+            animation: slideInUp 1.2s ease-out 0.8s backwards;
+        }
+
+        .promise-item {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .promise-dot {
+            width: 30px;
+            height: 30px;
+            background: #ffcc00;
+            border-radius: 50%;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        /* Stock banner */
+        .stock-banner {
+            position: absolute;
+            left: 650px;
+            bottom: 300px;
+            width: 2950px;
+            height: 200px;
+            background: linear-gradient(90deg, #d32020 0%, #ff4444 100%);
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 25;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            animation: slideInUp 1.2s ease-out 1s backwards;
+        }
+
+        .stock-text {
+            color: white;
+            font-size: 100px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 8px;
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .stock-icon {
+            font-size: 120px;
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        /* Footer section */
+        .footer {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 280px;
+            background: linear-gradient(90deg, #2d5a2d 0%, #1a3a1a 100%);
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            padding: 40px 80px;
+            z-index: 30;
+            animation: slideUp 1s ease-out 1.2s backwards;
+        }
+
+        .footer-item {
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            flex: 1;
+        }
+
+        .footer-icon {
+            width: 100px;
+            height: 100px;
+            background: #ffcc00;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 60px;
+            color: #2d5a2d;
+            flex-shrink: 0;
+        }
+
+        .footer-text {
+            font-size: 60px;
+            font-weight: bold;
+            line-height: 1.2;
+        }
+
+        .footer-divider {
+            width: 5px;
+            height: 150px;
+            background: #ffcc00;
+            border-radius: 5px;
+        }
+
+        .qr-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .qr-box {
+            width: 180px;
+            height: 180px;
+            background: white;
+            border-radius: 20px;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            animation: scaleIn 1.5s ease-out 1.4s backwards;
+        }
+
+        .qr-placeholder {
+            width: 150px;
+            height: 150px;
+            background: linear-gradient(135deg, #333 0%, #555 100%);
+            border-radius: 10px;
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 8px;
+            padding: 15px;
+        }
+
+        .qr-dot {
+            background: #333;
+            border-radius: 3px;
+            animation: fadeInScale 1.5s ease-out;
+        }
+
+        .qr-label {
+            color: white;
+            font-size: 50px;
+            font-weight: bold;
+            text-align: center;
+            letter-spacing: 2px;
+        }
+
+        /* Animations */
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-100px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(100px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(60px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(100px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.5);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes rotateLogic {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes swing {
+            0%, 100% {
+                transform: rotate(0deg);
+            }
+            25% {
+                transform: rotate(5deg);
+            }
+            75% {
+                transform: rotate(-5deg);
+            }
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        @keyframes floatDeco {
+            0%, 100% {
+                transform: translate(0, 0);
+            }
+            50% {
+                transform: translate(20px, 20px);
+            }
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(100px);
+            }
+            to {
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 0.7;
+            }
+            50% {
+                transform: scale(1.1);
+                opacity: 1;
+            }
+        }
+
+        /* Reduce motion preference */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
 </head>
 <body>
-<div class="screen">
+    <div class="container">
+        <!-- Dekorasi background -->
+        <div class="deco-top-left"></div>
+        <div class="deco-top-right"></div>
+        <div class="deco-bottom-left"></div>
+        <div class="deco-bottom-right"></div>
 
-  <!-- HEADER -->
-  <header class="header">
-    <div class="header-left">
-      <div class="logo-badge">
-        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M12 2v4M8 4c0 2 1.5 3.5 4 3.5S16 6 16 4"/>
-          <circle cx="12" cy="14" r="7.5" fill="rgba(255,255,255,0.12)"/>
-        </svg>
-      </div>
-      <div class="logo-text">
-        <span class="brand">TOKO BUAH ABS</span>
-        <span class="brand-sub">KEPANJEN</span>
-      </div>
-    </div>
-
-    <div class="header-center">
-      <div class="main-title">ANEKA BUAH SEGAR</div>
-      <div class="main-subtitle">Segar Setiap Hari <span class="dot">•</span> Kualitas Terjamin</div>
-    </div>
-
-    <div class="header-right">
-      <div class="clock" id="clock">00:00:00</div>
-      <div class="date" id="date">Hari, 00 Bulan 0000</div>
-    </div>
-  </header>
-
-  <div class="divider"></div>
-
-  <!-- MAIN CONTENT -->
-  <main class="main-content">
-
-    <div class="card card1">
-      <div class="icon-wrap">
-        <svg viewBox="0 0 24 24" fill="none" stroke="#D62828" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="12" cy="12" r="9"/>
-          <path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/>
-        </svg>
-      </div>
-      <div class="card-text">
-        <span class="card-title">BUAH IMPORT</span>
-        <span class="card-desc">Kualitas pilihan dari berbagai negara</span>
-      </div>
-    </div>
-
-    <div class="card card2">
-      <div class="icon-wrap">
-        <svg viewBox="0 0 24 24" fill="none" stroke="#1B8F3A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M12 21c-5-3-8-6.5-8-11A6 6 0 0 1 12 6a6 6 0 0 1 8 4c0 4.5-3 8-8 11Z"/>
-          <path d="M12 6V3"/>
-        </svg>
-      </div>
-      <div class="card-text">
-        <span class="card-title">BUAH LOKAL</span>
-        <span class="card-desc">Segar langsung dari petani Indonesia</span>
-      </div>
-    </div>
-
-    <div class="card card3">
-      <div class="icon-wrap">
-        <svg viewBox="0 0 24 24" fill="none" stroke="#F7941D" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-          <rect x="3" y="9" width="18" height="11" rx="2"/>
-          <path d="M3 9h18M12 9v11M7.5 9C6 9 5 7.8 5 6.5S6 4 7.5 4 10 5.8 12 9c2-3.2 3-5 4.5-5S19 5.2 19 6.5 18 9 16.5 9"/>
-        </svg>
-      </div>
-      <div class="card-text">
-        <span class="card-title">PARCEL BUAH PREMIUM</span>
-        <span class="card-desc">Cocok untuk hadiah dan berbagai acara</span>
-      </div>
-    </div>
-
-    <div class="card card4">
-      <div class="icon-wrap">
-        <svg viewBox="0 0 24 24" fill="none" stroke="#1B8F3A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-          <rect x="1.5" y="7" width="13" height="9" rx="1.5"/>
-          <path d="M14.5 10h4l3 3.2V16h-7z"/>
-          <circle cx="6" cy="18.5" r="1.7"/>
-          <circle cx="17.5" cy="18.5" r="1.7"/>
-        </svg>
-      </div>
-      <div class="card-text">
-        <span class="card-title">LAYANAN PESANAN</span>
-        <span class="card-desc">Eceran • Partai • Instansi • Perusahaan</span>
-      </div>
-    </div>
-
-  </main>
-
-  <!-- FOOTER -->
-  <footer class="footer">
-    <div class="footer-main">
-
-      <div class="footer-block">
-        <div class="footer-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#1B8F3A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M12 21s-7-7.2-7-12a7 7 0 0 1 14 0c0 4.8-7 12-7 12Z"/>
-            <circle cx="12" cy="9" r="2.4"/>
-          </svg>
+        <!-- Logo section -->
+        <div class="logo-section">
+            <div class="logo-circle">
+                <div class="logo-inner">
+                    <div class="logo-fruit">🍊</div>
+                    <div class="logo-text">Toko Buah</div>
+                    <div class="logo-abs">ABS</div>
+                    <div class="logo-subtitle">KEPANJEN</div>
+                </div>
+            </div>
+            <div class="tagline">
+                <div style="color: #d32020;">Segar</div>
+                <div>Setiap Hari, Kualitas Terjamin.</div>
+            </div>
         </div>
-        <div>
-          <div class="footer-label">LOKASI</div>
-          <div class="footer-value">ABS Kepanjen</div>
-        </div>
-      </div>
 
-      <div class="footer-block phones">
-        <div class="phone-row">
-          <div class="footer-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="#1B8F3A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M5 4h3l2 5-2.5 1.5a11 11 0 0 0 5 5L14 13l5 2v3a2 2 0 0 1-2 2C9.5 20 4 14.5 4 7a2 2 0 0 1 1-3Z"/>
-            </svg>
-          </div>
-          <div class="footer-value">081235269000</div>
-        </div>
-        <div class="phone-row">
-          <div class="footer-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="#1B8F3A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M5 4h3l2 5-2.5 1.5a11 11 0 0 0 5 5L14 13l5 2v3a2 2 0 0 1-2 2C9.5 20 4 14.5 4 7a2 2 0 0 1 1-3Z"/>
-            </svg>
-          </div>
-          <div class="footer-value">081333527527</div>
-        </div>
-      </div>
+        <!-- Main content section -->
+        <div class="main-section">
+            <div class="header">
+                ANEKA
+                <span class="green">BUAH SEGAR</span>
+            </div>
 
-      <div class="qr-block">
-        <div class="qr-caption">SCAN UNTUK<br>ORDER WHATSAPP</div>
-        <div class="qr-box" id="qrcode"></div>
-      </div>
+            <!-- Categories -->
+            <div class="categories">
+                <div class="category-btn">
+                    <div class="icon">🌐</div>
+                    <div class="category-text">
+                        <div class="category-text-main">BUAH</div>
+                        <div class="category-text-sub">IMPORT</div>
+                    </div>
+                </div>
 
+                <div class="category-btn">
+                    <div class="icon">📍</div>
+                    <div class="category-text">
+                        <div class="category-text-main">BUAH</div>
+                        <div class="category-text-sub">LOKAL</div>
+                    </div>
+                </div>
+
+                <div class="category-btn">
+                    <div class="icon">🎁</div>
+                    <div class="category-text">
+                        <div class="category-text-main">PARCEL</div>
+                        <div class="category-text-sub">BUAH PREMIUM</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Promise banner -->
+            <div class="promise-banner">
+                <div class="promise-item">
+                    <span>✓</span>
+                    <span>SEGAR</span>
+                </div>
+                <div class="promise-dot"></div>
+                <div class="promise-item">
+                    <span>BERKUALITAS</span>
+                </div>
+                <div class="promise-dot"></div>
+                <div class="promise-item">
+                    <span>HARGA BERSAHABAT</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Stock banner -->
+        <div class="stock-banner">
+            <div class="stock-icon">⚡</div>
+            <div class="stock-text">STOK FRESH SETIAP HARI</div>
+            <div class="stock-icon">⚡</div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <div class="footer-item">
+                <div class="footer-icon">📍</div>
+                <div class="footer-text">ABS KEPANJEN</div>
+            </div>
+
+            <div class="footer-divider"></div>
+
+            <div class="footer-item">
+                <div class="footer-icon">📱</div>
+                <div class="footer-text">
+                    08123526900<br>
+                    08133352727
+                </div>
+            </div>
+
+            <div class="footer-divider"></div>
+
+            <div class="footer-item qr-section">
+                <div class="qr-box">
+                    <div class="qr-placeholder">
+                        <div class="qr-dot"></div>
+                        <div class="qr-dot"></div>
+                        <div class="qr-dot"></div>
+                        <div class="qr-dot"></div>
+                        <div class="qr-dot"></div>
+                        <div class="qr-dot"></div>
+                        <div class="qr-dot"></div>
+                        <div class="qr-dot"></div>
+                        <div class="qr-dot"></div>
+                        <div class="qr-dot"></div>
+                        <div class="qr-dot"></div>
+                        <div class="qr-dot"></div>
+                        <div class="qr-dot"></div>
+                        <div class="qr-dot"></div>
+                        <div class="qr-dot"></div>
+                        <div class="qr-dot"></div>
+                        <div class="qr-dot"></div>
+                        <div class="qr-dot"></div>
+                        <div class="qr-dot"></div>
+                        <div class="qr-dot"></div>
+                        <div class="qr-dot"></div>
+                        <div class="qr-dot"></div>
+                        <div class="qr-dot"></div>
+                        <div class="qr-dot"></div>
+                        <div class="qr-dot"></div>
+                    </div>
+                </div>
+                <div class="qr-label">SCAN UNTUK<br>ORDER<br>WHATSAPP</div>
+            </div>
+        </div>
     </div>
-
-    <div class="ticker">
-      <div class="ticker-track" id="tickerTrack"></div>
-    </div>
-  </footer>
-
-</div>
-
-<script>
-  // Live clock + date
-  const days = ['Minggu','Senin','Selasa','Rabu','Kamis',"Jum'at",'Sabtu'];
-  const months = ['Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember'];
-
-  function updateClock(){
-    const now = new Date();
-    const h = String(now.getHours()).padStart(2,'0');
-    const m = String(now.getMinutes()).padStart(2,'0');
-    const s = String(now.getSeconds()).padStart(2,'0');
-    document.getElementById('clock').textContent = `${h}:${m}:${s}`;
-    document.getElementById('date').textContent =
-      `${days[now.getDay()]}, ${now.getDate()} ${months[now.getMonth()]} ${now.getFullYear()}`;
-  }
-  updateClock();
-  setInterval(updateClock, 1000);
-
-  // QR Code -> WhatsApp link
-  new QRCode(document.getElementById("qrcode"), {
-    text: "https://wa.me/6281235269000",
-    width: 146,
-    height: 146,
-    colorDark: "#1B8F3A",
-    colorLight: "#ffffff",
-    correctLevel: QRCode.CorrectLevel.H
-  });
-
-  // Ticker messages (duplicated for seamless loop)
-  const messages = [
-    "Selamat datang di Toko Buah ABS Kepanjen",
-    "Menyediakan buah lokal dan buah import berkualitas",
-    "Parcel buah premium untuk hadiah dan berbagai acara",
-    "Hubungi WhatsApp 081235269000",
-    "Terima kasih telah berbelanja di Toko Buah ABS"
-  ];
-  const track = document.getElementById('tickerTrack');
-  function buildTicker(){
-    track.innerHTML = '';
-    for(let i=0;i<2;i++){
-      messages.forEach(msg=>{
-        const span = document.createElement('span');
-        span.textContent = msg;
-        track.appendChild(span);
-      });
-    }
-  }
-  buildTicker();
-</script>
 </body>
 </html>
