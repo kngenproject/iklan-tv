@@ -1,10 +1,10 @@
 {
-  "version": "1.0.0",
+  "version": "1.0.1",
   "slides": [
     {
       "id": "slide-1",
       "image": "🍎",
-      "tag": "🔥 PROMO TERBATAS",
+      "tag": "Promo Terbatas",
       "title": "Apel Malang <span>Super Manis</span>",
       "desc": "Segar dari kebun, kaya vitamin C",
       "price": "Rp 25.000 / kg"
@@ -12,7 +12,7 @@
     {
       "id": "slide-2",
       "image": "🥭",
-      "tag": "🌿 LOKAL TERBAIK",
+      "tag": "Lokal Terbaik",
       "title": "Mangga Harum Manis <span>Arumanis</span>",
       "desc": "Daging tebal, tanpa serat",
       "price": "Rp 30.000 / kg"
@@ -20,7 +20,7 @@
     {
       "id": "slide-3",
       "image": "🍇",
-      "tag": "⭐ IMPORT PREMIUM",
+      "tag": "Import Premium",
       "title": "Anggur Red Globe <span>Australia</span>",
       "desc": "Manis legit, kualitas ekspor",
       "price": "Rp 75.000 / kg"
@@ -28,7 +28,7 @@
     {
       "id": "slide-4",
       "image": "🎁",
-      "tag": "🎀 PARCEL SPESIAL",
+      "tag": "Parcel Spesial",
       "title": "Parcel Buah <span>Mewah</span>",
       "desc": "Isi 8 buah pilihan, kemasan elegan",
       "price": "Mulai Rp 150.000"
@@ -36,18 +36,18 @@
     {
       "id": "slide-5",
       "image": "🍉",
-      "tag": "💰 HEMAT BESAR",
+      "tag": "Paket Hemat",
       "title": "Paket Keluarga <span>5 kg</span>",
       "desc": "Apel + Jeruk + Pisang + Pepaya + Semangka",
       "price": "Rp 100.000"
     }
   ],
   "ticker": [
-    "🍍 Toko Buah ABS · Jl. Raya Penarukan No.2, Kepanjen, Malang · Buka 07.00-21.00",
-    "🔥 Promo Apel Malang Rp 25.000/kg · Beli 2 kg gratis 500gr!",
-    "📱 Pesan via WhatsApp 0813-3352-7527 · Gratis ongkir min Rp 150.000",
-    "📸 Follow Instagram @abskepanjen untuk promo terbaru",
-    "🎁 Parcel Buah Spesial mulai Rp 150.000 · Cocok untuk hadiah",
-    "🌿 Buah lokal & import selalu tersedia · Kualitas terjamin"
+    "Toko Buah ABS · Jl. Penarukan No. 15, Kepanjen · Buka 07.00–21.00 WIB",
+    "Promo Apel Malang Rp 25.000/kg · Beli 2 kg gratis 500gr",
+    "Pesan via WhatsApp 0813-3352-7527",
+    "Ikuti Instagram @abskepanjen untuk promo terbaru",
+    "Parcel Buah Spesial mulai Rp 150.000 · Cocok untuk hadiah",
+    "Tersedia buah lokal & import · Melayani grosir dan eceran"
   ]
 }

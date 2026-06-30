@@ -8,22 +8,20 @@
 </head>
 <body>
 
-<!-- ══ CANVAS UNTUK PARTIKEL BACKGROUND ══ -->
 <canvas id="particleCanvas"></canvas>
 
 <div class="signage-root" id="signage-root">
 
-    <!-- ══ HEADER ══ -->
     <header class="s-header">
         <div class="logo-area">
-            <div class="logo-icon">🍉</div>
+            <div class="logo-icon">🍇</div>
             <div class="logo-text">
                 <h1 class="logo-abs"><span>Buah</span>ABS</h1>
                 <div class="logo-tagline">Aneka Buah Segar</div>
             </div>
         </div>
         <div class="header-right">
-            <div class="header-badge pulse-badge">🔥 PROMO<br>HARI INI</div>
+            <div class="header-badge pulse-badge">Promo Hari Ini</div>
             <div class="clock-box">
                 <div class="clock-time" id="jam-tv">00:00:00</div>
                 <div class="clock-date" id="tanggal-tv">—</div>
@@ -31,72 +29,57 @@
         </div>
     </header>
 
-    <!-- ══ MAIN CONTENT ══ -->
     <main class="s-main">
 
-        <!-- PANEL KIRI — SLIDE HERO -->
         <section class="panel-left" aria-label="Promo Utama">
             <div class="slide-container">
-                <div class="slide-wrapper" id="slideWrapper">
-                    <!-- diisi oleh JS -->
-                </div>
-                <div class="slide-dots" id="slideDots">
-                    <!-- diisi oleh JS -->
-                </div>
+                <div class="slide-wrapper" id="slideWrapper"></div>
+                <div class="slide-dots" id="slideDots"></div>
             </div>
         </section>
 
-        <!-- PANEL KANAN — SIDEBAR INFO -->
         <aside class="panel-right" aria-label="Info Toko">
             <div class="right-top">
-                <h3 class="right-top-title">🌟 Hubungi Kami</h3>
-                <div class="qr-box">
-                    <div class="qr-placeholder">📱 Scan QR<br>Pesan Online</div>
-                </div>
+                <h3 class="right-top-title">Hubungi Kami</h3>
                 <div class="kontak-list">
-                    <div class="kontak-item">📱 <span>0813-3352-7527</span></div>
-                    <div class="kontak-item">📍 <span>Jl. Raya Penarukan No.2, Kepanjen, Malang</span></div>
-                    <div class="kontak-item">📸 <span>@abskepanjen</span></div>
-                    <div class="kontak-item">📧 <span>buahabs@email.com</span></div>
+                    <div class="kontak-item">Telp / WA &nbsp; <span>0813-3352-7527</span></div>
+                    <div class="kontak-item">Lokasi &nbsp; <span>Jl. Penarukan No. 15, Kepanjen (depan Kawedanan/Diknas)</span></div>
+                    <div class="kontak-item">Instagram &nbsp; <span>@abskepanjen</span></div>
                 </div>
             </div>
             <div class="right-middle">
                 <div class="info-card">
-                    <h4>🏆 Produk Terlaris</h4>
+                    <h4>Produk Terlaris</h4>
                     <ul class="top-list" id="topList">
-                        <li>🍎 Apel Malang <span>500 kg/mg</span></li>
-                        <li>🍊 Jeruk Pamelo <span>300 kg/mg</span></li>
-                        <li>🥭 Mangga Arumanis <span>210 kg/mg</span></li>
+                        <li>Apel Malang <span>500 kg/mg</span></li>
+                        <li>Jeruk Pamelo <span>300 kg/mg</span></li>
+                        <li>Mangga Arumanis <span>210 kg/mg</span></li>
                     </ul>
                 </div>
                 <div class="info-card">
-                    <h4>🕒 Jam Buka</h4>
+                    <h4>Jam Buka</h4>
                     <p>Setiap Hari <strong>07.00 – 21.00 WIB</strong></p>
-                    <p class="small">Toko buka 7 hari, termasuk libur nasional</p>
+                    <p class="small">Buka 7 hari, termasuk libur nasional</p>
                 </div>
                 <div class="info-card highlight">
-                    <h4>💳 Pembayaran</h4>
+                    <h4>Pembayaran</h4>
                     <p>Cash • QRIS • Transfer • E-Wallet</p>
                 </div>
             </div>
         </aside>
     </main>
 
-    <!-- ══ TICKER ══ -->
     <footer class="marquee-wrap">
         <div class="marquee-track" id="marquee-track"></div>
     </footer>
 
-    <!-- ══ KONTROL MUSIK ══ -->
     <button class="music-btn" id="musicToggle">🔊</button>
 
-    <!-- ══ AUDIO ══ -->
     <audio id="bgMusic" loop>
         <source src="music.mp3" type="audio/mpeg">
-        <!-- Browser akan menampilkan pesan jika file tidak ditemukan -->
     </audio>
 
-    <div class="toast" id="toast">🍍 Promo terbaru!</div>
+    <div class="toast" id="toast">Promo Terbaru</div>
 </div>
 
 <script src="app.js"></script>
