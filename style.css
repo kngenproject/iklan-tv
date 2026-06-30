@@ -1,6 +1,6 @@
 /* ═══════════════════════════════════════
    TOKO BUAH ABS — DIGITAL SIGNAGE
-   PREMIUM & ELEGAN
+   MODERN PREMIUM — GRID LAYOUT
    ═══════════════════════════════════════ */
 
 * {
@@ -22,13 +22,11 @@ html, body {
 
 #particleCanvas {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
     z-index: 0;
     pointer-events: none;
-    opacity: 0.5;
+    opacity: 0.4;
 }
 
 .signage-root {
@@ -39,114 +37,94 @@ html, body {
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    background: transparent;
     z-index: 1;
 }
 
 /* ── HEADER ── */
 .s-header {
-    height: 200px;
+    height: 170px;
     flex-shrink: 0;
     background: linear-gradient(180deg, #16161a 0%, #101012 100%);
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 90px;
+    padding: 0 70px;
     border-bottom: 1px solid #c9a449;
     z-index: 2;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.5);
 }
 
-.logo-area {
-    display: flex;
-    align-items: center;
-    gap: 34px;
-}
+.logo-area { display: flex; align-items: center; gap: 26px; }
 .logo-icon {
-    font-size: 5.5rem;
-    line-height: 1;
-    filter: grayscale(0.15) drop-shadow(0 0 20px rgba(201,164,73,0.3));
+    font-size: 4.6rem;
+    filter: drop-shadow(0 0 16px rgba(201,164,73,0.3));
 }
 .logo-abs {
-    font-family: 'Georgia', 'Times New Roman', serif;
-    font-size: 5.4rem;
+    font-family: 'Georgia', serif;
+    font-size: 4.4rem;
     font-weight: 700;
     color: #f0ede6;
     letter-spacing: 1px;
 }
 .logo-abs span { color: #c9a449; }
 .logo-tagline {
-    font-size: 1.9rem;
+    font-size: 1.5rem;
     color: #8a8578;
-    letter-spacing: 6px;
+    letter-spacing: 5px;
     text-transform: uppercase;
-    margin-top: 6px;
-    font-weight: 400;
-}
-
-.header-right {
-    display: flex;
-    align-items: center;
-    gap: 70px;
-}
-
-.header-badge {
-    background: transparent;
-    color: #c9a449;
-    font-size: 2rem;
-    font-weight: 600;
-    padding: 16px 38px;
-    border: 1px solid #c9a449;
-    border-radius: 4px;
-    text-align: center;
-    line-height: 1.3;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-}
-.pulse-badge {
-    animation: pulseGlow 2.4s ease-in-out infinite;
-}
-@keyframes pulseGlow {
-    0%, 100% { box-shadow: 0 0 0 rgba(201,164,73,0); background: transparent; }
-    50% { box-shadow: 0 0 30px rgba(201,164,73,0.25); background: rgba(201,164,73,0.08); }
-}
-
-.clock-time {
-    font-size: 5.6rem;
-    font-family: 'Georgia', serif;
-    font-weight: 400;
-    color: #f0ede6;
-    letter-spacing: 3px;
-    text-align: right;
-}
-.clock-date {
-    font-size: 2rem;
-    color: #8a8578;
-    font-weight: 400;
-    text-align: right;
-    letter-spacing: 1px;
     margin-top: 4px;
 }
 
-/* ── MAIN ── */
-.s-main {
-    flex: 1;
-    display: flex;
-    overflow: hidden;
-    gap: 1px;
-    background: #1c1c1f;
-    z-index: 2;
-    position: relative;
+.header-right { display: flex; align-items: center; gap: 50px; }
+
+.header-badge {
+    background: rgba(201,164,73,0.08);
+    color: #c9a449;
+    font-size: 1.7rem;
+    font-weight: 600;
+    padding: 14px 30px;
+    border: 1px solid #c9a449;
+    border-radius: 4px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+.pulse-badge { animation: pulseGlow 2.4s ease-in-out infinite; }
+@keyframes pulseGlow {
+    0%, 100% { box-shadow: 0 0 0 rgba(201,164,73,0); }
+    50% { box-shadow: 0 0 26px rgba(201,164,73,0.3); }
 }
 
-/* PANEL KIRI (70%) */
+.clock-time {
+    font-size: 4.6rem;
+    font-family: 'Georgia', serif;
+    color: #f0ede6;
+    letter-spacing: 2px;
+    text-align: right;
+}
+.clock-date {
+    font-size: 1.6rem;
+    color: #8a8578;
+    text-align: right;
+    margin-top: 2px;
+}
+
+/* ── MAIN GRID ── */
+.s-main {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 65% 35%;
+    overflow: hidden;
+    background: #1c1c1f;
+    gap: 1px;
+    z-index: 2;
+}
+
+/* PANEL KIRI — slide + strip statistik bawah */
 .panel-left {
-    width: 70%;
-    padding: 50px 40px 50px 70px;
+    background: #0c0c0e;
     display: flex;
     flex-direction: column;
-    position: relative;
-    background: #0c0c0e;
+    padding: 36px;
+    gap: 24px;
 }
 .slide-container {
     flex: 1;
@@ -155,213 +133,192 @@ html, body {
     overflow: hidden;
     border: 1px solid rgba(201,164,73,0.25);
 }
-.slide-wrapper {
-    width: 100%;
-    height: 100%;
-    position: relative;
-}
+.slide-wrapper { width: 100%; height: 100%; position: relative; }
 .slide-item {
     position: absolute;
     inset: 0;
     opacity: 0;
     visibility: hidden;
-    transition: opacity 1s cubic-bezier(0.25, 1, 0.5, 1), transform 1s ease;
+    transition: opacity 1s cubic-bezier(.25,1,.5,1), transform 1s ease;
     transform: scale(1.03);
     display: flex;
     align-items: center;
-    justify-content: center;
     background:
-        linear-gradient(135deg, rgba(201,164,73,0.06), transparent 60%),
+        linear-gradient(135deg, rgba(201,164,73,0.07), transparent 55%),
         radial-gradient(ellipse at center, #18181b, #0c0c0e);
-    padding: 70px;
+    padding: 60px 80px;
 }
-.slide-item.active {
-    opacity: 1;
-    visibility: visible;
-    transform: scale(1);
-    z-index: 2;
-}
-.slide-content {
-    display: flex;
-    align-items: center;
-    gap: 80px;
-    width: 100%;
-    height: 100%;
-}
+.slide-item.active { opacity: 1; visibility: visible; transform: scale(1); z-index: 2; }
+.slide-content { display: flex; align-items: center; gap: 64px; width: 100%; }
 .slide-image {
-    font-size: 19rem;
-    line-height: 1;
-    filter: drop-shadow(0 20px 50px rgba(0,0,0,0.6)) drop-shadow(0 0 40px rgba(201,164,73,0.15));
+    font-size: 15rem;
+    filter: drop-shadow(0 16px 40px rgba(0,0,0,.6)) drop-shadow(0 0 30px rgba(201,164,73,.15));
     animation: floatImage 5s ease-in-out infinite;
 }
-@keyframes floatImage {
-    0%, 100% { transform: translateY(0px); }
-    50% { transform: translateY(-16px); }
-}
-.slide-text {
-    flex: 1;
-}
+@keyframes floatImage { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-14px)} }
+.slide-text { flex: 1; }
 .slide-text .tag {
     display: inline-block;
-    background: transparent;
     color: #c9a449;
-    font-size: 2rem;
+    font-size: 1.7rem;
     font-weight: 600;
-    padding: 6px 0;
+    padding: 5px 0;
     border-bottom: 1px solid #c9a449;
-    margin-bottom: 28px;
-    letter-spacing: 4px;
+    margin-bottom: 20px;
+    letter-spacing: 3px;
     text-transform: uppercase;
 }
 .slide-text h2 {
-    font-family: 'Georgia', 'Times New Roman', serif;
-    font-size: 6.2rem;
+    font-family: 'Georgia', serif;
+    font-size: 5rem;
     font-weight: 400;
-    line-height: 1.25;
+    line-height: 1.2;
     color: #f0ede6;
 }
 .slide-text h2 span { color: #c9a449; font-style: italic; }
 .slide-text .desc {
-    font-size: 2.6rem;
+    font-size: 2.1rem;
     color: #a8a399;
-    margin-top: 22px;
+    margin-top: 16px;
     font-weight: 300;
-    letter-spacing: 0.5px;
 }
 .slide-text .price {
-    font-size: 4.2rem;
+    font-size: 3.4rem;
     font-weight: 600;
     color: #f0ede6;
-    margin-top: 30px;
+    margin-top: 22px;
     font-family: 'Georgia', serif;
-    border-top: 1px solid rgba(201,164,73,0.3);
-    padding-top: 20px;
+    border-top: 1px solid rgba(201,164,73,.3);
+    padding-top: 16px;
     display: inline-block;
 }
-
 .slide-dots {
     position: absolute;
-    bottom: 36px;
-    left: 50%;
+    bottom: 28px; left: 50%;
     transform: translateX(-50%);
-    display: flex;
-    gap: 16px;
-    z-index: 10;
+    display: flex; gap: 14px; z-index: 10;
 }
 .dot {
-    width: 10px;
-    height: 10px;
+    width: 9px; height: 9px;
     border-radius: 50%;
-    background: transparent;
-    border: 1px solid rgba(201,164,73,0.4);
-    transition: all 0.3s ease;
+    border: 1px solid rgba(201,164,73,.4);
     cursor: pointer;
+    transition: all .3s ease;
 }
-.dot.active {
-    background: #c9a449;
-    width: 36px;
-    border-radius: 6px;
-    border-color: #c9a449;
-}
+.dot.active { background: #c9a449; width: 30px; border-radius: 6px; border-color: #c9a449; }
 
-/* PANEL KANAN (30%) */
-.panel-right {
-    width: 30%;
+/* STRIP STATISTIK — mengisi whitespace bawah panel kiri */
+.stats-strip {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: rgba(201,164,73,0.15);
+    border-radius: 8px;
+    overflow: hidden;
+    flex-shrink: 0;
+    height: 150px;
+}
+.stat-box {
     background: #111113;
     display: flex;
     flex-direction: column;
-    padding: 50px 50px 50px 45px;
-    gap: 30px;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+}
+.stat-box .num {
+    font-family: 'Georgia', serif;
+    font-size: 2.8rem;
+    color: #c9a449;
+    font-weight: 700;
+}
+.stat-box .lbl {
+    font-size: 1.3rem;
+    color: #8a8578;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+}
+
+/* PANEL KANAN — sidebar grid */
+.panel-right {
+    background: #111113;
+    display: flex;
+    flex-direction: column;
+    padding: 36px 36px 36px 32px;
+    gap: 20px;
     overflow-y: auto;
 }
 .right-top {
-    text-align: left;
-    border-bottom: 1px solid rgba(201,164,73,0.2);
-    padding-bottom: 30px;
+    border-bottom: 1px solid rgba(201,164,73,.2);
+    padding-bottom: 22px;
 }
 .right-top-title {
     font-family: 'Georgia', serif;
-    font-size: 2.6rem;
-    font-weight: 400;
+    font-size: 2.1rem;
     color: #c9a449;
-    margin-bottom: 22px;
-    letter-spacing: 1px;
+    margin-bottom: 16px;
 }
-.kontak-list {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    margin-top: 8px;
-}
+.kontak-list { display: flex; flex-direction: column; gap: 12px; }
 .kontak-item {
-    font-size: 2rem;
+    font-size: 1.65rem;
     color: #c5c1b8;
-    font-weight: 400;
-    text-align: left;
-    padding: 0;
-    letter-spacing: 0.3px;
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
 }
-.kontak-item span { color: #f0ede6; font-weight: 500; }
+.kontak-item .lbl { color: #8a8578; }
+.kontak-item span:not(.lbl) { color: #f0ede6; font-weight: 500; text-align: right; }
 
 .right-middle {
     flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 22px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+    gap: 16px;
 }
 .info-card {
     background: #16161a;
     border-radius: 6px;
-    padding: 26px 30px;
-    border: 1px solid rgba(255,255,255,0.05);
-    border-left: 2px solid rgba(201,164,73,0.5);
+    padding: 20px 22px;
+    border: 1px solid rgba(255,255,255,.05);
+    border-left: 2px solid rgba(201,164,73,.5);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
+.info-card.span-2 { grid-column: 1 / -1; }
 .info-card h4 {
     font-family: 'Georgia', serif;
-    font-size: 2.1rem;
+    font-size: 1.6rem;
     font-weight: 400;
     color: #c9a449;
-    margin-bottom: 14px;
-    letter-spacing: 0.5px;
+    margin-bottom: 10px;
 }
 .info-card p {
-    font-size: 1.95rem;
+    font-size: 1.55rem;
     color: #a8a399;
-    line-height: 1.6;
+    line-height: 1.5;
     font-weight: 300;
 }
 .info-card p strong { color: #f0ede6; font-weight: 600; }
-.info-card .small {
-    font-size: 1.6rem;
-    color: #6f6b60;
-    margin-top: 6px;
-}
-.info-card.highlight {
-    background: #16161a;
-    border-left-color: #c9a449;
-}
-.top-list {
-    list-style: none;
-    padding: 0;
-}
+.info-card .small { font-size: 1.25rem; color: #6f6b60; margin-top: 4px; }
+.info-card.highlight { border-left-color: #c9a449; }
+.top-list { list-style: none; padding: 0; }
 .top-list li {
-    font-size: 1.95rem;
+    font-size: 1.5rem;
     color: #a8a399;
-    padding: 10px 0;
+    padding: 6px 0;
     display: flex;
     justify-content: space-between;
-    border-bottom: 1px solid rgba(255,255,255,0.05);
+    border-bottom: 1px solid rgba(255,255,255,.05);
     font-weight: 300;
 }
 .top-list li:last-child { border-bottom: none; }
-.top-list li span {
-    color: #c9a449;
-    font-weight: 600;
-}
+.top-list li span { color: #c9a449; font-weight: 600; }
 
 /* ── TICKER ── */
 .marquee-wrap {
-    height: 100px;
+    height: 90px;
     flex-shrink: 0;
     background: #111113;
     border-top: 1px solid #c9a449;
@@ -372,68 +329,44 @@ html, body {
 .marquee-track {
     display: flex;
     white-space: nowrap;
-    font-size: 2.3rem;
+    font-size: 1.9rem;
     font-weight: 300;
-    letter-spacing: 0.3px;
     animation: runningTicker 60s linear infinite;
 }
-.m-item {
-    color: #a8a399;
-    margin: 0 50px;
-}
+.m-item { color: #a8a399; margin: 0 44px; }
 .m-item .hl { color: #c9a449; font-weight: 600; }
-.m-sep { color: rgba(201,164,73,0.3); font-size: 1.4rem; margin: 0 24px; }
-@keyframes runningTicker {
-    0% { transform: translate3d(0,0,0); }
-    100% { transform: translate3d(-50%,0,0); }
-}
+.m-sep { color: rgba(201,164,73,.3); font-size: 1.2rem; margin: 0 20px; }
+@keyframes runningTicker { 0%{transform:translate3d(0,0,0)} 100%{transform:translate3d(-50%,0,0)} }
 
 /* ── MUSIC BUTTON ── */
 .music-btn {
     position: fixed;
-    bottom: 140px;
-    right: 40px;
-    width: 70px;
-    height: 70px;
+    bottom: 120px; right: 36px;
+    width: 64px; height: 64px;
     border-radius: 50%;
-    border: 1px solid rgba(201,164,73,0.4);
+    border: 1px solid rgba(201,164,73,.4);
     background: #16161a;
     color: #c9a449;
-    font-size: 2.8rem;
+    font-size: 2.4rem;
     cursor: pointer;
     z-index: 999;
-    transition: all 0.3s ease;
+    transition: all .3s ease;
 }
-.music-btn:hover {
-    border-color: #c9a449;
-    background: #1c1c1f;
-}
-.music-btn.muted {
-    color: #6f6b60;
-    border-color: rgba(255,255,255,0.1);
-}
+.music-btn:hover { border-color: #c9a449; background: #1c1c1f; }
+.music-btn.muted { color: #6f6b60; border-color: rgba(255,255,255,.1); }
 
 /* ── TOAST ── */
 .toast {
     display: none;
     position: fixed;
-    bottom: 140px;
-    left: 50%;
+    bottom: 120px; left: 50%;
     transform: translateX(-50%);
     background: #16161a;
     color: #f0ede6;
-    font-size: 2.2rem;
-    font-weight: 400;
-    padding: 20px 50px;
+    font-size: 1.8rem;
+    padding: 16px 40px;
     border-radius: 4px;
     z-index: 999;
     border: 1px solid #c9a449;
 }
 .toast.show { display: block; }
-
-/* ── RESPONSIF ── */
-@media (max-width: 3840px) {
-    .slide-text h2 { font-size: 5rem; }
-    .slide-text .price { font-size: 3.4rem; }
-    .slide-image { font-size: 14rem; }
-}
