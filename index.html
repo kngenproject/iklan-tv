@@ -44,26 +44,16 @@
         }
 
         /* ===== PERBAIKAN UTAMA: wrapper diposisikan di tengah ===== */
-        /* Safe-area buffer 2% di tiap sisi untuk mengantisipasi overscan TV */
+        /* Mode "contain": konten selalu utuh 3840x2160, TV yang beda
+           rasio akan dapat letterbox tipis, bukan konten terpotong. */
         #scale-wrapper {
-            width: 3994px;
-            height: 2246px;
+            width: 3840px;
+            height: 2160px;
             position: absolute;
             top: 50%;
             left: 50%;
             transform-origin: center center;
-            background-color: #000000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
             /* transform akan diatur oleh JS */
-        }
-
-        #canvas-3840 {
-            width: 3840px;
-            height: 2160px;
-            position: relative;
-            flex-shrink: 0;
         }
 
         /* ===== BACKGROUND STATIS ===== */
@@ -445,7 +435,7 @@
             display: inline-block;
             white-space: nowrap;
             padding-left: 100%;
-            animation: marquee 80s linear infinite;
+            animation: marquee 130s linear infinite;
             font-size: 64px;
             font-weight: 600;
             color: var(--text-cream);
@@ -477,7 +467,6 @@
     </audio>
 
     <div id="scale-wrapper">
-        <div id="canvas-3840">
         <div class="signage-container">
 
             <!-- WAVE BACKGROUND -->
@@ -665,28 +654,29 @@
             </div>
 
         </div>
-        </div>
     </div>
 
     <script>
-        const TARGET_W = 3994;
-        const TARGET_H = 2246;
+        const TARGET_W = 3840;
+        const TARGET_H = 2160;
         const wrapper = document.getElementById('scale-wrapper');
 
         function fitScreen() {
             // Gunakan innerWidth/innerHeight (CSS px) -- ini SUDAH benar
             // terlepas dari DPI/devicePixelRatio, karena CSS px selalu
             // dinormalisasi oleh browser terhadap DPI layar.
-            // Ini menghindari salah scaling di layar 320 DPI (mis. TV/monitor high-density).
             const vw = window.innerWidth || document.documentElement.clientWidth;
             const vh = window.innerHeight || document.documentElement.clientHeight;
 
             const scaleX = vw / TARGET_W;
             const scaleY = vh / TARGET_H;
 
-            // Math.max = memenuhi penuh layar (cover), tidak ada garis hitam
-            // Math.min bisa dipakai jika ingin "contain" (letterbox) -- ganti di sini jika perlu.
-            const scale = Math.max(scaleX, scaleY);
+            // Math.min = "contain": seluruh konten 3840x2160 selalu utuh
+            // terlihat, tidak pernah terpotong. Jika rasio layar TV sedikit
+            // meleset dari 16:9 murni, akan muncul bar hitam tipis di
+            // sisi atas/bawah atau kiri/kanan -- ini jauh lebih aman
+            // daripada teks/logo terpotong.
+            const scale = Math.min(scaleX, scaleY);
 
             wrapper.style.transform = `translate(-50%, -50%) scale(${scale})`;
         }
