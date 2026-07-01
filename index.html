@@ -516,21 +516,72 @@
         }
 
         .footer-bar {
+            position: relative;
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
             align-items: center;
-            font-size: 34px;
-            color: var(--text-muted);
+            font-size: 44px;
+            line-height: 1.2;
+            color: var(--text-cream);
             border-top: 6px solid rgba(16, 163, 74, 0.2);
             padding-top: 30px;
             font-weight: 800;
             gap: 60px;
+            height: 100px;
+            overflow: hidden;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
         }
 
         .footer-bar i {
-            color: var(--accent-green);
+            color: var(--accent-green-light);
             margin-right: 18px;
             text-shadow: 0 0 20px rgba(16, 163, 74, 0.2);
+        }
+
+        /* ===== SWIPE UP ANIMATION UNTUK ITEM FOOTER ===== */
+        .footer-bar > div {
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 30px;
+            height: 70px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transform: translateY(70px);
+            animation: footerSwipe 8s ease-in-out infinite;
+        }
+
+        .footer-bar > div:nth-child(1) {
+            animation-delay: 0s;
+        }
+
+        .footer-bar > div:nth-child(2) {
+            animation-delay: 4s;
+        }
+
+        @keyframes footerSwipe {
+            0% {
+                opacity: 0;
+                transform: translateY(70px);
+            }
+            8% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            42% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            50% {
+                opacity: 0;
+                transform: translateY(-70px);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-70px);
+            }
         }
 
         .marquee-container {
