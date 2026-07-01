@@ -31,13 +31,15 @@
             cursor: none;
         }
 
+        /* ===== PERBAIKAN UTAMA: wrapper diposisikan di tengah ===== */
         #scale-wrapper {
             width: 3840px;
             height: 2160px;
-            transform-origin: top left;
             position: absolute;
-            top: 0;
-            left: 0;
+            top: 50%;
+            left: 50%;
+            transform-origin: center center;
+            /* transform akan diatur oleh JS */
         }
 
         /* ===== WAVE BACKGROUND — jelas terlihat, di belakang konten ===== */
@@ -690,8 +692,10 @@
         function fitScreen() {
             const scaleX = window.innerWidth / 3840;
             const scaleY = window.innerHeight / 2160;
-            const scale = Math.min(scaleX, scaleY);
-            document.getElementById('scale-wrapper').style.transform = `scale(${scale})`;
+            // Math.max = memenuhi penuh layar (cover), tidak ada garis hitam
+            const scale = Math.max(scaleX, scaleY);
+            const wrapper = document.getElementById('scale-wrapper');
+            wrapper.style.transform = `translate(-50%, -50%) scale(${scale})`;
         }
         window.addEventListener('resize', fitScreen);
         window.addEventListener('load', fitScreen);
