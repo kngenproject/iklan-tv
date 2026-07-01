@@ -9,11 +9,10 @@
     
     <style>
         :root {
-            --primary-green: #0a291e;
             --accent-orange: #FF8200;
-            --bg-dark: #030d0a;
+            --accent-orange-light: #FFA53D;
             --text-cream: #FFFDF9;
-            --text-muted: #A3C1AD;
+            --text-muted: #9A9A9A;
         }
 
         * {
@@ -23,47 +22,85 @@
         }
 
         body, html {
-            width: 3840px;
-            height: 2160px;
-            max-width: 100vw;
-            max-height: 100vh;
+            width: 100%;
+            height: 100%;
+            margin: 0;
             overflow: hidden;
-            background-color: var(--bg-dark);
+            background-color: #000000;
             font-family: 'Montserrat', sans-serif;
             cursor: none;
         }
 
-        /* Background Pattern dengan Wave Animation */
-        body::before {
-            content: '';
-            position: fixed;
+        #scale-wrapper {
+            width: 3840px;
+            height: 2160px;
+            transform-origin: top left;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        /* ===== WAVE BACKGROUND — jelas terlihat, di belakang konten ===== */
+        .wave-bg {
+            position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: 
-                linear-gradient(90deg, transparent 0%, rgba(255, 130, 0, 0.05) 25%, transparent 50%, rgba(255, 130, 0, 0.05) 75%, transparent 100%),
-                linear-gradient(180deg, transparent 0%, rgba(255, 130, 0, 0.08) 50%, transparent 100%);
-            background-size: 400% 400%;
-            animation: wave 15s ease-in-out infinite;
-            pointer-events: none;
-            z-index: -1;
+            z-index: 0;
+            background: #000000;
+            overflow: hidden;
         }
 
-        @keyframes wave {
-            0% { background-position: 0% 0%; }
-            25% { background-position: 25% 25%; }
-            50% { background-position: 50% 50%; }
-            75% { background-position: 25% 75%; }
-            100% { background-position: 0% 0%; }
-        }
-
-        /* Container Utama 4K dengan Wave Overlay */
-        .signage-container {
-            position: relative;
+        .wave-bg span {
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, #051f17 0%, #0a291e 50%, #144534 100%);
+            background-repeat: repeat-x;
+            background-position: 0 bottom;
+            background-size: 1600px 500px;
+        }
+
+        .wave-bg span:nth-child(1) {
+            background-image: radial-gradient(ellipse 800px 300px at 50% 100%, rgba(255, 130, 0, 0.55) 0%, transparent 70%);
+            background-size: 1800px 600px;
+            animation: waveMove1 18s linear infinite;
+            opacity: 0.8;
+        }
+
+        .wave-bg span:nth-child(2) {
+            background-image: radial-gradient(ellipse 700px 260px at 50% 100%, rgba(255, 253, 249, 0.35) 0%, transparent 70%);
+            background-size: 1500px 500px;
+            animation: waveMove2 24s linear infinite reverse;
+            opacity: 0.6;
+        }
+
+        .wave-bg span:nth-child(3) {
+            background-image: radial-gradient(ellipse 900px 340px at 50% 100%, rgba(255, 165, 61, 0.45) 0%, transparent 70%);
+            background-size: 2000px 700px;
+            animation: waveMove1 32s linear infinite;
+            opacity: 0.5;
+        }
+
+        @keyframes waveMove1 {
+            0% { background-position-x: 0; }
+            100% { background-position-x: -1800px; }
+        }
+
+        @keyframes waveMove2 {
+            0% { background-position-x: 0; }
+            100% { background-position-x: -1500px; }
+        }
+
+        /* Container Utama 4K */
+        .signage-container {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            height: 100%;
+            background: transparent;
             color: var(--text-cream);
             display: flex;
             flex-direction: column;
@@ -72,38 +109,20 @@
             overflow: hidden;
         }
 
-        .signage-container::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: 
-                radial-gradient(ellipse 1200px 600px at 20% 30%, rgba(255, 130, 0, 0.08) 0%, transparent 50%),
-                radial-gradient(ellipse 1000px 800px at 80% 70%, rgba(10, 41, 30, 0.1) 0%, transparent 60%);
-            animation: waveGlow 12s ease-in-out infinite;
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        @keyframes waveGlow {
-            0%, 100% {
-                opacity: 0.8;
-                transform: scale(1);
-            }
-            50% {
-                opacity: 1;
-                transform: scale(1.05);
-            }
-        }
-
-        /* Area Slide Wrapper */
-        .slide-wrapper {
+        /* ============ SPLIT LAYOUT: KIRI (Carousel) + KANAN (Harga) ============ */
+        .content-split {
             position: relative;
+            display: flex;
             flex-grow: 1;
             width: 100%;
             height: calc(100% - 280px);
+            z-index: 1;
+        }
+
+        .slide-wrapper {
+            position: relative;
+            flex: 1.5;
+            height: 100%;
             z-index: 1;
         }
 
@@ -119,7 +138,7 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            padding: 80px 220px;
+            padding: 80px 100px 80px 120px;
         }
 
         .slide.active {
@@ -127,7 +146,102 @@
             visibility: visible;
         }
 
-        /* Header Global */
+        /* ============ PRICE PANEL (KANAN) ============ */
+        .price-panel {
+            position: relative;
+            flex: 1;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.35);
+            border-left: 6px solid var(--accent-orange);
+            padding: 80px 100px 80px 80px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .price-panel-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 90px;
+            font-weight: 900;
+            color: var(--text-cream);
+            margin-bottom: 20px;
+            text-shadow: 0 8px 30px rgba(0, 0, 0, 0.6);
+            flex-shrink: 0;
+        }
+
+        .price-panel-title span {
+            color: var(--accent-orange);
+        }
+
+        .price-panel-sub {
+            font-size: 34px;
+            color: var(--text-muted);
+            margin-bottom: 50px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .price-list-wrapper {
+            width: 100%;
+            flex: 1;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+            mask-image: linear-gradient(to bottom, transparent 0%, black 8%, black 92%, transparent 100%);
+            -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 8%, black 92%, transparent 100%);
+        }
+
+        .price-list {
+            list-style: none;
+            position: relative;
+            width: 100%;
+            animation: scrollUp 28s linear infinite;
+        }
+
+        @keyframes scrollUp {
+            0%   { transform: translateY(0); }
+            100% { transform: translateY(-50%); }
+        }
+
+        .price-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 36px 0;
+            border-bottom: 2px solid rgba(255, 130, 0, 0.2);
+        }
+
+        .price-name {
+            font-size: 58px;
+            font-weight: 800;
+            color: #E8E8E8;
+            line-height: 1.2;
+        }
+
+        .price-value {
+            font-size: 64px;
+            font-weight: 900;
+            color: var(--accent-orange);
+            font-family: 'Poppins', sans-serif;
+            margin-top: 8px;
+            text-shadow: 0 0 30px rgba(255, 130, 0, 0.25);
+        }
+
+        .price-note {
+            margin-top: 40px;
+            font-size: 28px;
+            color: var(--text-muted);
+            font-style: italic;
+            flex-shrink: 0;
+        }
+
+        /* Header */
         .header-bar {
             display: flex;
             justify-content: space-between;
@@ -135,25 +249,25 @@
             border-bottom: 12px solid var(--accent-orange);
             padding-bottom: 40px;
             margin-bottom: 30px;
+            min-height: 180px;
         }
 
         .brand-text {
             font-family: 'Poppins', sans-serif;
-            font-size: 140px;
+            font-size: 110px;
             font-weight: 900;
-            letter-spacing: 6px;
+            letter-spacing: 5px;
             text-transform: uppercase;
             line-height: 1;
-            text-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+            text-shadow: 0 8px 30px rgba(0, 0, 0, 0.6);
             flex: 1;
         }
 
         .brand-text span {
             color: var(--accent-orange);
-            text-shadow: 0 0 50px rgba(255, 130, 0, 0.6);
+            text-shadow: 0 0 60px rgba(255, 130, 0, 0.7);
         }
 
-        /* Widget Jam */
         .live-clock-box {
             text-align: right;
             font-family: 'Poppins', sans-serif;
@@ -161,33 +275,41 @@
             padding: 0;
             border-left: none;
             flex: 1;
+            min-height: 120px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
-        
-        #live-time {
-            font-size: 90px;
+
+        #live-time,
+        .live-time-alt {
+            font-size: 80px;
             font-weight: 900;
             color: var(--text-cream);
             display: block;
             line-height: 1;
-            text-shadow: 0 0 30px rgba(255, 255, 255, 0.2);
+            text-shadow: 0 0 30px rgba(255, 130, 0, 0.3);
+            margin: 0;
         }
-        
-        #live-date {
-            font-size: 32px;
-            color: var(--text-muted);
+
+        #live-date,
+        .live-date-alt {
+            font-size: 28px;
+            color: var(--accent-orange-light);
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 3px;
             margin-top: 12px;
+            display: block;
+            text-align: right;
         }
 
-        /* Layout Grid Konten */
         .main-content {
             display: flex;
             align-items: center;
             justify-content: space-between;
             flex-grow: 1;
-            gap: 160px;
+            gap: 100px;
             margin: 40px 0;
         }
 
@@ -200,30 +322,28 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            min-width: 550px;
+            min-width: 400px;
         }
 
-        /* Judul Konten */
         .welcome-title {
-            font-size: 160px;
+            font-size: 120px;
             font-family: 'Poppins', sans-serif;
             font-weight: 900;
             line-height: 1.1;
             margin-bottom: 50px;
             letter-spacing: -2px;
-            text-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+            text-shadow: 0 15px 40px rgba(0, 0, 0, 0.7);
         }
 
         .welcome-title span {
             color: var(--accent-orange);
             display: block;
-            text-shadow: 0 0 60px rgba(255, 130, 0, 0.3);
+            text-shadow: 0 0 70px rgba(255, 130, 0, 0.4);
         }
 
-        /* Subdeskripsi */
         .welcome-sub {
-            font-size: 56px;
-            color: #E5F7F0;
+            font-size: 46px;
+            color: #E8E8E8;
             font-weight: 600;
             line-height: 1.5;
             letter-spacing: 0.5px;
@@ -231,58 +351,56 @@
         }
 
         .rating-box {
-            font-size: 52px;
+            font-size: 42px;
             color: #FFD700;
             background: rgba(0, 0, 0, 0.3);
             display: inline-flex;
             align-items: center;
-            padding: 35px 60px;
+            padding: 28px 50px;
             border-radius: 35px;
-            gap: 20px;
+            gap: 16px;
             font-weight: 800;
-            border: 3px solid rgba(255, 130, 0, 0.2);
-            box-shadow: 0 0 40px rgba(255, 130, 0, 0.15);
+            border: 3px solid rgba(255, 130, 0, 0.3);
+            box-shadow: 0 0 40px rgba(255, 130, 0, 0.2);
         }
 
-        /* Slide Promo */
         .promo-badge {
             background: linear-gradient(135deg, #FF8200 0%, #ffaa00 100%);
-            color: var(--text-cream);
-            font-size: 140px;
+            color: #0a0a0a;
+            font-size: 100px;
             font-weight: 900;
-            padding: 60px 120px;
+            padding: 50px 90px;
             border-radius: 50px;
             display: inline-block;
-            box-shadow: 0 35px 80px rgba(255, 130, 0, 0.3);
+            box-shadow: 0 35px 90px rgba(255, 130, 0, 0.4);
             animation: pulse 2s infinite;
             letter-spacing: 3px;
-            border: 4px solid rgba(255, 255, 255, 0.1);
-            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            border: 4px solid rgba(255, 255, 255, 0.15);
+            text-shadow: none;
         }
 
         .promo-desc {
-            font-size: 70px;
-            margin-top: 80px;
+            font-size: 56px;
+            margin-top: 70px;
             line-height: 1.5;
-            color: #E5F7F0;
+            color: #E8E8E8;
             font-weight: 700;
             letter-spacing: 0.5px;
         }
 
         .promo-desc span {
             color: var(--accent-orange);
-            font-size: 65px;
-            text-shadow: 0 0 40px rgba(255, 130, 0, 0.2);
+            font-size: 52px;
+            text-shadow: 0 0 40px rgba(255, 130, 0, 0.3);
         }
 
-        /* Slide Informasi */
         .info-title {
-            font-size: 100px;
+            font-size: 80px;
             font-family: 'Poppins', sans-serif;
             font-weight: 900;
             color: var(--text-cream);
             margin-bottom: 60px;
-            text-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+            text-shadow: 0 8px 30px rgba(0, 0, 0, 0.6);
         }
 
         .benefit-list {
@@ -290,74 +408,53 @@
         }
 
         .benefit-list li {
-            font-size: 54px;
-            margin-bottom: 50px;
+            font-size: 44px;
+            margin-bottom: 45px;
             display: flex;
             align-items: center;
             font-weight: 700;
             line-height: 1.5;
             letter-spacing: 0.3px;
-            color: #E5F7F0;
+            color: #E8E8E8;
         }
 
         .benefit-list i {
             color: var(--accent-orange);
-            margin-right: 40px;
-            font-size: 70px;
+            margin-right: 35px;
+            font-size: 60px;
             flex-shrink: 0;
-            text-shadow: 0 0 30px rgba(255, 130, 0, 0.2);
+            text-shadow: 0 0 30px rgba(255, 130, 0, 0.3);
         }
 
-        /* Footer Bar */
         .footer-bar {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            font-size: 40px;
+            font-size: 34px;
             color: var(--text-muted);
             border-top: 6px solid rgba(255, 130, 0, 0.2);
-            padding-top: 35px;
+            padding-top: 30px;
             font-weight: 800;
-            gap: 80px;
+            gap: 60px;
         }
 
         .footer-bar i {
             color: var(--accent-orange);
-            margin-right: 20px;
-            text-shadow: 0 0 20px rgba(255, 130, 0, 0.15);
+            margin-right: 18px;
+            text-shadow: 0 0 20px rgba(255, 130, 0, 0.2);
         }
 
-        /* ================= MARQUEE RUNNING TEXT ================= */
         .marquee-container {
             width: 100%;
             height: 280px;
-            background: linear-gradient(to right, #061f16, #0a291e);
+            background: #000000;
             border-top: 8px solid var(--accent-orange);
             overflow: hidden;
             position: relative;
             display: flex;
             align-items: center;
             z-index: 1;
-            box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.4);
-        }
-
-        .marquee-label {
-            position: absolute;
-            left: 0;
-            top: 0;
-            height: 100%;
-            background: linear-gradient(135deg, var(--accent-orange), #ffaa00);
-            color: var(--text-cream);
-            padding: 0 60px;
-            display: flex;
-            align-items: center;
-            font-weight: 900;
-            font-size: 44px;
-            z-index: 10;
-            box-shadow: 25px 0 40px rgba(0, 0, 0, 0.5);
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            white-space: nowrap;
+            box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.6);
         }
 
         .marquee-text {
@@ -365,10 +462,12 @@
             white-space: nowrap;
             padding-left: 100%;
             animation: marquee 80s linear infinite;
-            font-size: 42px;
+            font-size: 64px;
             font-weight: 600;
             color: var(--text-cream);
             letter-spacing: 2px;
+            position: relative;
+            z-index: 1;
         }
 
         @keyframes marquee {
@@ -393,100 +492,211 @@
         <source src="music.mp3" type="audio/mpeg">
     </audio>
 
-    <div class="signage-container">
+    <div id="scale-wrapper">
+        <div class="signage-container">
 
-        <div class="slide-wrapper">
-            <div class="slide active">
-                <div class="header-bar">
-                    <div class="brand-text">TOKO BUAH <span>ABS</span></div>
-                    <div class="live-clock-box">
-                        <span id="live-time">00:00:00</span>
-                        <span id="live-date">Memuat Tanggal...</span>
-                    </div>
-                </div>
-                <div class="main-content">
-                    <div class="text-zone">
-                        <h1 class="welcome-title">TOKO KHUSUS<br><span>BUAH KERING</span></h1>
-                        <p class="welcome-sub">Kualitas nutrisi alami, diproses higienis untuk camilan sehat keluarga.</p>
-                        <div class="rating-box">
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star-half-stroke"></i>
-                            <span style="color: var(--text-cream); margin-left: 20px;">4.5 Google Review</span>
+            <!-- WAVE BACKGROUND -->
+            <div class="wave-bg">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+            <div class="content-split">
+
+                <!-- ===== KIRI: CAROUSEL PROMOSI/INFO ===== -->
+                <div class="slide-wrapper">
+                    <div class="slide active">
+                        <div class="header-bar">
+                            <div class="brand-text">TOKO BUAH <span>ABS</span></div>
+                            <div class="live-clock-box">
+                                <span id="live-time">00:00:00</span>
+                                <span id="live-date">Memuat Tanggal...</span>
+                            </div>
+                        </div>
+                        <div class="main-content">
+                            <div class="text-zone">
+                                <h1 class="welcome-title">TOKO KHUSUS<br><span>BUAH KERING</span></h1>
+                                <p class="welcome-sub">Kualitas nutrisi alami, diproses higienis untuk camilan sehat keluarga.</p>
+                                <div class="rating-box">
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star-half-stroke"></i>
+                                    <span style="color: var(--text-cream); margin-left: 16px;">4.5 Google Review</span>
+                                </div>
+                            </div>
+                            <div class="visual-zone">
+                                <i class="fa-solid fa-box-open" style="font-size: 320px; color: var(--accent-orange); opacity: 0.9; filter: drop-shadow(0 0 70px rgba(255, 130, 0, 0.35));"></i>
+                            </div>
+                        </div>
+                        <div class="footer-bar">
+                            <div><i class="fa-solid fa-location-dot"></i> Jl. Raya Penarukan No.2, Kepanjen, Malang</div>
+                            <div><i class="fa-solid fa-phone"></i> +62 813-3352-7527</div>
                         </div>
                     </div>
-                    <div class="visual-zone">
-                        <i class="fa-solid fa-box-open" style="font-size: 420px; color: var(--accent-orange); opacity: 0.85; filter: drop-shadow(0 0 60px rgba(255, 130, 0, 0.2));"></i>
-                    </div>
-                </div>
-                <div class="footer-bar">
-                    <div><i class="fa-solid fa-location-dot"></i> Jl. Raya Penarukan No.2, Kepanjen, Malang</div>
-                    <div><i class="fa-solid fa-phone"></i> +62 813-3352-7527</div>
-                </div>
-            </div>
 
-            <div class="slide">
-                <div class="header-bar">
-                    <div class="brand-text">TOKO BUAH <span>ABS</span></div>
-                    <div class="live-clock-box">
-                        <span class="live-time-alt" style="font-size: 90px; font-weight: 900; color: var(--text-cream);">00:00:00</span>
+                    <div class="slide">
+                        <div class="header-bar">
+                            <div class="brand-text">TOKO BUAH <span>ABS</span></div>
+                            <div class="live-clock-box">
+                                <span class="live-time-alt">00:00:00</span>
+                                <span class="live-date-alt">Memuat Tanggal...</span>
+                            </div>
+                        </div>
+                        <div class="main-content">
+                            <div class="text-zone" style="text-align: center; width: 100%;">
+                                <div class="promo-badge">PROMO MINGGU INI</div>
+                                <h2 class="promo-desc">
+                                    Ubah Pola Hidup Lebih Praktis & Bernutrisi!<br><br>
+                                    <span>Sedia aneka kismis, kurma, buah tin, dan aprikot kering kaya antioksidan.</span>
+                                </h2>
+                            </div>
+                        </div>
+                        <div class="footer-bar">
+                            <div>*Silakan hubungi admin kasir untuk info harga grosir</div>
+                            <div><i class="fa-solid fa-clock"></i> Jam Buka: Rabu 07.00–21.00</div>
+                        </div>
                     </div>
-                </div>
-                <div class="main-content">
-                    <div class="text-zone" style="text-align: center; width: 100%;">
-                        <div class="promo-badge">PROMO MINGGU INI</div>
-                        <h2 class="promo-desc">
-                            Ubah Pola Hidup Lebih Praktis & Bernutrisi!<br><br>
-                            <span>Sedia aneka kismis, kurma, buah tin, dan aprikot kering kaya antioksidan.</span>
-                        </h2>
-                    </div>
-                </div>
-                <div class="footer-bar">
-                    <div>*Silakan hubungi admin kasir untuk info harga grosir</div>
-                    <div><i class="fa-solid fa-clock"></i> Jam Buka: Rabu 07.00–21.00</div>
-                </div>
-            </div>
 
-            <div class="slide">
-                <div class="header-bar">
-                    <div class="brand-text">TOKO BUAH <span>ABS</span></div>
-                    <div class="live-clock-box">
-                        <span class="live-time-alt" style="font-size: 90px; font-weight: 900; color: var(--text-cream);">00:00:00</span>
+                    <div class="slide">
+                        <div class="header-bar">
+                            <div class="brand-text">TOKO BUAH <span>ABS</span></div>
+                            <div class="live-clock-box">
+                                <span class="live-time-alt">00:00:00</span>
+                                <span class="live-date-alt">Memuat Tanggal...</span>
+                            </div>
+                        </div>
+                        <div class="main-content">
+                            <div class="text-zone">
+                                <h2 class="info-title">Keunggulan Buah Kering Kami:</h2>
+                                <ul class="benefit-list">
+                                    <li><i class="fa-solid fa-circle-check"></i> Lebih awet alami tanpa bahan pengawet kimia buatan.</li>
+                                    <li><i class="fa-solid fa-circle-check"></i> Sumber serat, vitamin, dan mineral berkonsentrasi tinggi.</li>
+                                    <li><i class="fa-solid fa-circle-check"></i> Sangat praktis dibawa untuk bekal energi aktivitas harian.</li>
+                                </ul>
+                            </div>
+                            <div class="visual-zone">
+                                <i class="fa-solid fa-heart-pulse" style="font-size: 260px; color: var(--accent-orange); opacity: 0.85; filter: drop-shadow(0 0 60px rgba(255, 130, 0, 0.3));"></i>
+                            </div>
+                        </div>
+                        <div class="footer-bar">
+                            <div><i class="fa-solid fa-shield-halved"></i> 100% Produk Bersih & Higienis</div>
+                            <div><i class="fa-brands fa-whatsapp"></i> Hubungi: +62 813-3352-7527</div>
+                        </div>
                     </div>
                 </div>
-                <div class="main-content">
-                    <div class="text-zone">
-                        <h2 class="info-title">Keunggulan Buah Kering Kami:</h2>
-                        <ul class="benefit-list">
-                            <li><i class="fa-solid fa-circle-check"></i> Lebih awet alami tanpa bahan pengawet kimia buatan.</li>
-                            <li><i class="fa-solid fa-circle-check"></i> Sumber serat, vitamin, dan mineral berkonsentrasi tinggi.</li>
-                            <li><i class="fa-solid fa-circle-check"></i> Sangat praktis dibawa untuk bekal energi aktivitas harian.</li>
+
+                <!-- ===== KANAN: DAFTAR HARGA ===== -->
+                <div class="price-panel">
+                    <div class="price-panel-title">Daftar <span>Harga</span></div>
+                    <div class="price-panel-sub">Buah Kering Pilihan</div>
+
+                    <div class="price-list-wrapper">
+                        <ul class="price-list">
+                            <li class="price-item">
+                                <span class="price-name">Kurma Sukari</span>
+                                <span class="price-value">Rp 45.000</span>
+                            </li>
+                            <li class="price-item">
+                                <span class="price-name">Kurma Medjool</span>
+                                <span class="price-value">Rp 65.000</span>
+                            </li>
+                            <li class="price-item">
+                                <span class="price-name">Kismis Hitam</span>
+                                <span class="price-value">Rp 35.000</span>
+                            </li>
+                            <li class="price-item">
+                                <span class="price-name">Kismis Merah</span>
+                                <span class="price-value">Rp 38.000</span>
+                            </li>
+                            <li class="price-item">
+                                <span class="price-name">Buah Tin Kering</span>
+                                <span class="price-value">Rp 55.000</span>
+                            </li>
+                            <li class="price-item">
+                                <span class="price-name">Aprikot Kering</span>
+                                <span class="price-value">Rp 50.000</span>
+                            </li>
+                            <li class="price-item">
+                                <span class="price-name">Plum Kering</span>
+                                <span class="price-value">Rp 42.000</span>
+                            </li>
+                            <li class="price-item">
+                                <span class="price-name">Mangga Kering</span>
+                                <span class="price-value">Rp 30.000</span>
+                            </li>
+                            <li class="price-item">
+                                <span class="price-name">Cranberry Kering</span>
+                                <span class="price-value">Rp 48.000</span>
+                            </li>
+
+                            <!-- Duplikat untuk loop mulus -->
+                            <li class="price-item">
+                                <span class="price-name">Kurma Sukari</span>
+                                <span class="price-value">Rp 45.000</span>
+                            </li>
+                            <li class="price-item">
+                                <span class="price-name">Kurma Medjool</span>
+                                <span class="price-value">Rp 65.000</span>
+                            </li>
+                            <li class="price-item">
+                                <span class="price-name">Kismis Hitam</span>
+                                <span class="price-value">Rp 35.000</span>
+                            </li>
+                            <li class="price-item">
+                                <span class="price-name">Kismis Merah</span>
+                                <span class="price-value">Rp 38.000</span>
+                            </li>
+                            <li class="price-item">
+                                <span class="price-name">Buah Tin Kering</span>
+                                <span class="price-value">Rp 55.000</span>
+                            </li>
+                            <li class="price-item">
+                                <span class="price-name">Aprikot Kering</span>
+                                <span class="price-value">Rp 50.000</span>
+                            </li>
+                            <li class="price-item">
+                                <span class="price-name">Plum Kering</span>
+                                <span class="price-value">Rp 42.000</span>
+                            </li>
+                            <li class="price-item">
+                                <span class="price-name">Mangga Kering</span>
+                                <span class="price-value">Rp 30.000</span>
+                            </li>
+                            <li class="price-item">
+                                <span class="price-name">Cranberry Kering</span>
+                                <span class="price-value">Rp 48.000</span>
+                            </li>
                         </ul>
                     </div>
-                    <div class="visual-zone">
-                        <i class="fa-solid fa-heart-pulse" style="font-size: 340px; color: #E5F7F0; filter: drop-shadow(0 0 50px rgba(229, 247, 240, 0.2));"></i>
-                    </div>
+
+                    <div class="price-note">*Harga per 250 gram, sewaktu-waktu dapat berubah</div>
                 </div>
-                <div class="footer-bar">
-                    <div><i class="fa-solid fa-shield-halved"></i> 100% Produk Bersih & Higienis</div>
-                    <div><i class="fa-brands fa-whatsapp"></i> Hubungi: +62 813-3352-7527</div>
+
+            </div>
+
+            <div class="marquee-container">
+                <div class="marquee-text">
+                    Selamat Datang di Toko Buah ABS Kepanjen --- Menyediakan produk khusus buah-buahan kering berkualitas tinggi dengan rating kepuasan pelanggan 4,5 bintang! --- Alamat toko kami berada di Jl. Raya Penarukan No.2, Kec. Kepanjen, Kab. Malang, Jawa Timur 65163 --- Untuk info stok atau pemesanan paket hampers, hubungi nomor telepon kami di +62 813-3352-7527 --- Jam Operasional khusus hari Rabu buka mulai pukul 07.00 s/d 21.00 WIB --- Jaga kebugaran tubuh Anda dan keluarga dengan konsumsi buah kering kaya nutrisi setiap hari!
                 </div>
             </div>
-        </div>
 
-        <div class="marquee-container">
-            <div class="marquee-label"><i class="fa-solid fa-circle-info" style="margin-right: 25px;"></i> Info Toko</div>
-            <div class="marquee-text">
-                Selamat Datang di Toko Buah ABS Kepanjen --- Menyediakan produk khusus buah-buahan kering berkualitas tinggi dengan rating kepuasan pelanggan 4,5 bintang! --- Alamat toko kami berada di Jl. Raya Penarukan No.2, Kec. Kepanjen, Kab. Malang, Jawa Timur 65163 --- Untuk info stok atau pemesanan paket hampers, hubungi nomor telepon kami di +62 813-3352-7527 --- Jam Operasional khusus hari Rabu buka mulai pukul 07.00 s/d 21.00 WIB --- Jaga kebugaran tubuh Anda dan keluarga dengan konsumsi buah kering kaya nutrisi setiap hari!
-            </div>
         </div>
-
     </div>
 
     <script>
-        // 1. Logika Jam Real-Time
+        function fitScreen() {
+            const scaleX = window.innerWidth / 3840;
+            const scaleY = window.innerHeight / 2160;
+            const scale = Math.min(scaleX, scaleY);
+            document.getElementById('scale-wrapper').style.transform = `scale(${scale})`;
+        }
+        window.addEventListener('resize', fitScreen);
+        window.addEventListener('load', fitScreen);
+        fitScreen();
+
         function updateClock() {
             const now = new Date();
             const hours = String(now.getHours()).padStart(2, '0');
@@ -506,11 +716,14 @@
             document.querySelectorAll('.live-time-alt').forEach(el => {
                 el.textContent = timeString;
             });
+
+            document.querySelectorAll('.live-date-alt').forEach(el => {
+                el.textContent = dateString;
+            });
         }
         setInterval(updateClock, 1000);
         updateClock();
 
-        // 2. Sistem Slide Carousel (6 Detik)
         const slides = document.querySelectorAll('.slide');
         let currentSlide = 0;
         const slideInterval = 6000;
@@ -522,7 +735,6 @@
         }
         setInterval(nextSlide, slideInterval);
 
-        // 3. Audio Autoplay Bypass
         const audio = document.getElementById('bg-music');
         const triggerMusic = () => {
             audio.play().catch(err => console.log("Menunggu interaksi awal."));
