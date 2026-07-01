@@ -9,8 +9,8 @@
     
     <style>
         :root {
-            --accent-orange: #FF8200;
-            --accent-orange-light: #FFA53D;
+            --accent-green: #16A34A;
+            --accent-green-light: #4ADE80;
             --text-cream: #FFFDF9;
             --text-muted: #9A9A9A;
         }
@@ -64,8 +64,123 @@
             width: 100%;
             height: 100%;
             z-index: 0;
-            background: #000000;
-            background-image: radial-gradient(ellipse 1400px 500px at 50% 100%, rgba(255, 130, 0, 0.35) 0%, transparent 65%);
+            background-color: #05140c;
+            background-image:
+                /* dot pattern halus */
+                radial-gradient(circle, rgba(74, 222, 128, 0.12) 2px, transparent 2px),
+                /* glow hijau besar bawah */
+                radial-gradient(ellipse 1600px 700px at 50% 105%, rgba(16, 163, 74, 0.45) 0%, transparent 65%),
+                /* glow hijau tua kiri atas */
+                radial-gradient(ellipse 1200px 900px at 5% 0%, rgba(21, 94, 58, 0.35) 0%, transparent 60%),
+                /* glow hijau kanan atas */
+                radial-gradient(ellipse 1100px 800px at 100% 0%, rgba(16, 163, 74, 0.22) 0%, transparent 55%),
+                /* gradient dasar hijau gelap ke hitam */
+                linear-gradient(160deg, #0d2618 0%, #05140c 35%, #030d08 65%, #020705 100%);
+            background-size:
+                48px 48px,
+                100% 100%,
+                100% 100%,
+                100% 100%,
+                100% 100%;
+            background-position:
+                0 0,
+                center,
+                center,
+                center,
+                center;
+        }
+
+        /* Noise / grain overlay tipis di atas gradient */
+        .wave-bg::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+            mix-blend-mode: overlay;
+            opacity: 0.6;
+            pointer-events: none;
+        }
+
+        /* ===== ANIMASI WAVE STYLE PS5 ===== */
+        .wave-anim-layer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .wave-anim-layer svg {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+        .wave-path {
+            transform-origin: center center;
+        }
+
+        .wave-path-1 {
+            fill: rgba(16, 163, 74, 0.16);
+            animation: waveMorph1 14s ease-in-out infinite, waveDrift1 22s ease-in-out infinite;
+        }
+
+        .wave-path-2 {
+            fill: rgba(74, 222, 128, 0.11);
+            animation: waveMorph2 18s ease-in-out infinite, waveDrift2 28s ease-in-out infinite;
+        }
+
+        .wave-path-3 {
+            fill: rgba(21, 94, 58, 0.14);
+            animation: waveMorph3 20s ease-in-out infinite, waveDrift3 26s ease-in-out infinite reverse;
+        }
+
+        @keyframes waveMorph1 {
+            0%, 100% {
+                d: path("M0,1400 C700,1250 1400,1550 2100,1400 C2800,1250 3200,1500 3840,1350 L3840,2160 L0,2160 Z");
+            }
+            33% {
+                d: path("M0,1450 C640,1600 1500,1300 2200,1480 C2900,1650 3300,1350 3840,1500 L3840,2160 L0,2160 Z");
+            }
+            66% {
+                d: path("M0,1350 C760,1400 1300,1600 2050,1420 C2750,1260 3250,1550 3840,1400 L3840,2160 L0,2160 Z");
+            }
+        }
+
+        @keyframes waveDrift1 {
+            0%, 100% { transform: translateX(0) scale(1); }
+            50% { transform: translateX(-60px) scale(1.02); }
+        }
+
+        @keyframes waveMorph2 {
+            0%, 100% {
+                d: path("M0,1550 C650,1420 1450,1680 2150,1520 C2850,1360 3250,1620 3840,1500 L3840,2160 L0,2160 Z");
+            }
+            50% {
+                d: path("M0,1500 C700,1680 1400,1450 2100,1600 C2800,1750 3300,1480 3840,1580 L3840,2160 L0,2160 Z");
+            }
+        }
+
+        @keyframes waveDrift2 {
+            0%, 100% { transform: translateX(0) scale(1); }
+            50% { transform: translateX(80px) scale(1.03); }
+        }
+
+        @keyframes waveMorph3 {
+            0%, 100% {
+                d: path("M0,1650 C750,1780 1350,1550 2100,1680 C2850,1810 3300,1600 3840,1700 L3840,2160 L0,2160 Z");
+            }
+            50% {
+                d: path("M0,1700 C700,1580 1450,1800 2150,1650 C2850,1500 3300,1750 3840,1650 L3840,2160 L0,2160 Z");
+            }
+        }
+
+        @keyframes waveDrift3 {
+            0%, 100% { transform: translateX(0) scale(1); }
+            50% { transform: translateX(-50px) scale(1.015); }
         }
 
         /* Container Utama 4K */
@@ -126,7 +241,7 @@
             flex: 1;
             height: 100%;
             background: rgba(0, 0, 0, 0.35);
-            border-left: 6px solid var(--accent-orange);
+            border-left: 6px solid var(--accent-green);
             padding: 80px 100px 80px 80px;
             display: flex;
             flex-direction: column;
@@ -147,7 +262,7 @@
         }
 
         .price-panel-title span {
-            color: var(--accent-orange);
+            color: var(--accent-green);
         }
 
         .price-panel-sub {
@@ -188,7 +303,7 @@
             flex-direction: column;
             align-items: center;
             padding: 36px 0;
-            border-bottom: 2px solid rgba(255, 130, 0, 0.2);
+            border-bottom: 2px solid rgba(16, 163, 74, 0.2);
         }
 
         .price-name {
@@ -201,10 +316,10 @@
         .price-value {
             font-size: 64px;
             font-weight: 900;
-            color: var(--accent-orange);
+            color: var(--accent-green);
             font-family: 'Poppins', sans-serif;
             margin-top: 8px;
-            text-shadow: 0 0 30px rgba(255, 130, 0, 0.25);
+            text-shadow: 0 0 30px rgba(16, 163, 74, 0.25);
         }
 
         .price-note {
@@ -220,7 +335,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 12px solid var(--accent-orange);
+            border-bottom: 12px solid var(--accent-green);
             padding-bottom: 40px;
             margin-bottom: 30px;
             min-height: 180px;
@@ -238,8 +353,8 @@
         }
 
         .brand-text span {
-            color: var(--accent-orange);
-            text-shadow: 0 0 60px rgba(255, 130, 0, 0.7);
+            color: var(--accent-green);
+            text-shadow: 0 0 60px rgba(16, 163, 74, 0.7);
         }
 
         .live-clock-box {
@@ -262,14 +377,14 @@
             color: var(--text-cream);
             display: block;
             line-height: 1;
-            text-shadow: 0 0 30px rgba(255, 130, 0, 0.3);
+            text-shadow: 0 0 30px rgba(16, 163, 74, 0.3);
             margin: 0;
         }
 
         #live-date,
         .live-date-alt {
             font-size: 28px;
-            color: var(--accent-orange-light);
+            color: var(--accent-green-light);
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 3px;
@@ -310,9 +425,9 @@
         }
 
         .welcome-title span {
-            color: var(--accent-orange);
+            color: var(--accent-green);
             display: block;
-            text-shadow: 0 0 70px rgba(255, 130, 0, 0.4);
+            text-shadow: 0 0 70px rgba(16, 163, 74, 0.4);
         }
 
         .welcome-sub {
@@ -334,19 +449,19 @@
             border-radius: 35px;
             gap: 16px;
             font-weight: 800;
-            border: 3px solid rgba(255, 130, 0, 0.3);
-            box-shadow: 0 0 40px rgba(255, 130, 0, 0.2);
+            border: 3px solid rgba(16, 163, 74, 0.3);
+            box-shadow: 0 0 40px rgba(16, 163, 74, 0.2);
         }
 
         .promo-badge {
-            background: linear-gradient(135deg, #FF8200 0%, #ffaa00 100%);
+            background: linear-gradient(135deg, #16A34A 0%, #4ADE80 100%);
             color: #0a0a0a;
             font-size: 100px;
             font-weight: 900;
             padding: 50px 90px;
             border-radius: 50px;
             display: inline-block;
-            box-shadow: 0 35px 90px rgba(255, 130, 0, 0.4);
+            box-shadow: 0 35px 90px rgba(16, 163, 74, 0.4);
             animation: pulse 2s infinite;
             letter-spacing: 3px;
             border: 4px solid rgba(255, 255, 255, 0.15);
@@ -363,9 +478,9 @@
         }
 
         .promo-desc span {
-            color: var(--accent-orange);
+            color: var(--accent-green);
             font-size: 52px;
-            text-shadow: 0 0 40px rgba(255, 130, 0, 0.3);
+            text-shadow: 0 0 40px rgba(16, 163, 74, 0.3);
         }
 
         .info-title {
@@ -393,11 +508,11 @@
         }
 
         .benefit-list i {
-            color: var(--accent-orange);
+            color: var(--accent-green);
             margin-right: 35px;
             font-size: 60px;
             flex-shrink: 0;
-            text-shadow: 0 0 30px rgba(255, 130, 0, 0.3);
+            text-shadow: 0 0 30px rgba(16, 163, 74, 0.3);
         }
 
         .footer-bar {
@@ -406,23 +521,23 @@
             align-items: center;
             font-size: 34px;
             color: var(--text-muted);
-            border-top: 6px solid rgba(255, 130, 0, 0.2);
+            border-top: 6px solid rgba(16, 163, 74, 0.2);
             padding-top: 30px;
             font-weight: 800;
             gap: 60px;
         }
 
         .footer-bar i {
-            color: var(--accent-orange);
+            color: var(--accent-green);
             margin-right: 18px;
-            text-shadow: 0 0 20px rgba(255, 130, 0, 0.2);
+            text-shadow: 0 0 20px rgba(16, 163, 74, 0.2);
         }
 
         .marquee-container {
             width: 100%;
             height: 280px;
             background: #000000;
-            border-top: 8px solid var(--accent-orange);
+            border-top: 8px solid var(--accent-green);
             overflow: hidden;
             position: relative;
             display: flex;
@@ -472,6 +587,15 @@
             <!-- WAVE BACKGROUND -->
             <div class="wave-bg"></div>
 
+            <!-- WAVE ANIMATION LAYER (PS5 style) -->
+            <div class="wave-anim-layer">
+                <svg viewBox="0 0 3840 2160" preserveAspectRatio="none">
+                    <path class="wave-path wave-path-3" d="M0,1650 C750,1780 1350,1550 2100,1680 C2850,1810 3300,1600 3840,1700 L3840,2160 L0,2160 Z"></path>
+                    <path class="wave-path wave-path-2" d="M0,1550 C650,1420 1450,1680 2150,1520 C2850,1360 3250,1620 3840,1500 L3840,2160 L0,2160 Z"></path>
+                    <path class="wave-path wave-path-1" d="M0,1400 C700,1250 1400,1550 2100,1400 C2800,1250 3200,1500 3840,1350 L3840,2160 L0,2160 Z"></path>
+                </svg>
+            </div>
+
             <div class="content-split">
 
                 <!-- ===== KIRI: CAROUSEL PROMOSI/INFO ===== -->
@@ -498,7 +622,7 @@
                                 </div>
                             </div>
                             <div class="visual-zone">
-                                <i class="fa-solid fa-box-open" style="font-size: 320px; color: var(--accent-orange); opacity: 0.9; filter: drop-shadow(0 0 70px rgba(255, 130, 0, 0.35));"></i>
+                                <i class="fa-solid fa-box-open" style="font-size: 320px; color: var(--accent-green); opacity: 0.9; filter: drop-shadow(0 0 70px rgba(16, 163, 74, 0.35));"></i>
                             </div>
                         </div>
                         <div class="footer-bar">
@@ -548,7 +672,7 @@
                                 </ul>
                             </div>
                             <div class="visual-zone">
-                                <i class="fa-solid fa-heart-pulse" style="font-size: 260px; color: var(--accent-orange); opacity: 0.85; filter: drop-shadow(0 0 60px rgba(255, 130, 0, 0.3));"></i>
+                                <i class="fa-solid fa-heart-pulse" style="font-size: 260px; color: var(--accent-green); opacity: 0.85; filter: drop-shadow(0 0 60px rgba(16, 163, 74, 0.3));"></i>
                             </div>
                         </div>
                         <div class="footer-bar">
