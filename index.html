@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>Digital Signage 4K - Toko Buah ABS Kepanjen</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700;900&family=Montserrat:wght@500;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -21,14 +21,26 @@
             padding: 0;
         }
 
-        body, html {
+        html {
             width: 100%;
             height: 100%;
             margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        body {
+            width: 100vw;
+            height: 100vh;
+            margin: 0;
+            padding: 0;
             overflow: hidden;
             background-color: #000000;
             font-family: 'Montserrat', sans-serif;
             cursor: none;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            text-rendering: optimizeLegibility;
         }
 
         /* ===== PERBAIKAN UTAMA: wrapper diposisikan di tengah ===== */
@@ -39,6 +51,9 @@
             top: 50%;
             left: 50%;
             transform-origin: center center;
+            will-change: transform;
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
             /* transform akan diatur oleh JS */
         }
 
@@ -58,11 +73,14 @@
             position: absolute;
             top: 0;
             left: 0;
-            width: 100%;
+            width: 200%;
             height: 100%;
             background-repeat: repeat-x;
             background-position: 0 bottom;
             background-size: 1600px 500px;
+            will-change: transform;
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
         }
 
         .wave-bg span:nth-child(1) {
@@ -87,13 +105,13 @@
         }
 
         @keyframes waveMove1 {
-            0% { background-position-x: 0; }
-            100% { background-position-x: -1800px; }
+            0% { transform: translate3d(0, 0, 0); }
+            100% { transform: translate3d(-1800px, 0, 0); }
         }
 
         @keyframes waveMove2 {
-            0% { background-position-x: 0; }
-            100% { background-position-x: -1500px; }
+            0% { transform: translate3d(0, 0, 0); }
+            100% { transform: translate3d(-1500px, 0, 0); }
         }
 
         /* Container Utama 4K */
@@ -141,6 +159,7 @@
             flex-direction: column;
             justify-content: space-between;
             padding: 80px 100px 80px 120px;
+            will-change: opacity;
         }
 
         .slide.active {
@@ -204,11 +223,14 @@
             position: relative;
             width: 100%;
             animation: scrollUp 28s linear infinite;
+            will-change: transform;
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
         }
 
         @keyframes scrollUp {
-            0%   { transform: translateY(0); }
-            100% { transform: translateY(-50%); }
+            0%   { transform: translate3d(0, 0, 0); }
+            100% { transform: translate3d(0, -50%, 0); }
         }
 
         .price-item {
@@ -379,6 +401,9 @@
             letter-spacing: 3px;
             border: 4px solid rgba(255, 255, 255, 0.15);
             text-shadow: none;
+            will-change: transform;
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
         }
 
         .promo-desc {
@@ -470,6 +495,9 @@
             letter-spacing: 2px;
             position: relative;
             z-index: 1;
+            will-change: transform;
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
         }
 
         @keyframes marquee {
@@ -689,16 +717,39 @@
     </div>
 
     <script>
+        const TARGET_W = 3840;
+        const TARGET_H = 2160;
+        const wrapper = document.getElementById('scale-wrapper');
+
         function fitScreen() {
-            const scaleX = window.innerWidth / 3840;
-            const scaleY = window.innerHeight / 2160;
+            // Gunakan innerWidth/innerHeight (CSS px) -- ini SUDAH benar
+            // terlepas dari DPI/devicePixelRatio, karena CSS px selalu
+            // dinormalisasi oleh browser terhadap DPI layar.
+            // Ini menghindari salah scaling di layar 320 DPI (mis. TV/monitor high-density).
+            const vw = window.innerWidth || document.documentElement.clientWidth;
+            const vh = window.innerHeight || document.documentElement.clientHeight;
+
+            const scaleX = vw / TARGET_W;
+            const scaleY = vh / TARGET_H;
+
             // Math.max = memenuhi penuh layar (cover), tidak ada garis hitam
+            // Math.min bisa dipakai jika ingin "contain" (letterbox) -- ganti di sini jika perlu.
             const scale = Math.max(scaleX, scaleY);
-            const wrapper = document.getElementById('scale-wrapper');
-            wrapper.style.transform = `translate(-50%, -50%) scale(${scale})`;
+
+            wrapper.style.transform = `translate3d(-50%, -50%, 0) scale(${scale})`;
         }
-        window.addEventListener('resize', fitScreen);
+
+        // Debounce resize agar tidak membebani main thread saat resize berulang
+        let resizeTimeout;
+        function onResize() {
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(fitScreen, 100);
+        }
+
+        window.addEventListener('resize', onResize);
+        window.addEventListener('orientationchange', fitScreen);
         window.addEventListener('load', fitScreen);
+        document.addEventListener('DOMContentLoaded', fitScreen);
         fitScreen();
 
         function updateClock() {
