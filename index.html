@@ -44,14 +44,26 @@
         }
 
         /* ===== PERBAIKAN UTAMA: wrapper diposisikan di tengah ===== */
+        /* Safe-area buffer 2% di tiap sisi untuk mengantisipasi overscan TV */
         #scale-wrapper {
-            width: 3840px;
-            height: 2160px;
+            width: 3994px;
+            height: 2246px;
             position: absolute;
             top: 50%;
             left: 50%;
             transform-origin: center center;
+            background-color: #000000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             /* transform akan diatur oleh JS */
+        }
+
+        #canvas-3840 {
+            width: 3840px;
+            height: 2160px;
+            position: relative;
+            flex-shrink: 0;
         }
 
         /* ===== BACKGROUND STATIS ===== */
@@ -465,6 +477,7 @@
     </audio>
 
     <div id="scale-wrapper">
+        <div id="canvas-3840">
         <div class="signage-container">
 
             <!-- WAVE BACKGROUND -->
@@ -652,11 +665,12 @@
             </div>
 
         </div>
+        </div>
     </div>
 
     <script>
-        const TARGET_W = 3840;
-        const TARGET_H = 2160;
+        const TARGET_W = 3994;
+        const TARGET_H = 2246;
         const wrapper = document.getElementById('scale-wrapper');
 
         function fitScreen() {
