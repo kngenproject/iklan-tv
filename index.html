@@ -51,13 +51,10 @@
             top: 50%;
             left: 50%;
             transform-origin: center center;
-            will-change: transform;
-            backface-visibility: hidden;
-            -webkit-backface-visibility: hidden;
             /* transform akan diatur oleh JS */
         }
 
-        /* ===== WAVE BACKGROUND — jelas terlihat, di belakang konten ===== */
+        /* ===== BACKGROUND STATIS ===== */
         .wave-bg {
             position: absolute;
             top: 0;
@@ -66,52 +63,7 @@
             height: 100%;
             z-index: 0;
             background: #000000;
-            overflow: hidden;
-        }
-
-        .wave-bg span {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 200%;
-            height: 100%;
-            background-repeat: repeat-x;
-            background-position: 0 bottom;
-            background-size: 1600px 500px;
-            will-change: transform;
-            backface-visibility: hidden;
-            -webkit-backface-visibility: hidden;
-        }
-
-        .wave-bg span:nth-child(1) {
-            background-image: radial-gradient(ellipse 800px 300px at 50% 100%, rgba(255, 130, 0, 0.55) 0%, transparent 70%);
-            background-size: 1800px 600px;
-            animation: waveMove1 18s linear infinite;
-            opacity: 0.8;
-        }
-
-        .wave-bg span:nth-child(2) {
-            background-image: radial-gradient(ellipse 700px 260px at 50% 100%, rgba(255, 253, 249, 0.35) 0%, transparent 70%);
-            background-size: 1500px 500px;
-            animation: waveMove2 24s linear infinite reverse;
-            opacity: 0.6;
-        }
-
-        .wave-bg span:nth-child(3) {
-            background-image: radial-gradient(ellipse 900px 340px at 50% 100%, rgba(255, 165, 61, 0.45) 0%, transparent 70%);
-            background-size: 2000px 700px;
-            animation: waveMove1 32s linear infinite;
-            opacity: 0.5;
-        }
-
-        @keyframes waveMove1 {
-            0% { transform: translate3d(0, 0, 0); }
-            100% { transform: translate3d(-1800px, 0, 0); }
-        }
-
-        @keyframes waveMove2 {
-            0% { transform: translate3d(0, 0, 0); }
-            100% { transform: translate3d(-1500px, 0, 0); }
+            background-image: radial-gradient(ellipse 1400px 500px at 50% 100%, rgba(255, 130, 0, 0.35) 0%, transparent 65%);
         }
 
         /* Container Utama 4K */
@@ -159,7 +111,6 @@
             flex-direction: column;
             justify-content: space-between;
             padding: 80px 100px 80px 120px;
-            will-change: opacity;
         }
 
         .slide.active {
@@ -223,14 +174,11 @@
             position: relative;
             width: 100%;
             animation: scrollUp 28s linear infinite;
-            will-change: transform;
-            backface-visibility: hidden;
-            -webkit-backface-visibility: hidden;
         }
 
         @keyframes scrollUp {
-            0%   { transform: translate3d(0, 0, 0); }
-            100% { transform: translate3d(0, -50%, 0); }
+            0%   { transform: translateY(0); }
+            100% { transform: translateY(-50%); }
         }
 
         .price-item {
@@ -401,9 +349,6 @@
             letter-spacing: 3px;
             border: 4px solid rgba(255, 255, 255, 0.15);
             text-shadow: none;
-            will-change: transform;
-            backface-visibility: hidden;
-            -webkit-backface-visibility: hidden;
         }
 
         .promo-desc {
@@ -495,14 +440,11 @@
             letter-spacing: 2px;
             position: relative;
             z-index: 1;
-            will-change: transform;
-            backface-visibility: hidden;
-            -webkit-backface-visibility: hidden;
         }
 
         @keyframes marquee {
-            0% { transform: translate3d(0, 0, 0); }
-            100% { transform: translate3d(-100%, 0, 0); }
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-100%); }
         }
 
         @keyframes pulse {
@@ -526,11 +468,7 @@
         <div class="signage-container">
 
             <!-- WAVE BACKGROUND -->
-            <div class="wave-bg">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
+            <div class="wave-bg"></div>
 
             <div class="content-split">
 
@@ -736,7 +674,7 @@
             // Math.min bisa dipakai jika ingin "contain" (letterbox) -- ganti di sini jika perlu.
             const scale = Math.max(scaleX, scaleY);
 
-            wrapper.style.transform = `translate3d(-50%, -50%, 0) scale(${scale})`;
+            wrapper.style.transform = `translate(-50%, -50%) scale(${scale})`;
         }
 
         // Debounce resize agar tidak membebani main thread saat resize berulang
